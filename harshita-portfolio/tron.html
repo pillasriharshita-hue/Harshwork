@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Neutron × Electron — Sri Harshita Pilla</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -15,7 +17,7 @@
   --max:1280px;
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;
+body{background:var(--bg);color:var(--white);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
   -webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{text-decoration:none;color:inherit}
 img{display:block;max-width:100%}
@@ -29,7 +31,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 48px;display:fl
   padding:8px 16px;border:1px solid var(--rule);background:rgba(13,13,13,.75);backdrop-filter:blur(14px);
   transition:color .2s,border-color .2s;letter-spacing:.01em}
 .nav-back:hover{color:var(--white);border-color:rgba(244,243,238,.2)}
-.nav-mark{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.1em;color:var(--amber);
+.nav-mark{font-family:'Playfair Display',Georgia,serif;font-size:18px;letter-spacing:.1em;color:var(--amber);
   background:rgba(13,13,13,.75);backdrop-filter:blur(14px);padding:6px 14px;border:1px solid var(--rule)}
 
 /* ── HERO (dramatic whitespace like Maria) ── */
@@ -42,12 +44,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 48px;display:fl
   background:radial-gradient(ellipse,rgba(212,146,10,.15) 0%,transparent 70%);
   top:40%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
 
-.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,10vw,120px);
+.hero-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(56px,10vw,120px);
   letter-spacing:.15em;color:var(--white);line-height:.95;margin-bottom:16px;position:relative;z-index:1}
 .hero-title span{color:var(--amber)}
 .hero-sub{font-size:15px;line-height:1.7;color:var(--mist);max-width:480px;margin-bottom:32px;position:relative;z-index:1}
 .hero-tags{display:flex;gap:8px;flex-wrap:wrap;position:relative;z-index:1}
-.htag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+.htag{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;
   padding:6px 14px;border:1px solid var(--rule);color:var(--mist2)}
 .htag-a{border-color:rgba(212,146,10,.35);color:rgba(212,146,10,.8)}
 
@@ -57,9 +59,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 48px;display:fl
 
 /* LEFT: Sticky info panel */
 .info{position:sticky;top:120px}
-.info-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.18em;
+.info-label{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-size:8px;letter-spacing:.18em;
   text-transform:uppercase;color:var(--amber);display:block;margin-bottom:16px}
-.info-title{font-family:'Instrument Serif',serif;font-style:italic;
+.info-title{font-family:'Playfair Display',Georgia,serif;font-style:italic;
   font-size:clamp(28px,3.5vw,40px);color:var(--white);line-height:1.2;margin-bottom:20px}
 .info-body{font-size:14px;line-height:1.85;color:var(--mist);margin-bottom:32px}
 .info-body strong{color:var(--white);font-weight:500}
@@ -86,7 +88,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 48px;display:fl
 .gallery-img:hover img{transform:scale(1.02)}
 .gallery-img-ph{background:var(--card);aspect-ratio:4/3;display:flex;flex-direction:column;
   align-items:center;justify-content:center;gap:8px;border-radius:16px;border:1px solid var(--rule)}
-.ph-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;
+.ph-label{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-size:10px;letter-spacing:.12em;
   text-transform:uppercase;color:rgba(244,243,238,.12)}
 
 /* ── FULL-WIDTH SECTIONS BELOW ── */
@@ -98,17 +100,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 48px;display:fl
 /* ── QUOTE BLOCK ── */
 .quote-block{max-width:600px;margin:0 auto 100px;text-align:center;padding:40px;
   border:1px solid var(--rule);background:var(--card);border-radius:12px;position:relative}
-.quote-block::before{content:'"';font-family:'Instrument Serif',serif;font-size:80px;
+.quote-block::before{content:'"';font-family:'Playfair Display',Georgia,serif;font-size:80px;
   color:var(--amber);opacity:.2;position:absolute;top:-16px;left:28px;line-height:1}
-.quote-text{font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;line-height:1.65;color:var(--white)}
+.quote-text{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:20px;line-height:1.65;color:var(--white)}
 
 /* ── SECTION HEADERS ── */
 .sec{max-width:1100px;margin:0 auto;padding:0 48px 100px}
-.sec-eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;
+.sec-eyebrow{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-size:9px;letter-spacing:.18em;
   text-transform:uppercase;color:var(--amber);display:block;margin-bottom:14px;text-align:center}
-.sec-h{font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(28px,3.5vw,40px);
+.sec-h{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:clamp(28px,3.5vw,40px);
   color:var(--white);line-height:1.2;margin-bottom:24px;text-align:center}
-.sec-h-bb{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,4.5vw,52px);
+.sec-h-bb{font-family:'Playfair Display',Georgia,serif;font-size:clamp(32px,4.5vw,52px);
   letter-spacing:.06em;line-height:.95;color:var(--white);margin-bottom:24px;text-align:center}
 .body-p{font-size:15px;line-height:1.85;color:var(--mist);margin-bottom:16px;max-width:600px;margin-left:auto;margin-right:auto;text-align:center}
 .body-p strong{color:var(--white);font-weight:500}
@@ -119,7 +121,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 48px;display:fl
 .two-col-card{background:var(--card);border:1px solid var(--rule);padding:28px 26px;border-radius:12px;
   transition:transform .3s,border-color .3s}
 .two-col-card:hover{transform:translateY(-2px);border-color:rgba(212,146,10,.2)}
-.tc-n{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:.12em;
+.tc-n{font-family:'Playfair Display',Georgia,serif;font-size:11px;letter-spacing:.12em;
   color:rgba(212,146,10,.4);display:block;margin-bottom:10px}
 .tc-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:8px;line-height:1.4}
 .tc-desc{font-size:13px;line-height:1.7;color:var(--mist2)}
@@ -129,7 +131,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 48px;display:fl
 .sys-card{background:var(--card);border:1px solid var(--rule);padding:28px 24px;border-radius:12px;
   transition:transform .3s,border-color .3s}
 .sys-card:hover{transform:translateY(-2px);border-color:rgba(212,146,10,.2)}
-.sys-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.14em;
+.sys-label{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-size:8px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--amber);margin-bottom:10px;display:block}
 .sys-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:8px;line-height:1.4}
 .sys-desc{font-size:13px;line-height:1.7;color:var(--mist2)}
@@ -140,15 +142,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 48px;display:fl
 .outcome{background:var(--card);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
   padding:100px 48px;margin-bottom:100px;text-align:center}
 .outcome-icon{font-size:28px;margin-bottom:20px;display:block}
-.outcome-statement{font-family:'Instrument Serif',serif;font-size:clamp(24px,3.5vw,36px);
+.outcome-statement{font-family:'Playfair Display',Georgia,serif;font-size:clamp(24px,3.5vw,36px);
   line-height:1.35;color:var(--white);max-width:620px;margin:0 auto 28px}
 .outcome-body{font-size:15px;line-height:1.85;color:var(--mist);max-width:540px;margin:0 auto 36px}
-.outcome-quote{font-family:'Instrument Serif',serif;font-style:italic;font-size:16px;line-height:1.7;
+.outcome-quote{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:16px;line-height:1.7;
   color:var(--mist2);max-width:500px;margin:0 auto;padding:24px 32px;border:1px solid var(--rule);border-radius:12px}
 
 /* ── METHODS ── */
 .methods{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:28px}
-.method-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;
+.method-tag{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-size:9px;letter-spacing:.08em;
   text-transform:uppercase;padding:6px 14px;border:1px solid var(--rule);color:var(--mist2);border-radius:4px}
 
 /* ── FOOTER ── */
@@ -156,7 +158,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 48px;display:fl
 .foot-back{display:inline-flex;align-items:center;gap:6px;font-size:12px;
   color:var(--mist2);transition:color .2s;margin-bottom:24px}
 .foot-back:hover{color:var(--amber)}
-.foot-name{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--amber);margin-bottom:4px}
+.foot-name{font-family:'Playfair Display',Georgia,serif;font-size:18px;color:var(--amber);margin-bottom:4px}
 .foot-sub{font-size:11px;color:var(--mist2)}
 
 /* ── REVEAL ── */
