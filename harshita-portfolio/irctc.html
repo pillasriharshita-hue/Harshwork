@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IRCTC Redesign — Sri Harshita Pilla</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0D0D0D;--card:#1A1A1A;--card2:#222;--card3:#2A2A2A;
+  --white:#F4F3EE;--mist:rgba(244,243,238,.6);--mist2:rgba(244,243,238,.28);--mist3:rgba(244,243,238,.12);
+  --amber:#C8880A;--amber-lt:rgba(200,136,10,.1);--amber-dk:rgba(200,136,10,.5);
+  --red:#E85C4A;--green:#4ade80;
+  --rule:rgba(244,243,238,.08);
+  --max:1100px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+
+/* ── PROGRESS ── */
+#prog{position:fixed;top:0;left:0;height:2px;background:var(--amber);z-index:999;width:0;transition:width .1s}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;height:52px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;background:rgba(13,13,13,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--rule)}
+.nav-back{font-size:12px;color:var(--mist2);display:flex;align-items:center;gap:6px;transition:color .2s}
+.nav-back:hover{color:var(--white)}
+.nav-links{display:flex;gap:24px}
+.nav-link{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--mist2);transition:color .2s;padding:4px 0;border-bottom:1px solid transparent}
+.nav-link:hover,.nav-link.active{color:var(--amber);border-bottom-color:var(--amber)}
+
+/* ── STICKY INDEX (Praveen style) ── */
+.index{position:fixed;bottom:32px;left:32px;z-index:400}
+.index-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:10px;display:block}
+.index-links{display:flex;flex-direction:column;gap:6px}
+.index-link{font-size:12px;color:var(--mist2);transition:color .2s;cursor:pointer}
+.index-link:hover,.index-link.active{color:var(--white)}
+
+/* ── HERO ── */
+.hero{padding-top:52px}
+.hero-img{position:relative;overflow:hidden;max-height:420px}
+.hero-img img{width:100%;object-fit:cover;opacity:.85}
+.hero-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,var(--bg) 100%)}
+.hero-title-wrap{max-width:var(--max);margin:0 auto;padding:48px 48px 0}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--amber);display:block;margin-bottom:14px}
+.hero-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,100px);letter-spacing:.04em;line-height:.92;
+  color:var(--white);margin-bottom:16px}
+.hero-sub{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mist2);margin-bottom:44px}
+
+/* ── META STRIP ── */
+.meta-strip{max-width:var(--max);margin:0 auto;padding:0 48px 48px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.meta-cell{background:var(--bg);padding:22px 24px}
+.meta-lbl{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--amber);display:block;margin-bottom:6px}
+.meta-val{font-size:12px;line-height:1.65;color:var(--mist2)}
+
+/* ── SECTION (Praveen 2-col: title left, content right) ── */
+.sec{max-width:var(--max);margin:0 auto;padding:80px 48px;
+  display:grid;grid-template-columns:280px 1fr;gap:48px;align-items:start}
+.sec-title{font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(24px,3vw,32px);
+  color:var(--amber);line-height:1.2;position:sticky;top:80px}
+
+/* ── PHASE HEADER (Praveen: big text + amber border) ── */
+.phase{max-width:var(--max);margin:0 auto;padding:0 48px}
+.phase-inner{border-top:2px solid var(--amber);padding:48px 0 0;
+  display:grid;grid-template-columns:280px 1fr;gap:48px}
+.phase-label{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,56px);letter-spacing:.06em;
+  color:var(--white);line-height:.95}
+.phase-sub{font-size:13px;color:var(--mist2);letter-spacing:.01em}
+
+/* ── BODY TEXT ── */
+.sec-body .subsec-n{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--amber);display:block;margin-bottom:10px}
+.sec-body .subsec-h{font-size:18px;font-weight:600;color:var(--white);margin-bottom:16px;line-height:1.35}
+.body-p{font-size:15px;line-height:1.85;color:var(--mist);margin-bottom:14px}
+.body-p strong{color:var(--white);font-weight:500}
+.body-p em{color:var(--amber);font-style:normal}
+
+/* ── CALLOUT ── */
+.callout{border-left:2px solid var(--amber);padding:20px 24px;background:var(--amber-lt);
+  margin:24px 0;border-radius:0 8px 8px 0}
+.callout-lbl{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--amber-dk);margin-bottom:8px;display:block}
+.callout p{font-family:'Instrument Serif',serif;font-style:italic;font-size:16px;line-height:1.7;color:var(--mist)}
+
+/* ── PROBLEM LIST ── */
+.prob-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin:20px 0}
+.prob-list li{font-size:14px;line-height:1.7;color:var(--mist);padding:14px 18px;background:var(--card);
+  border:1px solid var(--rule);border-left:3px solid var(--rule);border-radius:0 8px 8px 0}
+.prob-list li strong{color:var(--white);font-weight:500}
+.prob-list li.hl{border-left-color:var(--amber);background:var(--amber-lt)}
+
+/* ── IMAGE GRID ── */
+.img-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:28px 0}
+.img-grid img{border-radius:12px;border:1px solid var(--rule)}
+.img-grid .span-2{grid-column:1/-1}
+.img-grid-ph{background:var(--card);border:1px solid var(--rule);border-radius:12px;aspect-ratio:16/9;
+  display:flex;align-items:center;justify-content:center}
+.ph-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--mist3);text-align:center;line-height:1.6}
+.img-caption{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--mist2);margin-top:10px;text-align:center}
+
+/* ── FULL WIDTH IMAGE ── */
+.fw{max-width:var(--max);margin:0 auto;padding:0 48px 24px}
+.fw img{border-radius:12px;border:1px solid var(--rule)}
+
+/* ── HEURISTIC CARDS (2×2 grid) ── */
+.dec-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+.dec{background:var(--card);border:1px solid var(--rule);padding:24px 22px;border-radius:12px;
+  transition:transform .3s,border-color .3s}
+.dec:hover{transform:translateY(-2px);border-color:rgba(200,136,10,.2)}
+.dec-n{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:10px;display:block}
+.dec-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:8px;line-height:1.4}
+.dec-desc{font-size:13px;line-height:1.7;color:var(--mist2)}
+.dec-sev{margin-top:12px;font-size:12px;line-height:1.6;color:var(--red);padding:10px 14px;
+  background:rgba(232,92,74,.08);border-left:2px solid var(--red);border-radius:0 6px 6px 0}
+.dec-why{margin-top:12px;font-size:12px;line-height:1.6;color:rgba(200,136,10,.7);padding:10px 14px;
+  background:var(--amber-lt);border-left:2px solid var(--amber);border-radius:0 6px 6px 0}
+
+/* ── HMW ── */
+.hmw{max-width:var(--max);margin:0 auto;padding:64px 48px;text-align:center;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.hmw-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:20px;display:block}
+.hmw-q{font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(22px,3.5vw,34px);
+  line-height:1.35;color:var(--white);max-width:640px;margin:0 auto}
+
+/* ── IMPACT ── */
+.impact{max-width:var(--max);margin:0 auto;padding:80px 48px;text-align:center;border-top:2px solid var(--amber)}
+.impact-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:24px;display:block}
+.impact-statement{font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(24px,3.5vw,36px);
+  line-height:1.35;color:var(--white);max-width:600px;margin:0 auto 28px}
+.impact-body{font-size:15px;line-height:1.85;color:var(--mist);max-width:540px;margin:0 auto 40px}
+.impact-note{font-size:12px;line-height:1.7;color:var(--mist2);max-width:500px;margin:0 auto;font-style:italic}
+
+/* ── METHODS ── */
+.methods{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:28px}
+.method-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;
+  padding:6px 14px;border:1px solid var(--rule);color:var(--mist2);border-radius:4px}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--rule);padding:60px 48px;max-width:var(--max);margin:0 auto;text-align:center}
+.foot-back{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--mist2);transition:color .2s;margin-bottom:24px}
+.foot-back:hover{color:var(--amber)}
+.foot-name{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--amber);margin-bottom:4px}
+.foot-sub{font-size:11px;color:var(--mist2)}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(14px);
+  transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
+.reveal.on{opacity:1;transform:none}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .sec,.phase-inner{grid-template-columns:1fr;gap:24px}
+  .sec-title{position:relative;top:0}
+  .meta-strip{grid-template-columns:1fr 1fr}
+  .dec-grid,.img-grid{grid-template-columns:1fr}
+  nav{padding:0 24px}
+  .hero-title-wrap,.sec,.phase,.fw,.hmw,.impact,footer{padding-left:32px;padding-right:32px}
+  .index{display:none}
+}
+@media(max-width:600px){
+  .meta-strip{grid-template-columns:1fr}
+  .hero-title-wrap,.sec,.phase,.fw,.hmw,.impact,footer{padding-left:24px;padding-right:24px}
+  .hero-h{font-size:clamp(40px,12vw,60px)}
+}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+
+<nav>
+  <a class="nav-back" href="index.html">← Portfolio</a>
+  <div class="nav-links">
+    <a class="nav-link" href="#intro">Intro</a>
+    <a class="nav-link" href="#discovery">Discovery</a>
+    <a class="nav-link" href="#design">Design</a>
+    <a class="nav-link" href="#develop">Develop</a>
+  </div>
+</nav>
+
+<!-- STICKY INDEX (Praveen style) -->
+<div class="index">
+  <span class="index-label">Index</span>
+  <div class="index-links">
+    <a class="index-link" href="#intro">Intro</a>
+    <a class="index-link" href="#discovery">Discovery</a>
+    <a class="index-link" href="#design">Design</a>
+    <a class="index-link" href="#develop">Develop</a>
+  </div>
+</div>
+
+<!-- ══ HERO ═══════════════════════════════════════ -->
+<div class="hero" id="intro">
+  <div class="hero-img">
+    <img src="https://framerusercontent.com/images/wQqYJrAOVrgFISJ3XgeuO0gY.jpg" alt="IRCTC Redesign hero">
+  </div>
+  <div class="hero-title-wrap reveal">
+    <span class="hero-eyebrow">UX Research · UI Design · Heuristic Evaluation</span>
+    <h1 class="hero-h">IRCTC<br>REDESIGN</h1>
+    <p class="hero-sub">India's largest railway booking platform · 6 weeks · Figma</p>
+  </div>
+  <div class="meta-strip reveal">
+    <div class="meta-cell"><span class="meta-lbl">My Role</span><span class="meta-val">UX Research, Heuristic Evaluation, UI Design, Behavioral Nudges</span></div>
+    <div class="meta-cell"><span class="meta-lbl">Tools</span><span class="meta-val">Figma · FigJam · Miro · Notion</span></div>
+    <div class="meta-cell"><span class="meta-lbl">Timeline</span><span class="meta-val">6 Weeks</span></div>
+    <div class="meta-cell"><span class="meta-lbl">Platform</span><span class="meta-val">Web · Mobile · Booking flow</span></div>
+  </div>
+</div>
+
+<!-- ══ INTRODUCTION ═══════════════════════════════ -->
+<div class="sec reveal">
+  <div class="sec-title">Introduction</div>
+  <div class="sec-body">
+    <p class="body-p">IRCTC is India's primary railway booking platform, used by millions daily. The surface-level problem — a cluttered, outdated interface — masked the deeper issue: <strong>users couldn't trust what they were seeing</strong>. Is the booking confirmed? Did the payment go through? Is this the right train?</p>
+    <p class="body-p">This redesign focused on rebuilding that trust through clarity, feedback, and a streamlined booking flow — making the experience faster, more transparent, and accessible across devices.</p>
+    <div class="callout">
+      <span class="callout-lbl">Design Framing</span>
+      <p>IRCTC users don't fail because the UI is ugly. They fail because the system doesn't tell them what's happening. The redesign starts there — not at aesthetics, but at feedback and confidence.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PROBLEM ════════════════════════════════════ -->
+<div class="sec reveal">
+  <div class="sec-title">Problem</div>
+  <div class="sec-body">
+    <h3 class="subsec-h">What was breaking — and why it mattered.</h3>
+    <ul class="prob-list">
+      <li class="hl"><strong>No confirmation feedback after payment</strong> — Users couldn't tell if their booking had succeeded or failed. No clear error. No retry. Just ambiguity.</li>
+      <li class="hl"><strong>Trust collapse at every decision point</strong> — Seat availability, fare class, train timing — all required clicking into sub-menus to verify.</li>
+      <li class="hl"><strong>6+ steps before reaching payment</strong> — No progress indicator. Users dropped off mid-flow, unsure how far they were from completing.</li>
+      <li><strong>Filters reset between searches</strong> — Date, class, quota preferences had to be re-entered every time.</li>
+      <li><strong>Mobile experience broken</strong> — Navigation patterns designed for desktop. CTAs misaligned, tap targets too small.</li>
+      <li><strong>No predictive search</strong> — Station entry required exact spelling. Partial matches returned errors.</li>
+    </ul>
+
+    <div class="img-grid" style="margin-top:28px">
+      <img src="https://framerusercontent.com/images/pc1xK6t5I4Yvv2K2QrJzoUZN4.jpg" alt="IRCTC before - booking flow">
+      <img src="https://framerusercontent.com/images/Ab89OlNyrTJvuPay3R1cZ4bD5UM.jpg" alt="IRCTC before - payment">
+      <img src="https://framerusercontent.com/images/tp8JSfoCbQjV7kLDw6yL82ppdPc.jpg" alt="IRCTC before - navigation">
+      <img src="https://framerusercontent.com/images/VCWzbQbahWH0xrkU3Xg5GnixmPE.jpg" alt="IRCTC before - mobile">
+    </div>
+    <div class="img-caption">Existing IRCTC interface — booking flow, payment, navigation, mobile</div>
+  </div>
+</div>
+
+<!-- ══ SOLUTION PREVIEW ═══════════════════════════ -->
+<div class="sec reveal">
+  <div class="sec-title">Solution</div>
+  <div class="sec-body">
+    <h3 class="subsec-h">Rebuilding trust — not just redesigning screens.</h3>
+    <p class="body-p">The redesign addressed three failure zones: the booking flow (reduced from 6 steps to 3), the payment confirmation (added real-time feedback and error recovery), and the search and filter experience (persistent filters, predictive station search).</p>
+
+    <div class="img-grid" style="margin-top:28px">
+      <img src="https://framerusercontent.com/images/9PxvFQcwXVKTZl5QMWluo2tIno.png" alt="IRCTC redesign - booking">
+      <img src="https://framerusercontent.com/images/YjjDui0FCUWgYeWU9ZDZ19OzLg.png" alt="IRCTC redesign - payment">
+      <img class="span-2" src="https://framerusercontent.com/images/K5wrqtzcDRFeZAdaXWL3OAGQ.jpg" alt="IRCTC redesign - full flow">
+    </div>
+    <div class="img-caption">Redesigned flow — streamlined booking, payment feedback, persistent filters</div>
+  </div>
+</div>
+
+<!-- ══ DISCOVERY PHASE ════════════════════════════ -->
+<div class="phase reveal" id="discovery">
+  <div class="phase-inner">
+    <div class="phase-label">DISCOVERY</div>
+    <div class="phase-sub">Understanding the system before touching the interface</div>
+  </div>
+</div>
+
+<!-- Discovery 01 — Heuristic Evaluation -->
+<div class="sec reveal">
+  <div class="sec-title">Discovery</div>
+  <div class="sec-body">
+    <span class="subsec-n">01 · Heuristic Evaluation</span>
+    <h3 class="subsec-h">Evaluating IRCTC against Nielsen's 10 heuristics</h3>
+    <p class="body-p">The existing platform was evaluated across four critical flows: search, booking, payment, and account management. Violations were rated by severity (1–4) and tagged by heuristic.</p>
+
+    <div class="dec-grid">
+      <div class="dec">
+        <span class="dec-n">Visibility of system status</span>
+        <div class="dec-title">No feedback during critical transitions</div>
+        <p class="dec-desc">After submitting payment, the system showed a loading state with no indication of success or failure.</p>
+        <div class="dec-sev">Severity 4 — Catastrophic. Payment is the highest-stakes moment.</div>
+      </div>
+      <div class="dec">
+        <span class="dec-n">Match with real world</span>
+        <div class="dec-title">Railway terminology without explanation</div>
+        <p class="dec-desc">Terms like "WL," "GNWL," "PQWL," and fare classes appeared without definitions.</p>
+        <div class="dec-sev">Severity 3 — Major. Affects every non-frequent traveler.</div>
+      </div>
+      <div class="dec">
+        <span class="dec-n">User control and freedom</span>
+        <div class="dec-title">No way to edit booking mid-flow</div>
+        <p class="dec-desc">Changing passenger details or seat class required starting the entire booking over.</p>
+        <div class="dec-sev">Severity 3 — Major. Every correction restarts a 6-step process.</div>
+      </div>
+      <div class="dec">
+        <span class="dec-n">Error prevention + recovery</span>
+        <div class="dec-title">Payment errors with no recovery path</div>
+        <p class="dec-desc">Failed payments showed a generic error. No retry option, no saved details, no guidance.</p>
+        <div class="dec-sev">Severity 4 — Catastrophic. Primary dropout trigger.</div>
+      </div>
+    </div>
+
+    <div class="img-grid-ph" style="margin-top:28px;aspect-ratio:16/7">
+      <div class="ph-lbl">Heuristic evaluation matrix<br>4 flows · 10 heuristics · severity ratings</div>
+    </div>
+  </div>
+</div>
+
+<!-- Discovery 02 — User Research -->
+<div class="sec reveal">
+  <div class="sec-title">Discovery</div>
+  <div class="sec-body">
+    <span class="subsec-n">02 · User Research</span>
+    <h3 class="subsec-h">Contextual interviews and observational tasks</h3>
+    <p class="body-p">Conducted with users across experience levels — first-time IRCTC users, regular travelers, and users who had abandoned bookings mid-flow. The goal: understand <strong>what the experience felt like at the moment it broke</strong>.</p>
+    <p class="body-p"><strong>Tasks observed:</strong> Search and select a train route, complete a booking to payment, recover from a simulated payment failure. Time, errors, and emotional response tracked at each stage.</p>
+
+    <div class="img-grid-ph" style="margin-top:28px;aspect-ratio:16/7">
+      <div class="ph-lbl">User session recordings<br>Booking flow · Payment · Error recovery</div>
+    </div>
+  </div>
+</div>
+
+<!-- Discovery 03 — Define -->
+<div class="sec reveal">
+  <div class="sec-title">Discovery</div>
+  <div class="sec-body">
+    <span class="subsec-n">03 · Define</span>
+    <h3 class="subsec-h">Three failure zones emerged</h3>
+    <p class="body-p">Heuristic violations and user research findings were synthesized into a clustered affinity map. Violations grouped by the decision point in the booking flow where they occurred — not by heuristic category.</p>
+    <p class="body-p"><strong>Three failure zones:</strong> the booking flow (too long, no progress signal), the payment moment (no feedback, no recovery), and the search experience (no persistence, no intelligence).</p>
+
+    <div class="img-grid" style="margin-top:28px">
+      <div class="img-grid-ph"><div class="ph-lbl">Affinity map<br>Violations by flow stage</div></div>
+      <div class="img-grid-ph"><div class="ph-lbl">Failure zone mapping<br>Booking · Payment · Search</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Discovery 04 — Design Challenge -->
+<div class="hmw reveal">
+  <span class="hmw-label">Design Challenge</span>
+  <p class="hmw-q">How might we rebuild user confidence at every critical decision point in the IRCTC booking flow — so that completing a booking feels certain, not anxious?</p>
+</div>
+
+<!-- ══ DESIGN PHASE ═══════════════════════════════ -->
+<div class="phase reveal" id="design" style="margin-top:40px">
+  <div class="phase-inner">
+    <div class="phase-label">DESIGN</div>
+    <div class="phase-sub">From violation map to redesigned flows</div>
+  </div>
+</div>
+
+<!-- Design 01 — Brainstorming -->
+<div class="sec reveal">
+  <div class="sec-title">Design</div>
+  <div class="sec-body">
+    <span class="subsec-n">01 · Brainstorming</span>
+    <h3 class="subsec-h">Three failure zones, three solution directions</h3>
+    <p class="body-p">Each failure zone was addressed separately. For booking — how to reduce steps without losing information? For payment — what does real-time feedback look like? For search — what does persistence and predictive behavior require?</p>
+    <p class="body-p">Solutions evaluated against two criteria: does this address a heuristic violation, and does it reduce cognitive load at the moment users needed it most?</p>
+
+    <div class="img-grid-ph" style="margin-top:28px;aspect-ratio:16/7">
+      <div class="ph-lbl">Ideation sketches<br>3 failure zones × solution directions</div>
+    </div>
+  </div>
+</div>
+
+<!-- Design 02 — Lo-fi / Mid-fi -->
+<div class="sec reveal">
+  <div class="sec-title">Design</div>
+  <div class="sec-body">
+    <span class="subsec-n">02 · Low Fidelity & Mid Fidelity</span>
+    <h3 class="subsec-h">From IA changes to structured wireframes</h3>
+    <p class="body-p">Lo-fi sketches mapped information architecture changes — what lives where, what gets removed, what gets promoted. Mid-fidelity wireframes in Figma structured the revised booking flow, payment feedback states, and persistent search filters.</p>
+    <p class="body-p"><strong>Key mid-fi decisions:</strong> step progress indicator in booking header, real-time payment status states (processing → success/failed), filter bar persisting across result pages.</p>
+
+    <div class="img-grid" style="margin-top:28px">
+      <div class="img-grid-ph"><div class="ph-lbl">Lo-fi sketches<br>Booking flow IA revision</div></div>
+      <div class="img-grid-ph"><div class="ph-lbl">Mid-fi wireframes<br>Payment states · Filter persistence</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DEVELOP PHASE ══════════════════════════════ -->
+<div class="phase reveal" id="develop" style="margin-top:40px">
+  <div class="phase-inner">
+    <div class="phase-label">DEVELOP</div>
+    <div class="phase-sub">Final design, testing, and what changed</div>
+  </div>
+</div>
+
+<!-- Develop 01 — Final Design -->
+<div class="sec reveal">
+  <div class="sec-title">Develop</div>
+  <div class="sec-body">
+    <span class="subsec-n">01 · Final Design</span>
+    <h3 class="subsec-h">Three redesigned flows mapped to heuristic violations</h3>
+    <p class="body-p">The visual system prioritizes information hierarchy: what users need to confirm a decision is always visible without clicking into sub-menus.</p>
+
+    <div class="img-grid" style="margin-top:28px">
+      <img src="https://framerusercontent.com/images/9PxvFQcwXVKTZl5QMWluo2tIno.png" alt="Final - booking">
+      <img src="https://framerusercontent.com/images/YjjDui0FCUWgYeWU9ZDZ19OzLg.png" alt="Final - payment">
+      <img class="span-2" src="https://framerusercontent.com/images/K5wrqtzcDRFeZAdaXWL3OAGQ.jpg" alt="Final - complete flow">
+      <img class="span-2" src="https://framerusercontent.com/images/d4k6lVrAkEG2ATVyTUysl9Y6U.jpg" alt="Final - navigation">
+    </div>
+    <div class="img-caption">Final hi-fi screens — booking, payment, search, navigation</div>
+  </div>
+</div>
+
+<!-- Develop 02 — Testing -->
+<div class="sec reveal">
+  <div class="sec-title">Develop</div>
+  <div class="sec-body">
+    <span class="subsec-n">02 · Testing</span>
+    <h3 class="subsec-h">Three participant groups. Three tasks. Confidence measured.</h3>
+    <p class="body-p">Usability testing with first-time IRCTC users, regular travelers, and previous booking abandoners. Tasks: complete a search, complete a booking through payment, recover from a simulated payment failure.</p>
+    <p class="body-p"><strong>What we measured:</strong> Task completion rate, time to completion, number of errors, and <em>confidence rating at the payment stage</em> — specifically because it was the primary trust failure identified in the evaluation.</p>
+
+    <div class="img-grid-ph" style="margin-top:28px;aspect-ratio:16/7">
+      <div class="ph-lbl">Testing sessions<br>Task completion · Error mapping · Payment confidence</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ IMPACT ═════════════════════════════════════ -->
+<div class="impact reveal">
+  <span class="impact-label">Impact</span>
+  <div class="impact-statement">Booking felt faster. Payment felt certain. Trust held.</div>
+  <p class="impact-body">The redesigned flow reduced cognitive load at every critical decision point. Step progress eliminated ambiguity. Real-time payment feedback gave users the confidence to complete transactions.</p>
+
+  <div class="dec-grid" style="max-width:600px;margin:0 auto 32px;text-align:left">
+    <div class="dec">
+      <span class="dec-n">Booking Flow</span>
+      <div class="dec-title">6 screens → 3 steps</div>
+      <p class="dec-desc">Removed redundant confirmation screens. Progress indicator added throughout.</p>
+    </div>
+    <div class="dec">
+      <span class="dec-n">Payment Feedback</span>
+      <div class="dec-title">Silent failure → real-time states</div>
+      <p class="dec-desc">Processing, success, and failure states with explicit messaging. Retry without restarting.</p>
+    </div>
+    <div class="dec">
+      <span class="dec-n">Search & Filters</span>
+      <div class="dec-title">Reset → persistent</div>
+      <p class="dec-desc">Filters persist across result pages. Predictive station search reduces input errors.</p>
+    </div>
+    <div class="dec">
+      <span class="dec-n">Terminology</span>
+      <div class="dec-title">Jargon → plain language</div>
+      <p class="dec-desc">WL, GNWL, fare codes given plain-language explanations inline.</p>
+    </div>
+  </div>
+
+  <p class="impact-note">Note: All outcomes are qualitative observations from usability testing. Quantitative metrics would require longitudinal measurement on the live platform.</p>
+
+  <div class="methods">
+    <span class="method-tag">Heuristic Evaluation</span>
+    <span class="method-tag">User Interviews</span>
+    <span class="method-tag">Observational Tasks</span>
+    <span class="method-tag">Affinity Mapping</span>
+    <span class="method-tag">Lo-fi Sketching</span>
+    <span class="method-tag">Mid-fi Wireframing</span>
+    <span class="method-tag">Hi-fi Prototyping</span>
+    <span class="method-tag">Usability Testing</span>
+    <span class="method-tag">Behavioral Nudges</span>
+  </div>
+</div>
+
+<!-- ══ FOOTER ═════════════════════════════════════ -->
+<footer class="reveal">
+  <a class="foot-back" href="index.html">← Back to Portfolio</a>
+  <div class="foot-name">Sri Harshita Pilla</div>
+  <div class="foot-sub">Product Designer & UX Researcher · MS HCI, DePaul · pillasriharshita@gmail.com</div>
+</footer>
+
+<script>
+// Progress bar
+const prog = document.getElementById('prog');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  prog.style.width = pct + '%';
+});
+
+// Reveal on scroll
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Active index link on scroll
+const sections = document.querySelectorAll('[id]');
+const indexLinks = document.querySelectorAll('.index-link');
+const navLinks = document.querySelectorAll('.nav-link');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 200) current = s.id;
+  });
+  indexLinks.forEach(l => {
+    l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+  });
+  navLinks.forEach(l => {
+    l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>

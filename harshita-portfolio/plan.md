@@ -174,11 +174,23 @@ Every section and interactive element gets subtle motion/feedback:
 **Project:** AI RAG-Based Commerce Platform
 **Status:** Needs content + assets from Harshita
 
-### 7. IRCTC Redesign — `irctc.html` ❌ NOT BUILT
-**Status:** Coming Soon
+### 7. IRCTC Redesign — `irctc.html` ✅ BUILT
+**Layout:** praveensurathu.com/canvas style (sticky index sidebar + 2-col phase sections)
+**Design:** Dark theme, warm amber (#C8880A), black (#0D0D0D)
+- **Nav** — Fixed, section anchor links, glass-blur bg
+- **Sticky Index** — Fixed bottom-left sidebar with phase links (Intro, Discovery, Design, Develop), highlights active section on scroll
+- **Hero** — Full-width image with gradient fade, large title + subtitle
+- **Main Content** — 2-column: phase title (left, sticky) + content (right)
+  - **Introduction** — Problem context, problem highlights (amber left-border), solution preview image
+  - **Discovery** — Heuristic evaluation (4 severity-rated cards), user research (participant stats, key findings), define (persona + journey)
+  - **Design** — Design challenge (HMW centered), brainstorming, lo-fi/mid-fi wireframes, final design (image grid)
+  - **Develop** — Testing results, impact (4 outcome cards with icons)
+- **Footer** — Back to portfolio
+- **Images:** Framer CDN URLs — need to save locally to `assets/irctc/`
 
-### 8. Tron — `tron.html` ❌ NOT BUILT
-**Status:** Coming Soon
+### 8. Tron — `tron.html` ✅ BUILT
+**Layout:** mariavareva.com/copilotmoney style (sticky left + scrolling gallery right)
+**Design:** Bebas Neue + Instrument Serif + DM Sans + DM Mono, dark amber (#D4920A), black (#0D0D0D)
 
 ### 9. Archi Project — `archi.html` ❌ NOT BUILT
 **Status:** Coming Soon
