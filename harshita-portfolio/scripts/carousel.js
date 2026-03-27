@@ -1,149 +1,123 @@
 /* ============================================================
-   CAROUSEL.JS — Other Works carousel
+   CAROUSEL.JS — Gallery6 horizontal-scroll carousel
    ─────────────────────────────────────────────────────────
-   HTML uses: slideCarousel(-1/1) and goToSlide(n)
-   Desktop ≥1024: show 3 at a time → 2 pages (3+1)
-   Tablet  ≥768:  show 2 at a time → 2 pages
-   Mobile  <768:  show 1 at a time → 4 pages
+   Embla-style drag + arrow navigation for "Other Works"
    ============================================================ */
 
 'use strict';
 
-(function initCarousel() {
-  const grid    = document.getElementById('otherGrid');
-  const prevBtn = document.getElementById('carouselPrev');
-  const nextBtn = document.getElementById('carouselNext');
-  const dotsContainer = document.getElementById('carouselDots');
+(function initGallery6() {
+  const viewport = document.getElementById('g6Viewport');
+  const track    = document.getElementById('g6Track');
+  const prevBtn  = document.getElementById('g6Prev');
+  const nextBtn  = document.getElementById('g6Next');
 
-  if (!grid) return;
+  if (!track || !viewport) return;
 
-  const allCards = Array.from(grid.querySelectorAll('.mini-card'));
-  let currentPage  = 0;
-  let cardsPerPage = getCardsPerPage();
-  let totalPages   = allCards.length; // Each page shifts by 1 card, looping
+  const slides = Array.from(track.querySelectorAll('.gallery6__slide'));
+  if (!slides.length) return;
 
-  /* ── How many cards to show per breakpoint ───────────────── */
-  function getCardsPerPage() {
-    if (window.innerWidth >= 1200) return 3;
-    if (window.innerWidth >= 900)  return 2;
-    return 1;
+  let currentIndex = 0;
+
+  /* ── Measure slide width + gap ──────────────────────────── */
+  function getSlideStep() {
+    const slide = slides[0];
+    const style = getComputedStyle(track);
+    const gap   = parseFloat(style.gap) || 20;
+    return slide.offsetWidth + gap;
   }
 
-  /* ── Render current page (wrapping/looping) ──────────────── */
-  function render() {
-    const total = allCards.length;
+  /* ── Scroll to a given index ────────────────────────────── */
+  function scrollTo(index) {
+    const maxIndex = slides.length - 1;
+    currentIndex = Math.max(0, Math.min(index, maxIndex));
 
-    // Hide all first
-    allCards.forEach((card) => {
-      card.classList.add('mini-card--hidden');
-      card.setAttribute('aria-hidden', 'true');
-    });
+    const step = getSlideStep();
+    const maxScroll = track.scrollWidth - viewport.offsetWidth;
+    const targetScroll = Math.min(currentIndex * step, maxScroll);
 
-    // Show cardsPerPage cards starting from currentPage, wrapping around
-    for (let i = 0; i < cardsPerPage; i++) {
-      const idx = (currentPage + i) % total;
-      allCards[idx].classList.remove('mini-card--hidden');
-      allCards[idx].removeAttribute('aria-hidden');
-    }
-
-    // Update prev / next button states — always enabled for continuous loop
-    if (prevBtn) prevBtn.disabled = false;
-    if (nextBtn) nextBtn.disabled = false;
-
-    // Update dots
-    if (dotsContainer) {
-      const dots = dotsContainer.querySelectorAll('.other__dot');
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('other__dot--active', i === currentPage);
-        dot.setAttribute('aria-selected', i === currentPage ? 'true' : 'false');
-      });
-    }
-
-    // Rebuild dots if page count has changed
-    syncDots();
+    track.style.transform = `translateX(-${targetScroll}px)`;
+    updateButtons();
   }
 
-  /* ── Sync dots to current totalPages ─────────────────────── */
-  function syncDots() {
-    if (!dotsContainer) return;
-    const currentDots = dotsContainer.querySelectorAll('.other__dot');
-    if (currentDots.length === totalPages) return; // already correct
+  /* ── Update arrow disabled states ───────────────────────── */
+  function updateButtons() {
+    const step = getSlideStep();
+    const maxScroll = track.scrollWidth - viewport.offsetWidth;
+    const currentScroll = currentIndex * step;
 
-    // Rebuild
-    dotsContainer.innerHTML = '';
-    for (let i = 0; i < totalPages; i++) {
-      const dot = document.createElement('button');
-      dot.className = 'other__dot' + (i === currentPage ? ' other__dot--active' : '');
-      dot.setAttribute('role', 'tab');
-      dot.setAttribute('aria-selected', i === currentPage ? 'true' : 'false');
-      dot.setAttribute('aria-label', `Page ${i + 1}`);
-      dot.addEventListener('click', () => goToSlide(i));
-      dotsContainer.appendChild(dot);
+    if (prevBtn) prevBtn.disabled = currentIndex <= 0;
+    if (nextBtn) nextBtn.disabled = currentScroll >= maxScroll;
+  }
+
+  /* ── Arrow clicks ───────────────────────────────────────── */
+  if (prevBtn) prevBtn.addEventListener('click', () => scrollTo(currentIndex - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => scrollTo(currentIndex + 1));
+
+  /* ── Drag / swipe support ───────────────────────────────── */
+  let isDragging = false;
+  let startX     = 0;
+  let startScroll = 0;
+  let dragDelta  = 0;
+
+  function onPointerDown(e) {
+    isDragging = true;
+    startX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+    startScroll = currentIndex * getSlideStep();
+    dragDelta = 0;
+    track.classList.add('is-dragging');
+  }
+
+  function onPointerMove(e) {
+    if (!isDragging) return;
+    const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+    dragDelta = startX - clientX;
+    const maxScroll = track.scrollWidth - viewport.offsetWidth;
+    const newScroll = Math.max(0, Math.min(startScroll + dragDelta, maxScroll));
+    track.style.transform = `translateX(-${newScroll}px)`;
+  }
+
+  function onPointerUp() {
+    if (!isDragging) return;
+    isDragging = false;
+    track.classList.remove('is-dragging');
+
+    const step = getSlideStep();
+    if (Math.abs(dragDelta) > step * 0.2) {
+      if (dragDelta > 0) scrollTo(currentIndex + 1);
+      else scrollTo(currentIndex - 1);
+    } else {
+      scrollTo(currentIndex);
     }
   }
 
-  /* ── Public: called by HTML onclick ─────────────────────── */
+  // Mouse events
+  track.addEventListener('mousedown', onPointerDown);
+  window.addEventListener('mousemove', onPointerMove);
+  window.addEventListener('mouseup', onPointerUp);
 
-  /**
-   * slideCarousel(dir) — called by prev/next arrow buttons
-   * @param {number} dir  -1 for previous, +1 for next
-   */
-  window.slideCarousel = function(dir) {
-    let newPage = currentPage + dir;
-    // Wrap around: continuous loop
-    if (newPage < 0) {
-      newPage = totalPages - 1;
-    } else if (newPage >= totalPages) {
-      newPage = 0;
+  // Touch events
+  track.addEventListener('touchstart', onPointerDown, { passive: true });
+  window.addEventListener('touchmove', onPointerMove, { passive: true });
+  window.addEventListener('touchend', onPointerUp);
+
+  // Prevent link clicks after drag
+  track.addEventListener('click', (e) => {
+    if (Math.abs(dragDelta) > 5) {
+      e.preventDefault();
+      e.stopPropagation();
     }
-    currentPage = newPage;
-    render();
-  };
+  }, true);
 
-  /**
-   * goToSlide(n) — called by dot buttons
-   * @param {number} n  zero-based page index
-   */
-  window.goToSlide = function(n) {
-    // Allow any page within bounds
-    if (n >= 0 && n < totalPages) {
-      currentPage = n;
-      render();
-    }
-  };
-
-  /* ── Touch / swipe support ───────────────────────────────── */
-  let touchStartX = 0;
-
-  grid.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  }, { passive: true });
-
-  grid.addEventListener('touchend', (e) => {
-    const delta = touchStartX - e.changedTouches[0].screenX;
-    if (Math.abs(delta) > 50) {
-      if (delta > 0) window.slideCarousel(1);
-      else           window.slideCarousel(-1);
-    }
-  }, { passive: true });
-
-  /* ── Recalculate on resize ───────────────────────────────── */
+  /* ── Recalculate on resize ──────────────────────────────── */
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      const newCpp = getCardsPerPage();
-      if (newCpp !== cardsPerPage) {
-        cardsPerPage = newCpp;
-        totalPages   = allCards.length;
-        currentPage  = 0;
-        render();
-      }
-    }, 200);
+    resizeTimer = setTimeout(() => scrollTo(currentIndex), 200);
   });
 
-  /* ── Init ────────────────────────────────────────────────── */
-  render();
+  /* ── Init ───────────────────────────────────────────────── */
+  updateButtons();
 })();
 
 /* ============================================================

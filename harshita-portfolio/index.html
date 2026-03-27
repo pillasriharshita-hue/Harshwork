@@ -339,77 +339,82 @@
     </div>
   </section>
 
-  <!-- ══════ OTHER WORKS ══════ -->
-  <section class="other" id="other-works" aria-label="Other works">
-    <h3 class="other__title">Other Works</h3>
+  <!-- ══════ OTHER WORKS — Gallery6 Style ══════ -->
+  <section class="gallery6" id="other-works" aria-label="Other works">
+    <div class="gallery6__header">
+      <div>
+        <h3 class="gallery6__heading">Other Works</h3>
+      </div>
+      <div class="gallery6__nav">
+        <button class="gallery6__arrow" id="g6Prev" aria-label="Previous projects">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+        </button>
+        <button class="gallery6__arrow" id="g6Next" aria-label="Next projects">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
 
-    <div class="other__carousel" role="region" aria-label="Other works carousel">
-      <button class="other__arrow other__arrow--prev" id="carouselPrev" onclick="slideCarousel(-1)" aria-label="Previous projects" disabled>&#8249;</button>
+    <div class="gallery6__viewport" id="g6Viewport">
+      <div class="gallery6__track" id="g6Track">
 
-      <div class="other__grid" id="otherGrid" aria-live="polite">
-
-        <article class="mini-card" id="mini-wander" aria-label="Wander project">
-          <h4 class="mini-card__name">Wander</h4>
-          <p style="font-size: 13px; color: #9A9A9A; margin: 0; margin-bottom: 8px;">What if every walk could tell a story?</p>
-          <div class="mini-card__thumb mini-card__thumb--dark">
-            <span class="mini-card__thumb-placeholder" style="font-style:italic;">wander</span>
-          </div>
-          <p class="mini-card__desc">
-            AR-Based Walking App
-          </p>
-          <a href="wander.html" class="mini-card__cta mini-card__cta--orange">View Project &rarr;</a>
+        <article class="gallery6__slide" aria-label="Wander project">
+          <a href="wander.html" class="gallery6__link">
+            <div class="gallery6__image-wrap">
+              <img src="https://images.unsplash.com/photo-1476611338391-6f395a0ebc7b?w=680&h=453&fit=crop" alt="Wander — AR walking app" class="gallery6__img" loading="lazy" />
+            </div>
+            <h4 class="gallery6__title">Wander</h4>
+            <p class="gallery6__summary">An AR-based walking app that turns every stroll into a story-driven experience.</p>
+            <span class="gallery6__read-more">
+              Read more
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
         </article>
 
-        <article class="mini-card" id="mini-irctc" aria-label="IRCTC Redesign">
-          <h4 class="mini-card__name mini-card__name--orange">IRCTC Redesign</h4>
-          <div class="mini-card__thumb mini-card__thumb--cream">
-            <div class="mini-card__irctc-placeholder">
-              <span>IRCTC</span>
-              <span>Redesign</span>
+        <article class="gallery6__slide" aria-label="IRCTC Redesign">
+          <a href="irctc.html" class="gallery6__link">
+            <div class="gallery6__image-wrap">
+              <img src="https://images.unsplash.com/photo-1556388158-158ea5ccacbd?w=680&h=453&fit=crop" alt="IRCTC Redesign — booking platform" class="gallery6__img" loading="lazy" />
             </div>
-          </div>
-          <p class="mini-card__desc">
-            An interaction overhaul for one of India's most used booking platforms.
-          </p>
-          <a href="irctc.html" class="mini-card__cta mini-card__cta--orange">View Project &rarr;</a>
+            <h4 class="gallery6__title">IRCTC Redesign</h4>
+            <p class="gallery6__summary">An interaction overhaul for one of India's most used booking platforms.</p>
+            <span class="gallery6__read-more">
+              Read more
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
         </article>
 
-        <article class="mini-card" id="mini-tron" aria-label="Tron project">
-          <h4 class="mini-card__name">Tron</h4>
-          <div class="mini-card__thumb mini-card__thumb--cream">
-            <div class="mini-card__tron-placeholder">
-              <svg width="60" height="60" viewBox="0 0 60 60"><path d="M30 5 L55 50 L5 50 Z" fill="none" stroke="#333" stroke-width="2"/></svg>
+        <article class="gallery6__slide" aria-label="Tron project">
+          <a href="tron.html" class="gallery6__link">
+            <div class="gallery6__image-wrap">
+              <img src="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=680&h=453&fit=crop" alt="Tron — branding project" class="gallery6__img" loading="lazy" />
             </div>
-          </div>
-          <p class="mini-card__desc">
-            A branding project exploring visual identity through typography and motion.
-          </p>
-          <a href="tron.html" class="mini-card__cta mini-card__cta--orange">View Project &rarr;</a>
+            <h4 class="gallery6__title">Tron</h4>
+            <p class="gallery6__summary">A branding project exploring visual identity through typography and motion.</p>
+            <span class="gallery6__read-more">
+              Read more
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
         </article>
 
-        <article class="mini-card" id="mini-archi" aria-label="Archi Project">
-          <h4 class="mini-card__name">Archi Project</h4>
-          <div class="mini-card__thumb mini-card__thumb--yellow">
-            <div class="mini-card__archi-placeholder">
-              <svg width="70" height="70" viewBox="0 0 70 70"><circle cx="35" cy="35" r="30" fill="none" stroke="#333" stroke-width="2"/><path d="M20 25 Q35 10 50 25 Q50 50 35 55 Q20 50 20 25Z" fill="none" stroke="#333" stroke-width="1.5"/></svg>
+        <article class="gallery6__slide" aria-label="Archi Project">
+          <a href="#" class="gallery6__link">
+            <div class="gallery6__image-wrap">
+              <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=680&h=453&fit=crop" alt="Archi Project — architectural visualization" class="gallery6__img" loading="lazy" />
             </div>
-          </div>
-          <p class="mini-card__desc">
-            An architectural visualization tool bridging the gap between spatial design intent and interactive digital walkthroughs.
-          </p>
-          <a href="#" class="mini-card__cta mini-card__cta--orange">Coming Soon &rarr;</a>
+            <h4 class="gallery6__title">Archi Project</h4>
+            <p class="gallery6__summary">An architectural visualization tool bridging spatial design intent and interactive digital walkthroughs.</p>
+            <span class="gallery6__read-more">
+              Coming Soon
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
         </article>
 
       </div>
-
-      <button class="other__arrow other__arrow--next" id="carouselNext" onclick="slideCarousel(1)" aria-label="Next projects">&#8250;</button>
-    </div>
-
-    <div class="other__dots" id="carouselDots" role="tablist" aria-label="Carousel page indicators">
-      <button class="other__dot other__dot--active" onclick="goToSlide(0)" role="tab" aria-selected="true" aria-label="Page 1"></button>
-      <button class="other__dot" onclick="goToSlide(1)" role="tab" aria-selected="false" aria-label="Page 2"></button>
-      <button class="other__dot other__dot--active-blue" onclick="goToSlide(2)" role="tab" aria-selected="false" aria-label="Page 3"></button>
-      <button class="other__dot" onclick="goToSlide(3)" role="tab" aria-selected="false" aria-label="Page 4"></button>
     </div>
   </section>
 
