@@ -1,0 +1,260 @@
+/* ============================================================
+   HERO.CSS — Hero Section
+   Padding matches rest of site (var(--side-padding))
+   ============================================================ */
+
+.hero {
+  width: 100%;
+  min-height: 100vh;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: stretch;
+  background-color: var(--color-bg);
+  overflow: visible;
+  position: relative;
+  padding: 0 var(--side-padding);
+  padding-top: 60px;
+}
+
+/* ─── LEFT: Text column ─── */
+.hero__text {
+  flex: 0 0 auto;
+  width: 38%;
+  max-width: 420px;
+  order: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 0 40px;
+  position: relative;
+  z-index: 2;
+  gap: 20px;
+}
+
+.hero__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.5vw, 2.5rem);
+  font-weight: 400;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.hero__name-accent {
+  color: var(--color-accent-orange);
+}
+
+.hero__tagline {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  max-width: 38ch;
+}
+
+.hero__roles {
+  margin-top: 16px;
+}
+
+.hero__role {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  line-height: 1.6;
+}
+
+.hero__role strong {
+  font-weight: 600;
+}
+
+.hero__role-link {
+  color: var(--color-accent-orange);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.hero__role-link:hover {
+  color: #fff;
+}
+
+.hero__role-sub {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+/* ─── RIGHT: Illustration column ─── */
+.hero__illustration {
+  flex: 1;
+  order: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  overflow: visible;
+  margin-left: 16px;
+  position: relative;
+}
+
+/* Wrapper: positions billboard overlay relative to the actual image */
+.hero__img-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.hero__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ─── Navigation buttons container ─── */
+.hero__nav-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ─── Poster-style cards inside billboard ─── */
+.hero__nav-btn {
+  flex: 1;
+  height: 85%;
+  background: var(--color-bg);
+  border: none;
+  border-radius: 6px;
+  color: var(--color-accent-orange);
+  font-family: var(--font-body);
+  font-size: clamp(12px, 1.1vw, 16px);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.hero__nav-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(232, 97, 45, 0.2);
+  background: #161616;
+}
+
+/*
+  Frame positions — measured from Frame 36.png (1195 x 719)
+  Percentages relative to .hero__img-wrap
+
+  Left frame:   ~(165, 30) → (355, 240)
+  Center frame: ~(415, 5)  → (655, 240)
+  Right frame:  ~(720, 25) → (960, 235)
+*/
+
+/*
+  Remeasured from Frame 36.png (1195 x 719)
+  Left inner:   (175,40)→(345,230)  = 170x190
+  Center inner:  (420,10)→(645,230)  = 225x220
+  Right inner:  (725,35)→(950,225)  = 225x190
+*/
+a.hero__frame.hero__frame--about {
+  left: 14.6%;
+  top: 5.6%;
+  width: 14.2%;
+  height: 26.4%;
+  background-color: #2B6CB0 !important;
+}
+
+a.hero__frame.hero__frame--work {
+  left: 35.1%;
+  top: 1.4%;
+  width: 18.8%;
+  height: 30.6%;
+  background-color: #E6B94F !important;
+}
+
+a.hero__frame.hero__frame--work .hero__frame-label {
+  color: #1a1a1a;
+  text-shadow: none;
+}
+
+a.hero__frame.hero__frame--resume {
+  left: 60.7%;
+  top: 4.9%;
+  width: 18.8%;
+  height: 26.4%;
+  background-color: #C05651 !important;
+}
+
+/* ─── Divider line below hero ─── */
+.hero__divider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-border);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .hero {
+    padding: 0 var(--side-padding);
+    padding-top: 60px;
+  }
+  .hero__text {
+    width: 36%;
+  }
+  .hero__illustration {
+    margin-left: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    min-height: auto;
+    min-height: 100svh;
+    padding: 0 var(--side-padding);
+    padding-top: 60px;
+  }
+  .hero__text {
+    flex: none;
+    width: 100%;
+    max-width: 100%;
+    padding: 40px 0 24px;
+  }
+  .hero__illustration {
+    flex: none;
+    width: 100%;
+    margin-left: 0;
+  }
+  .hero__tagline {
+    max-width: 100%;
+  }
+  .hero__frame-label {
+    font-size: clamp(9px, 2.5vw, 13px);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 0 var(--side-padding);
+    padding-top: 52px;
+  }
+  .hero__name {
+    font-size: 1.4rem;
+  }
+  .hero__tagline {
+    font-size: 13px;
+  }
+}

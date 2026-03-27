@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UttishaNowCase Study | Sri Harshita Pilla</title>
+  <meta name="description" content="UttishaNowA behavioral intervention for sedentary young adults. Case study by Sri Harshita Pilla." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./styles/main.css" />
+  <link rel="stylesheet" href="./styles/casestudy.css" />
+</head>
+
+<body>
+
+  <!-- ══════ NAV BARmatches Siddharth ══════ -->
+  <nav class="cs-nav">
+    <a href="./index.html" class="cs-nav__name">Harshita Pilla</a>
+    <div class="cs-nav__links">
+      <a href="./index.html">Home</a>
+      <a href="./index.html#work">Work</a>
+      <a href="./index.html#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ══════ HERO ══════ -->
+  <section class="cs-hero cs-hero--viewport">
+    <div class="cs-hero__top">
+      <div class="cs-hero__info">
+        <h1 class="cs-hero__title">UttishaNow</h1>
+        <p class="cs-hero__tagline">Designing movement as the default, not the exception.</p>
+
+        <div class="cs-meta cs-meta--stacked">
+          <div class="cs-meta__item">
+            <h3 class="cs-meta__label">ROLE</h3>
+            <p class="cs-meta__value">Lead Researcher &middot; Journey Mapper &middot; Interaction Designer</p>
+          </div>
+          <div class="cs-meta__item">
+            <h3 class="cs-meta__label">METHODS</h3>
+            <p class="cs-meta__value">Semi-structured interviews, 3-day diary studies, Behavioral archetypes, Journey mapping, Prototype testing</p>
+          </div>
+          <div class="cs-meta__item">
+            <h3 class="cs-meta__label">CONTEXT</h3>
+            <p class="cs-meta__value">HCI 516 &middot; DePaul University &middot; Jarvis College &middot; IRB-approved &middot; Spring 2025</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-hero__image">
+        <img src="./assets/uttishanow/6.png" alt="UttishaNow app mockups showing dashboard and completion screens" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ CONTEXT ══════ -->
+  <section class="cs-block">
+    <h3 class="cs-block__label">CONTEXT</h3>
+    <h2 class="cs-block__heading">Young adults know they should move more. They download the apps. They delete them in two weeks.</h2>
+    <p class="cs-block__body">UttishaNow asks a different question: what if the environment itself is broken? Context makes the right action easier than the wrong one.</p>
+  </section>
+
+  <!-- ══════ KEY NUMBERS ══════ -->
+  <section class="cs-block cs-block--border">
+    <div class="cs-numbers">
+      <div class="cs-number">
+        <span class="cs-number__value">69 hrs</span>
+        <span class="cs-number__desc">Average daily screen time logged in the 3-day diary studyconfirming the sedentary baseline as measured reality, not assumption</span>
+      </div>
+      <div class="cs-number">
+        <span class="cs-number__value">All 6</span>
+        <span class="cs-number__desc">Participants showed movement clustered around social or environmental triggers, not internal motivation alone</span>
+      </div>
+      <div class="cs-number">
+        <span class="cs-number__value">5+</span>
+        <span class="cs-number__desc">Home environments validated for the physical evening prototyperemote placement and sound cue mechanics</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ 01 — THE PROBLEM ══════ -->
+  <section class="cs-block">
+    <h3 class="cs-block__label">01 . THE PROBLEM</h3>
+    <h2 class="cs-block__heading">Sedentary behavior has become structural, not behavioral.</h2>
+
+    <div class="cs-split" style="display:flex; gap:48px; align-items:flex-start; margin-top:32px;">
+      <div class="cs-split__text" style="flex:1; min-width:0;">
+        <p class="cs-block__body" style="max-width:100%;">Adults now spend 7.7 to 8.3 hours per day sedentary. This is not a willpower story. It is an environment story. Work moved to desks. Commutes shortened. Leisure went digital. The environment itself now defaults to stillness.</p>
+        <p class="cs-block__body" style="max-width:100%;">The fitness app market has generated billions targeting sedentary adults. Most apps are used for a week, then deleted. The question was never why people stopped using them. The question was what mechanism made them fail from the start.</p>
+        <p class="cs-block__body" style="max-width:100%;">Secondary research revealed a connection almost no app had addressed: sedentary behavior above 7 hours per day is a significant independent predictor of poor sleep quality, separate from exercise habits entirely. Move less, sleep worse, have less energy to move. The cycle is self-reinforcing.</p>
+      </div>
+      <div class="cs-split__img" style="flex:0 0 320px; max-width:320px;">
+        <img src="./assets/uttishanow/10.png" alt="UttishaNow phone mockup" style="width:100%; height:auto; border-radius:12px;" />
+      </div>
+    </div>
+
+    <div class="cs-constraints">
+      <div class="cs-constraint">
+        <h4>User Constraint</h4>
+        <p class="cs-constraint__sub">Can't rely on willpower</p>
+        <p>Habits collapsed the moment social structure disappeared. The design had to work on the worst days, low energy, high stress, bad weather. If it required a decision, it would fail.</p>
+      </div>
+      <div class="cs-constraint">
+        <h4>Technical Constraint</h4>
+        <p class="cs-constraint__sub">Can't rebuild the environment</p>
+        <p>Could add friction to passive behavior, but not rebuild a person's home. The evening system had to work within the existing room layout using only remote placement and sound cues.</p>
+      </div>
+      <div class="cs-constraint">
+        <h4>Design Constraint</h4>
+        <p class="cs-constraint__sub">Everything must be automatic</p>
+        <p>Every intervention had to be automatic or near-automatic. Any interface requiring a conscious decision would fail the moment the person was exhausted, exactly when it mattered most.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ 02 — SECONDARY RESEARCH ══════ -->
+  <section class="cs-block cs-block--surface">
+    <h3 class="cs-block__label">02 — SECONDARY RESEARCH</h3>
+    <h2 class="cs-block__heading">What the literature said before we spoke to anyone.</h2>
+    <p class="cs-block__body">Before recruiting a single participant, I ran a secondary research review focused on the sleepsedentarytechnology intersection. Existing wellness products address movement and sleep as separate problemsI suspected they weren't separate at all.</p>
+
+    <!-- Paper Carousel -->
+    <div class="cs-paper-carousel">
+      <button class="cs-paper-carousel__arrow cs-paper-carousel__arrow--left" aria-label="Previous paper" onclick="slidePaper(-1)">&#8592;</button>
+
+      <div class="cs-paper-carousel__track">
+        <div class="cs-paper-carousel__slide cs-paper-carousel__slide--active" data-slide="0">
+          <span class="cs-paper__tag">Paper 01</span>
+          <h4>Sleep Quality &amp; Mental Health in Young Adults</h4>
+          <p class="cs-paper__cite">Aschbrenner et al. (2022) &middot; Early Intervention in Psychiatry</p>
+          <p>Poor sleep affects 76% of young adults with serious mental illness. Critically: physical activity showed little correlation with sleep qualitydepressive symptoms were the primary driver.</p>
+          <p class="cs-paper__take"><strong>Takeaway:</strong> Movement, sleep, and mental state are entangled, not separate levers.</p>
+        </div>
+
+        <div class="cs-paper-carousel__slide" data-slide="1">
+          <span class="cs-paper__tag">Paper 02</span>
+          <h4>How Do You Sleep? Sleep Apps &amp; Gen Z</h4>
+          <p class="cs-paper__cite">Attie &amp; Meyer-Waarden (2023) &middot; Journal of Interactive Marketing</p>
+          <p>Sleep apps positively impact Gen Z's well-being, but primarily before use, when expectations are high. Perceived benefits decrease after use. The gap between expectation and reality drives abandonment.</p>
+          <p class="cs-paper__take"><strong>Takeaway:</strong> App abandonment isn't a UX problemit's an expectation-reality gap.</p>
+        </div>
+
+        <div class="cs-paper-carousel__slide" data-slide="2">
+          <span class="cs-paper__tag">Paper 03</span>
+          <h4>Lifestyle Behaviors, Mood &amp; Sleep Quality</h4>
+          <p class="cs-paper__cite">Sanchez-Trigo et al. (2024) &middot; Psychology &amp; Health</p>
+          <p>Sedentary behavior above 7 hours per day is a significant independent predictor of poor sleep quality, separate from depressive symptoms. The mechanism is bidirectional.</p>
+          <p class="cs-paper__take"><strong>Takeaway:</strong> The problem isn't just moving more. It's breaking a self-reinforcing cycle: sedentary &rarr; poor sleep &rarr; low energy &rarr; sedentary.</p>
+        </div>
+      </div>
+
+      <button class="cs-paper-carousel__arrow cs-paper-carousel__arrow--right" aria-label="Next paper" onclick="slidePaper(1)">&#8594;</button>
+
+      <div class="cs-paper-carousel__dots">
+        <span class="cs-paper-carousel__dot cs-paper-carousel__dot--active" data-dot="0"></span>
+        <span class="cs-paper-carousel__dot" data-dot="1"></span>
+        <span class="cs-paper-carousel__dot" data-dot="2"></span>
+      </div>
+    </div>
+
+    <div class="cs-insight">
+      <p>The literature was consistent on something almost no consumer app had acted on: <strong>environmental cues are a more reliable and durable behavior driver than internal motivation.</strong> That finding became a hypothesis. The research would test it.</p>
+    </div>
+  </section>
+
+  <!-- ══════ 03 — PRIMARY RESEARCH ══════ -->
+  <section class="cs-block">
+    <h3 class="cs-block__label">03 — PRIMARY RESEARCH &middot; IRB APPROVED</h3>
+    <h2 class="cs-block__heading">We expected to find a motivation problem. The participants had a different story.</h2>
+    <p class="cs-block__body">Formal behavioral study: consent forms, screening criteria, recorded sessions, supervised by Prof. Christina Hanschke at DePaul's Jarvis College of Computing. Six participants, semi-structured interviews (60–75 minutes), followed by 2–3 day real-time diary studies.</p>
+    <p class="cs-block__body">I chose diary studies alongside interviews for a specific reason: people are unreliable narrators of their own behavior. Ask someone how active they are and they'll tell you a story. A 48-hour diary gives you what actually happened.</p>
+
+    <!-- Participant Carousel: 2 slides of 3 -->
+    <div class="cs-part-carousel">
+      <button class="cs-part-carousel__arrow cs-part-carousel__arrow--left" aria-label="Previous" onclick="slidePart(-1)">&#8592;</button>
+
+      <div class="cs-part-carousel__track">
+        <div class="cs-part-carousel__slide cs-part-carousel__slide--active" data-part="0">
+          <div class="cs-participants">
+            <div class="cs-participant">
+              <h4>Bryan H.</h4>
+              <p class="cs-participant__role">Working Professional &middot; Marissa's Participant</p>
+              <p>Ex-CrossFit, now desk-bound after promotion. Motivation intact, structure removed. Self-reported 75% of waking hours at a screen.</p>
+            </div>
+            <div class="cs-participant">
+              <h4>Eliana M.</h4>
+              <p class="cs-participant__role">Graduate Student &middot; Marissa's Participant</p>
+              <p>Balancing coursework and desk work with no clear movement window. Defaults to screen-based breaks even when fatigued.</p>
+            </div>
+            <div class="cs-participant">
+              <h4>Audrey D.</h4>
+              <p class="cs-participant__role">Student &middot; Priya's Participant</p>
+              <p>Inconsistent movement routines. Movement only happens when bundled with a social activity.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-part-carousel__slide" data-part="1">
+          <div class="cs-participants">
+            <div class="cs-participant">
+              <h4>Saurabh P.</h4>
+              <p class="cs-participant__role">Professional &middot; Priya's Participant</p>
+              <p>Structured habits but weather-dependent. One variable breaks the entire loop.</p>
+            </div>
+            <div class="cs-participant">
+              <h4>Sagar S.</h4>
+              <p class="cs-participant__role">Student &middot; Srujan's Participant</p>
+              <p>High screen time, poor sleep. Sedentary cycle reinforces itself.</p>
+            </div>
+            <div class="cs-participant">
+              <h4>Sahana B.V.</h4>
+              <p class="cs-participant__role">Student &middot; Srujan's Participant</p>
+              <p>Movement happens only when socially triggered. Remove the friend, remove the habit.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="cs-part-carousel__arrow cs-part-carousel__arrow--right" aria-label="Next" onclick="slidePart(1)">&#8594;</button>
+
+      <div class="cs-part-carousel__dots">
+        <span class="cs-part-carousel__dot cs-part-carousel__dot--active" data-partdot="0"></span>
+        <span class="cs-part-carousel__dot" data-partdot="1"></span>
+      </div>
+    </div>
+
+    <!-- Interview notes image -->
+    <div class="cs-img cs-img--full" style="margin-top:36px;">
+      <img src="./assets/uttishanow/notes%20form%20interview.png" alt="Notes from participant interviews showing key observations and patterns" style="border-radius:12px;" />
+    </div>
+
+    <div class="cs-quote">
+      <blockquote>"Working from home makes it so easy to just stay in my chair all day. Joining a badminton group changed thatnow I have a reason to get up, go out, and actually move."</blockquote>
+      <cite> Vishu &middot; Remote software engineer, Harshita's participant</cite>
+    </div>
+    <p class="cs-block__body">Vishu wasn't unmotivated. What broke the pattern wasn't a lack of desire; it was the absence of any external structure. Once he joined the group, he hadn't missed a single Tuesday in a month. The accountability changed the default, not the desire.</p>
+  </section>
+
+  <!-- ══════ 04 — BEHAVIORAL ARCHETYPES ══════ -->
+  <section class="cs-block cs-block--surface">
+    <h3 class="cs-block__label">04 — BEHAVIORAL ARCHETYPES</h3>
+    <h2 class="cs-block__heading">Not personas. Behavioral patterns, defined by what people lose, not who they are.</h2>
+
+    <div class="cs-archetypes">
+      <div class="cs-archetype">
+        <span class="cs-archetype__num">01</span>
+        <h4>The Low-Energy Loafer</h4>
+        <p class="cs-archetype__tag">"I'm too tired to move"</p>
+        <p>High cognitive load depletes willpower. Movement requires a deliberate decision, which rarely happens on demanding days. Phone is the default coping mechanism.</p>
+        <p class="cs-archetype__need"><strong>Design need:</strong> Remove the decision entirely. Make movement automatic.</p>
+      </div>
+      <div class="cs-archetype">
+        <span class="cs-archetype__num">02</span>
+        <h4>The Multitasking Juggler</h4>
+        <p class="cs-archetype__tag">"I'll do it when I have time"that time never comes</p>
+        <p>Wants to be active, but a packed schedule leaves no clear movement window. Social context is the primary driverpersonal goals alone are insufficient.</p>
+        <p class="cs-archetype__need"><strong>Design need:</strong> Embed movement inside existing habits, not after them.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:48px; margin-bottom:48px; display:flex; justify-content:center; width:100%; max-width:1080px; margin-left:auto; margin-right:auto;">
+      <img src="./assets/uttishanow/Beige%20and%20Black%20Trendy%20Minimalist%20New%20Abstract%20Store%20Logo%20(LinkedIn%20Post)%20(1).jpg" alt="Comic illustration of two people discussing sedentary habits over coffee" style="border-radius:12px; width:100%; max-width:460px; height:auto; display:block;" />
+    </div>
+
+    <div class="cs-insight">
+      <p>Both archetypes share one thing: <strong>none of them lacks motivation. All of them lost an environmental enabler.</strong> The deficit is structural, not psychological.</p>
+    </div>
+  </section>
+
+  <!-- ══════ 05 — THE PIVOT ══════ -->
+  <section class="cs-block">
+    <h3 class="cs-block__label">05 — THE PIVOT</h3>
+    <h2 class="cs-block__heading">Three hypotheses. One shift that changed everything.</h2>
+
+    <div class="cs-hypotheses">
+      <div class="cs-hypothesis">
+        <span class="cs-hypothesis__badge cs-hypothesis__badge--partial">Partially Confirmed</span>
+        <h4>H1Structured spaces drive consistency</h4>
+        <p>Works only if embedded in an existing routine. Standalone structured spaces failed the moment the surrounding habit vanished.</p>
+      </div>
+      <div class="cs-hypothesis">
+        <span class="cs-hypothesis__badge cs-hypothesis__badge--conditional">Confirmed w/ Conditions</span>
+        <h4>H2Tech nudges improve activity</h4>
+        <p>Personalization is non-negotiable. Generic nudges failed universally. Schedule-aware, difficulty-adjusted suggestions had meaningfully higher completion.</p>
+      </div>
+      <div class="cs-hypothesis">
+        <span class="cs-hypothesis__badge cs-hypothesis__badge--confirmed">Strongly Confirmed</span>
+        <h4>H3Social accountability sustains habits</h4>
+        <p>Social context is the primary sustainer, not a bonus. Every participant who maintained activity had a social component.</p>
+      </div>
+    </div>
+
+    <div class="cs-shift">
+      <div class="cs-shift__from">
+        <h4>What we assumed going in</h4>
+        <p>People are sedentary because they lack consistent motivation. The solution is a better motivation systemreminders, streaks, gamification.</p>
+      </div>
+      <span class="cs-shift__arrow">&rarr;</span>
+      <div class="cs-shift__to">
+        <h4>What the research showed</h4>
+        <p>People are sedentary because the environment defaults to stillness. Every structural scaffold that enabled movement had been removed. The solution is rebuilding the scaffold.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ 06 — JOURNEY MAP ══════ -->
+  <section class="cs-block cs-block--surface">
+    <h3 class="cs-block__label">06 — JOURNEY MAP &middot; HARSHITA'S CONTRIBUTION</h3>
+    <h2 class="cs-block__heading">Six stages. 100+ touchpoints. Two windows where behavior reliably breaks.</h2>
+    <p class="cs-block__body">I led construction of the full-day journey map, tracing behavior from waking to sleeping. For each stage: physical state, emotional state, active behavioral triggers, passive defaults, environmental barriers and enablers, and design opportunity areas.</p>
+
+    <div class="cs-journey">
+      <div class="cs-journey__stage"><span>01</span><h4>Morning Routine</h4><p>Phone use precedes getting out of bed. Notifications, scroll, social mediabefore movement of any kind.</p><p class="cs-journey__lever">Lever: Passive defaults aren't set yethighest opportunity for intervention.</p></div>
+      <div class="cs-journey__stage"><span>02</span><h4>Commute</h4><p>The first real movement opportunity. Decision driven by external conditions, not internal desire.</p><p class="cs-journey__lever">Lever: Active commute reminders, but only if schedule-aware.</p></div>
+      <div class="cs-journey__stage"><span>03</span><h4>Work / Study</h4><p>Hours of sustained seated work. Breaks are sedentaryphone, coffee, chat.</p><p class="cs-journey__lever">Lever: Short micro-movement prompts aligned to calendar gaps.</p></div>
+      <div class="cs-journey__stage cs-journey__stage--highlight"><span>04</span><h4>Evening Transition &#9888;</h4><p>Home means couch, TV, phone. The physical environment defaults to stillness.</p><p class="cs-journey__lever">Primary intervention targetenvironment redesign required.</p></div>
+      <div class="cs-journey__stage"><span>05</span><h4>Dinner &amp; Night</h4><p>Cooking adds minor movement. Eating happens in front of screens. Post-dinner: back to couch.</p><p class="cs-journey__lever">Lever: Light movement embedded in screen-time routines.</p></div>
+      <div class="cs-journey__stage"><span>06</span><h4>Pre-Sleep</h4><p>Phone in bed. "One last scroll" delays sleep by 4560 minutes. Low-energy morning follows.</p><p class="cs-journey__lever">Sleep and movement are connectedneither addressed by existing apps.</p></div>
+    </div>
+
+    <!-- Journey Map Slides Carousel -->
+    <div class="cs-jm-carousel" style="margin-top:40px;">
+      <button class="cs-jm-carousel__arrow cs-jm-carousel__arrow--left" aria-label="Previous slide" onclick="slideJM(-1)">&#8592;</button>
+
+      <div class="cs-jm-carousel__track">
+        <img class="cs-jm-carousel__slide cs-jm-carousel__slide--active" data-jm="0" src="./assets/uttishanow/Final%20Project%20Presentation.pptx/7.jpg" alt="Journey MapStage 1: Morning Routine" />
+        <img class="cs-jm-carousel__slide" data-jm="1" src="./assets/uttishanow/Final%20Project%20Presentation.pptx/8.jpg" alt="Journey MapStage 2: Commute" />
+        <img class="cs-jm-carousel__slide" data-jm="2" src="./assets/uttishanow/Final%20Project%20Presentation.pptx/9.jpg" alt="Journey MapStage 3: Work / Study" />
+        <img class="cs-jm-carousel__slide" data-jm="3" src="./assets/uttishanow/Final%20Project%20Presentation.pptx/10.jpg" alt="Journey MapStage 4: Evening Transition" />
+        <img class="cs-jm-carousel__slide" data-jm="4" src="./assets/uttishanow/Final%20Project%20Presentation.pptx/11.jpg" alt="Journey MapStage 5: Dinner & Night" />
+        <img class="cs-jm-carousel__slide" data-jm="5" src="./assets/uttishanow/Final%20Project%20Presentation.pptx/12.jpg" alt="Journey MapStage 6: Pre-bed & Sleep" />
+      </div>
+
+      <button class="cs-jm-carousel__arrow cs-jm-carousel__arrow--right" aria-label="Next slide" onclick="slideJM(1)">&#8594;</button>
+
+      <div class="cs-jm-carousel__dots">
+        <span class="cs-jm-carousel__dot cs-jm-carousel__dot--active" data-jmdot="0"></span>
+        <span class="cs-jm-carousel__dot" data-jmdot="1"></span>
+        <span class="cs-jm-carousel__dot" data-jmdot="2"></span>
+        <span class="cs-jm-carousel__dot" data-jmdot="3"></span>
+        <span class="cs-jm-carousel__dot" data-jmdot="4"></span>
+        <span class="cs-jm-carousel__dot" data-jmdot="5"></span>
+      </div>
+    </div>
+
+    <div class="cs-insight">
+      <p><strong>Two high-leverage windows emerged:</strong> Morning (Stages 12), the 1015 minute window before passive defaults establish themselves; and Evening Transition (Stage 4), where the home environment is physically designed for stillness.</p>
+    </div>
+  </section>
+
+  <!-- ══════ 07 — DESIGN STRATEGY ══════ -->
+  <section class="cs-block">
+    <h3 class="cs-block__label">07 — DESIGN STRATEGY</h3>
+    <h2 class="cs-block__heading">Three options. One decision. The thinking behind the choice.</h2>
+
+    <div class="cs-strategies">
+      <div class="cs-strategy cs-strategy--rejected">
+        <span class="cs-strategy__badge">Rejected</span>
+        <h4>Strategy A &middot; Motivation System</h4>
+        <p>Gamification, streaks, goal-setting, reminders. Our research showed motivation wasn't the barrier. Every existing wellness app had already tried this.</p>
+      </div>
+      <div class="cs-strategy cs-strategy--deprioritized">
+        <span class="cs-strategy__badge">Deprioritized</span>
+        <h4>Strategy B &middot; Social Accountability</h4>
+        <p>Vishu's story showed this works. But it's high friction, depends on another person's availability, and doesn't address solo movement.</p>
+      </div>
+      <div class="cs-strategy cs-strategy--selected">
+        <span class="cs-strategy__badge">Selected &#10003;</span>
+        <h4>Strategy C &middot; Environment Design</h4>
+        <p>Intervene at the two high-leverage windows. Reduce environmental friction at the moment behavior defaults to stillness. Works without willpower.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ 08 — THE SOLUTION ══════ -->
+  <section class="cs-block cs-block--dark">
+    <h3 class="cs-block__label" style="color:#6EC9A5;">08 — THE SOLUTION</h3>
+    <h2 class="cs-block__heading">Two systems. One behavioral loop.</h2>
+    <p class="cs-block__body">Not a single app. A two-layer behavioral systemone digital, one physicaleach targeting one of the two leverage windows identified in the journey map.</p>
+
+    <!-- Layer 1Side-by-side: text left, carousel right -->
+    <div class="cs-layer cs-layer--split">
+      <div class="cs-layer__text">
+        <span class="cs-layer__tag">Layer 1 &middot; Digital</span>
+        <h3>Morning Intervention App</h3>
+        <p>A schedule-aware, personalization-first activity suggestion system designed to intercept the first 1015 minutes of the daybefore phone scroll and passive defaults occupy that window.</p>
+        <ul>
+          <li>Lock screen widget intercepts within 60 seconds of waking</li>
+          <li>Schedule-aware suggestions match the user's real available time</li>
+          <li>Skip confirmation + streak warning reduces casual abandonment</li>
+          <li>Social proof shown at point of decision, not as ambient data</li>
+          <li>Opt-in challenges lock the phone until activity is completed</li>
+        </ul>
+      </div>
+
+      <div class="cs-layer__carousel">
+        <div class="cs-app-carousel">
+          <button class="cs-app-carousel__arrow cs-app-carousel__arrow--left" aria-label="Previous" onclick="slideApp(-1)">&#8592;</button>
+
+          <div class="cs-app-carousel__track">
+            <img class="cs-app-carousel__slide cs-app-carousel__slide--active" data-app="0" src="./assets/uttishanow/7.png" alt="Three dashboard views showing activity tracking" />
+            <img class="cs-app-carousel__slide" data-app="1" src="./assets/uttishanow/12.png" alt="Streaming and exercise content screens" />
+            <img class="cs-app-carousel__slide" data-app="2" src="./assets/uttishanow/13.png" alt="Phone and Apple Watch movement notifications" />
+          </div>
+
+          <button class="cs-app-carousel__arrow cs-app-carousel__arrow--right" aria-label="Next" onclick="slideApp(1)">&#8594;</button>
+
+          <div class="cs-app-carousel__dots">
+            <span class="cs-app-carousel__dot cs-app-carousel__dot--active" data-appdot="0"></span>
+            <span class="cs-app-carousel__dot" data-appdot="1"></span>
+            <span class="cs-app-carousel__dot" data-appdot="2"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Layer 2Side-by-side: text left, carousel right -->
+    <div class="cs-layer cs-layer--split">
+      <div class="cs-layer__text">
+        <span class="cs-layer__tag">Layer 2 &middot; Physical Environment</span>
+        <h3>Evening Environment Redesign</h3>
+        <p>Physical friction proved more durable than app notifications. The environment change was more durable because it didn't require the user to remember, agree, or act; the room itself prompted movement.</p>
+        <ul>
+          <li>Remote 1 at phone charging zoneforces a walk before screen</li>
+          <li>Remote 2 by doorlight control requires standing up</li>
+          <li>Remote 3 at bookshelfwatching requires getting up first</li>
+          <li>Sound cues at movement zonesprompt without screen interaction</li>
+          <li>Phone placement constraintTV pauses when phone leaves zone</li>
+        </ul>
+      </div>
+
+      <div class="cs-layer__carousel">
+        <div class="cs-env-carousel">
+          <button class="cs-env-carousel__arrow cs-env-carousel__arrow--left" aria-label="Previous" onclick="slideEnv(-1)">&#8592;</button>
+
+          <div class="cs-env-carousel__track">
+            <img class="cs-env-carousel__slide cs-env-carousel__slide--active" data-env="0" src="./assets/uttishanow/3D%20Layout/Isometric%201.png" alt="Isometric 3D room layoutview 1" />
+            <img class="cs-env-carousel__slide" data-env="1" src="./assets/uttishanow/3D%20Layout/Isometric%202.png" alt="Isometric 3D room layoutview 2" />
+            <img class="cs-env-carousel__slide" data-env="2" src="./assets/uttishanow/3D%20Layout/Top%20View.png" alt="Top view of room layout" />
+            <img class="cs-env-carousel__slide" data-env="3" src="./assets/uttishanow/3D%20Layout/Sideview.png" alt="Side view of room layout" />
+            <img class="cs-env-carousel__slide" data-env="4" src="./assets/uttishanow/3D%20Layout/Without%20Dimensions.png" alt="Room layout clean view" />
+          </div>
+
+          <button class="cs-env-carousel__arrow cs-env-carousel__arrow--right" aria-label="Next" onclick="slideEnv(1)">&#8594;</button>
+
+          <div class="cs-env-carousel__dots">
+            <span class="cs-env-carousel__dot cs-env-carousel__dot--active" data-envdot="0"></span>
+            <span class="cs-env-carousel__dot" data-envdot="1"></span>
+            <span class="cs-env-carousel__dot" data-envdot="2"></span>
+            <span class="cs-env-carousel__dot" data-envdot="3"></span>
+            <span class="cs-env-carousel__dot" data-envdot="4"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ 09 — PROTOTYPE TESTING ══════ -->
+  <section class="cs-block">
+    <h3 class="cs-block__label">09 — PROTOTYPE TESTING</h3>
+    <h2 class="cs-block__heading">What worked, what didn't, and what we changed.</h2>
+    <p class="cs-block__body">Feedback sessions run with participants. Four consistent themestwo problems per prototype. Documented honestly.</p>
+
+    <div class="cs-feedback-list">
+      <div class="cs-feedback">
+        <span class="cs-feedback__tag">Morning &middot; Problem 1</span>
+        <p>Losing all streak progress after one missed day was discouraging. Participants described it as "punishing."</p>
+        <p class="cs-feedback__response"><strong>Response:</strong> Iterate toward grace periods and adjustable difficulty. Progress shouldn't be binary.</p>
+      </div>
+      <div class="cs-feedback">
+        <span class="cs-feedback__tag">Morning &middot; Problem 2</span>
+        <p>The phone-lock challenge felt too restrictive. The inability to override in emergencies created friction.</p>
+        <p class="cs-feedback__response"><strong>Response:</strong> Introduce a "flexibility mode"opt-in, not forced.</p>
+      </div>
+      <div class="cs-feedback">
+        <span class="cs-feedback__tag">Evening &middot; Problem 1</span>
+        <p>Remote placement was impractical in small or shared living spaces.</p>
+        <p class="cs-feedback__response"><strong>Response:</strong> Explore smart lighting or movement-based streaming prompts for constrained spaces.</p>
+      </div>
+      <div class="cs-feedback">
+        <span class="cs-feedback__tag">Evening &middot; Open Question</span>
+        <p>Sound cue effectiveness was unclear. We never adequately tested whether the volume-reduction cue was perceived as a prompt or background noise.</p>
+        <p class="cs-feedback__response"><strong>Next Step:</strong> Dedicated usability session to close this question first in a next sprint.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ 10 — OUTCOMES ══════ -->
+  <section class="cs-block cs-block--surface">
+    <h3 class="cs-block__label">10 — OUTCOMES</h3>
+    <h2 class="cs-block__heading">What the data showed. What it didn't.</h2>
+    <p class="cs-block__body">This was a design research project, not a longitudinal trial. Every outcome below is drawn directly from diary data, interview analysis, and prototype validation sessions.</p>
+
+    <div class="cs-numbers" style="margin-top:32px;">
+      <div class="cs-number">
+        <span class="cs-number__value">69 hrs</span>
+        <span class="cs-number__desc">Average daily screen time. Confirmed the sedentary baseline as measured reality.</span>
+      </div>
+      <div class="cs-number">
+        <span class="cs-number__value">All 6</span>
+        <span class="cs-number__desc">Showed activity clustered around social or environmental prompts, not solo motivation.</span>
+      </div>
+      <div class="cs-number">
+        <span class="cs-number__value">5+</span>
+        <span class="cs-number__desc">Home environments where the physical evening prototype was validated.</span>
+      </div>
+    </div>
+
+    <div class="cs-insight" style="margin-top:32px;border-left-color:#E6B94F;">
+      <p><strong>Honest Limitation:</strong> The sample was homogeneous: students and early-career professionals. The archetypes need pressure-testing across age ranges, family structures, and shift workers.</p>
+    </div>
+
+    <div class="cs-insight" style="margin-top:16px;border-left-color:#666;">
+      <p><strong>What I'd do differently:</strong> The sound cue testing was incomplete. I'd also run a co-design session after the diary studiesreturning participants' own data and asking them to locate friction points themselves.</p>
+    </div>
+  </section>
+
+  <!-- ══════ 11 — KEY LEARNINGS ══════ -->
+  <section class="cs-block">
+    <h3 class="cs-block__label">11 — KEY LEARNINGS</h3>
+    <h2 class="cs-block__heading">Four things this research confirmed.</h2>
+
+    <div class="cs-learnings">
+      <div class="cs-learning">
+        <span>01</span>
+        <h4>Environment &gt; Motivation</h4>
+        <p>Structural change outlasts any nudge system. Design the path of least resistance firstmotivation follows.</p>
+      </div>
+      <div class="cs-learning">
+        <span>02</span>
+        <h4>Constraints are the brief</h4>
+        <p>Working within "no willpower, no environment rebuild, no social dependency" produced more durable solutions than open-ended ideation.</p>
+      </div>
+      <div class="cs-learning">
+        <span>03</span>
+        <h4>Personalization is non-negotiable</h4>
+        <p>Generic nudges failed universally. Schedule-aware, difficulty-adjusted suggestions had meaningfully higher completion.</p>
+      </div>
+      <div class="cs-learning">
+        <span>04</span>
+        <h4>Small friction, big behavior change</h4>
+        <p>Moving a remote 3 meters changed behavior more reliably than a push notification. Physical design and digital design are part of the same system.</p>
+      </div>
+    </div>
+
+    <div class="cs-tags">
+      <span>IRB Research Protocol</span><span>Diary Studies</span><span>Semi-Structured Interviews</span><span>Journey Mapping</span><span>Behavioral Archetypes</span><span>BJ Fogg Behavior Model</span><span>Choice Architecture</span><span>Environment Design</span><span>Prototype Testing</span><span>Behavioral Science</span><span>Habit Stacking</span>
+    </div>
+  </section>
+
+  <!-- ══════ VIEW NEXT ══════ -->
+  <section class="cs-block cs-block--border" style="text-align:center;">
+    <h2 class="cs-block__heading">View Next &rarr;</h2>
+    <a href="./index.html#work" class="cs-next-link">Back to all projects</a>
+  </section>
+
+  <!-- ══════ FOOTER ══════ -->
+  <footer class="cs-footer">
+    <div class="cs-footer__inner">
+      <div class="cs-footer__links">
+        <a href="./index.html">Home</a>
+        <a href="./index.html#work">Work</a>
+        <a href="./index.html#contact">Contact</a>
+      </div>
+      <span>&copy; 2026 Sri Harshita Pilla</span>
+    </div>
+  </footer>
+
+  <script>
+    /* ── Paper Carousel ── */
+    let currentPaper = 0;
+    const totalPapers = 3;
+
+    function slidePaper(dir) {
+      currentPaper = (currentPaper + dir + totalPapers) % totalPapers;
+      updatePaperCarousel();
+    }
+
+    function updatePaperCarousel() {
+      document.querySelectorAll('.cs-paper-carousel__slide').forEach((s, i) => {
+        s.classList.toggle('cs-paper-carousel__slide--active', i === currentPaper);
+      });
+      document.querySelectorAll('.cs-paper-carousel__dot').forEach((d, i) => {
+        d.classList.toggle('cs-paper-carousel__dot--active', i === currentPaper);
+      });
+    }
+
+    // Dot clicks
+    document.querySelectorAll('.cs-paper-carousel__dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        currentPaper = parseInt(dot.dataset.dot);
+        updatePaperCarousel();
+      });
+    });
+
+    /* ── Journey Map Carousel ── */
+    let currentJM = 0;
+    const totalJM = 6;
+
+    function slideJM(dir) {
+      currentJM = (currentJM + dir + totalJM) % totalJM;
+      updateJMCarousel();
+    }
+
+    function updateJMCarousel() {
+      document.querySelectorAll('.cs-jm-carousel__slide').forEach((s, i) => {
+        s.classList.toggle('cs-jm-carousel__slide--active', i === currentJM);
+      });
+      document.querySelectorAll('.cs-jm-carousel__dot').forEach((d, i) => {
+        d.classList.toggle('cs-jm-carousel__dot--active', i === currentJM);
+      });
+    }
+
+    document.querySelectorAll('.cs-jm-carousel__dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        currentJM = parseInt(dot.dataset.jmdot);
+        updateJMCarousel();
+      });
+    });
+
+    /* ── App Prototype Carousel ── */
+    let currentApp = 0;
+    const totalApp = 3;
+
+    function slideApp(dir) {
+      currentApp = (currentApp + dir + totalApp) % totalApp;
+      updateAppCarousel();
+    }
+
+    function updateAppCarousel() {
+      document.querySelectorAll('.cs-app-carousel__slide').forEach((s, i) => {
+        s.classList.toggle('cs-app-carousel__slide--active', i === currentApp);
+      });
+      document.querySelectorAll('.cs-app-carousel__dot').forEach((d, i) => {
+        d.classList.toggle('cs-app-carousel__dot--active', i === currentApp);
+      });
+    }
+
+    document.querySelectorAll('.cs-app-carousel__dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        currentApp = parseInt(dot.dataset.appdot);
+        updateAppCarousel();
+      });
+    });
+
+    /* ── Environment 3D Layout Carousel ── */
+    let currentEnv = 0;
+    const totalEnv = 5;
+
+    function slideEnv(dir) {
+      currentEnv = (currentEnv + dir + totalEnv) % totalEnv;
+      updateEnvCarousel();
+    }
+
+    function updateEnvCarousel() {
+      document.querySelectorAll('.cs-env-carousel__slide').forEach((s, i) => {
+        s.classList.toggle('cs-env-carousel__slide--active', i === currentEnv);
+      });
+      document.querySelectorAll('.cs-env-carousel__dot').forEach((d, i) => {
+        d.classList.toggle('cs-env-carousel__dot--active', i === currentEnv);
+      });
+    }
+
+    document.querySelectorAll('.cs-env-carousel__dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        currentEnv = parseInt(dot.dataset.envdot);
+        updateEnvCarousel();
+      });
+    });
+
+    /* ── Participant Carousel ── */
+    let currentPart = 0;
+    const totalPart = 2;
+
+    function slidePart(dir) {
+      currentPart = (currentPart + dir + totalPart) % totalPart;
+      updatePartCarousel();
+    }
+
+    function updatePartCarousel() {
+      document.querySelectorAll('.cs-part-carousel__slide').forEach((s, i) => {
+        s.classList.toggle('cs-part-carousel__slide--active', i === currentPart);
+      });
+      document.querySelectorAll('.cs-part-carousel__dot').forEach((d, i) => {
+        d.classList.toggle('cs-part-carousel__dot--active', i === currentPart);
+      });
+    }
+
+    document.querySelectorAll('.cs-part-carousel__dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        currentPart = parseInt(dot.dataset.partdot);
+        updatePartCarousel();
+      });
+    });
+  </script>
+
+</body>
+</html>

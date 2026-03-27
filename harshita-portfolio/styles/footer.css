@@ -1,0 +1,87 @@
+/* ============================================================
+   FOOTER.CSS — Footer matching Framer screenshot
+   Simple 2-column: Location | Contact Details
+   Bottom bar: copyright + Made in Framer badge
+   ============================================================ */
+
+.footer {
+  background: var(--color-footer-bg);
+  padding: var(--space-12) var(--side-padding) var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+
+/* ─── TOP: Location + Contact side by side ─── */
+.footer__top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  margin-bottom: var(--space-10);
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+.footer__detail-group {
+  text-align: center;
+}
+
+.footer__detail-label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent-orange);
+  margin-bottom: var(--space-3);
+}
+
+.footer__detail-value {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: 0.05em;
+}
+
+/* ─── BOTTOM BAR ─── */
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-6);
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer__copy {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
+}
+
+.footer__badge {
+  display: flex;
+  align-items: center;
+}
+
+.footer__framer-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  background: rgba(255,255,255,0.08);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .footer__top {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    text-align: center;
+  }
+  .footer__bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-4);
+  }
+}

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sri Harshita Pilla — Product Designer</title>
+  <meta name="description" content="Sri Harshita Pilla — Product Designer with 3+ years of experience designing end-to-end AI experiences." />
+  <meta name="author" content="Sri Harshita Pilla" />
+
+  <meta property="og:title" content="Sri Harshita Pilla — Product Designer" />
+  <meta property="og:description" content="UX Research. Behavioural Design. AI-Driven Interfaces." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="./styles/main.css" />
+  <link rel="stylesheet" href="./styles/hero.css" />
+  <link rel="stylesheet" href="./styles/cards.css" />
+  <link rel="stylesheet" href="./styles/footer.css" />
+</head>
+
+<body>
+
+  <!-- ══════ TOP BAR (always visible, like Siddharth) ══════ -->
+  <header class="topbar" id="topBar" style="display:flex;flex-direction:row;justify-content:space-between;align-items:center;position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;background:#0D0D0D;border-bottom:1px solid #2A2A2A;height:60px;">
+    <div class="topbar__left" style="display:flex;flex-direction:row;align-items:center;gap:12px;">
+      <div class="topbar__avatar" style="width:32px;height:32px;min-width:32px;border-radius:50%;background:#3D8B6E;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#fff;">H</div>
+      <span class="topbar__name" style="font-size:15px;font-weight:500;color:#fff;white-space:nowrap;">Harshita Pilla</span>
+    </div>
+    <div class="topbar__right" style="display:flex;flex-direction:row;align-items:center;gap:32px;">
+      <span class="topbar__location" style="font-size:14px;font-weight:500;color:#9A9A9A;white-space:nowrap;">United States</span>
+      <span class="topbar__time" id="topBarTime" style="font-size:14px;font-weight:500;color:#9A9A9A;white-space:nowrap;"></span>
+    </div>
+  </header>
+
+  <!-- ══════ NAV (hidden by default, appears on scroll) ══════ -->
+  <nav class="nav" id="mainNav" aria-label="Main navigation" style="opacity:0;pointer-events:none;transform:translateX(-50%) translateY(-100%);">
+    <div class="nav__orange-bar"></div>
+    <ul class="nav__links" role="list">
+      <li>
+        <a href="#home" class="nav__link" aria-label="Go to Home">
+          <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="#work" class="nav__link" aria-label="Go to Work">
+          <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <span>Work</span>
+        </a>
+      </li>
+      <li>
+        <a href="#about" class="nav__link" aria-label="Go to About me">
+          <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span>About me</span>
+        </a>
+      </li>
+      <li>
+        <a href="#contact" class="nav__link" aria-label="Go to Resume">
+          <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <span>Resume</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- ══════ HERO ══════ -->
+  <section class="hero" id="home" aria-label="Hero section" style="max-width:1080px;margin-left:auto;margin-right:auto;padding:0 40px;padding-top:60px;">
+    <div class="hero__text">
+      <h1 class="hero__name">Hi, I'm <span class="hero__name-accent">Harshita!</span></h1>
+      <p class="hero__tagline">
+        A product designer with 3+ years of experience, designing end-to-end UX from research to launch. Focused on research-driven design, product strategy, and high-craft execution. Currently looking for full-time opportunities in the United States.
+      </p>
+      <div class="hero__roles">
+        <p class="hero__role"><strong>Open to full-time opportunities</strong><br/><span class="hero__role-sub">UX/Product Design, United States</span></p>
+      </div>
+    </div>
+
+    <div class="hero__illustration">
+      <div class="hero__img-wrap">
+        <img
+          class="hero__svg"
+          src="./assets/Frame 38.png"
+          alt="Illustrated workspace with desk, monitor, plant and billboard"
+          draggable="false"
+        />
+        <!-- 3 buttons inside the billboard -->
+        <div class="hero__billboard" style="position:absolute;left:7%;top:5%;width:80%;height:26%;display:flex;align-items:center;justify-content:center;gap:clamp(8px, 1.5vw, 20px);padding:4% 4%;pointer-events:auto;">
+          <a href="#about" class="hero__nav-btn">About me</a>
+          <a href="#work" class="hero__nav-btn">Work</a>
+          <a href="#contact" class="hero__nav-btn">Resume</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider line below hero, like Siddharth -->
+    <div class="hero__divider"></div>
+  </section>
+
+  <!-- ══════ RECENT WORKS ══════ -->
+  <section class="works" id="work" aria-label="Recent works">
+    <div class="works__head">
+      <h2 class="works__title">Recent <span class="works__title-accent">Works</span></h2>
+    </div>
+
+    <div class="works__featured">
+      <!-- CARD 1 — UttishaNow -->
+      <article class="card card--dark" id="card-uttisha" aria-label="UttishaNow project">
+        <div class="card__info">
+          <h3 class="card__title">UttishaNow</h3>
+
+          <p class="card__arg">
+            A mobile app designed to reduce sedentary behaviour in young adults through environmental nudges, not motivation prompts. Led end-to-end UX including user research, behavioral mapping, interaction design, and prototype testing, designing micro-nudge triggers that fit into existing daily routines without requiring willpower.
+          </p>
+          <div class="card__meta-tags">
+            <span class="card__tag">UX Research</span>
+            <span class="card__tag">Behavioral Design</span>
+            <span class="card__tag">UI/UX Design</span>
+            <span class="card__tag">Habit Formation</span>
+          </div>
+          <a href="./uttishanow.html" class="card__cta card__cta--orange">
+            See more <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+        <div class="card__visual card__visual--orange">
+          <div class="card__thumb">
+            <div class="card__mockup card__mockup--data-analysis">
+              <div class="card__mockup-header">
+                <span class="card__mockup-dot card__mockup-dot--red"></span>
+                <span class="card__mockup-dot card__mockup-dot--yellow"></span>
+                <span class="card__mockup-dot card__mockup-dot--green"></span>
+              </div>
+              <p class="card__mockup-title">Data Analysis</p>
+              <p class="card__mockup-subtitle">Monthly expenses</p>
+              <div class="card__mockup-chart">
+                <div class="card__mockup-bar" style="height:60%"></div>
+                <div class="card__mockup-bar" style="height:80%"></div>
+                <div class="card__mockup-bar" style="height:45%"></div>
+                <div class="card__mockup-bar" style="height:70%"></div>
+                <div class="card__mockup-bar card__mockup-bar--accent" style="height:90%"></div>
+                <div class="card__mockup-bar" style="height:55%"></div>
+              </div>
+              <p class="card__mockup-footer">This week &darr;</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 2 — Boost Credibility -->
+      <article class="card card--dark card--reversed" id="card-boost" aria-label="Boost Credibility project">
+        <div class="card__visual card__visual--orange">
+          <div class="card__thumb">
+            <div class="card__mockup card__mockup--payment">
+              <div class="card__mockup-payment-header">Payment Method</div>
+              <div class="card__mockup-payment-option">
+                <span class="card__mockup-payment-icon">&#128179;</span>
+                <div>
+                  <strong>Add Card</strong>
+                  <small>Add a card of any bank</small>
+                </div>
+              </div>
+              <div class="card__mockup-payment-option">
+                <span class="card__mockup-payment-icon">&#9830;</span>
+                <div>
+                  <strong>Add Crypto Wallet</strong>
+                  <small>Connect your crypto wallet</small>
+                </div>
+              </div>
+              <div class="card__mockup-payment-option">
+                <span class="card__mockup-payment-icon card__mockup-payment-icon--green">&#9679;</span>
+                <div>
+                  <strong>Add Unipay Account</strong>
+                  <small>Hold all payments via the app</small>
+                </div>
+                <span class="card__mockup-check">&#10003;</span>
+              </div>
+              <div class="card__mockup-payment-cards">
+                <span class="card__mockup-visa">VISA</span>
+                <span class="card__mockup-mc">&bull;&bull;</span>
+                <span class="card__mockup-visa">VISA</span>
+                <span class="card__mockup-visa card__mockup-visa--dark">VISA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card__info">
+          <h3 class="card__title">Glenen AI RAG Based Commerce Platform</h3>
+          <p class="card__desc">
+            An AI-powered retail assistant that guides customers through 2,900+ products. Conversational, semantic, and built for in-store kiosks.
+          </p>
+          <p class="card__arg">
+            Designed the end-to-end UX for a RAG-based conversational commerce experience for a retail client, currently in production. Mapped conversation flows, semantic search interactions, and kiosk interface design across a catalog of 2,900+ products, ensuring users are guided, not left to search on their own.
+          </p>
+          <div class="card__meta-tags">
+            <span class="card__tag">AI Product Design</span>
+            <span class="card__tag">End-to-End UX</span>
+            <span class="card__tag">Kiosk Design</span>
+            <span class="card__tag">Web Design</span>
+          </div>
+          <a href="#" class="card__cta card__cta--orange">
+            See more <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══════ OTHER WORKS ══════ -->
+  <section class="other" id="other-works" aria-label="Other works">
+    <h3 class="other__title">Other Works</h3>
+
+    <div class="other__carousel" role="region" aria-label="Other works carousel">
+      <button class="other__arrow other__arrow--prev" id="carouselPrev" onclick="slideCarousel(-1)" aria-label="Previous projects" disabled>&#8249;</button>
+
+      <div class="other__grid" id="otherGrid" aria-live="polite">
+
+        <article class="mini-card" id="mini-wander" aria-label="Wander project">
+          <h4 class="mini-card__name">Wander</h4>
+          <p style="font-size: 13px; color: #9A9A9A; margin: 0; margin-bottom: 8px;">What if every walk could tell a story?</p>
+          <div class="mini-card__thumb mini-card__thumb--dark">
+            <span class="mini-card__thumb-placeholder" style="font-style:italic;">wander</span>
+          </div>
+          <p class="mini-card__desc">
+            AR-Based Walking App
+          </p>
+          <a href="#" class="mini-card__cta mini-card__cta--orange">Coming Soon &rarr;</a>
+        </article>
+
+        <article class="mini-card" id="mini-irctc" aria-label="IRCTC Redesign">
+          <h4 class="mini-card__name mini-card__name--orange">IRCTC Redesign</h4>
+          <div class="mini-card__thumb mini-card__thumb--cream">
+            <div class="mini-card__irctc-placeholder">
+              <span>IRCTC</span>
+              <span>Redesign</span>
+            </div>
+          </div>
+          <p class="mini-card__desc">
+            An interaction overhaul for one of India's most used booking platforms.
+          </p>
+          <a href="#" class="mini-card__cta mini-card__cta--orange">Coming Soon &rarr;</a>
+        </article>
+
+        <article class="mini-card" id="mini-tron" aria-label="Tron project">
+          <h4 class="mini-card__name">Tron</h4>
+          <div class="mini-card__thumb mini-card__thumb--cream">
+            <div class="mini-card__tron-placeholder">
+              <svg width="60" height="60" viewBox="0 0 60 60"><path d="M30 5 L55 50 L5 50 Z" fill="none" stroke="#333" stroke-width="2"/></svg>
+            </div>
+          </div>
+          <p class="mini-card__desc">
+            A branding project exploring visual identity through typography and motion.
+          </p>
+          <a href="#" class="mini-card__cta mini-card__cta--orange">Coming Soon &rarr;</a>
+        </article>
+
+        <article class="mini-card" id="mini-archi" aria-label="Archi Project">
+          <h4 class="mini-card__name">Archi Project</h4>
+          <div class="mini-card__thumb mini-card__thumb--yellow">
+            <div class="mini-card__archi-placeholder">
+              <svg width="70" height="70" viewBox="0 0 70 70"><circle cx="35" cy="35" r="30" fill="none" stroke="#333" stroke-width="2"/><path d="M20 25 Q35 10 50 25 Q50 50 35 55 Q20 50 20 25Z" fill="none" stroke="#333" stroke-width="1.5"/></svg>
+            </div>
+          </div>
+          <p class="mini-card__desc">
+            An architectural visualization tool bridging the gap between spatial design intent and interactive digital walkthroughs.
+          </p>
+          <a href="#" class="mini-card__cta mini-card__cta--orange">Coming Soon &rarr;</a>
+        </article>
+
+      </div>
+
+      <button class="other__arrow other__arrow--next" id="carouselNext" onclick="slideCarousel(1)" aria-label="Next projects">&#8250;</button>
+    </div>
+
+    <div class="other__dots" id="carouselDots" role="tablist" aria-label="Carousel page indicators">
+      <button class="other__dot other__dot--active" onclick="goToSlide(0)" role="tab" aria-selected="true" aria-label="Page 1"></button>
+      <button class="other__dot" onclick="goToSlide(1)" role="tab" aria-selected="false" aria-label="Page 2"></button>
+      <button class="other__dot other__dot--active-blue" onclick="goToSlide(2)" role="tab" aria-selected="false" aria-label="Page 3"></button>
+      <button class="other__dot" onclick="goToSlide(3)" role="tab" aria-selected="false" aria-label="Page 4"></button>
+    </div>
+  </section>
+
+  <!-- Research Insights section removed -->
+
+  <!-- ══════ FOOTER ══════ -->
+  <footer class="footer" id="contact" aria-label="Contact and footer">
+    <div class="footer__top">
+      <div class="footer__detail-group">
+        <h3 class="footer__detail-label">Location</h3>
+        <p class="footer__detail-value">UNITED STATES</p>
+      </div>
+      <div class="footer__detail-group">
+        <h3 class="footer__detail-label">Contact Details</h3>
+        <p class="footer__detail-value">PILLASRIHARSHITA@GMAIL.COM</p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2026 SRI HARSHITA PILLA</p>
+      <div class="footer__badge">
+        <span class="footer__framer-badge">&#9880; Made in Framer</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./scripts/main.js" defer></script>
+  <script src="./scripts/carousel.js" defer></script>
+  <script src="./scripts/cards.js" defer></script>
+
+
+</body>
+</html>
