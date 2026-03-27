@@ -520,13 +520,13 @@
 }
 
 /* ─── RESPONSIVE ─── */
-@media (max-width: 1024px) {
+@media (max-width: 1199px) {
   .other__grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 899px) {
   .card {
     grid-template-columns: 1fr;
     min-height: auto;
@@ -776,7 +776,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 599px) {
   .research__carousel {
     gap: var(--space-2);
   }

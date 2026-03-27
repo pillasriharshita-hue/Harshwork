@@ -135,7 +135,7 @@
   color: #fff;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 899px) {
   .cs-hero--viewport {
     min-height: auto;
     padding-top: 80px;
@@ -510,7 +510,7 @@
   background: #3D8B6E;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 899px) {
   .cs-jm-carousel { padding: 0 36px; }
   .cs-jm-carousel__arrow { width: 36px; height: 36px; font-size: 14px; }
 }
@@ -591,7 +591,7 @@
   background: #3D8B6E;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 899px) {
   .cs-app-carousel { padding: 0 36px; }
   .cs-app-carousel__arrow { width: 36px; height: 36px; font-size: 14px; }
   .cs-app-carousel__slide { max-width: 100%; }
@@ -674,7 +674,7 @@
   background: #3D8B6E;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 899px) {
   .cs-env-carousel { padding: 0 36px; }
   .cs-env-carousel__arrow { width: 36px; height: 36px; font-size: 14px; }
   .cs-env-carousel__slide { max-width: 100%; }
@@ -768,7 +768,7 @@
   background: #3D8B6E;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 899px) {
   .cs-part-carousel { padding: 0 36px; }
   .cs-part-carousel__arrow { width: 32px; height: 32px; font-size: 14px; }
 }
@@ -1138,7 +1138,7 @@
   max-width: 100%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 899px) {
   .cs-layer--split {
     flex-direction: column;
   }
@@ -1387,7 +1387,7 @@
 }
 
 /* ─── RESPONSIVE ─── */
-@media (max-width: 768px) {
+@media (max-width: 899px) {
   .cs-nav { padding: 14px 20px; }
   .cs-hero { padding: 90px 20px 36px; }
   .cs-block { padding: 48px 20px; }
@@ -1407,7 +1407,7 @@
   .cs-learnings { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 599px) {
   .cs-meta { grid-template-columns: 1fr; }
   .cs-participants { grid-template-columns: 1fr; }
   .cs-journey { grid-template-columns: 1fr; }
@@ -1491,7 +1491,7 @@
   border-radius: 12px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 899px) {
   .cs-img--full img,
   .cs-img--large img {
     max-width: 100%;

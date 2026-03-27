@@ -131,3 +131,121 @@ window.scrollToSection = function scrollToSection(selector) {
 
   revealEls.forEach((el) => revealObserver.observe(el));
 })();
+
+/* ─── Hamburger menu toggle (mobile only) ─── */
+(function initHamburgerMenu() {
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const navMobile = document.getElementById('navMobile');
+  const navLinks = navMobile ? navMobile.querySelectorAll('.nav-mobile__link') : [];
+  
+  if (!hamburgerBtn || !navMobile) return;
+
+  // Toggle menu on hamburger click
+  hamburgerBtn.addEventListener('click', () => {
+    const isOpen = navMobile.classList.contains('active');
+    if (isOpen) {
+      navMobile.classList.remove('active');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+    } else {
+      navMobile.classList.add('active');
+      hamburgerBtn.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+  // Close menu on link click
+  navLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      navMobile.classList.remove('active');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Close menu on ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navMobile.classList.contains('active')) {
+      navMobile.classList.remove('active');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Close menu on window resize (if resizing back to desktop)
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (window.innerWidth > 599) {
+        navMobile.classList.remove('active');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+      }
+    }, 250);
+  });
+})();
+
+/* ─── Calendly popup trigger (popup modal approach) ─── */
+window.bookCall = function bookCall() {
+  const modal = document.getElementById('calendlyModal');
+  const content = document.getElementById('calendlyContent');
+  const closeBtn = document.getElementById('calendlyClose');
+  
+  if (!modal) {
+    console.error('Calendly modal element not found');
+    return;
+  }
+
+  // Clear previous content
+  content.innerHTML = '';
+  
+  // Create inline calendar embed
+  const calendarDiv = document.createElement('div');
+  calendarDiv.className = 'calendly-inline-widget';
+  calendarDiv.setAttribute('data-url', 'https://calendly.com/pillasriharshita/30min?hide_event_type_details=1&hide_gdpr_banner=1');
+  content.appendChild(calendarDiv);
+  
+  // Show modal
+  modal.classList.add('active');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  
+  // Reload Calendly widget to render the new embed
+  if (typeof Calendly !== 'undefined') {
+    Calendly.initInlineWidget({
+      url: 'https://calendly.com/pillasriharshita/30min?hide_event_type_details=1&hide_gdpr_banner=1',
+      parentElement: calendarDiv
+    });
+  }
+  
+  // Close modal on close button click
+  if (closeBtn && !closeBtn.hasListener) {
+    closeBtn.addEventListener('click', closeCalendlyModal);
+    closeBtn.hasListener = true;
+  }
+  
+  // Close modal on background click
+  if (!modal.hasBackdropListener) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeCalendlyModal();
+      }
+    });
+    modal.hasBackdropListener = true;
+  }
+  
+  // Close modal on ESC key
+  const escapeListener = (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeCalendlyModal();
+      document.removeEventListener('keydown', escapeListener);
+    }
+  };
+  document.addEventListener('keydown', escapeListener);
+};
+
+/* ─── Close Calendly modal ─── */
+window.closeCalendlyModal = function closeCalendlyModal() {
+  const modal = document.getElementById('calendlyModal');
+  if (modal) {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+};

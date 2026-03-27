@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Sri Harshita Pilla</title>
+  <meta name="description" content="Learn about Sri Harshita Pilla's background, design philosophy, and experience in UX/Product design." />
+  <meta name="author" content="Sri Harshita Pilla" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="./styles/main.css" />
+  <link rel="stylesheet" href="./styles/hero.css" />
+  <link rel="stylesheet" href="./styles/cards.css" />
+  <link rel="stylesheet" href="./styles/footer.css" />
+
+  <!-- Calendly Embed Script -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+  <style>
+    /* ─── ABOUT PAGE SPECIFIC STYLES ─── */
+    .about-hero {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 80px 40px 60px;
+      text-align: center;
+    }
+
+    .about-hero__heading {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .about-hero__accent {
+      color: var(--color-accent-orange);
+    }
+
+    .about-hero__intro {
+      font-size: clamp(1rem, 2vw, 1.125rem);
+      color: var(--color-text-secondary);
+      max-width: 680px;
+      margin: 0 auto 60px;
+      line-height: 1.8;
+    }
+
+    /* BIO SECTION */
+    .about-section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 80px 40px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .about-section__label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-accent-orange);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .about-section__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: 32px;
+      line-height: 1.3;
+    }
+
+    .about-section__content {
+      display: grid;
+      gap: 24px;
+    }
+
+    .about-section__paragraph {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--color-text-secondary);
+      max-width: 800px;
+    }
+
+    .about-section__paragraph strong {
+      color: var(--color-text-primary);
+      font-weight: 600;
+    }
+
+    /* JOURNEY TIMELINE */
+    .journey {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .journey__item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 40px;
+      align-items: start;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--color-border);
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .journey__item.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .journey__item:last-child {
+      border-bottom: none;
+    }
+
+    .journey__year {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--color-accent-orange);
+      line-height: 1.2;
+    }
+
+    .journey__details h3 {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      margin-bottom: 8px;
+    }
+
+    .journey__role {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .journey__description {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--color-text-secondary);
+    }
+
+    /* SKILLS GRID */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .skill-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 32px 24px;
+      transition: all 0.3s ease;
+    }
+
+    .skill-card:hover {
+      border-color: var(--color-accent-orange);
+      box-shadow: 0 8px 24px rgba(232, 115, 74, 0.12);
+      transform: translateY(-4px);
+    }
+
+    .skill-card__title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-accent-orange);
+      margin-bottom: 16px;
+      display: block;
+      font-family: var(--font-body);
+    }
+
+    .skill-card__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .skill-card__item {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .skill-card__item::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--color-accent-orange);
+      font-weight: 600;
+    }
+
+    /* VALUES CARDS */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .value-card {
+      background: linear-gradient(135deg, rgba(232, 115, 74, 0.08) 0%, rgba(232, 115, 74, 0.02) 100%);
+      border: 1px solid rgba(232, 115, 74, 0.2);
+      border-radius: 12px;
+      padding: 40px 32px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .value-card:hover {
+      border-color: var(--color-accent-orange);
+      box-shadow: 0 12px 32px rgba(232, 115, 74, 0.15);
+      transform: translateY(-6px);
+    }
+
+    .value-card__icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .value-card__title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      margin-bottom: 12px;
+    }
+
+    .value-card__description {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--color-text-secondary);
+    }
+
+    /* CTA SECTION */
+    .about-cta {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 80px 40px;
+      text-align: center;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .about-cta__heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+
+    .about-cta__subtitle {
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    .about-cta__button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: var(--color-accent-orange);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .about-cta__button:hover {
+      background: var(--color-accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(232, 115, 74, 0.3);
+    }
+
+    /* CALENDLY MODAL */
+    .calendly-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .calendly-modal.active {
+      display: flex;
+    }
+
+    .calendly-modal__container {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 900px;
+      height: 90vh;
+      max-height: 800px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .calendly-modal__header {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--color-bg);
+    }
+
+    .calendly-modal__title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+      margin: 0;
+      font-family: var(--font-body);
+    }
+
+    .calendly-modal__close {
+      width: 32px;
+      height: 32px;
+      background: none;
+      border: none;
+      color: var(--color-text-secondary);
+      font-size: 24px;
+      cursor: pointer;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .calendly-modal__close:hover {
+      color: #fff;
+    }
+
+    .calendly-modal__content {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 899px) {
+      .about-hero {
+        padding: 60px 24px 50px;
+      }
+
+      .about-section {
+        padding: 60px 24px;
+      }
+
+      .journey__item {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .journey__year {
+        font-size: 18px;
+        color: var(--color-accent-orange);
+      }
+
+      .calendly-modal__container {
+        max-height: 90vh;
+        height: auto;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 599px) {
+      .about-hero {
+        padding: 50px 20px 40px;
+      }
+
+      .about-hero__heading {
+        font-size: 1.75rem;
+      }
+
+      .about-section {
+        padding: 50px 20px;
+      }
+
+      .about-section__title {
+        font-size: 1.5rem;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .journey__year {
+        font-size: 16px;
+      }
+
+      .journey__item {
+        padding-bottom: 32px;
+      }
+
+      .calendly-modal {
+        padding: 10px;
+      }
+
+      .calendly-modal__container {
+        max-width: 100%;
+        height: calc(100vh - 20px);
+        max-height: calc(100vh - 20px);
+      }
+
+      .calendly-modal__header {
+        padding: 12px 16px;
+      }
+
+      .calendly-modal__title {
+        font-size: 16px;
+      }
+
+      .skill-card {
+        padding: 24px 16px;
+      }
+
+      .value-card {
+        padding: 32px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════ CALENDLY MODAL ══════ -->
+  <div class="calendly-modal" id="calendlyModal" role="dialog" aria-labelledby="calendlyTitle" aria-hidden="true">
+    <div class="calendly-modal__container">
+      <div class="calendly-modal__header">
+        <h2 class="calendly-modal__title" id="calendlyTitle">Book a Call</h2>
+        <button class="calendly-modal__close" id="calendlyClose" aria-label="Close booking calendar">
+          ✕
+        </button>
+      </div>
+      <div class="calendly-modal__content" id="calendlyContent">
+        <!-- Calendly inline embed will be inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════ TOP BAR ══════ -->
+  <header class="topbar" id="topBar">
+    <div class="topbar__left">
+      <div class="topbar__avatar">H</div>
+      <span class="topbar__name">Harshita Pilla</span>
+    </div>
+    <div class="topbar__right">
+      <span class="topbar__location">United States</span>
+      <span class="topbar__time" id="topBarTime"></span>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span style="width:20px;height:2px;background:#fff;display:block;transition:all 0.3s ease;"></span>
+        <span style="width:20px;height:2px;background:#fff;display:block;transition:all 0.3s ease;"></span>
+        <span style="width:20px;height:2px;background:#fff;display:block;transition:all 0.3s ease;"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ══════ MOBILE NAV PANEL ══════ -->
+  <nav class="nav-mobile" id="navMobile" aria-label="Mobile navigation menu">
+    <ul class="nav-mobile__links" style="list-style:none;display:flex;flex-direction:column;gap:16px;">
+      <li><a href="./index.html" class="nav-mobile__link" style="font-size:16px;font-weight:500;color:#fff;padding:12px 0;display:block;transition:color 0.2s;">Home</a></li>
+      <li><a href="./index.html#work" class="nav-mobile__link" style="font-size:16px;font-weight:500;color:#fff;padding:12px 0;display:block;transition:color 0.2s;">Work</a></li>
+      <li><a href="./about.html" class="nav-mobile__link" style="font-size:16px;font-weight:500;color:#fff;padding:12px 0;display:block;transition:color 0.2s;">About</a></li>
+      <li><a href="./resume.html" class="nav-mobile__link" style="font-size:16px;font-weight:500;color:#fff;padding:12px 0;display:block;transition:color 0.2s;">Resume</a></li>
+      <li style="border-top:1px solid #2A2A2A;margin-top:16px;padding-top:16px;"><button class="nav-mobile__calendly" onclick="bookCall()" style="width:100%;padding:12px 16px;background:#E8734A;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:background 0.2s;">Book a Call</button></li>
+    </ul>
+  </nav>
+
+  <!-- ══════ SCROLL NAV ══════ -->
+  <nav class="nav" id="mainNav" aria-label="Main navigation">
+    <div class="nav__orange-bar"></div>
+    <ul class="nav__links" role="list">
+      <li><a href="./index.html" class="nav__link" aria-label="Go to Home"><span>Home</span></a></li>
+      <li><a href="./index.html#work" class="nav__link" aria-label="Go to Work"><span>Work</span></a></li>
+      <li><a href="./about.html" class="nav__link nav__link--active" aria-label="About"><span>About</span></a></li>
+      <li><a href="./resume.html" class="nav__link" aria-label="Go to Resume"><span>Resume</span></a></li>
+      <li><button class="nav__link nav__calendly" onclick="bookCall()" aria-label="Book a call with Harshita"><span>Book a Call</span></button></li>
+    </ul>
+  </nav>
+
+  <!-- ══════ HERO SECTION ══════ -->
+  <section class="about-hero">
+    <h1 class="about-hero__heading">About <span class="about-hero__accent">Me</span></h1>
+    <p class="about-hero__intro">
+      I'm a product designer passionate about research-driven design and behavioral change. I combine deep user understanding with strategic thinking to craft experiences that feel natural, intuitive, and delightful.
+    </p>
+  </section>
+
+  <!-- ══════ BIO SECTION ══════ -->
+  <section class="about-section">
+    <span class="about-section__label">Who I am</span>
+    <h2 class="about-section__title">My Story</h2>
+    <div class="about-section__content">
+      <p class="about-section__paragraph">
+        I'm <strong>Sri Harshita Pilla</strong>, a product designer with 3+ years of experience designing end-to-end user experiences from research to launch. Based in the United States, I specialize in turning complex problems into intuitive, human-centered solutions.
+      </p>
+      <p class="about-section__paragraph">
+        My approach is <strong>research-first</strong>. Before designing, I invest time understanding user needs, motivations, and behaviors through interviews, testing, and data. This deep empathy informs every design decision—from interaction patterns to visual hierarchy.
+      </p>
+      <p class="about-section__paragraph">
+        I thrive at the intersection of <strong>design and behavioral change</strong>. I'm fascinated by how subtle design nudges can encourage better habits, how information architecture shapes understanding, and how craft elevates an experience. I believe design should be both beautiful and purposeful.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════ JOURNEY SECTION ══════ -->
+  <section class="about-section">
+    <span class="about-section__label">Background</span>
+    <h2 class="about-section__title">My Journey</h2>
+    <div class="journey">
+      <div class="journey__item">
+        <div class="journey__year">2022–Present</div>
+        <div class="journey__details">
+          <h3>Product Designer</h3>
+          <p class="journey__role">Various companies (ongoing projects)</p>
+          <p class="journey__description">
+            Led UX research and design for multiple products, including behavioral interventions, AI-powered platforms, and SaaS applications. Collaborated with engineers, PMs, and researchers to define product strategy and deliver high-impact solutions.
+          </p>
+        </div>
+      </div>
+      <div class="journey__item">
+        <div class="journey__year">2020–2022</div>
+        <div class="journey__details">
+          <h3>UX Designer & Researcher</h3>
+          <p class="journey__role">Early-stage startups</p>
+          <p class="journey__description">
+            Built design systems from scratch, conducted user research programs, and shipped products in fast-paced environments. Owned the full design cycle including discovery, wireframing, prototyping, testing, and iteration.
+          </p>
+        </div>
+      </div>
+      <div class="journey__item">
+        <div class="journey__year">2019–2020</div>
+        <div class="journey__details">
+          <h3>Master's in Human-Computer Interaction</h3>
+          <p class="journey__role">DePaul University, Chicago</p>
+          <p class="journey__description">
+            Specialized in user research, behavioral design, and design systems. Thesis work focused on environmental interventions for behavioral change. Collaborated with design studios and industry partners.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ SKILLS SECTION ══════ -->
+  <section class="about-section">
+    <span class="about-section__label">Expertise</span>
+    <h2 class="about-section__title">Skills & Tools</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <span class="skill-card__title">Research</span>
+        <ul class="skill-card__list">
+          <li class="skill-card__item">User interviews & moderation</li>
+          <li class="skill-card__item">Usability testing</li>
+          <li class="skill-card__item">Survey design & analysis</li>
+          <li class="skill-card__item">Affinity mapping & synthesis</li>
+          <li class="skill-card__item">Behavioral research</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <span class="skill-card__title">Design</span>
+        <ul class="skill-card__list">
+          <li class="skill-card__item">Interaction design</li>
+          <li class="skill-card__item">Visual design & branding</li>
+          <li class="skill-card__item">Prototyping (high & low-fidelity)</li>
+          <li class="skill-card__item">Figma & design tools</li>
+          <li class="skill-card__item">Design systems & components</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <span class="skill-card__title">Strategy</span>
+        <ul class="skill-card__list">
+          <li class="skill-card__item">Product thinking</li>
+          <li class="skill-card__item">Information architecture</li>
+          <li class="skill-card__item">Behavioral design</li>
+          <li class="skill-card__item">Data-informed decisions</li>
+          <li class="skill-card__item">Problem framing</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <span class="skill-card__title">Technical</span>
+        <ul class="skill-card__list">
+          <li class="skill-card__item">HTML / CSS</li>
+          <li class="skill-card__item">JavaScript basics</li>
+          <li class="skill-card__item">Framer prototyping</li>
+          <li class="skill-card__item">Design-to-code handoff</li>
+          <li class="skill-card__item">Design tooling & automation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ VALUES SECTION ══════ -->
+  <section class="about-section">
+    <span class="about-section__label">Philosophy</span>
+    <h2 class="about-section__title">How I Work</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <span class="value-card__icon">🔍</span>
+        <h3 class="value-card__title">Research-First</h3>
+        <p class="value-card__description">I start every project by understanding users deeply. Insights from research guide every design decision, not assumptions.</p>
+      </div>
+      <div class="value-card">
+        <span class="value-card__icon">✨</span>
+        <h3 class="value-card__title">Craft Matters</h3>
+        <p class="value-card__description">Details elevate experiences. I obsess over spacing, typography, animation, and interactions that feel thoughtful and polished.</p>
+      </div>
+      <div class="value-card">
+        <span class="value-card__icon">🧠</span>
+        <h3 class="value-card__title">Design for Behavior</h3>
+        <p class="value-card__description">Great design shapes how people act and feel. I'm fascinated by using behavioral insights to create positive change.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ CTA SECTION ══════ -->
+  <section class="about-cta">
+    <h2 class="about-cta__heading">Let's Work Together</h2>
+    <p class="about-cta__subtitle">
+      I'm open to full-time opportunities, freelance projects, and collaborations. If you've got an interesting problem to solve, let's chat.
+    </p>
+    <button class="about-cta__button" onclick="bookCall()">
+      <span>Schedule a Call</span>
+      <span>→</span>
+    </button>
+  </section>
+
+  <!-- ══════ FOOTER ══════ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div>
+        <p style="margin:0;font-size:14px;color:var(--color-text-secondary);"><strong>Location</strong><br/>United States</p>
+      </div>
+      <div>
+        <p style="margin:0;font-size:14px;color:var(--color-text-secondary);"><strong>Email</strong><br/><a href="mailto:hello@harshita.design" style="color:var(--color-accent-orange);text-decoration:none;">hello@harshita.design</a></p>
+      </div>
+      <div>
+        <p style="margin:0;font-size:14px;color:var(--color-text-secondary);"><strong>Links</strong><br/>
+          <a href="https://linkedin.com/in/harshitapilla" style="color:var(--color-accent-orange);text-decoration:none;margin-right:16px;">LinkedIn</a>
+          <a href="https://twitter.com/harshitapilla" style="color:var(--color-accent-orange);text-decoration:none;">Twitter</a>
+        </p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p style="margin:0;font-size:12px;color:var(--color-text-muted);">© 2025 Sri Harshita Pilla. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ══════ SCRIPTS ══════ -->
+  <script src="./scripts/main.js"></script>
+  <script>
+    // Calendly Modal Functions
+    window.bookCall = function bookCall() {
+      const modal = document.getElementById('calendlyModal');
+      const content = document.getElementById('calendlyContent');
+      const closeBtn = document.getElementById('calendlyClose');
+      
+      if (!modal) {
+        console.error('Calendly modal element not found');
+        return;
+      }
+
+      content.innerHTML = '';
+      const calendarDiv = document.createElement('div');
+      calendarDiv.className = 'calendly-inline-widget';
+      calendarDiv.setAttribute('data-url', 'https://calendly.com/pillasriharshita/30min?hide_event_type_details=1&hide_gdpr_banner=1');
+      content.appendChild(calendarDiv);
+      
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      
+      if (typeof Calendly !== 'undefined') {
+        Calendly.initInlineWidget({
+          url: 'https://calendly.com/pillasriharshita/30min?hide_event_type_details=1&hide_gdpr_banner=1',
+          parentElement: calendarDiv
+        });
+      }
+      
+      if (closeBtn && !closeBtn.hasListener) {
+        closeBtn.addEventListener('click', closeCalendlyModal);
+        closeBtn.hasListener = true;
+      }
+      
+      if (!modal.hasBackdropListener) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            closeCalendlyModal();
+          }
+        });
+        modal.hasBackdropListener = true;
+      }
+      
+      const escapeListener = (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+          closeCalendlyModal();
+          document.removeEventListener('keydown', escapeListener);
+        }
+      };
+      document.addEventListener('keydown', escapeListener);
+    };
+
+    window.closeCalendlyModal = function closeCalendlyModal() {
+      const modal = document.getElementById('calendlyModal');
+      if (modal) {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+    };
+
+    // Scroll reveal animation
+    const revealItems = document.querySelectorAll('.journey__item');
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    revealItems.forEach((item) => revealObserver.observe(item));
+  </script>
+</body>
+
+</html>

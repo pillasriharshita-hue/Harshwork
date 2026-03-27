@@ -12,9 +12,119 @@
 
   <link rel="stylesheet" href="./styles/main.css" />
   <link rel="stylesheet" href="./styles/casestudy.css" />
+
+  <!-- Calendly Embed Script -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <style>
+    /* Calendly Modal (shared with index.html) */
+    .calendly-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .calendly-modal.active {
+      display: flex;
+    }
+    .calendly-modal__container {
+      background: #0D0D0D;
+      border: 1px solid #2A2A2A;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 900px;
+      height: 90vh;
+      max-height: 800px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .calendly-modal__header {
+      padding: 16px 24px;
+      border-bottom: 1px solid #2A2A2A;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0D0D0D;
+    }
+    .calendly-modal__title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    .calendly-modal__close {
+      width: 32px;
+      height: 32px;
+      background: none;
+      border: none;
+      color: #9A9A9A;
+      font-size: 24px;
+      cursor: pointer;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+    .calendly-modal__close:hover {
+      color: #fff;
+    }
+    .calendly-modal__content {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    @media (max-width: 899px) {
+      .calendly-modal__container {
+        max-height: 90vh;
+        height: auto;
+      }
+    }
+    @media (max-width: 599px) {
+      .calendly-modal {
+        padding: 10px;
+      }
+      .calendly-modal__container {
+        max-width: 100%;
+        height: calc(100vh - 20px);
+        max-height: calc(100vh - 20px);
+      }
+      .calendly-modal__header {
+        padding: 12px 16px;
+      }
+      .calendly-modal__title {
+        font-size: 16px;
+      }
+    }
+  </style>
 </head>
 
 <body>
+
+  <!-- ══════ CALENDLY MODAL ══════ -->
+  <div class="calendly-modal" id="calendlyModal" role="dialog" aria-labelledby="calendlyTitle" aria-hidden="true">
+    <div class="calendly-modal__container">
+      <div class="calendly-modal__header">
+        <h2 class="calendly-modal__title" id="calendlyTitle">Book a Call</h2>
+        <button class="calendly-modal__close" id="calendlyClose" aria-label="Close booking calendar">
+          ✕
+        </button>
+      </div>
+      <div class="calendly-modal__content" id="calendlyContent">
+        <!-- Calendly inline embed will be inserted here -->
+      </div>
+    </div>
+  </div>
 
   <!-- ══════ NAV BARmatches Siddharth ══════ -->
   <nav class="cs-nav">
@@ -22,7 +132,9 @@
     <div class="cs-nav__links">
       <a href="./index.html">Home</a>
       <a href="./index.html#work">Work</a>
-      <a href="./index.html#contact">Contact</a>
+      <a href="./about.html">About</a>
+      <a href="./resume.html">Resume</a>
+      <button onclick="bookCall()" style="background:#E8734A;color:#fff;border:none;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;transition:background 0.2s;margin-left:16px;">Book a Call</button>
     </div>
   </nav>
 
@@ -694,6 +806,66 @@
         updatePartCarousel();
       });
     });
+
+    /* Calendly Modal Functions */
+    window.bookCall = function bookCall() {
+      const modal = document.getElementById('calendlyModal');
+      const content = document.getElementById('calendlyContent');
+      const closeBtn = document.getElementById('calendlyClose');
+      
+      if (!modal) {
+        console.error('Calendly modal element not found');
+        return;
+      }
+
+      content.innerHTML = '';
+      const calendarDiv = document.createElement('div');
+      calendarDiv.className = 'calendly-inline-widget';
+      calendarDiv.setAttribute('data-url', 'https://calendly.com/pillasriharshita/30min?hide_event_type_details=1&hide_gdpr_banner=1');
+      content.appendChild(calendarDiv);
+      
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      
+      if (typeof Calendly !== 'undefined') {
+        Calendly.initInlineWidget({
+          url: 'https://calendly.com/pillasriharshita/30min?hide_event_type_details=1&hide_gdpr_banner=1',
+          parentElement: calendarDiv
+        });
+      }
+      
+      if (closeBtn && !closeBtn.hasListener) {
+        closeBtn.addEventListener('click', closeCalendlyModal);
+        closeBtn.hasListener = true;
+      }
+      
+      if (!modal.hasBackdropListener) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            closeCalendlyModal();
+          }
+        });
+        modal.hasBackdropListener = true;
+      }
+      
+      const escapeListener = (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+          closeCalendlyModal();
+          document.removeEventListener('keydown', escapeListener);
+        }
+      };
+      document.addEventListener('keydown', escapeListener);
+    };
+
+    window.closeCalendlyModal = function closeCalendlyModal() {
+      const modal = document.getElementById('calendlyModal');
+      if (modal) {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+    };
   </script>
 
 </body>

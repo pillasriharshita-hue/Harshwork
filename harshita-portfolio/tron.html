@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neutron × Electron — Sri Harshita Pilla</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0D0D0D;--card:#1A1A1A;--card2:#222;
+  --amber:#D4920A;--amber-lt:rgba(212,146,10,.12);
+  --white:#F4F3EE;--mist:rgba(244,243,238,.6);--mist2:rgba(244,243,238,.28);--mist3:rgba(244,243,238,.12);
+  --rule:rgba(244,243,238,.08);
+  --max:1280px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+
+/* ── PROGRESS ── */
+#prog{position:fixed;top:0;left:0;height:2px;background:var(--amber);z-index:999;width:0;transition:width .1s}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 48px;display:flex;align-items:center;justify-content:space-between}
+.nav-back{font-size:12px;color:var(--mist2);display:inline-flex;align-items:center;gap:6px;
+  padding:8px 16px;border:1px solid var(--rule);background:rgba(13,13,13,.75);backdrop-filter:blur(14px);
+  transition:color .2s,border-color .2s;letter-spacing:.01em}
+.nav-back:hover{color:var(--white);border-color:rgba(244,243,238,.2)}
+.nav-mark{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.1em;color:var(--amber);
+  background:rgba(13,13,13,.75);backdrop-filter:blur(14px);padding:6px 14px;border:1px solid var(--rule)}
+
+/* ── HERO (dramatic whitespace like Maria) ── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 48px 80px;position:relative;overflow:hidden;
+  background:linear-gradient(170deg,#1A1200 0%,#0D0D0D 45%,#0D0600 100%);
+}
+.hero::before{content:'';position:absolute;width:800px;height:500px;
+  background:radial-gradient(ellipse,rgba(212,146,10,.15) 0%,transparent 70%);
+  top:40%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,10vw,120px);
+  letter-spacing:.15em;color:var(--white);line-height:.95;margin-bottom:16px;position:relative;z-index:1}
+.hero-title span{color:var(--amber)}
+.hero-sub{font-size:15px;line-height:1.7;color:var(--mist);max-width:480px;margin-bottom:32px;position:relative;z-index:1}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap;position:relative;z-index:1}
+.htag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+  padding:6px 14px;border:1px solid var(--rule);color:var(--mist2)}
+.htag-a{border-color:rgba(212,146,10,.35);color:rgba(212,146,10,.8)}
+
+/* ── MAIN LAYOUT (Maria Vareva style: sticky left + scrolling images right) ── */
+.main{max-width:var(--max);margin:0 auto;padding:100px 48px 120px;
+  display:grid;grid-template-columns:38% 1fr;gap:60px;align-items:start}
+
+/* LEFT: Sticky info panel */
+.info{position:sticky;top:120px}
+.info-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--amber);display:block;margin-bottom:16px}
+.info-title{font-family:'Instrument Serif',serif;font-style:italic;
+  font-size:clamp(28px,3.5vw,40px);color:var(--white);line-height:1.2;margin-bottom:20px}
+.info-body{font-size:14px;line-height:1.85;color:var(--mist);margin-bottom:32px}
+.info-body strong{color:var(--white);font-weight:500}
+.info-body em{color:var(--amber);font-style:normal}
+
+/* Accordion */
+.accordion{border-top:1px solid var(--rule)}
+.acc-item{border-bottom:1px solid var(--rule)}
+.acc-header{display:flex;align-items:center;justify-content:space-between;
+  padding:18px 0;cursor:pointer;transition:color .2s;font-size:14px;font-weight:500;color:var(--white)}
+.acc-header:hover{color:var(--amber)}
+.acc-icon{font-size:18px;color:var(--mist2);transition:transform .3s,color .2s;line-height:1}
+.acc-item.open .acc-icon{transform:rotate(45deg);color:var(--amber)}
+.acc-content{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.22,1,.36,1)}
+.acc-item.open .acc-content{max-height:600px}
+.acc-inner{padding:0 0 20px}
+.acc-text{font-size:13px;line-height:1.75;color:var(--mist2);margin-bottom:10px}
+.acc-text strong{color:var(--white);font-weight:500}
+
+/* RIGHT: Scrolling images */
+.gallery{display:flex;flex-direction:column;gap:24px}
+.gallery-img{border-radius:16px;overflow:hidden;border:1px solid var(--rule);position:relative}
+.gallery-img img{width:100%;display:block;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.gallery-img:hover img{transform:scale(1.02)}
+.gallery-img-ph{background:var(--card);aspect-ratio:4/3;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:8px;border-radius:16px;border:1px solid var(--rule)}
+.ph-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(244,243,238,.12)}
+
+/* ── FULL-WIDTH SECTIONS BELOW ── */
+.below{max-width:1100px;margin:0 auto;padding:0 48px}
+
+/* Section divider */
+.divider{height:1px;background:var(--rule);margin:0 0 100px}
+
+/* ── QUOTE BLOCK ── */
+.quote-block{max-width:600px;margin:0 auto 100px;text-align:center;padding:40px;
+  border:1px solid var(--rule);background:var(--card);border-radius:12px;position:relative}
+.quote-block::before{content:'"';font-family:'Instrument Serif',serif;font-size:80px;
+  color:var(--amber);opacity:.2;position:absolute;top:-16px;left:28px;line-height:1}
+.quote-text{font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;line-height:1.65;color:var(--white)}
+
+/* ── SECTION HEADERS ── */
+.sec{max-width:1100px;margin:0 auto;padding:0 48px 100px}
+.sec-eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--amber);display:block;margin-bottom:14px;text-align:center}
+.sec-h{font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(28px,3.5vw,40px);
+  color:var(--white);line-height:1.2;margin-bottom:24px;text-align:center}
+.sec-h-bb{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,4.5vw,52px);
+  letter-spacing:.06em;line-height:.95;color:var(--white);margin-bottom:24px;text-align:center}
+.body-p{font-size:15px;line-height:1.85;color:var(--mist);margin-bottom:16px;max-width:600px;margin-left:auto;margin-right:auto;text-align:center}
+.body-p strong{color:var(--white);font-weight:500}
+.body-p em{color:var(--amber);font-style:normal}
+
+/* ── INSIGHT CARDS (2-col) ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:36px 0}
+.two-col-card{background:var(--card);border:1px solid var(--rule);padding:28px 26px;border-radius:12px;
+  transition:transform .3s,border-color .3s}
+.two-col-card:hover{transform:translateY(-2px);border-color:rgba(212,146,10,.2)}
+.tc-n{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:.12em;
+  color:rgba(212,146,10,.4);display:block;margin-bottom:10px}
+.tc-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:8px;line-height:1.4}
+.tc-desc{font-size:13px;line-height:1.7;color:var(--mist2)}
+
+/* ── SYSTEM GRID (2-col) ── */
+.system-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:36px 0}
+.sys-card{background:var(--card);border:1px solid var(--rule);padding:28px 24px;border-radius:12px;
+  transition:transform .3s,border-color .3s}
+.sys-card:hover{transform:translateY(-2px);border-color:rgba(212,146,10,.2)}
+.sys-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--amber);margin-bottom:10px;display:block}
+.sys-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:8px;line-height:1.4}
+.sys-desc{font-size:13px;line-height:1.7;color:var(--mist2)}
+.sys-decision{margin-top:14px;font-size:12px;line-height:1.65;color:rgba(212,146,10,.7);
+  padding:12px 16px;background:var(--amber-lt);border-left:2px solid var(--amber);border-radius:0 8px 8px 0}
+
+/* ── OUTCOME ── */
+.outcome{background:var(--card);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:100px 48px;margin-bottom:100px;text-align:center}
+.outcome-icon{font-size:28px;margin-bottom:20px;display:block}
+.outcome-statement{font-family:'Instrument Serif',serif;font-size:clamp(24px,3.5vw,36px);
+  line-height:1.35;color:var(--white);max-width:620px;margin:0 auto 28px}
+.outcome-body{font-size:15px;line-height:1.85;color:var(--mist);max-width:540px;margin:0 auto 36px}
+.outcome-quote{font-family:'Instrument Serif',serif;font-style:italic;font-size:16px;line-height:1.7;
+  color:var(--mist2);max-width:500px;margin:0 auto;padding:24px 32px;border:1px solid var(--rule);border-radius:12px}
+
+/* ── METHODS ── */
+.methods{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:28px}
+.method-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;
+  text-transform:uppercase;padding:6px 14px;border:1px solid var(--rule);color:var(--mist2);border-radius:4px}
+
+/* ── FOOTER ── */
+.foot{text-align:center;padding:60px 48px;border-top:1px solid var(--rule)}
+.foot-back{display:inline-flex;align-items:center;gap:6px;font-size:12px;
+  color:var(--mist2);transition:color .2s;margin-bottom:24px}
+.foot-back:hover{color:var(--amber)}
+.foot-name{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--amber);margin-bottom:4px}
+.foot-sub{font-size:11px;color:var(--mist2)}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(16px);
+  transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
+.reveal.on{opacity:1;transform:none}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .main{grid-template-columns:1fr;gap:60px;padding:80px 32px 100px}
+  .info{position:relative;top:0}
+  .hero{padding:0 32px 60px}
+  .sec,.below{padding-left:32px;padding-right:32px}
+  nav{padding:16px 24px}
+  .two-col,.system-grid{grid-template-columns:1fr}
+  .outcome{padding:60px 32px}
+}
+@media(max-width:600px){
+  .hero{min-height:80vh;padding:0 24px 48px}
+  .hero-title{font-size:clamp(40px,14vw,64px);letter-spacing:.08em}
+  .main{padding:60px 24px 80px}
+  .sec,.below{padding-left:24px;padding-right:24px}
+  nav{padding:14px 20px}
+  .gallery-img{border-radius:10px}
+  .quote-block{padding:28px 24px}
+  .outcome{padding:48px 24px}
+}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+
+<nav>
+  <a class="nav-back" href="index.html">← Portfolio</a>
+  <span class="nav-mark">SHP</span>
+</nav>
+
+<!-- ══════════════════════════════════════════════════
+     HERO — dramatic whitespace, title at bottom
+     ══════════════════════════════════════════════════ -->
+<div class="hero">
+  <h1 class="hero-title">NEUTRON <span>×</span> ELECTRON</h1>
+  <p class="hero-sub">A new Gen Z fashion label built around a single tension: expressive chaos that still holds together. The brand needed an identity that felt unstable on purpose — fluid, bold, and alive.</p>
+  <div class="hero-tags">
+    <span class="htag htag-a">Branding</span>
+    <span class="htag htag-a">Design System</span>
+    <span class="htag">Gen Z</span>
+    <span class="htag">Identity Design</span>
+    <span class="htag">Multi-Platform</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     MAIN — sticky info left + scrolling gallery right
+     ══════════════════════════════════════════════════ -->
+<div class="main">
+
+  <!-- LEFT: Sticky info panel -->
+  <div class="info reveal">
+    <span class="info-label">Neutron × Electron</span>
+    <h2 class="info-title">Brand Identity & Design System for a Gen Z Fashion Label</h2>
+    <p class="info-body">I led <strong>brand story development, design system architecture, and multi-platform implementation</strong>. This included behavioral mapping for the target audience, visual identity definition, typography system, color strategy, and translating the brand across Instagram, packaging, and digital surfaces.</p>
+
+    <div class="accordion">
+      <div class="acc-item">
+        <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+          <span>The Ask</span>
+          <span class="acc-icon">+</span>
+        </div>
+        <div class="acc-content">
+          <div class="acc-inner">
+            <p class="acc-text">A new Gen Z fashion brand wanted a bold identity that felt <strong>chaotic but still usable</strong> across digital and physical surfaces. Not minimal — that felt too safe. Not fully chaotic — that becomes unwearable.</p>
+            <p class="acc-text">The challenge: create something that feels alive and imperfect on purpose, while remaining scalable, recognizable, and consistent enough to function as a real brand.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+          <span>The Insight</span>
+          <span class="acc-icon">+</span>
+        </div>
+        <div class="acc-content">
+          <div class="acc-inner">
+            <p class="acc-text">Gen Z gravitates toward authenticity over polish — but that doesn't mean chaos. The real insight: <strong>Gen Z wants design that feels alive but still intentional.</strong></p>
+            <p class="acc-text">That produced the core concept: <em style="color:var(--amber);font-style:normal">controlled unstable looks</em> — fluid, imperfect forms anchored by a clear geometric grid.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+          <span>Design System</span>
+          <span class="acc-icon">+</span>
+        </div>
+        <div class="acc-content">
+          <div class="acc-inner">
+            <p class="acc-text"><strong>Typography:</strong> Geometric weight with irregular spacing — intentionally off-balance but within a defined type scale.</p>
+            <p class="acc-text"><strong>Color:</strong> Chromatic tension — combinations that feel slightly uncomfortable but still work together.</p>
+            <p class="acc-text"><strong>Motion:</strong> Animations around physical metaphors — elements that stretch, settle, and resist.</p>
+            <p class="acc-text"><strong>Components:</strong> Strict geometric grid beneath expressive visual treatments. The chaos is in the skin — the skeleton is consistent.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+          <span>Outcome</span>
+          <span class="acc-icon">+</span>
+        </div>
+        <div class="acc-content">
+          <div class="acc-inner">
+            <p class="acc-text">A brand system that feels alive — and holds together at scale. Bold, scalable, and immediately recognizable across Instagram, packaging, and digital surfaces.</p>
+            <p class="acc-text">The brand never looks the same twice, but always looks like itself.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+          <span>Methods</span>
+          <span class="acc-icon">+</span>
+        </div>
+        <div class="acc-content">
+          <div class="acc-inner">
+            <div style="display:flex;flex-wrap:wrap;gap:6px">
+              <span class="method-tag">Behavioral Mapping</span>
+              <span class="method-tag">Brand Story</span>
+              <span class="method-tag">Visual Identity</span>
+              <span class="method-tag">Typography System</span>
+              <span class="method-tag">Color Strategy</span>
+              <span class="method-tag">Motion Principles</span>
+              <span class="method-tag">Design Tokens</span>
+              <span class="method-tag">Component Library</span>
+              <span class="method-tag">Multi-Platform</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Scrolling image gallery -->
+  <div class="gallery">
+    <div class="gallery-img reveal">
+      <img src="https://framerusercontent.com/images/jVA0lH5uzbC9cDLOIQywfjed0.jpg" alt="Neutron × Electron brand overview">
+    </div>
+
+    <div class="gallery-img reveal">
+      <img src="https://framerusercontent.com/images/XiLvkpYCFhymGcfdeDvgKZ0Ixo.jpg" alt="Brand exploration — fluid forms + geometric grid">
+    </div>
+
+    <div class="gallery-img reveal">
+      <img src="https://framerusercontent.com/images/hsK8UDEhOTpuDvgrZM42kCVM3VA.png" alt="Design system — tokens, type scale, component grid">
+    </div>
+
+    <div class="gallery-img reveal">
+      <img src="https://framerusercontent.com/images/eJjapFLUEwiDiPf0Yu6ZAgxEw4.png" alt="Brand application — digital and print surfaces">
+    </div>
+
+    <!-- Placeholder slots for additional images -->
+    <div class="gallery-img-ph reveal">
+      <span class="ph-label">Additional brand assets</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     BELOW: Expanded content sections
+     ══════════════════════════════════════════════════ -->
+
+<div class="below"><div class="divider"></div></div>
+
+<!-- THE INSIGHT — expanded cards -->
+<div class="sec reveal">
+  <span class="sec-eyebrow">The Insight</span>
+  <h2 class="sec-h">Two extremes. Neither works. The tension between them does.</h2>
+  <p class="body-p">Gen Z gravitates toward authenticity over polish — but that doesn't mean chaos. Fully chaotic branding becomes unrecognizable. Minimal branding reads as corporate. The real insight: <strong>Gen Z wants design that feels alive but still intentional.</strong></p>
+
+  <div class="two-col">
+    <div class="two-col-card reveal">
+      <span class="tc-n">Insight 01</span>
+      <div class="tc-title">Minimal branding feels too safe</div>
+      <p class="tc-desc">Clean, stripped-back aesthetics read as corporate or generic to Gen Z. The brand needed to signal energy and identity, not polish.</p>
+    </div>
+    <div class="two-col-card reveal">
+      <span class="tc-n">Insight 02</span>
+      <div class="tc-title">Fully chaotic branding becomes unwearable</div>
+      <p class="tc-desc">Without structure, chaotic branding is hard to recognize, scale, or apply consistently. It works as a one-off — not as a system.</p>
+    </div>
+    <div class="two-col-card reveal">
+      <span class="tc-n">Insight 03</span>
+      <div class="tc-title">The tension between them is the brand</div>
+      <p class="tc-desc">Expressive, rhythmic fluid forms anchored by a strict geometric grid. Each element is intentionally unstable. The system holds it together.</p>
+    </div>
+    <div class="two-col-card reveal">
+      <span class="tc-n">Insight 04</span>
+      <div class="tc-title">Behavioral mapping shaped the aesthetic</div>
+      <p class="tc-desc">The audience doesn't consume fashion passively — they perform identity through it. The brand had to feel like a statement, not just clothing.</p>
+    </div>
+  </div>
+</div>
+
+<div class="below"><div class="divider"></div></div>
+
+<!-- DESIGN SYSTEM -->
+<div class="sec reveal">
+  <span class="sec-eyebrow">Design System</span>
+  <h2 class="sec-h-bb">FOUR DECISIONS<br>THAT BUILT<br>THE SYSTEM.</h2>
+  <p class="body-p" style="margin-bottom:40px">Every system decision was made against a single test: does this feel alive without losing structure?</p>
+
+  <div class="system-grid">
+    <div class="sys-card reveal">
+      <span class="sys-label">Typography</span>
+      <div class="sys-title">Structured type carrying fluid energy</div>
+      <p class="sys-desc">Display typography uses geometric weight with irregular spacing — intentionally off-balance but within a defined type scale. Headlines carry movement. Body type stays clean and readable.</p>
+      <div class="sys-decision">Decision: Pair an expressive display face with a strict grid. Typography is the clearest signal of "controlled mess."</div>
+    </div>
+    <div class="sys-card reveal">
+      <span class="sys-label">Color</span>
+      <div class="sys-title">Chromatic tension, not a palette</div>
+      <p class="sys-desc">Colors chosen to create visual friction — combinations that feel slightly uncomfortable but still work together. Avoids both the safety of monochrome and the incoherence of random color.</p>
+      <div class="sys-decision">Decision: Color choices made by testing discomfort thresholds — how far can we push before it reads as a mistake?</div>
+    </div>
+    <div class="sys-card reveal">
+      <span class="sys-label">Motion Principles</span>
+      <div class="sys-title">Everything moves like it has weight</div>
+      <p class="sys-desc">Animations designed around physical metaphors — elements that stretch, settle, and resist. Not smooth transitions. Motion that signals substance and energy.</p>
+      <div class="sys-decision">Decision: Motion is never decorative. Every animation reinforces the brand's core tension: alive but controlled.</div>
+    </div>
+    <div class="sys-card reveal">
+      <span class="sys-label">Component Architecture</span>
+      <div class="sys-title">Reusable structure beneath expressive surfaces</div>
+      <p class="sys-desc">Underlying component grid is strict and geometric. Visual treatments applied on top create the expressive variation. The chaos is in the skin — the skeleton is consistent.</p>
+      <div class="sys-decision">Decision: Design tokens locked early so the system could scale to packaging, digital, and print without losing coherence.</div>
+    </div>
+  </div>
+</div>
+
+<div class="below"><div class="divider"></div></div>
+
+<!-- QUOTE -->
+<div class="below reveal">
+  <div class="quote-block">
+    <div class="quote-text">"Gen Z doesn't want perfect. They want controlled mess."</div>
+  </div>
+</div>
+
+<!-- OUTCOME -->
+<div class="outcome reveal">
+  <span class="outcome-icon">✦</span>
+  <div class="outcome-statement">A brand system that feels alive — and holds together at scale.</div>
+  <p class="outcome-body">The final identity balances expressive movement with sharp structure. Bold, scalable, and immediately recognizable across Instagram, packaging, and digital surfaces. The system adapts to different contexts while maintaining a distinctive voice — the brand never looks the same twice, but always looks like itself.</p>
+  <div class="outcome-quote">"The core idea — expressive fluid forms anchored by a strict geometric grid — produced a system that earns its chaos. Every element breaks rules deliberately. The structure beneath makes sure it holds."</div>
+</div>
+
+<!-- METHODS -->
+<div class="sec reveal" style="text-align:center;padding-bottom:100px">
+  <span class="sec-eyebrow">Methods & Deliverables</span>
+  <div class="methods">
+    <span class="method-tag">Behavioral Mapping</span>
+    <span class="method-tag">Brand Story Development</span>
+    <span class="method-tag">Visual Identity</span>
+    <span class="method-tag">Typography System</span>
+    <span class="method-tag">Color Strategy</span>
+    <span class="method-tag">Motion Principles</span>
+    <span class="method-tag">Design Tokens</span>
+    <span class="method-tag">Component Library</span>
+    <span class="method-tag">Multi-Platform Implementation</span>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="foot">
+  <a class="foot-back" href="index.html">← Back to Portfolio</a><br>
+  <div class="foot-name">Sri Harshita Pilla</div>
+  <div class="foot-sub">Product Designer & UX Researcher · MS HCI, DePaul · pillasriharshita@gmail.com</div>
+</div>
+
+<script>
+// Progress bar
+const prog = document.getElementById('prog');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  prog.style.width = pct + '%';
+});
+
+// Reveal on scroll
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

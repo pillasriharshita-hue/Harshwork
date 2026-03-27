@@ -73,7 +73,7 @@
 }
 
 /* ─── RESPONSIVE ─── */
-@media (max-width: 768px) {
+@media (max-width: 899px) {
   .footer__top {
     grid-template-columns: 1fr;
     gap: var(--space-6);

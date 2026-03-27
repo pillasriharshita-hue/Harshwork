@@ -206,7 +206,7 @@ a.hero__frame.hero__frame--resume {
 }
 
 /* ─── RESPONSIVE ─── */
-@media (max-width: 1024px) {
+@media (max-width: 1199px) {
   .hero {
     padding: 0 var(--side-padding);
     padding-top: 60px;
@@ -219,7 +219,7 @@ a.hero__frame.hero__frame--resume {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 899px) {
   .hero {
     flex-direction: column;
     min-height: auto;
@@ -246,7 +246,7 @@ a.hero__frame.hero__frame--resume {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 599px) {
   .hero {
     padding: 0 var(--side-padding);
     padding-top: 52px;
