@@ -327,7 +327,7 @@
 
 /* ═══ GALLERY6 — Horizontal Scroll Carousel ═══ */
 .gallery6 {
-  padding: var(--space-24) 0 var(--space-20);
+  padding: var(--space-24) var(--side-padding) var(--space-12);
 }
 
 .gallery6__header {
@@ -378,14 +378,11 @@
 /* Viewport + Track (horizontal scroll) */
 .gallery6__viewport {
   overflow: hidden;
-  width: 100%;
 }
 
 .gallery6__track {
   display: flex;
   gap: var(--space-5);
-  padding-left: var(--side-padding);
-  padding-right: var(--side-padding);
   transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   cursor: grab;
 }
