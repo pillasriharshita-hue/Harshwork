@@ -133,25 +133,24 @@ Every section and interactive element gets subtle motion/feedback:
 
 ---
 
-### 5. About Page — `about.html` ❌ TO BUILD
-**Layout:** Full page, personal brand storytelling
-**Sections:**
-1. **Hero** — Large photo/illustration + "About me" heading + short intro
-2. **Bio** — Who I am, what I do, what drives me (2-3 paragraphs)
-3. **Journey** — Timeline/path: education → experience → current
-   - DePaul University — MS HCI
-   - 3+ years product design experience
-   - Key roles/companies
-4. **Skills & Tools** — Grid of skill categories
-   - Research: User interviews, usability testing, survey design, affinity mapping
-   - Design: Figma, Framer, prototyping, interaction design, visual design
-   - Strategy: Product thinking, behavioral design, data-informed decisions
-   - Tech: HTML/CSS, basic JS, design systems
-5. **Values / Design Philosophy** — 3 cards (e.g., "Research-first", "Craft matters", "Design for behavior")
-6. **Fun Facts / Personal** — Hobbies, interests, what makes Harshita unique
-7. **CTA** — "Let's work together" → Calendly popup + email link
-**Responsive:** Fully responsive from day 1
-**Micro interactions:** Timeline animate on scroll, skill cards hover, values cards flip/reveal
+### 5. About Page — `about.html` ✅ BUILT
+**Layout:** Comic strip / vertical scroll style (inspired by designalily.com/about + deenadraws.art comic panels)
+**Design:** Dark theme, orange accent (#E8734A), Playfair Display + Inter + Caveat (handwriting)
+**Concept:** Page reads like a comic book — numbered panels connected by dotted lines, illustration placeholders, speech bubbles, handwritten annotations
+- **Nav** — Fixed, glass-blur, avatar + name, links (Home/Work/About/Resume), Book a Call button, hamburger on mobile
+- **Hero** — Full-viewport title page: circular illustration placeholder with pulsing ring, "~ The Origin Story ~" handwritten badge, large serif title, scroll hint with bouncing arrow
+- **Panel 01 — Origin Story** — 2-col grid: illustration placeholder (left) + bio text (right) with speech bubble quote
+- **Panel 02 — Journey Timeline** — Left-bordered timeline strip with dots, 5 entries (2020–Now), staggered reveal on scroll, illustration placeholders on alternating entries
+- **Stats Marquee** — Infinite scrolling ticker ("Product Design ✦ UX Research ✦ Behavioral Design ✦ AI Experiences"), 4 stat cards with count-up animation (3+ Years, 15+ Projects, 8+ Industries, 100+ User Tests)
+- **Panel 03 — Powers & Abilities** — 2×2 skills grid (Research, Design, Strategy, Tech) with hoverable tag pills, handwritten annotation
+- **Panel 04 — Design Philosophy** — 3 value cards (Research First, Craft Matters, Design for Behavior) with hover lift + accent border reveal
+- **Panel 05 — Off-Screen Adventures** — 3-cell comic strip row with illustration placeholders + handwritten captions
+- **Panel 06 — CTA** — Circular illustration placeholder, serif heading, Book a Call (accent) + Send Email (outline) buttons
+- **Panel Connectors** — Vertical line + dot between each panel (comic strip flow)
+- **Calendly** — Full modal integration
+- **Responsive:** 3 breakpoints (1200px, 900px, 600px) — grids collapse, hamburger nav, illustration sizes scale
+- **Micro interactions:** Scroll-reveal panels (IntersectionObserver), timeline dot pulse, stat count-up, skill tag hover glow, value card hover lift, marquee scroll
+- **Illustrations:** All placeholders (dashed border boxes with ✏️ labels) — ready for actual sketches/illustrations
 
 ### 5. Resume Page — `resume.html` ❌ TO BUILD
 **Layout:** Clean, scannable, printable
