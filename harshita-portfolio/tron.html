@@ -38,11 +38,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 48px;display:fl
 .hero{
   min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;
   padding:0 48px 80px;position:relative;overflow:hidden;
-  background:linear-gradient(170deg,#1A1200 0%,#0D0D0D 45%,#0D0600 100%);
+  background:url('./assets/Tron/3.jpg') center/cover no-repeat;
 }
-.hero::before{content:'';position:absolute;width:800px;height:500px;
-  background:radial-gradient(ellipse,rgba(212,146,10,.15) 0%,transparent 70%);
-  top:40%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.hero::before{content:'';position:absolute;inset:0;
+  background:linear-gradient(170deg,rgba(26,18,0,.85) 0%,rgba(13,13,13,.9) 45%,rgba(13,6,0,.95) 100%);
+  pointer-events:none}
 
 .hero-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(56px,10vw,120px);
   letter-spacing:.15em;color:var(--white);line-height:.95;margin-bottom:16px;position:relative;z-index:1}
@@ -304,25 +304,104 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 48px;display:fl
 
   <!-- RIGHT: Scrolling image gallery -->
   <div class="gallery">
+    <!-- Logo & Signage -->
     <div class="gallery-img reveal">
-      <img src="https://framerusercontent.com/images/jVA0lH5uzbC9cDLOIQywfjed0.jpg" alt="Neutron × Electron brand overview">
+      <img src="./assets/Tron/3.jpg" alt="Neutron × Electron — storefront sign with logo on yellow circle" loading="lazy">
+    </div>
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/4.jpg" alt="Bus stop ad — brand logo on poster" loading="lazy">
+    </div>
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/7.jpg" alt="Billboard — Neutron × Electron wordmark in urban setting" loading="lazy">
     </div>
 
+    <!-- Business Cards -->
     <div class="gallery-img reveal">
-      <img src="https://framerusercontent.com/images/XiLvkpYCFhymGcfdeDvgKZ0Ixo.jpg" alt="Brand exploration — fluid forms + geometric grid">
+      <img src="./assets/Tron/22.jpg" alt="Logo card held against red background" loading="lazy">
+    </div>
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/20.jpg" alt="Branded business card on yellow-orange surface" loading="lazy">
+    </div>
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/21.jpg" alt="Logo business card on yellow-orange surface" loading="lazy">
+    </div>
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/14.jpg" alt="Business card with logo held by person" loading="lazy">
+    </div>
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/15.jpg" alt="Business card with full wordmark held by person" loading="lazy">
     </div>
 
+    <!-- Stationery & Books -->
     <div class="gallery-img reveal">
-      <img src="https://framerusercontent.com/images/hsK8UDEhOTpuDvgrZM42kCVM3VA.png" alt="Design system — tokens, type scale, component grid">
+      <img src="./assets/Tron/2.jpg" alt="Brand book — Neutron Electron cover on wooden table" loading="lazy">
+    </div>
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/16.jpg" alt="Spiral notebook with wordmark on yellow desk" loading="lazy">
+    </div>
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/17.jpg" alt="Spiral notebook with logo on yellow desk" loading="lazy">
+    </div>
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/18.jpg" alt="Person holding branded books — wordmark cover" loading="lazy">
+    </div>
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/19.jpg" alt="Person holding branded books — logo cover" loading="lazy">
+    </div>
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/25.jpg" alt="Holiday card with brand wordmark" loading="lazy">
     </div>
 
+    <!-- Desk & Lifestyle -->
     <div class="gallery-img reveal">
-      <img src="https://framerusercontent.com/images/eJjapFLUEwiDiPf0Yu6ZAgxEw4.png" alt="Brand application — digital and print surfaces">
+      <img src="./assets/Tron/23.jpg" alt="Branded card on pink desk with flowers — wordmark" loading="lazy">
+    </div>
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/24.jpg" alt="Branded card on pink desk with flowers — logo" loading="lazy">
     </div>
 
-    <!-- Placeholder slots for additional images -->
-    <div class="gallery-img-ph reveal">
-      <span class="ph-label">Additional brand assets</span>
+    <!-- Apparel -->
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/1.jpg" alt="T-shirt with tessellated pattern in teal and gold" loading="lazy">
+    </div>
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/5.jpg" alt="Cap with brand logo on yellow circle" loading="lazy">
+    </div>
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/6.jpg" alt="Sweatshirt with Neutron × Electron branding" loading="lazy">
+    </div>
+
+    <!-- Tote Bags -->
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/8.jpg" alt="Tote bag with wordmark on yellow background" loading="lazy">
+    </div>
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/10.jpg" alt="Tote bag with branding — outdoor lifestyle shot" loading="lazy">
+    </div>
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/13.jpg" alt="Tote bag closeup — outdoor setting" loading="lazy">
+    </div>
+
+    <!-- Merchandise -->
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/9.jpg" alt="Branded mug with logo pattern on pink background" loading="lazy">
+    </div>
+
+    <!-- Tags & Print -->
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/12.jpg" alt="Hang tag with tessellated pattern on denim" loading="lazy">
+    </div>
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/11.jpg" alt="Holiday ornament tag with brand logo" loading="lazy">
+    </div>
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/26.jpg" alt="Brand print detail" loading="lazy">
+    </div>
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/27.jpg" alt="Brand print detail" loading="lazy">
+    </div>
+    <div class="gallery-img reveal">
+      <img src="./assets/Tron/29.jpg" alt="Brand collateral — final spread" loading="lazy">
     </div>
   </div>
 
