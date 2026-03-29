@@ -50,6 +50,29 @@
 
 <body>
 
+<!-- FLOATING NAV -->
+<link rel="stylesheet" href="./styles/floating-nav.css" />
+<header class="fnav">
+  <nav class="fnav__inner">
+    <a href="./index.html" class="fnav__brand"><div class="fnav__avatar">H</div><span class="fnav__name">Harshita Pilla</span></a>
+    <div class="fnav__links">
+      <a href="./about.html" class="fnav__link">About</a>
+      <a href="./index.html#work" class="fnav__link">Work</a>
+      <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener" class="fnav__link">LinkedIn</a>
+    </div>
+    <div class="fnav__right">
+      <button class="fnav__cta" onclick="bookCall()">Schedule a call</button>
+      <button class="fnav__burger" id="fnavBurger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+<div class="fnav__mobile" id="fnavMobile">
+  <a href="./about.html">About</a><a href="./index.html#work">Work</a>
+  <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener">LinkedIn</a>
+  <button class="fnav__cta" onclick="bookCall()">Schedule a call</button>
+</div>
+<script>(function(){var b=document.getElementById('fnavBurger'),m=document.getElementById('fnavMobile');if(!b||!m)return;b.addEventListener('click',function(){b.classList.toggle('open');m.classList.toggle('open');});})()</script>
+
   <!-- CALENDLY MODAL -->
   <div class="calendly-modal" id="calendlyModal" role="dialog" aria-labelledby="calendlyTitle" aria-hidden="true">
     <div class="calendly-modal__container">

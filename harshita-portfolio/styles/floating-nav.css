@@ -1,0 +1,97 @@
+/* ═══════════════════════════════════════════
+   FLOATING NAV — shared across all pages
+   ═══════════════════════════════════════════ */
+.fnav{
+  position:sticky;top:16px;z-index:500;
+  max-width:720px;margin:0 auto;
+  border-radius:12px;border:1px solid rgba(255,255,255,.08);
+  background:rgba(13,13,13,.85);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  box-shadow:0 4px 24px rgba(0,0,0,.3);
+  padding:6px;
+}
+.fnav__inner{
+  display:flex;align-items:center;justify-content:space-between;
+}
+.fnav__brand{
+  display:flex;align-items:center;gap:8px;
+  padding:6px 12px;border-radius:8px;
+  text-decoration:none;color:#fff;
+  transition:background .15s;
+}
+.fnav__brand:hover{background:rgba(255,255,255,.06)}
+.fnav__avatar{
+  width:28px;height:28px;border-radius:50%;
+  background:#3D8B6E;display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:600;color:#fff;flex-shrink:0;
+}
+.fnav__name{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:14px;font-weight:600;color:#fff;white-space:nowrap;
+}
+
+/* Desktop links */
+.fnav__links{
+  display:flex;align-items:center;gap:2px;
+}
+.fnav__link{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:13px;font-weight:500;color:rgba(255,255,255,.6);
+  padding:6px 14px;border-radius:8px;text-decoration:none;
+  transition:color .15s,background .15s;white-space:nowrap;
+}
+.fnav__link:hover{color:#fff;background:rgba(255,255,255,.06)}
+
+/* Right side */
+.fnav__right{display:flex;align-items:center;gap:6px;}
+
+/* CTA button */
+.fnav__cta{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:12px;font-weight:600;color:#fff;
+  background:#E8612D;border:none;border-radius:8px;
+  padding:7px 16px;cursor:pointer;white-space:nowrap;
+  transition:background .2s;
+}
+.fnav__cta:hover{background:#d4551f}
+
+/* Mobile hamburger */
+.fnav__burger{
+  display:none;width:34px;height:34px;border-radius:8px;
+  border:1px solid rgba(255,255,255,.1);background:transparent;
+  cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:4px;padding:0;
+}
+.fnav__burger span{
+  width:16px;height:1.5px;background:#fff;display:block;
+  transition:transform .3s,opacity .3s;
+}
+.fnav__burger.open span:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+.fnav__burger.open span:nth-child(2){opacity:0}
+.fnav__burger.open span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+
+/* Mobile panel */
+.fnav__mobile{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:499;
+  background:rgba(13,13,13,.95);backdrop-filter:blur(16px);
+  padding:80px 24px 32px;
+  flex-direction:column;gap:8px;
+  transform:translateX(-100%);transition:transform .3s ease;
+}
+.fnav__mobile.open{display:flex;transform:translateX(0)}
+.fnav__mobile a{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:18px;font-weight:500;color:#fff;text-decoration:none;
+  padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);
+  transition:color .15s;
+}
+.fnav__mobile a:hover{color:#E8612D}
+.fnav__mobile .fnav__cta{
+  margin-top:16px;width:100%;padding:14px;font-size:15px;text-align:center;
+}
+
+/* Responsive */
+@media(max-width:768px){
+  .fnav{margin:0 16px;top:12px;max-width:calc(100% - 32px)}
+  .fnav__links{display:none}
+  .fnav__burger{display:flex}
+}
