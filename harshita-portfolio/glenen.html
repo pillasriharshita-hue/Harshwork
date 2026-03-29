@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glenen AI RAG | Sri Harshita Pilla</title>
+  <meta name="description" content="Glenen AI RAG — Case study by Sri Harshita Pilla." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0D0D0D;--surface:#161616;--border:rgba(255,255,255,.08);--white:#F4F3EE;--mist:rgba(244,243,238,.6);--mist2:rgba(244,243,238,.35);--accent:#E8612D;--max:900px;--side:40px}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--white);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+
+    /* Back link */
+    .back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--mist2);padding:24px var(--side);transition:color .2s}
+    .back:hover{color:var(--white)}
+
+    /* Hero */
+    .gl-hero{max-width:var(--max);margin:0 auto;padding:80px var(--side) 60px;text-align:center}
+    .gl-hero__eyebrow{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:18px;color:var(--accent);margin-bottom:16px;display:block}
+    .gl-hero__title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(36px,6vw,64px);font-weight:700;line-height:1.1;color:var(--white);margin-bottom:20px}
+    .gl-hero__title span{color:var(--accent)}
+    .gl-hero__desc{font-size:16px;line-height:1.7;color:var(--mist);max-width:600px;margin:0 auto 48px}
+
+    /* Meta row */
+    .gl-meta{display:flex;justify-content:center;gap:60px;border-top:2px solid var(--accent);padding-top:28px;max-width:700px;margin:0 auto}
+    .gl-meta__item{text-align:center}
+    .gl-meta__label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--mist2);margin-bottom:6px;display:block}
+    .gl-meta__value{font-size:14px;font-weight:500;color:var(--white)}
+
+    /* Dark card sections */
+    .gl-card{max-width:var(--max);margin:60px auto;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:60px var(--side);text-align:center}
+    .gl-card__label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:block}
+    .gl-card__heading{font-family:'Playfair Display',Georgia,serif;font-size:clamp(24px,3.5vw,36px);font-weight:700;color:var(--white);margin-bottom:16px;line-height:1.2}
+    .gl-card__body{font-size:15px;line-height:1.8;color:var(--mist);max-width:600px;margin:0 auto 32px}
+    .gl-card__img{border-radius:12px;overflow:hidden;border:1px solid var(--border);margin:0 auto;max-width:100%}
+    .gl-card__img img{width:100%;display:block}
+
+    /* Placeholder */
+    .gl-placeholder{display:flex;align-items:center;justify-content:center;min-height:300px;border-radius:12px;border:1px dashed var(--border);background:rgba(255,255,255,.02);margin:0 auto;max-width:100%}
+    .gl-placeholder__text{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mist2)}
+
+    /* Divider */
+    .gl-divider{max-width:var(--max);margin:0 auto;height:1px;background:var(--border)}
+
+    /* Coming soon badge */
+    .gl-badge{display:inline-block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(232,97,45,.3);padding:6px 16px;border-radius:20px;margin-top:24px}
+
+    /* Calendly */
+    .calendly-modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:1000;background:rgba(0,0,0,.8);backdrop-filter:blur(5px);align-items:center;justify-content:center;padding:20px}
+    .calendly-modal.active{display:flex}
+    .calendly-modal__container{background:#0D0D0D;border:1px solid #2A2A2A;border-radius:12px;width:100%;max-width:900px;height:90vh;max-height:800px;position:relative;display:flex;flex-direction:column;overflow:hidden}
+    .calendly-modal__header{padding:16px 24px;border-bottom:1px solid #2A2A2A;display:flex;justify-content:space-between;align-items:center}
+    .calendly-modal__title{font-size:18px;font-weight:600;color:#fff;margin:0}
+    .calendly-modal__close{width:32px;height:32px;background:none;border:none;color:#9A9A9A;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .calendly-modal__close:hover{color:#fff}
+    .calendly-modal__content{flex:1;overflow-y:auto;overflow-x:hidden}
+
+    @media(max-width:600px){
+      .gl-hero{padding:60px 24px 40px}
+      .gl-meta{flex-direction:column;gap:24px;align-items:center}
+      .gl-card{margin:40px 16px;padding:40px 24px}
+      .back{padding:16px 24px}
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- FLOATING NAV -->
+<link rel="stylesheet" href="./styles/floating-nav.css" />
+<header class="fnav">
+  <nav class="fnav__inner">
+    <a href="./index.html" class="fnav__brand"><div class="fnav__avatar">H</div><span class="fnav__name">Harshita Pilla</span></a>
+    <div class="fnav__links">
+      <a href="./about.html" class="fnav__link">About</a>
+      <a href="./index.html#work" class="fnav__link">Work</a>
+      <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener" class="fnav__link">LinkedIn</a>
+    </div>
+    <div class="fnav__right">
+      <button class="fnav__cta" onclick="bookCall()">Schedule a call</button>
+      <button class="fnav__burger" id="fnavBurger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+<div class="fnav__mobile" id="fnavMobile">
+  <a href="./about.html">About</a><a href="./index.html#work">Work</a>
+  <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener">LinkedIn</a>
+  <button class="fnav__cta" onclick="bookCall()">Schedule a call</button>
+</div>
+<script>(function(){var b=document.getElementById('fnavBurger'),m=document.getElementById('fnavMobile');if(!b||!m)return;b.addEventListener('click',function(){b.classList.toggle('open');m.classList.toggle('open');});})()</script>
+
+<!-- CALENDLY MODAL -->
+<div class="calendly-modal" id="calendlyModal" role="dialog" aria-hidden="true">
+  <div class="calendly-modal__container">
+    <div class="calendly-modal__header">
+      <h2 class="calendly-modal__title">Book a Call</h2>
+      <button class="calendly-modal__close" id="calendlyClose" aria-label="Close">&#10005;</button>
+    </div>
+    <div class="calendly-modal__content" id="calendlyContent"></div>
+  </div>
+</div>
+
+<!-- BACK LINK -->
+<a href="./index.html#work" class="back">&larr; Back to Portfolio</a>
+
+<!-- HERO -->
+<section class="gl-hero">
+  <span class="gl-hero__eyebrow">AI Product Design</span>
+  <h1 class="gl-hero__title">Glenen <span>AI RAG</span></h1>
+  <p class="gl-hero__desc">Project details coming soon. This case study is currently under development.</p>
+
+  <div class="gl-meta">
+    <div class="gl-meta__item">
+      <span class="gl-meta__label">Role</span>
+      <span class="gl-meta__value">Coming Soon</span>
+    </div>
+    <div class="gl-meta__item">
+      <span class="gl-meta__label">Team</span>
+      <span class="gl-meta__value">Coming Soon</span>
+    </div>
+    <div class="gl-meta__item">
+      <span class="gl-meta__label">Timeline</span>
+      <span class="gl-meta__value">Coming Soon</span>
+    </div>
+  </div>
+</section>
+
+<div class="gl-divider"></div>
+
+<!-- SECTION 1 -->
+<div class="gl-card">
+  <span class="gl-card__label">Overview</span>
+  <h2 class="gl-card__heading">Project Overview</h2>
+  <p class="gl-card__body">Content for this section will be added once the project details are finalized.</p>
+  <div class="gl-placeholder">
+    <span class="gl-placeholder__text">Image placeholder</span>
+  </div>
+</div>
+
+<!-- SECTION 2 -->
+<div class="gl-card">
+  <span class="gl-card__label">The Problem</span>
+  <h2 class="gl-card__heading">Problem Statement</h2>
+  <p class="gl-card__body">Content for this section will be added once the project details are finalized.</p>
+  <div class="gl-placeholder">
+    <span class="gl-placeholder__text">Image placeholder</span>
+  </div>
+</div>
+
+<!-- SECTION 3 -->
+<div class="gl-card">
+  <span class="gl-card__label">The Solution</span>
+  <h2 class="gl-card__heading">Design Solution</h2>
+  <p class="gl-card__body">Content for this section will be added once the project details are finalized.</p>
+  <div class="gl-placeholder">
+    <span class="gl-placeholder__text">Image placeholder</span>
+  </div>
+</div>
+
+<!-- COMING SOON -->
+<div style="text-align:center;padding:60px var(--side) 100px;">
+  <span class="gl-badge">Coming Soon</span>
+</div>
+
+<script>
+window.bookCall = function() {
+  var modal = document.getElementById('calendlyModal');
+  var content = document.getElementById('calendlyContent');
+  var closeBtn = document.getElementById('calendlyClose');
+  if (!modal) return;
+  content.innerHTML = '';
+  var calendarDiv = document.createElement('div');
+  calendarDiv.className = 'calendly-inline-widget';
+  calendarDiv.setAttribute('data-url', 'https://calendly.com/pillasriharshita/30min?hide_event_type_details=1&hide_gdpr_banner=1');
+  content.appendChild(calendarDiv);
+  modal.classList.add('active');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  if (typeof Calendly !== 'undefined') {
+    Calendly.initInlineWidget({ url: 'https://calendly.com/pillasriharshita/30min?hide_event_type_details=1&hide_gdpr_banner=1', parentElement: calendarDiv });
+  }
+  if (closeBtn && !closeBtn.hasListener) { closeBtn.addEventListener('click', closeCalendlyModal); closeBtn.hasListener = true; }
+  if (!modal.hasBackdropListener) { modal.addEventListener('click', function(e) { if (e.target === modal) closeCalendlyModal(); }); modal.hasBackdropListener = true; }
+  document.addEventListener('keydown', function esc(e) { if (e.key === 'Escape' && modal.classList.contains('active')) { closeCalendlyModal(); document.removeEventListener('keydown', esc); } });
+};
+window.closeCalendlyModal = function() {
+  var modal = document.getElementById('calendlyModal');
+  if (modal) { modal.classList.remove('active'); modal.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
+};
+</script>
+</body>
+</html>
