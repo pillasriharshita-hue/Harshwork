@@ -34,7 +34,7 @@
     .cs-block .cs-img--full img{max-height:450px;width:100%;object-fit:contain;background:#111}
 
     /* Image Comparison Slider */
-    .img-compare{position:relative;width:100%;max-width:100%;overflow:hidden;border-radius:12px;border:1px solid var(--color-border,rgba(255,255,255,.08));user-select:none;-webkit-user-select:none;cursor:ew-resize;margin-top:24px}
+    .img-compare{position:relative;width:100%;max-width:600px;margin-left:auto;margin-right:auto;overflow:hidden;border-radius:12px;border:1px solid var(--color-border,rgba(255,255,255,.08));user-select:none;-webkit-user-select:none;cursor:ew-resize;margin-top:12px}
     .img-compare img{display:block;width:100%;height:auto;pointer-events:none}
     .img-compare__after{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden}
     .img-compare__after img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
@@ -143,33 +143,49 @@
     </div>
 
     <!-- Before / After Comparison Sliders -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px;">
-      <div class="img-compare" data-compare>
-        <img src="https://framerusercontent.com/images/pc1xK6t5I4Yvv2K2QrJzoUZN4.jpg" alt="IRCTC before, booking flow" />
-        <div class="img-compare__after" style="clip-path:inset(0 50% 0 0);">
-          <img src="https://framerusercontent.com/images/9PxvFQcwXVKTZl5QMWluo2tIno.png" alt="IRCTC after, booking flow" />
-        </div>
-        <div class="img-compare__handle" style="left:calc(50% - 1.5px);">
-          <div class="img-compare__knob">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8l-4 4 4 4"/><path d="M6 8l4 4-4 4"/></svg>
-          </div>
-        </div>
-        <span class="img-compare__label img-compare__label--before">Before</span>
-        <span class="img-compare__label img-compare__label--after">After</span>
+    <h3 class="cs-block__label" style="margin-top:40px;">PROBLEM 1: BOOKING FLOW</h3>
+    <div class="img-compare" data-compare style="margin-top:12px;">
+      <img src="https://framerusercontent.com/images/pc1xK6t5I4Yvv2K2QrJzoUZN4.jpg" alt="IRCTC before, booking flow" />
+      <div class="img-compare__after" style="clip-path:inset(0 50% 0 0);">
+        <img src="https://framerusercontent.com/images/9PxvFQcwXVKTZl5QMWluo2tIno.png" alt="IRCTC after, booking flow" />
       </div>
-      <div class="img-compare" data-compare>
-        <img src="https://framerusercontent.com/images/Ab89OlNyrTJvuPay3R1cZ4bD5UM.jpg" alt="IRCTC before, login page" />
-        <div class="img-compare__after" style="clip-path:inset(0 50% 0 0);">
-          <img src="https://framerusercontent.com/images/YjjDui0FCUWgYeWU9ZDZ19OzLg.png" alt="IRCTC after, login page" />
+      <div class="img-compare__handle" style="left:calc(50% - 1.5px);">
+        <div class="img-compare__knob">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8l-4 4 4 4"/><path d="M6 8l4 4-4 4"/></svg>
         </div>
-        <div class="img-compare__handle" style="left:calc(50% - 1.5px);">
-          <div class="img-compare__knob">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8l-4 4 4 4"/><path d="M6 8l4 4-4 4"/></svg>
-          </div>
-        </div>
-        <span class="img-compare__label img-compare__label--before">Before</span>
-        <span class="img-compare__label img-compare__label--after">After</span>
       </div>
+      <span class="img-compare__label img-compare__label--before">Before</span>
+      <span class="img-compare__label img-compare__label--after">After</span>
+    </div>
+
+    <h3 class="cs-block__label" style="margin-top:40px;">PROBLEM 2: PAYMENT FAILURES</h3>
+    <div class="img-compare" data-compare style="margin-top:12px;">
+      <img src="https://framerusercontent.com/images/Ab89OlNyrTJvuPay3R1cZ4bD5UM.jpg" alt="IRCTC before, payment page" />
+      <div class="img-compare__after" style="clip-path:inset(0 50% 0 0);">
+        <img src="https://framerusercontent.com/images/YjjDui0FCUWgYeWU9ZDZ19OzLg.png" alt="IRCTC after, payment page" />
+      </div>
+      <div class="img-compare__handle" style="left:calc(50% - 1.5px);">
+        <div class="img-compare__knob">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8l-4 4 4 4"/><path d="M6 8l4 4-4 4"/></svg>
+        </div>
+      </div>
+      <span class="img-compare__label img-compare__label--before">Before</span>
+      <span class="img-compare__label img-compare__label--after">After</span>
+    </div>
+
+    <h3 class="cs-block__label" style="margin-top:40px;">PROBLEM 3: NAVIGATION &amp; SEARCH</h3>
+    <div class="img-compare" data-compare style="margin-top:12px;">
+      <img src="https://framerusercontent.com/images/tp8JSfoCbQjV7kLDw6yL82ppdPc.jpg" alt="IRCTC before, navigation" />
+      <div class="img-compare__after" style="clip-path:inset(0 50% 0 0);">
+        <img src="https://framerusercontent.com/images/K5wrqtzcDRFeZAdaXWL3OAGQ.jpg" alt="IRCTC after, navigation redesigned" />
+      </div>
+      <div class="img-compare__handle" style="left:calc(50% - 1.5px);">
+        <div class="img-compare__knob">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8l-4 4 4 4"/><path d="M6 8l4 4-4 4"/></svg>
+        </div>
+      </div>
+      <span class="img-compare__label img-compare__label--before">Before</span>
+      <span class="img-compare__label img-compare__label--after">After</span>
     </div>
   </section>
 
@@ -247,7 +263,11 @@
     <h2 class="cs-block__heading">Three redesigned flows mapped to heuristic violations.</h2>
     <p class="cs-block__body">The visual system prioritizes information hierarchy: what users need to confirm a decision is always visible without clicking into sub-menus.</p>
 
-    <div class="cs-img cs-img--full" style="margin-top:24px;">
+    <div style="margin-top:24px;border-radius:12px;overflow:hidden;border:1px solid var(--color-border,rgba(255,255,255,.08));">
+      <video src="./assets/irctc/irctc scroll website.mp4" autoplay muted loop playsinline style="width:100%;height:auto;display:block;"></video>
+    </div>
+
+    <div class="cs-img cs-img--full" style="margin-top:16px;">
       <img src="https://framerusercontent.com/images/K5wrqtzcDRFeZAdaXWL3OAGQ.jpg" alt="Complete redesigned flow" style="border-radius:12px;" />
     </div>
     <div class="cs-img cs-img--full" style="margin-top:12px;">
