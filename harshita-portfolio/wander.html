@@ -64,13 +64,8 @@
     </div>
   </div>
 
-  <!-- ══════ HERO IMAGE ══════ -->
-  <div style="width:100%;max-width:1080px;margin:0 auto;padding:80px var(--side-padding, 40px) 0;">
-    <img src="./assets/wander/LpaYrmQt56mHCvdjzJttzwkjaXw.jpg" alt="Wander hi-fi app screens" style="width:100%;border-radius:12px;display:block;" />
-  </div>
-
   <!-- ══════ HERO ══════ -->
-  <section class="cs-hero cs-hero--viewport" style="min-height:auto;padding-top:48px;">
+  <section class="cs-hero cs-hero--viewport">
     <div class="cs-hero__top">
       <div class="cs-hero__info">
         <h1 class="cs-hero__title">Wander</h1>
@@ -93,7 +88,7 @@
       </div>
 
       <div class="cs-hero__image">
-        <img src="./assets/wander/9fYvFzoIKZVllxRphbl6xhTEaI.png" alt="Wander app,phone mockups showing AR walking experience" />
+        <img src="./assets/wander/LpaYrmQt56mHCvdjzJttzwkjaXw.jpg" alt="Wander hi-fi app screens" />
       </div>
     </div>
   </section>
@@ -325,30 +320,29 @@
       <img src="./assets/wander/SH4LHm596CuTAmxhwpMVjh1f1sA.jpg" alt="Mid-fidelity wireframes, 5 screens light theme" style="border-radius:12px;" />
     </div>
 
-    <!-- Hi-fi final screens -->
-    <h3 class="cs-block__label" style="margin-top:48px;">FINAL SCREENS</h3>
-    <div class="cs-img cs-img--full" style="margin-top:16px;">
-      <img src="./assets/wander/LpaYrmQt56mHCvdjzJttzwkjaXw.jpg" alt="Hi-fi final app screens with hand holding phone" style="border-radius:12px;" />
-    </div>
-
-    <!-- Design system -->
+    <!-- Design System Carousel (5 images: typography, colors, icons, components, characters) -->
     <h3 class="cs-block__label" style="margin-top:48px;">DESIGN SYSTEM</h3>
-    <div class="cs-img cs-img--full" style="margin-top:16px;">
-      <img src="./assets/wander/cSVHsxlybLtdtPDCRbyNuxShhQ.jpg" alt="Typography spec: Fredoka One and Fredoka" style="border-radius:12px;" />
-    </div>
-    <div class="cs-img cs-img--full" style="margin-top:16px;">
-      <img src="./assets/wander/y8RK0b188Zjsv7NUAAYwBnrA.png" alt="Color palette with purple, gray, and pink swatches" style="border-radius:12px;" />
-    </div>
-    <div class="cs-img cs-img--full" style="margin-top:16px;">
-      <img src="./assets/wander/v1cLfEmimFI9ARlIqsmhNxhMrc.jpg" alt="Icon library" style="border-radius:12px;" />
-    </div>
-    <div class="cs-img cs-img--full" style="margin-top:16px;">
-      <img src="./assets/wander/wkwYUR5KUd9ohr4xlMQ18VtbW0.png" alt="UI component library: quest cards, hotspot cards, buttons" style="border-radius:12px;" />
-    </div>
-
-    <!-- Character illustrations -->
-    <div class="cs-img cs-img--full" style="margin-top:16px;">
-      <img src="./assets/wander/3HN5MAoIra2shalVP6rbS0ttUc0.png" alt="Six astronaut character illustrations" style="border-radius:12px;" />
+    <div class="thumb-carousel" style="margin-top:16px;">
+      <div class="tc-viewport">
+        <div class="tc-track" id="dsTrack">
+          <div class="tc-slide"><img src="./assets/wander/cSVHsxlybLtdtPDCRbyNuxShhQ.jpg" alt="Typography spec: Fredoka One and Fredoka" /></div>
+          <div class="tc-slide"><img src="./assets/wander/y8RK0b188Zjsv7NUAAYwBnrA.png" alt="Color palette" /></div>
+          <div class="tc-slide"><img src="./assets/wander/v1cLfEmimFI9ARlIqsmhNxhMrc.jpg" alt="Icon library" /></div>
+          <div class="tc-slide"><img src="./assets/wander/wkwYUR5KUd9ohr4xlMQ18VtbW0.png" alt="UI component library" /></div>
+          <div class="tc-slide"><img src="./assets/wander/3HN5MAoIra2shalVP6rbS0ttUc0.png" alt="Character illustrations" /></div>
+        </div>
+      </div>
+      <div class="tc-controls">
+        <button class="tc-arrow" data-carousel="ds" data-dir="prev" aria-label="Previous">&larr;</button>
+        <div class="tc-thumbs">
+          <button class="tc-thumb active" data-carousel="ds" data-index="0"><img src="./assets/wander/cSVHsxlybLtdtPDCRbyNuxShhQ.jpg" alt="Typography" /></button>
+          <button class="tc-thumb" data-carousel="ds" data-index="1"><img src="./assets/wander/y8RK0b188Zjsv7NUAAYwBnrA.png" alt="Colors" /></button>
+          <button class="tc-thumb" data-carousel="ds" data-index="2"><img src="./assets/wander/v1cLfEmimFI9ARlIqsmhNxhMrc.jpg" alt="Icons" /></button>
+          <button class="tc-thumb" data-carousel="ds" data-index="3"><img src="./assets/wander/wkwYUR5KUd9ohr4xlMQ18VtbW0.png" alt="Components" /></button>
+          <button class="tc-thumb" data-carousel="ds" data-index="4"><img src="./assets/wander/3HN5MAoIra2shalVP6rbS0ttUc0.png" alt="Characters" /></button>
+        </div>
+        <button class="tc-arrow" data-carousel="ds" data-dir="next" aria-label="Next">&rarr;</button>
+      </div>
     </div>
   </section>
 
@@ -441,7 +435,8 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   var carousels = {
     tc: { track: document.getElementById('tcTrack'), current: 0 },
     ca: { track: document.getElementById('caTrack'), current: 0 },
-    ut: { track: document.getElementById('utTrack'), current: 0 }
+    ut: { track: document.getElementById('utTrack'), current: 0 },
+    ds: { track: document.getElementById('dsTrack'), current: 0 }
   };
 
   function goTo(id, i) {
