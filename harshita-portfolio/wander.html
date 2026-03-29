@@ -25,6 +25,29 @@
     .calendly-modal__content{flex:1;overflow-y:auto;overflow-x:hidden}
     @media(max-width:899px){.calendly-modal__container{max-height:90vh;height:auto}}
     @media(max-width:599px){.calendly-modal{padding:10px}.calendly-modal__container{max-width:100%;height:calc(100vh - 20px);max-height:calc(100vh - 20px)}.calendly-modal__header{padding:12px 16px}.calendly-modal__title{font-size:16px}}
+
+    /* Thumbnail Carousel */
+    .thumb-carousel{max-width:100%}
+    .tc-viewport{overflow:hidden;border-radius:12px;border:1px solid var(--color-border, rgba(255,255,255,.08));margin-bottom:16px}
+    .tc-track{display:flex;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+    .tc-slide{min-width:100%;flex-shrink:0}
+    .tc-slide img{width:100%;height:auto;display:block;object-fit:cover}
+    .tc-controls{display:flex;align-items:center;gap:12px}
+    .tc-arrow{flex-shrink:0;width:36px;height:36px;border-radius:8px;border:1px solid var(--color-border, rgba(255,255,255,.08));
+      background:var(--color-surface, #1A1A1A);color:var(--color-text-secondary, rgba(244,243,238,.6));cursor:pointer;
+      font-size:16px;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s}
+    .tc-arrow:hover{background:var(--color-surface-hover, #222);border-color:rgba(255,255,255,.15)}
+    .tc-thumbs{display:flex;gap:8px;overflow-x:auto;flex:1;padding:4px 0;scrollbar-width:none}
+    .tc-thumbs::-webkit-scrollbar{display:none}
+    .tc-thumb{flex-shrink:0;width:80px;height:56px;border-radius:6px;overflow:hidden;border:2px solid transparent;
+      cursor:pointer;padding:0;background:none;transition:border-color .2s,opacity .2s;opacity:.5}
+    .tc-thumb:hover{opacity:.8}
+    .tc-thumb.active{border-color:var(--color-accent, #E8612D);opacity:1}
+    .tc-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    @media(max-width:600px){
+      .tc-thumb{width:60px;height:42px}
+      .tc-arrow{width:30px;height:30px;font-size:14px}
+    }
   </style>
 </head>
 
@@ -41,8 +64,13 @@
     </div>
   </div>
 
+  <!-- ══════ HERO IMAGE ══════ -->
+  <div style="width:100%;max-width:1080px;margin:0 auto;padding:80px var(--side-padding, 40px) 0;">
+    <img src="./assets/wander/LpaYrmQt56mHCvdjzJttzwkjaXw.jpg" alt="Wander hi-fi app screens" style="width:100%;border-radius:12px;display:block;" />
+  </div>
+
   <!-- ══════ HERO ══════ -->
-  <section class="cs-hero cs-hero--viewport">
+  <section class="cs-hero cs-hero--viewport" style="min-height:auto;padding-top:48px;">
     <div class="cs-hero__top">
       <div class="cs-hero__info">
         <h1 class="cs-hero__title">Wander</h1>
@@ -151,44 +179,57 @@
       <p>Four recurring themes: <strong>Motivation wasn't missing</strong>,enabling conditions were. <strong>Walks feel purposeless</strong> without a reason. <strong>Social is the strongest sustainer.</strong> And <strong>pressure is counterproductive</strong>,streak apps accelerated dropout.</p>
     </div>
 
-    <!-- Literature Review (7 papers) -->
+    <!-- Literature Review Carousel (7 papers) -->
     <h3 class="cs-block__label" style="margin-top:48px;">LITERATURE REVIEW</h3>
-    <div class="cs-img cs-img--full" style="margin-top:16px;">
-      <img src="./assets/wander/75PCWWFYAskj6QyE0lw1vp03rc.jpg" alt="Paper 1: The Journey, AR gamified app for physical activity" style="border-radius:12px;" />
-    </div>
-    <div class="cs-img cs-img--full" style="margin-top:16px;">
-      <img src="./assets/wander/4SlaKLFBRSmYXvNn6H2YzDw38JY.jpg" alt="Paper 2: AR-Dance, augmented reality exercise app" style="border-radius:12px;" />
-    </div>
-    <div class="cs-img cs-img--full" style="margin-top:16px;">
-      <img src="./assets/wander/kImtj6ZBlluMeiIKRzabWq1fk.jpg" alt="Paper 3: Gamification orientations of fitness apps" style="border-radius:12px;" />
-    </div>
-    <div class="cs-img cs-img--full" style="margin-top:16px;">
-      <img src="./assets/wander/W8Rw0Tf4bsEoFAdJZVAn5VCgnE.jpg" alt="Paper 4: 3D personalized avatar in AR for walking motivation" style="border-radius:12px;" />
-    </div>
-    <div class="cs-img cs-img--full" style="margin-top:16px;">
-      <img src="./assets/wander/Wrvb7gPVbAe6EuyBVDDJilpvsE.jpg" alt="Paper 5: Motivations underlying AR games like Pokemon Go" style="border-radius:12px;" />
-    </div>
-    <div class="cs-img cs-img--full" style="margin-top:16px;">
-      <img src="./assets/wander/cFLjWI5KW3w0bseigLsQVpMELHw.jpg" alt="Paper 6: AR's strategic role in service experiences" style="border-radius:12px;" />
-    </div>
-    <div class="cs-img cs-img--full" style="margin-top:16px;">
-      <img src="./assets/wander/azWQ80tZhfDNGYSS1Ifg8sYhNxQ.jpg" alt="Paper 7: VR/AR applications for quality of life" style="border-radius:12px;" />
+    <div class="thumb-carousel" style="margin-top:16px;">
+      <!-- Main slide viewport -->
+      <div class="tc-viewport">
+        <div class="tc-track" id="tcTrack">
+          <div class="tc-slide"><img src="./assets/wander/75PCWWFYAskj6QyE0lw1vp03rc.jpg" alt="Paper 1: The Journey, AR gamified app for physical activity" /></div>
+          <div class="tc-slide"><img src="./assets/wander/4SlaKLFBRSmYXvNn6H2YzDw38JY.jpg" alt="Paper 2: AR-Dance, augmented reality exercise app" /></div>
+          <div class="tc-slide"><img src="./assets/wander/kImtj6ZBlluMeiIKRzabWq1fk.jpg" alt="Paper 3: Gamification orientations of fitness apps" /></div>
+          <div class="tc-slide"><img src="./assets/wander/W8Rw0Tf4bsEoFAdJZVAn5VCgnE.jpg" alt="Paper 4: 3D personalized avatar in AR for walking motivation" /></div>
+          <div class="tc-slide"><img src="./assets/wander/Wrvb7gPVbAe6EuyBVDDJilpvsE.jpg" alt="Paper 5: Motivations underlying AR games like Pokemon Go" /></div>
+          <div class="tc-slide"><img src="./assets/wander/cFLjWI5KW3w0bseigLsQVpMELHw.jpg" alt="Paper 6: AR's strategic role in service experiences" /></div>
+          <div class="tc-slide"><img src="./assets/wander/azWQ80tZhfDNGYSS1Ifg8sYhNxQ.jpg" alt="Paper 7: VR/AR applications for quality of life" /></div>
+        </div>
+      </div>
+      <!-- Thumbnail strip with arrows -->
+      <div class="tc-controls">
+        <button class="tc-arrow" id="tcPrev" aria-label="Previous">&larr;</button>
+        <div class="tc-thumbs" id="tcThumbs">
+          <button class="tc-thumb active" data-index="0"><img src="./assets/wander/75PCWWFYAskj6QyE0lw1vp03rc.jpg" alt="Thumb 1" /></button>
+          <button class="tc-thumb" data-index="1"><img src="./assets/wander/4SlaKLFBRSmYXvNn6H2YzDw38JY.jpg" alt="Thumb 2" /></button>
+          <button class="tc-thumb" data-index="2"><img src="./assets/wander/kImtj6ZBlluMeiIKRzabWq1fk.jpg" alt="Thumb 3" /></button>
+          <button class="tc-thumb" data-index="3"><img src="./assets/wander/W8Rw0Tf4bsEoFAdJZVAn5VCgnE.jpg" alt="Thumb 4" /></button>
+          <button class="tc-thumb" data-index="4"><img src="./assets/wander/Wrvb7gPVbAe6EuyBVDDJilpvsE.jpg" alt="Thumb 5" /></button>
+          <button class="tc-thumb" data-index="5"><img src="./assets/wander/cFLjWI5KW3w0bseigLsQVpMELHw.jpg" alt="Thumb 6" /></button>
+          <button class="tc-thumb" data-index="6"><img src="./assets/wander/azWQ80tZhfDNGYSS1Ifg8sYhNxQ.jpg" alt="Thumb 7" /></button>
+        </div>
+        <button class="tc-arrow" id="tcNext" aria-label="Next">&rarr;</button>
+      </div>
     </div>
 
-    <!-- Competitive Analysis (4 apps) -->
+    <!-- Competitive Analysis Carousel (4 apps) -->
     <h3 class="cs-block__label" style="margin-top:48px;">COMPETITIVE ANALYSIS</h3>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;">
-      <div class="cs-img cs-img--full">
-        <img src="./assets/wander/bWH0rosdWvmC9MLLU3Qp2QJ0Lk.jpg" alt="Competitive analysis: Pokemon Go" style="border-radius:12px;" />
+    <div class="thumb-carousel" style="margin-top:16px;">
+      <div class="tc-viewport">
+        <div class="tc-track" id="caTrack">
+          <div class="tc-slide"><img src="./assets/wander/bWH0rosdWvmC9MLLU3Qp2QJ0Lk.jpg" alt="Competitive analysis: Pokemon Go" /></div>
+          <div class="tc-slide"><img src="./assets/wander/KFXSdDvcKebHJTsxFqYxSRjMYxc.jpg" alt="Competitive analysis: Zombies, Run!" /></div>
+          <div class="tc-slide"><img src="./assets/wander/JWYPCZJZlHAEjcSagftEJ0RQ.jpg" alt="Competitive analysis: Nike Run Club" /></div>
+          <div class="tc-slide"><img src="./assets/wander/oVvbbTusT0AvgpqhHhOU8FrM2w.jpg" alt="Competitive analysis: Fitbit" /></div>
+        </div>
       </div>
-      <div class="cs-img cs-img--full">
-        <img src="./assets/wander/KFXSdDvcKebHJTsxFqYxSRjMYxc.jpg" alt="Competitive analysis: Zombies, Run!" style="border-radius:12px;" />
-      </div>
-      <div class="cs-img cs-img--full">
-        <img src="./assets/wander/JWYPCZJZlHAEjcSagftEJ0RQ.jpg" alt="Competitive analysis: Nike Run Club" style="border-radius:12px;" />
-      </div>
-      <div class="cs-img cs-img--full">
-        <img src="./assets/wander/oVvbbTusT0AvgpqhHhOU8FrM2w.jpg" alt="Competitive analysis: Fitbit" style="border-radius:12px;" />
+      <div class="tc-controls">
+        <button class="tc-arrow" data-carousel="ca" data-dir="prev" aria-label="Previous">&larr;</button>
+        <div class="tc-thumbs">
+          <button class="tc-thumb active" data-carousel="ca" data-index="0"><img src="./assets/wander/bWH0rosdWvmC9MLLU3Qp2QJ0Lk.jpg" alt="Pokemon Go" /></button>
+          <button class="tc-thumb" data-carousel="ca" data-index="1"><img src="./assets/wander/KFXSdDvcKebHJTsxFqYxSRjMYxc.jpg" alt="Zombies, Run!" /></button>
+          <button class="tc-thumb" data-carousel="ca" data-index="2"><img src="./assets/wander/JWYPCZJZlHAEjcSagftEJ0RQ.jpg" alt="Nike Run Club" /></button>
+          <button class="tc-thumb" data-carousel="ca" data-index="3"><img src="./assets/wander/oVvbbTusT0AvgpqhHhOU8FrM2w.jpg" alt="Fitbit" /></button>
+        </div>
+        <button class="tc-arrow" data-carousel="ca" data-dir="next" aria-label="Next">&rarr;</button>
       </div>
     </div>
 
@@ -340,19 +381,25 @@
       </div>
     </div>
 
-    <!-- Usability testing evidence (4 issues) -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;">
-      <div class="cs-img cs-img--full">
-        <img src="./assets/wander/Eb6RtDQtB8MjBj44kuVFPoUsV6o.jpg" alt="Testing: resource collection unclear, AR mode hidden" style="border-radius:12px;" />
+    <!-- Usability Testing Carousel (4 issues) -->
+    <div class="thumb-carousel" style="margin-top:48px;">
+      <div class="tc-viewport">
+        <div class="tc-track" id="utTrack">
+          <div class="tc-slide"><img src="./assets/wander/Eb6RtDQtB8MjBj44kuVFPoUsV6o.jpg" alt="Testing: resource collection unclear, AR mode hidden" /></div>
+          <div class="tc-slide"><img src="./assets/wander/oynWsTnT8JkjPL8QWRTfPtC1HA.jpg" alt="Testing: quest flow unclear" /></div>
+          <div class="tc-slide"><img src="./assets/wander/UjyalNGBLhuMW9yaz25sJty2NV0.jpg" alt="Testing: history/replay flow blank" /></div>
+          <div class="tc-slide"><img src="./assets/wander/lcYh8ReTpbAS6IHqGGL1Y4oCUEM.jpg" alt="Testing: social flow confusing icons" /></div>
+        </div>
       </div>
-      <div class="cs-img cs-img--full">
-        <img src="./assets/wander/oynWsTnT8JkjPL8QWRTfPtC1HA.jpg" alt="Testing: quest flow unclear, start/tracking/completion" style="border-radius:12px;" />
-      </div>
-      <div class="cs-img cs-img--full">
-        <img src="./assets/wander/UjyalNGBLhuMW9yaz25sJty2NV0.jpg" alt="Testing: history/replay flow blank, no exit path" style="border-radius:12px;" />
-      </div>
-      <div class="cs-img cs-img--full">
-        <img src="./assets/wander/lcYh8ReTpbAS6IHqGGL1Y4oCUEM.jpg" alt="Testing: social flow confusing icons, friend request unclear" style="border-radius:12px;" />
+      <div class="tc-controls">
+        <button class="tc-arrow" data-carousel="ut" data-dir="prev" aria-label="Previous">&larr;</button>
+        <div class="tc-thumbs">
+          <button class="tc-thumb active" data-carousel="ut" data-index="0"><img src="./assets/wander/Eb6RtDQtB8MjBj44kuVFPoUsV6o.jpg" alt="Resource collection" /></button>
+          <button class="tc-thumb" data-carousel="ut" data-index="1"><img src="./assets/wander/oynWsTnT8JkjPL8QWRTfPtC1HA.jpg" alt="Quest flow" /></button>
+          <button class="tc-thumb" data-carousel="ut" data-index="2"><img src="./assets/wander/UjyalNGBLhuMW9yaz25sJty2NV0.jpg" alt="History flow" /></button>
+          <button class="tc-thumb" data-carousel="ut" data-index="3"><img src="./assets/wander/lcYh8ReTpbAS6IHqGGL1Y4oCUEM.jpg" alt="Social flow" /></button>
+        </div>
+        <button class="tc-arrow" data-carousel="ut" data-dir="next" aria-label="Next">&rarr;</button>
       </div>
     </div>
   </section>
@@ -388,6 +435,54 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
 }, { threshold: 0.05 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Thumbnail Carousels (generic, supports multiple)
+(function() {
+  var carousels = {
+    tc: { track: document.getElementById('tcTrack'), current: 0 },
+    ca: { track: document.getElementById('caTrack'), current: 0 },
+    ut: { track: document.getElementById('utTrack'), current: 0 }
+  };
+
+  function goTo(id, i) {
+    var c = carousels[id];
+    if (!c || !c.track) return;
+    var thumbs = document.querySelectorAll('.tc-thumb[data-carousel="' + id + '"]');
+    if (!thumbs.length) return;
+    c.current = Math.max(0, Math.min(i, thumbs.length - 1));
+    c.track.style.transform = 'translateX(-' + (c.current * 100) + '%)';
+    thumbs.forEach(function(t) { t.classList.remove('active'); });
+    thumbs[c.current].classList.add('active');
+    thumbs[c.current].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  }
+
+  // First carousel uses id-based buttons (legacy)
+  var prev0 = document.getElementById('tcPrev');
+  var next0 = document.getElementById('tcNext');
+  if (prev0) prev0.addEventListener('click', function() { goTo('tc', carousels.tc.current - 1); });
+  if (next0) next0.addEventListener('click', function() { goTo('tc', carousels.tc.current + 1); });
+
+  // All arrow buttons with data-carousel
+  document.querySelectorAll('.tc-arrow[data-carousel]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var id = btn.dataset.carousel;
+      var dir = btn.dataset.dir === 'prev' ? -1 : 1;
+      goTo(id, carousels[id].current + dir);
+    });
+  });
+
+  // All thumb buttons
+  document.querySelectorAll('.tc-thumb[data-carousel]').forEach(function(t) {
+    t.addEventListener('click', function() { goTo(t.dataset.carousel, parseInt(t.dataset.index)); });
+  });
+
+  // First carousel thumbs (no data-carousel attr, legacy)
+  document.querySelectorAll('#tcThumbs .tc-thumb').forEach(function(t) {
+    if (!t.dataset.carousel) {
+      t.addEventListener('click', function() { goTo('tc', parseInt(t.dataset.index)); });
+    }
+  });
+})();
 
 // Calendly Modal
 window.bookCall = function() {
