@@ -214,6 +214,7 @@
       <div class="hero__img-wrap">
         <video
           class="hero__svg"
+          id="heroVideo"
           src="./assets/landingpage.mp4"
           autoplay
           muted
@@ -221,8 +222,19 @@
           playsinline
           style="width:100%;height:auto;border-radius:12px;"
         ></video>
+        <div id="heroBtns" style="position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:12px;opacity:0;transition:opacity .6s ease;pointer-events:none;">
+          <a href="#about" class="hero__nav-btn" style="pointer-events:auto;">About me</a>
+          <a href="#work" class="hero__nav-btn" style="pointer-events:auto;">Work</a>
+          <a href="#contact" class="hero__nav-btn" style="pointer-events:auto;">Resume</a>
+        </div>
       </div>
     </div>
+    <script>
+      setTimeout(function(){
+        var btns = document.getElementById('heroBtns');
+        if(btns){btns.style.opacity='1';btns.style.pointerEvents='auto';}
+      }, 3000);
+    </script>
 
     <!-- Divider line below hero, like Siddharth -->
     <div class="hero__divider"></div>
