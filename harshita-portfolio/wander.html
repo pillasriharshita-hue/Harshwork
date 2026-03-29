@@ -195,17 +195,17 @@
       </div>
       <!-- Thumbnail strip with arrows -->
       <div class="tc-controls">
-        <button class="tc-arrow" id="tcPrev" aria-label="Previous">&larr;</button>
-        <div class="tc-thumbs" id="tcThumbs">
-          <button class="tc-thumb active" data-index="0"><img src="./assets/wander/75PCWWFYAskj6QyE0lw1vp03rc.jpg" alt="Thumb 1" /></button>
-          <button class="tc-thumb" data-index="1"><img src="./assets/wander/4SlaKLFBRSmYXvNn6H2YzDw38JY.jpg" alt="Thumb 2" /></button>
-          <button class="tc-thumb" data-index="2"><img src="./assets/wander/kImtj6ZBlluMeiIKRzabWq1fk.jpg" alt="Thumb 3" /></button>
-          <button class="tc-thumb" data-index="3"><img src="./assets/wander/W8Rw0Tf4bsEoFAdJZVAn5VCgnE.jpg" alt="Thumb 4" /></button>
-          <button class="tc-thumb" data-index="4"><img src="./assets/wander/Wrvb7gPVbAe6EuyBVDDJilpvsE.jpg" alt="Thumb 5" /></button>
-          <button class="tc-thumb" data-index="5"><img src="./assets/wander/cFLjWI5KW3w0bseigLsQVpMELHw.jpg" alt="Thumb 6" /></button>
-          <button class="tc-thumb" data-index="6"><img src="./assets/wander/azWQ80tZhfDNGYSS1Ifg8sYhNxQ.jpg" alt="Thumb 7" /></button>
+        <button class="tc-arrow" data-carousel="tc" data-dir="prev" aria-label="Previous">&larr;</button>
+        <div class="tc-thumbs">
+          <button class="tc-thumb active" data-carousel="tc" data-index="0"><img src="./assets/wander/75PCWWFYAskj6QyE0lw1vp03rc.jpg" alt="Thumb 1" /></button>
+          <button class="tc-thumb" data-carousel="tc" data-index="1"><img src="./assets/wander/4SlaKLFBRSmYXvNn6H2YzDw38JY.jpg" alt="Thumb 2" /></button>
+          <button class="tc-thumb" data-carousel="tc" data-index="2"><img src="./assets/wander/kImtj6ZBlluMeiIKRzabWq1fk.jpg" alt="Thumb 3" /></button>
+          <button class="tc-thumb" data-carousel="tc" data-index="3"><img src="./assets/wander/W8Rw0Tf4bsEoFAdJZVAn5VCgnE.jpg" alt="Thumb 4" /></button>
+          <button class="tc-thumb" data-carousel="tc" data-index="4"><img src="./assets/wander/Wrvb7gPVbAe6EuyBVDDJilpvsE.jpg" alt="Thumb 5" /></button>
+          <button class="tc-thumb" data-carousel="tc" data-index="5"><img src="./assets/wander/cFLjWI5KW3w0bseigLsQVpMELHw.jpg" alt="Thumb 6" /></button>
+          <button class="tc-thumb" data-carousel="tc" data-index="6"><img src="./assets/wander/azWQ80tZhfDNGYSS1Ifg8sYhNxQ.jpg" alt="Thumb 7" /></button>
         </div>
-        <button class="tc-arrow" id="tcNext" aria-label="Next">&rarr;</button>
+        <button class="tc-arrow" data-carousel="tc" data-dir="next" aria-label="Next">&rarr;</button>
       </div>
     </div>
 
@@ -449,13 +449,7 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     thumbs[c.current].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
   }
 
-  // First carousel uses id-based buttons (legacy)
-  var prev0 = document.getElementById('tcPrev');
-  var next0 = document.getElementById('tcNext');
-  if (prev0) prev0.addEventListener('click', function() { goTo('tc', carousels.tc.current - 1); });
-  if (next0) next0.addEventListener('click', function() { goTo('tc', carousels.tc.current + 1); });
-
-  // All arrow buttons with data-carousel
+  // All arrow buttons
   document.querySelectorAll('.tc-arrow[data-carousel]').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var id = btn.dataset.carousel;
@@ -467,13 +461,6 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   // All thumb buttons
   document.querySelectorAll('.tc-thumb[data-carousel]').forEach(function(t) {
     t.addEventListener('click', function() { goTo(t.dataset.carousel, parseInt(t.dataset.index)); });
-  });
-
-  // First carousel thumbs (no data-carousel attr, legacy)
-  document.querySelectorAll('#tcThumbs .tc-thumb').forEach(function(t) {
-    if (!t.dataset.carousel) {
-      t.addEventListener('click', function() { goTo('tc', parseInt(t.dataset.index)); });
-    }
   });
 })();
 
