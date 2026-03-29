@@ -30,8 +30,20 @@
     .cs-block--surface > div[style],
     .cs-block--surface > .cs-img{max-width:1080px;margin-left:auto;margin-right:auto;padding-left:var(--side-padding,40px);padding-right:var(--side-padding,40px)}
     /* Constrain all image grids */
-    .cs-block .cs-img img, .cs-block div[style] img{max-height:350px;object-fit:contain;background:#111;border-radius:12px}
-    .cs-block .cs-img--full img{max-height:400px;width:100%;object-fit:contain;background:#111}
+    .cs-block .cs-img img, .cs-block div[style] img{max-height:400px;object-fit:contain;background:#111;border-radius:12px}
+    .cs-block .cs-img--full img{max-height:450px;width:100%;object-fit:contain;background:#111}
+
+    /* Image Comparison Slider */
+    .img-compare{position:relative;width:100%;max-width:100%;overflow:hidden;border-radius:12px;border:1px solid var(--color-border,rgba(255,255,255,.08));user-select:none;-webkit-user-select:none;cursor:ew-resize;margin-top:24px}
+    .img-compare img{display:block;width:100%;height:auto;pointer-events:none}
+    .img-compare__after{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden}
+    .img-compare__after img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
+    .img-compare__handle{position:absolute;top:0;bottom:0;width:3px;background:rgba(255,255,255,.8);cursor:ew-resize;z-index:2}
+    .img-compare__knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+    .img-compare__knob svg{width:20px;height:20px;color:#333}
+    .img-compare__label{position:absolute;bottom:12px;padding:4px 12px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:rgba(0,0,0,.6);color:#fff;border-radius:4px;pointer-events:none}
+    .img-compare__label--before{left:12px}
+    .img-compare__label--after{right:12px}
   </style>
 </head>
 
@@ -130,12 +142,34 @@
       </div>
     </div>
 
-    <!-- Existing IRCTC screenshots -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px;">
-      <div class="cs-img"><img src="https://framerusercontent.com/images/pc1xK6t5I4Yvv2K2QrJzoUZN4.jpg" alt="IRCTC before, booking flow" style="border-radius:12px;" /></div>
-      <div class="cs-img"><img src="https://framerusercontent.com/images/Ab89OlNyrTJvuPay3R1cZ4bD5UM.jpg" alt="IRCTC before, payment" style="border-radius:12px;" /></div>
-      <div class="cs-img"><img src="https://framerusercontent.com/images/tp8JSfoCbQjV7kLDw6yL82ppdPc.jpg" alt="IRCTC before, navigation" style="border-radius:12px;" /></div>
-      <div class="cs-img"><img src="https://framerusercontent.com/images/VCWzbQbahWH0xrkU3Xg5GnixmPE.jpg" alt="IRCTC before, mobile" style="border-radius:12px;" /></div>
+    <!-- Before / After Comparison Sliders -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px;">
+      <div class="img-compare" data-compare>
+        <img src="https://framerusercontent.com/images/pc1xK6t5I4Yvv2K2QrJzoUZN4.jpg" alt="IRCTC before, booking flow" />
+        <div class="img-compare__after" style="clip-path:inset(0 50% 0 0);">
+          <img src="https://framerusercontent.com/images/9PxvFQcwXVKTZl5QMWluo2tIno.png" alt="IRCTC after, booking flow" />
+        </div>
+        <div class="img-compare__handle" style="left:calc(50% - 1.5px);">
+          <div class="img-compare__knob">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8l-4 4 4 4"/><path d="M6 8l4 4-4 4"/></svg>
+          </div>
+        </div>
+        <span class="img-compare__label img-compare__label--before">Before</span>
+        <span class="img-compare__label img-compare__label--after">After</span>
+      </div>
+      <div class="img-compare" data-compare>
+        <img src="https://framerusercontent.com/images/Ab89OlNyrTJvuPay3R1cZ4bD5UM.jpg" alt="IRCTC before, login page" />
+        <div class="img-compare__after" style="clip-path:inset(0 50% 0 0);">
+          <img src="https://framerusercontent.com/images/YjjDui0FCUWgYeWU9ZDZ19OzLg.png" alt="IRCTC after, login page" />
+        </div>
+        <div class="img-compare__handle" style="left:calc(50% - 1.5px);">
+          <div class="img-compare__knob">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8l-4 4 4 4"/><path d="M6 8l4 4-4 4"/></svg>
+          </div>
+        </div>
+        <span class="img-compare__label img-compare__label--before">Before</span>
+        <span class="img-compare__label img-compare__label--after">After</span>
+      </div>
     </div>
   </section>
 
@@ -213,12 +247,7 @@
     <h2 class="cs-block__heading">Three redesigned flows mapped to heuristic violations.</h2>
     <p class="cs-block__body">The visual system prioritizes information hierarchy: what users need to confirm a decision is always visible without clicking into sub-menus.</p>
 
-    <!-- Redesigned screens -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px;">
-      <div class="cs-img"><img src="https://framerusercontent.com/images/9PxvFQcwXVKTZl5QMWluo2tIno.png" alt="Redesigned booking flow" style="border-radius:12px;" /></div>
-      <div class="cs-img"><img src="https://framerusercontent.com/images/YjjDui0FCUWgYeWU9ZDZ19OzLg.png" alt="Redesigned payment feedback" style="border-radius:12px;" /></div>
-    </div>
-    <div class="cs-img cs-img--full" style="margin-top:12px;">
+    <div class="cs-img cs-img--full" style="margin-top:24px;">
       <img src="https://framerusercontent.com/images/K5wrqtzcDRFeZAdaXWL3OAGQ.jpg" alt="Complete redesigned flow" style="border-radius:12px;" />
     </div>
     <div class="cs-img cs-img--full" style="margin-top:12px;">
@@ -272,6 +301,29 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
 }, { threshold: 0.05 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Image Comparison Sliders
+document.querySelectorAll('[data-compare]').forEach(function(container) {
+  var afterDiv = container.querySelector('.img-compare__after');
+  var handle = container.querySelector('.img-compare__handle');
+  var dragging = false;
+
+  function updatePosition(clientX) {
+    var rect = container.getBoundingClientRect();
+    var pct = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
+    afterDiv.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+    handle.style.left = 'calc(' + pct + '% - 1.5px)';
+  }
+
+  container.addEventListener('mousedown', function(e) { dragging = true; updatePosition(e.clientX); });
+  container.addEventListener('touchstart', function(e) { dragging = true; updatePosition(e.touches[0].clientX); }, {passive:true});
+
+  window.addEventListener('mousemove', function(e) { if (dragging) updatePosition(e.clientX); });
+  window.addEventListener('touchmove', function(e) { if (dragging) updatePosition(e.touches[0].clientX); }, {passive:true});
+
+  window.addEventListener('mouseup', function() { dragging = false; });
+  window.addEventListener('touchend', function() { dragging = false; });
+});
 
 // Calendly Modal
 window.bookCall = function() {
