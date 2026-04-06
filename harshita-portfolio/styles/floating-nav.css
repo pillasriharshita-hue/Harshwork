@@ -26,7 +26,7 @@
   font-size:12px;font-weight:600;color:#fff;flex-shrink:0;
 }
 .fnav__name{
-  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-family:'Nunito Sans',-apple-system,BlinkMacSystemFont,sans-serif;
   font-size:14px;font-weight:600;color:#fff;white-space:nowrap;
 }
 
@@ -35,7 +35,7 @@
   display:flex;align-items:center;gap:2px;
 }
 .fnav__link{
-  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-family:'Nunito Sans',-apple-system,BlinkMacSystemFont,sans-serif;
   font-size:13px;font-weight:500;color:rgba(255,255,255,.6);
   padding:6px 14px;border-radius:8px;text-decoration:none;
   transition:color .15s,background .15s;white-space:nowrap;
@@ -47,7 +47,7 @@
 
 /* CTA button */
 .fnav__cta{
-  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-family:'Nunito Sans',-apple-system,BlinkMacSystemFont,sans-serif;
   font-size:12px;font-weight:600;color:#fff;
   background:#E8612D;border:none;border-radius:8px;
   padding:7px 16px;cursor:pointer;white-space:nowrap;
@@ -79,7 +79,7 @@
 }
 .fnav__mobile.open{display:flex;transform:translateX(0)}
 .fnav__mobile a{
-  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-family:'Nunito Sans',-apple-system,BlinkMacSystemFont,sans-serif;
   font-size:18px;font-weight:500;color:#fff;text-decoration:none;
   padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);
   transition:color .15s;

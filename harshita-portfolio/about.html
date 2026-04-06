@@ -8,9 +8,10 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;600;700;800&family=Taviraj:ital,wght@0,400;0,700;1,400;1,700&family=Nunito+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <script src="./scripts/theme.js"></script>
+  <link rel="stylesheet" href="./styles/loader.css" />
   <!-- Calendly -->
   <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
@@ -21,7 +22,7 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; font-size: 16px; }
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--bg);
       background-image:
         linear-gradient(0deg, transparent 24%, var(--grid-color) 25%, var(--grid-color) 26%, transparent 27%, transparent 74%, var(--grid-color) 75%, var(--grid-color) 76%, transparent 77%, transparent),
@@ -53,8 +54,8 @@
       --comic-bg: #222;
       --comic-border: #333;
       --handwriting: 'Caveat', cursive;
-      --serif: 'Playfair Display', Georgia, serif;
-      --sans: 'Inter', -apple-system, sans-serif;
+      --serif: 'Taviraj', Georgia, serif;
+      --sans: 'Nunito Sans', -apple-system, sans-serif;
     }
     [data-theme="light"] {
       --bg: #F3F3F3;
@@ -622,6 +623,30 @@
 </head>
 
 <body>
+
+<!-- ══ PAGE LOADER ══ -->
+<div id="pageLoader" role="status" aria-label="Loading">
+  <div class="wheel-and-hamster">
+    <div class="wheel"></div>
+    <div class="hamster">
+      <div class="hamster__body">
+        <div class="hamster__head">
+          <div class="hamster__ear"></div>
+          <div class="hamster__eye"></div>
+          <div class="hamster__nose"></div>
+        </div>
+        <div class="hamster__limb hamster__limb--fr"></div>
+        <div class="hamster__limb hamster__limb--fl"></div>
+        <div class="hamster__limb hamster__limb--br"></div>
+        <div class="hamster__limb hamster__limb--bl"></div>
+        <div class="hamster__tail"></div>
+      </div>
+    </div>
+    <div class="spoke"></div>
+  </div>
+  <p class="loader__text">Loading</p>
+</div>
+<script src="./scripts/loader.js"></script>
 
 <!-- FLOATING NAV -->
 <link rel="stylesheet" href="./styles/floating-nav.css" />

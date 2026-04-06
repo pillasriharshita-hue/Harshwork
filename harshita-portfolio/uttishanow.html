@@ -8,10 +8,11 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;600;700;800&family=Taviraj:ital,wght@0,400;0,700;1,400;1,700&family=Nunito+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
   <script src="./scripts/theme.js"></script>
   <link rel="stylesheet" href="./styles/main.css" />
+  <link rel="stylesheet" href="./styles/loader.css" />
   <link rel="stylesheet" href="./styles/casestudy.css" />
 
   <!-- Calendly Embed Script -->
@@ -111,6 +112,30 @@
 </head>
 
 <body>
+
+<!-- ══ PAGE LOADER ══ -->
+<div id="pageLoader" role="status" aria-label="Loading">
+  <div class="wheel-and-hamster">
+    <div class="wheel"></div>
+    <div class="hamster">
+      <div class="hamster__body">
+        <div class="hamster__head">
+          <div class="hamster__ear"></div>
+          <div class="hamster__eye"></div>
+          <div class="hamster__nose"></div>
+        </div>
+        <div class="hamster__limb hamster__limb--fr"></div>
+        <div class="hamster__limb hamster__limb--fl"></div>
+        <div class="hamster__limb hamster__limb--br"></div>
+        <div class="hamster__limb hamster__limb--bl"></div>
+        <div class="hamster__tail"></div>
+      </div>
+    </div>
+    <div class="spoke"></div>
+  </div>
+  <p class="loader__text">Loading</p>
+</div>
+<script src="./scripts/loader.js"></script>
 
 <!-- FLOATING NAV -->
 <link rel="stylesheet" href="./styles/floating-nav.css" />

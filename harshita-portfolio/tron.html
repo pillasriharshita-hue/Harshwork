@@ -6,8 +6,9 @@
 <title>Neutron × Electron — Sri Harshita Pilla</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;600;700;800&family=Taviraj:ital,wght@0,400;0,700;1,400;1,700&family=Nunito+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <script src="./scripts/theme.js"></script>
+<link rel="stylesheet" href="./styles/loader.css" />
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -22,7 +23,7 @@ html{scroll-behavior:smooth}
 body{background-color:var(--bg);
   background-image:linear-gradient(0deg,transparent 24%,var(--grid-color) 25%,var(--grid-color) 26%,transparent 27%,transparent 74%,var(--grid-color) 75%,var(--grid-color) 76%,transparent 77%,transparent),linear-gradient(90deg,transparent 24%,var(--grid-color) 25%,var(--grid-color) 26%,transparent 27%,transparent 74%,var(--grid-color) 75%,var(--grid-color) 76%,transparent 77%,transparent);
   background-size:55px 55px;
-  color:var(--white);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  color:var(--white);font-family:'Nunito Sans',-apple-system,BlinkMacSystemFont,sans-serif;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background-color .3s,color .3s;}
 a{text-decoration:none;color:inherit}
 img{display:block;max-width:100%}
@@ -54,7 +55,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 48px;display:fl
 .hero-title span{color:var(--amber)}
 .hero-sub{font-size:15px;line-height:1.7;color:var(--mist);max-width:480px;margin-bottom:32px;position:relative;z-index:1}
 .hero-tags{display:flex;gap:8px;flex-wrap:wrap;position:relative;z-index:1}
-.htag{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+.htag{font-family:'Nunito Sans',-apple-system,BlinkMacSystemFont,sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;
   padding:6px 14px;border:1px solid var(--rule);color:var(--mist2)}
 .htag-a{border-color:rgba(212,146,10,.35);color:rgba(212,146,10,.8)}
 
@@ -64,7 +65,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 48px;display:fl
 
 /* LEFT: Sticky info panel */
 .info{position:sticky;top:120px}
-.info-label{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-size:8px;letter-spacing:.18em;
+.info-label{font-family:'Nunito Sans',-apple-system,BlinkMacSystemFont,sans-serif;font-size:8px;letter-spacing:.18em;
   text-transform:uppercase;color:var(--amber);display:block;margin-bottom:16px}
 .info-title{font-family:'Playfair Display',Georgia,serif;font-style:italic;
   font-size:clamp(28px,3.5vw,40px);color:var(--white);line-height:1.2;margin-bottom:20px}
@@ -93,7 +94,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 48px;display:fl
 .gallery-img:hover img{transform:scale(1.02)}
 .gallery-img-ph{background:var(--card);aspect-ratio:4/3;display:flex;flex-direction:column;
   align-items:center;justify-content:center;gap:8px;border-radius:16px;border:1px solid var(--rule)}
-.ph-label{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-size:10px;letter-spacing:.12em;
+.ph-label{font-family:'Nunito Sans',-apple-system,BlinkMacSystemFont,sans-serif;font-size:10px;letter-spacing:.12em;
   text-transform:uppercase;color:rgba(244,243,238,.12)}
 
 /* ── FULL-WIDTH SECTIONS BELOW ── */
@@ -111,7 +112,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 48px;display:fl
 
 /* ── SECTION HEADERS ── */
 .sec{max-width:1100px;margin:0 auto;padding:0 48px 100px}
-.sec-eyebrow{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-size:9px;letter-spacing:.18em;
+.sec-eyebrow{font-family:'Nunito Sans',-apple-system,BlinkMacSystemFont,sans-serif;font-size:9px;letter-spacing:.18em;
   text-transform:uppercase;color:var(--amber);display:block;margin-bottom:14px;text-align:center}
 .sec-h{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:clamp(28px,3.5vw,40px);
   color:var(--white);line-height:1.2;margin-bottom:24px;text-align:center}
@@ -136,7 +137,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 48px;display:fl
 .sys-card{background:var(--card);border:1px solid var(--rule);padding:28px 24px;border-radius:12px;
   transition:transform .3s,border-color .3s}
 .sys-card:hover{transform:translateY(-2px);border-color:rgba(212,146,10,.2)}
-.sys-label{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-size:8px;letter-spacing:.14em;
+.sys-label{font-family:'Nunito Sans',-apple-system,BlinkMacSystemFont,sans-serif;font-size:8px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--amber);margin-bottom:10px;display:block}
 .sys-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:8px;line-height:1.4}
 .sys-desc{font-size:13px;line-height:1.7;color:var(--mist2)}
@@ -169,7 +170,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 48px;display:fl
 
 /* ── METHODS ── */
 .methods{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:28px}
-.method-tag{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-size:9px;letter-spacing:.08em;
+.method-tag{font-family:'Nunito Sans',-apple-system,BlinkMacSystemFont,sans-serif;font-size:9px;letter-spacing:.08em;
   text-transform:uppercase;padding:6px 14px;border:1px solid var(--rule);color:var(--mist2);border-radius:4px}
 
 /* ── FOOTER ── */
@@ -208,6 +209,30 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 48px;display:fl
 </style>
 </head>
 <body>
+
+<!-- ══ PAGE LOADER ══ -->
+<div id="pageLoader" role="status" aria-label="Loading">
+  <div class="wheel-and-hamster">
+    <div class="wheel"></div>
+    <div class="hamster">
+      <div class="hamster__body">
+        <div class="hamster__head">
+          <div class="hamster__ear"></div>
+          <div class="hamster__eye"></div>
+          <div class="hamster__nose"></div>
+        </div>
+        <div class="hamster__limb hamster__limb--fr"></div>
+        <div class="hamster__limb hamster__limb--fl"></div>
+        <div class="hamster__limb hamster__limb--br"></div>
+        <div class="hamster__limb hamster__limb--bl"></div>
+        <div class="hamster__tail"></div>
+      </div>
+    </div>
+    <div class="spoke"></div>
+  </div>
+  <p class="loader__text">Loading</p>
+</div>
+<script src="./scripts/loader.js"></script>
 
 <!-- FLOATING NAV -->
 <link rel="stylesheet" href="./styles/floating-nav.css" />
