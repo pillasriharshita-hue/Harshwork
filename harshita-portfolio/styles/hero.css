@@ -35,10 +35,10 @@
 
 .hero__name {
   font-family: var(--font-display);
-  font-size: clamp(1.68rem, 2.625vw, 2.625rem);
-  font-weight: 400;
-  color: var(--color-text-primary);
-  line-height: 1.2;
+  font-size: clamp(2rem, 3.2vw, 3.2rem);
+  font-weight: 800;
+  color: #fffffe;
+  line-height: 1.1;
   letter-spacing: -0.5px;
 }
 
@@ -47,12 +47,13 @@
 }
 
 .hero__name-small {
-  font-size: 0.45em;
+  font-size: 0.38em;
   font-weight: 400;
-  letter-spacing: 0.02em;
-  color: var(--color-text-primary);
+  letter-spacing: 0.04em;
+  color: #fffffe;
   display: block;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
+  opacity: 0.7;
 }
 
 .hero__tagline {
@@ -113,10 +114,10 @@
 .hero__img-wrap {
   position: relative;
   width: 100%;
-  background: rgba(13, 13, 13, 0.4);
+  background: rgba(22, 22, 26, 0.7);
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .hero__svg {
