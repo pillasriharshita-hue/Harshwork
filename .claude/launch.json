@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["http-server", "C:/Users/pilla/OneDrive/Desktop/Harsh'work/harshita-portfolio", "-p", "8080", "-c-1"],
+      "port": 8080
+    }
+  ]
+}

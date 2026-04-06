@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
+  <script src="./scripts/theme.js"></script>
   <!-- Calendly -->
   <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
@@ -21,11 +22,16 @@
     html { scroll-behavior: smooth; font-size: 16px; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #0D0D0D;
-      color: #E0E0E0;
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(0deg, transparent 24%, var(--grid-color) 25%, var(--grid-color) 26%, transparent 27%, transparent 74%, var(--grid-color) 75%, var(--grid-color) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, var(--grid-color) 25%, var(--grid-color) 26%, transparent 27%, transparent 74%, var(--grid-color) 75%, var(--grid-color) 76%, transparent 77%, transparent);
+      background-size: 55px 55px;
+      color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s, color 0.3s;
     }
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
@@ -36,18 +42,31 @@
     :root {
       --accent: #E8734A;
       --accent-glow: rgba(232, 115, 74, 0.15);
-      --bg: #0D0D0D;
-      --bg-card: #151515;
-      --bg-panel: #1A1A1A;
+      --bg: #191a1a;
+      --grid-color: rgba(114,114,114,0.3);
+      --bg-card: #222323;
+      --bg-panel: #2a2b2b;
       --border: #2A2A2A;
       --text: #E0E0E0;
       --text-dim: #9A9A9A;
       --white: #FFFFFF;
-      --comic-bg: #181818;
+      --comic-bg: #222;
       --comic-border: #333;
       --handwriting: 'Caveat', cursive;
       --serif: 'Playfair Display', Georgia, serif;
       --sans: 'Inter', -apple-system, sans-serif;
+    }
+    [data-theme="light"] {
+      --bg: #F3F3F3;
+      --grid-color: #E1E1E1;
+      --bg-card: #E8E8E8;
+      --bg-panel: #E0E0E0;
+      --border: #CCCCCC;
+      --text: #111111;
+      --text-dim: #555555;
+      --white: #111111;
+      --comic-bg: #E8E8E8;
+      --comic-border: #CCCCCC;
     }
 
     /* ═══════════════════════════════════════
@@ -615,6 +634,7 @@
       <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener" class="fnav__link">LinkedIn</a>
     </div>
     <div class="fnav__right">
+      <label class="fnav__theme-switch" title="Toggle theme"><input type="checkbox" class="toggle"><span class="slider"></span></label>
       <button class="fnav__cta" onclick="bookCall()">Schedule a call</button>
       <button class="fnav__burger" id="fnavBurger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     </div>

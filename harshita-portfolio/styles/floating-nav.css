@@ -89,6 +89,60 @@
   margin-top:16px;width:100%;padding:14px;font-size:15px;text-align:center;
 }
 
+/* ─── Theme toggle switch ─── */
+.fnav__theme-switch{
+  --switch-main: #fefefe;
+  --switch-bg: #111;
+  --switch-focus: #E8612D;
+  position:relative;display:flex;align-items:center;justify-content:center;
+  width:50px;height:20px;flex-shrink:0;cursor:pointer;
+}
+.fnav__theme-switch .toggle{
+  opacity:0;width:0;height:0;position:absolute;
+}
+.fnav__theme-switch .slider{
+  box-sizing:border-box;border-radius:5px;
+  border:2px solid var(--switch-main);
+  box-shadow:4px 4px var(--switch-main);
+  position:absolute;cursor:pointer;
+  top:0;left:0;right:0;bottom:0;
+  background-color:var(--switch-bg);
+  transition:0.3s;
+}
+.fnav__theme-switch .slider:before{
+  box-sizing:border-box;position:absolute;content:"";
+  height:20px;width:20px;
+  border:2px solid var(--switch-main);
+  border-radius:5px;left:-2px;bottom:2px;
+  background-color:var(--switch-bg);
+  box-shadow:0 3px 0 var(--switch-main);
+  transition:0.3s;
+}
+.fnav__theme-switch .toggle:checked + .slider{
+  background-color:var(--switch-focus);
+}
+.fnav__theme-switch .toggle:checked + .slider:before{
+  transform:translateX(30px);
+}
+
+/* ─── Light theme nav overrides ─── */
+[data-theme="light"] .fnav{
+  background:rgba(243,243,243,0.9);
+  border-color:rgba(0,0,0,0.1);
+  box-shadow:0 4px 24px rgba(0,0,0,0.1);
+}
+[data-theme="light"] .fnav__name{color:#111;}
+[data-theme="light"] .fnav__link{color:rgba(0,0,0,0.55);}
+[data-theme="light"] .fnav__link:hover{color:#111;background:rgba(0,0,0,0.06);}
+[data-theme="light"] .fnav__burger span{background:#111;}
+[data-theme="light"] .fnav__mobile{background:rgba(243,243,243,0.98);}
+[data-theme="light"] .fnav__mobile a{color:#111;border-color:rgba(0,0,0,0.1);}
+[data-theme="light"] .fnav__mobile a:hover{color:#E8612D;}
+[data-theme="light"] .fnav__theme-switch{
+  --switch-main:#111;
+  --switch-bg:#f3f3f3;
+}
+
 /* Responsive */
 @media(max-width:768px){
   .fnav{margin:0 16px;top:12px;max-width:calc(100% - 32px)}
