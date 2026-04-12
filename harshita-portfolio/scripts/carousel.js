@@ -109,6 +109,43 @@
     }
   }, true);
 
+  /* ── Wheel → horizontal scroll ─────────────────────────── */
+  (function initWheelScroll() {
+    const section = document.getElementById('other-works');
+    if (!section) return;
+
+    let accumulated = 0;
+    let wheelTimeout = null;
+    const THRESHOLD = 60; // px of wheel delta before advancing a slide
+
+    section.addEventListener('wheel', function (e) {
+      const atStart = currentIndex <= 0;
+      const atEnd   = currentIndex >= slides.length - 1;
+
+      // If at both edges or no horizontal intent, let page scroll normally
+      if ((atStart && e.deltaY < 0) || (atEnd && e.deltaY > 0)) {
+        accumulated = 0;
+        return; // don't preventDefault — let vertical scroll resume
+      }
+
+      e.preventDefault();
+
+      accumulated += e.deltaY;
+
+      // Clear any pending reset
+      clearTimeout(wheelTimeout);
+      wheelTimeout = setTimeout(() => { accumulated = 0; }, 300);
+
+      if (accumulated > THRESHOLD) {
+        accumulated = 0;
+        scrollTo(currentIndex + 1);
+      } else if (accumulated < -THRESHOLD) {
+        accumulated = 0;
+        scrollTo(currentIndex - 1);
+      }
+    }, { passive: false });
+  })();
+
   /* ── Recalculate on resize ──────────────────────────────── */
   let resizeTimer;
   window.addEventListener('resize', () => {
