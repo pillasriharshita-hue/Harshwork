@@ -38,6 +38,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-8);
+  max-width: 1000px;
+  margin-inline: auto;
 }
 
 /* ═══ FEATURED CARD ═══ */
@@ -333,6 +335,8 @@
   flex-direction: column;
   gap: var(--space-6);
   margin-bottom: var(--space-10);
+  max-width: 1000px;
+  margin-inline: auto;
 }
 
 .gallery6__heading {
@@ -389,6 +393,8 @@
 /* Viewport + Track (horizontal scroll) */
 .gallery6__viewport {
   overflow: hidden;
+  max-width: 1000px;
+  margin-inline: auto;
 }
 
 .gallery6__track {
@@ -545,6 +551,8 @@
 
 .research {
   padding: var(--space-24) var(--side-padding) var(--space-12);
+  max-width: 1080px;
+  margin-inline: auto;
 }
 
 .research__title {

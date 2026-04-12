@@ -3,7 +3,7 @@
    ═══════════════════════════════════════════ */
 .fnav{
   position:sticky;top:16px;z-index:500;
-  margin:0 var(--side-padding);
+  max-width:1080px;margin:0 auto;
   border-radius:10px;border:1px solid rgba(255,255,255,.08);
   background:rgba(13,13,13,.92);
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
