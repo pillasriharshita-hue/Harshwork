@@ -7,11 +7,10 @@
 }
 
 .basement {
-  padding: 100px 20px;
+  padding: 100px var(--side-padding);
 }
 
 .basement__inner {
-  max-width: 1080px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -102,9 +101,8 @@
 }
 
 .footer__container {
-  max-width: 1080px;
   margin: 0 auto;
-  padding: 80px 20px 0;
+  padding: 80px var(--side-padding) 0;
 }
 
 /* ─── Brand row: name left · carousel right ─── */

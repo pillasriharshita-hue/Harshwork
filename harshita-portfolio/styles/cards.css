@@ -38,8 +38,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-8);
-  max-width: 1000px;
-  margin-inline: auto;
 }
 
 /* ═══ FEATURED CARD ═══ */
@@ -335,8 +333,6 @@
   flex-direction: column;
   gap: var(--space-6);
   margin-bottom: var(--space-10);
-  max-width: 1000px;
-  margin-inline: auto;
 }
 
 .gallery6__heading {
@@ -344,6 +340,22 @@
   font-size: clamp(var(--text-3xl), 3.5vw, var(--text-4xl));
   font-weight: 700;
   color: var(--color-text-primary);
+}
+
+.gallery6__scroll-hint {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--color-text-secondary);
+  opacity: 0.6;
+  margin-top: 6px;
+  animation: hint-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes hint-pulse {
+  0%, 100% { opacity: 0.4; transform: translateX(0); }
+  50%       { opacity: 0.8; transform: translateX(4px); }
 }
 
 .gallery6__nav {
@@ -377,8 +389,6 @@
 /* Viewport + Track (horizontal scroll) */
 .gallery6__viewport {
   overflow: hidden;
-  max-width: 1000px;
-  margin-inline: auto;
 }
 
 .gallery6__track {
@@ -535,8 +545,6 @@
 
 .research {
   padding: var(--space-24) var(--side-padding) var(--space-12);
-  max-width: 1080px;
-  margin-inline: auto;
 }
 
 .research__title {
