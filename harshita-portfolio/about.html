@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;600;700;800&family=Taviraj:ital,wght@0,400;0,700;1,400;1,700&family=Nunito+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <script src="./scripts/theme.js"></script>
+  <script src="./scripts/gsap.min.js"></script>
   <link rel="stylesheet" href="./styles/loader.css" />
   <!-- Calendly -->
   <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
@@ -169,105 +170,93 @@
     }
 
     /* ═══════════════════════════════════════
-       HERO — COMIC STRIP INTRO
+       ABOUT HERO — CAROUSEL LEFT + TEXT RIGHT
        ═══════════════════════════════════════ */
-    .hero {
-      display: flex; flex-direction: column;
-      align-items: center; text-align: center;
-      padding: 40px 0 20px;
-    }
-    .hero__badge {
-      font-family: var(--handwriting); font-size: 22px; color: var(--accent);
-      letter-spacing: 2px; margin-bottom: 16px;
-      opacity: 0; transform: translateY(20px);
-      animation: fadeUp 0.6s 0.2s forwards;
-    }
-    .hero__title {
-      font-family: var(--serif); font-size: clamp(40px, 7vw, 80px);
-      font-weight: 700; color: var(--white);
-      line-height: 1.05; letter-spacing: -1px;
-      margin-bottom: 12px;
+    .about-hero {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      padding: 60px 0 20px;
       opacity: 0; transform: translateY(30px);
-      animation: fadeUp 0.8s 0.4s forwards;
+      transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    .hero__title span { color: var(--accent); }
-    .hero__subtitle {
-      font-size: 17px; color: var(--text-dim); max-width: 500px;
-      line-height: 1.7; margin-bottom: 20px;
-      opacity: 0; transform: translateY(20px);
-      animation: fadeUp 0.6s 0.6s forwards;
+    .about-hero.visible {
+      opacity: 1; transform: translateY(0);
     }
-    .hero__scroll-hint {
-      font-family: var(--handwriting); font-size: 18px; color: var(--text-dim);
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      opacity: 0; animation: fadeUp 0.6s 0.8s forwards;
+    .about-hero__text {
+      flex: 1;
     }
-    .hero__scroll-arrow {
-      width: 24px; height: 24px; border-right: 2px solid var(--accent);
-      border-bottom: 2px solid var(--accent); transform: rotate(45deg);
-      animation: bounce 2s infinite;
+    .about-hero__eyebrow {
+      font-family: var(--handwriting); font-size: 20px; color: var(--accent);
+      letter-spacing: 1px; margin-bottom: 12px;
+    }
+    .about-hero__title {
+      font-family: var(--serif); font-size: clamp(36px, 6vw, 64px);
+      font-weight: 700; color: var(--white);
+      line-height: 1.1; letter-spacing: -1px;
+      margin-bottom: 24px;
+    }
+    .about-hero__title span { color: var(--accent); }
+    .about-hero__bio {
+      font-size: 15px; color: var(--text-dim); line-height: 1.8;
+      margin-bottom: 16px; max-width: 52ch;
+    }
+    .about-hero__bio strong {
+      color: var(--white); font-weight: 600;
+    }
+    .about-hero__bio--dim {
+      opacity: 0.7; font-size: 14px;
     }
 
     /* ═══════════════════════════════════════
-       COMIC STRIP IMAGE (The centerpiece)
+       3D CAROUSEL (Codrops-inspired)
        ═══════════════════════════════════════ */
-    .comic-strip {
+    .about-hero__carousel {
+      flex-shrink: 0;
+      width: 320px;
+      height: 420px;
+      perspective: 900px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .carousel3d {
+      width: 220px;
+      height: 300px;
       position: relative;
-      margin-bottom: 40px;
-      opacity: 0; transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform-style: preserve-3d;
+      transform: translateZ(-280px);
     }
-    .comic-strip.visible {
-      opacity: 1; transform: translateY(0);
+    .carousel3d__cell {
+      position: absolute;
+      width: 220px;
+      height: 300px;
+      backface-visibility: hidden;
     }
-    .comic-strip__frame {
-      background: var(--bg-card);
-      border: 3px solid var(--comic-border);
-      border-radius: 16px;
+    .carousel3d__card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+    }
+    .carousel3d__face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
       overflow: hidden;
-      position: relative;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 80px rgba(232,115,74,0.06);
     }
-    .comic-strip__img {
-      width: 100%;
-      height: auto;
-      display: block;
+    .carousel3d__face--front {
+      background-image: var(--img);
+      background-size: cover;
+      background-position: center;
+      border: 2px solid var(--border);
     }
-    /* Placeholder for when image is missing */
-    .comic-strip__placeholder {
-      width: 100%;
-      aspect-ratio: 9/16;
-      background: linear-gradient(180deg, #1A1612 0%, #151515 50%, #1A1612 100%);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 16px; padding: 40px;
+    .carousel3d__face--back {
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      transform: rotateY(180deg);
     }
-    .comic-strip__placeholder-icon { font-size: 48px; opacity: 0.6; }
-    .comic-strip__placeholder-text {
-      font-family: var(--handwriting); font-size: 22px; color: var(--text-dim);
-      text-align: center; line-height: 1.5;
-    }
-    .comic-strip__placeholder-sub {
-      font-size: 13px; color: rgba(154,154,154,0.6); text-align: center;
-    }
-
-    /* Decorative tape corners */
-    .comic-strip__tape {
-      position: absolute; width: 60px; height: 24px;
-      background: rgba(232,115,74,0.25); border-radius: 2px;
-      z-index: 2; backdrop-filter: blur(2px);
-    }
-    .comic-strip__tape--tl { top: -6px; left: 24px; transform: rotate(-8deg); }
-    .comic-strip__tape--tr { top: -6px; right: 24px; transform: rotate(6deg); }
-    .comic-strip__tape--bl { bottom: -6px; left: 24px; transform: rotate(5deg); }
-    .comic-strip__tape--br { bottom: -6px; right: 24px; transform: rotate(-7deg); }
-
-    /* Handwritten caption below strip */
-    .comic-strip__caption {
-      font-family: var(--handwriting); font-size: 18px; color: var(--text-dim);
-      text-align: center; margin-top: 20px; line-height: 1.5;
-    }
-    .comic-strip__caption span { color: var(--accent); }
 
     /* ═══════════════════════════════════════
        COMIC PANEL BASE STYLES
@@ -536,6 +525,10 @@
     /* ═══════════════════════════════════════
        ANIMATIONS
        ═══════════════════════════════════════ */
+    @keyframes spin3d {
+      0%   { transform: translateZ(-280px) rotateY(0deg); }
+      100% { transform: translateZ(-280px) rotateY(360deg); }
+    }
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
     }
@@ -568,6 +561,16 @@
 
     /* ≤ 900px */
     @media (max-width: 900px) {
+      .about-hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 32px;
+      }
+      .about-hero__bio { max-width: 100%; }
+      .about-hero__carousel { width: 260px; height: 340px; margin: 0 auto; }
+      .carousel3d { width: 180px; height: 240px; transform: translateZ(-220px); }
+      .carousel3d__cell { width: 180px; height: 240px; }
+
       .nav { padding: 16px 24px; }
       .nav__links { display: none; }
       .nav__book--desktop { display: none; }
@@ -687,65 +690,30 @@
   <!-- ══════ COMIC STRIP CONTAINER ══════ -->
   <main class="comic">
 
-    <!-- ═══════ HERO — COMPACT INTRO ═══════ -->
-    <section class="hero">
-      <p class="hero__badge">~ The Origin Story ~</p>
-      <h1 class="hero__title">
-        About <span>Harshita</span>
-      </h1>
-      <p class="hero__subtitle">
-        A product designer who believes great design starts with understanding people — their behaviors, motivations, and the moments that matter most.
-      </p>
-      <div class="hero__scroll-hint">
-        <span>scroll to read my story</span>
-        <div class="hero__scroll-arrow"></div>
-      </div>
-    </section>
-
-    <!-- connector -->
-    <div class="panel-connector"><div class="panel-connector__line"></div><div class="panel-connector__dot"></div><div class="panel-connector__line"></div></div>
-
-    <!-- ═══════ THE COMIC STRIP — CENTERPIECE ═══════ -->
-    <section class="comic-strip" data-reveal>
-      <div class="comic-strip__frame">
-        <div class="comic-strip__tape comic-strip__tape--tl"></div>
-        <div class="comic-strip__tape comic-strip__tape--tr"></div>
-        <img src="assets/about/comic-strip.png" alt="Comic strip telling Harshita's story — from curiosity about details, to architecture, to UX design where she brings together empathy, logic, and design into meaningful experiences" class="comic-strip__img" loading="eager" />
-        <div class="comic-strip__tape comic-strip__tape--bl"></div>
-        <div class="comic-strip__tape comic-strip__tape--br"></div>
-      </div>
-      <p class="comic-strip__caption">
-        ↑ my story, <span>illustrated</span> — because designers should show, not just tell ↑
-      </p>
-    </section>
-
-    <!-- connector -->
-    <div class="panel-connector"><div class="panel-connector__line"></div><div class="panel-connector__dot"></div><div class="panel-connector__line"></div></div>
-
-    <!-- ═══════ PANEL 1 — BIO (Below the strip) ═══════ -->
-    <article class="panel" data-reveal>
-      <div class="panel__header">
-        <span class="panel__number">01</span>
-        <span class="panel__label">The Details</span>
-      </div>
-      <div class="panel__body">
-        <div class="origin__grid" style="grid-template-columns:1fr;">
-          <div class="origin__text">
-            <h3 style="font-family:var(--serif);font-size:28px;font-weight:700;color:var(--white);margin-bottom:16px;">From curiosity to craft</h3>
-            <p style="font-size:15px;color:var(--text-dim);line-height:1.8;margin-bottom:16px;">
-              I'm <strong style="color:var(--white);font-weight:600;">Sri Harshita Pilla</strong>, a product designer with <strong style="color:var(--white);font-weight:600;">3+ years</strong> of experience crafting end-to-end digital experiences. I specialize in <strong style="color:var(--white);font-weight:600;">UX research, behavioral design, and AI-driven interfaces</strong> — the kind of work that sits at the intersection of human psychology and technology.
-            </p>
-            <p style="font-size:15px;color:var(--text-dim);line-height:1.8;margin-bottom:16px;">
-              I started in <strong style="color:var(--white);font-weight:600;">architecture</strong>, where I learned to think in systems and spaces. That foundation led me to UX, where I bring together empathy, logic, and design into experiences that feel meaningful. Currently based in the <strong style="color:var(--white);font-weight:600;">United States</strong>, I hold a Master's in <strong style="color:var(--white);font-weight:600;">Human-Computer Interaction from DePaul University</strong>.
-            </p>
-            <div class="speech-bubble">
-              <span class="speaker">Harshita says:</span>
-              "I don't just design screens — I design for the moments between the taps, the hesitations before a click, and the relief when something just works."
-            </div>
-          </div>
+    <!-- ═══════ HERO — ORIGIN STORY ═══════ -->
+    <section class="about-hero" data-reveal>
+      <div class="about-hero__carousel">
+        <div class="carousel3d" id="aboutCarousel">
+          <div class="carousel3d__cell"><div class="carousel3d__card" style="--img:url(../assets/about/profile.jpg)"><div class="carousel3d__face carousel3d__face--front"></div><div class="carousel3d__face carousel3d__face--back"></div></div></div>
+          <div class="carousel3d__cell"><div class="carousel3d__card" style="--img:url(../assets/about/slide2.jpg)"><div class="carousel3d__face carousel3d__face--front"></div><div class="carousel3d__face carousel3d__face--back"></div></div></div>
+          <div class="carousel3d__cell"><div class="carousel3d__card" style="--img:url(../assets/about/slide3.jpg)"><div class="carousel3d__face carousel3d__face--front"></div><div class="carousel3d__face carousel3d__face--back"></div></div></div>
+          <div class="carousel3d__cell"><div class="carousel3d__card" style="--img:url(../assets/about/slide4.jpg)"><div class="carousel3d__face carousel3d__face--front"></div><div class="carousel3d__face carousel3d__face--back"></div></div></div>
         </div>
       </div>
-    </article>
+      <div class="about-hero__text">
+        <p class="about-hero__eyebrow">The Origin Story</p>
+        <h1 class="about-hero__title">Sri Harshita <span>Pilla</span></h1>
+        <p class="about-hero__bio">
+          She's a <strong>Product Designer</strong> who approaches digital products as living ecosystems, shaping <strong>end-to-end user experiences</strong> from the ground up. With a <strong>Master's in Human-Computer Interaction</strong> from DePaul University and a background in <strong>architecture</strong>, she bridges the gap between high-level spatial strategy and the granular details of a seamless interface.
+        </p>
+        <p class="about-hero__bio">
+          To her, product design is about the whole journey — ensuring every interaction feels as natural and intentional as a well-planned building.
+        </p>
+        <p class="about-hero__bio about-hero__bio--dim">
+          She also has a soft spot for whimsical things 🧚, greens 🌱, and sunsets 🌇.
+        </p>
+      </div>
+    </section>
 
     <!-- connector -->
     <div class="panel-connector"><div class="panel-connector__line"></div><div class="panel-connector__dot"></div><div class="panel-connector__line"></div></div>
@@ -954,6 +922,40 @@
       hamburger.setAttribute('aria-expanded', open);
       document.body.style.overflow = open ? 'hidden' : '';
     });
+
+    // ── 3D Carousel (auto-rotate) ──
+    (function initCarousel3D() {
+      var carousel = document.getElementById('aboutCarousel');
+      if (!carousel) return;
+      var cells = carousel.querySelectorAll('.carousel3d__cell');
+      var count = cells.length;
+      var radius = 280;
+      var angleStep = 360 / count;
+
+      // Position cells in a 3D circle
+      cells.forEach(function(cell, i) {
+        cell.style.transform = 'rotateY(' + (i * angleStep) + 'deg) translateZ(' + radius + 'px)';
+      });
+
+      // Auto-rotate with GSAP if available, else CSS fallback
+      if (typeof gsap !== 'undefined') {
+        gsap.to(carousel, {
+          rotationY: 360,
+          duration: 20,
+          ease: 'none',
+          repeat: -1
+        });
+        // Pause on hover
+        carousel.addEventListener('mouseenter', function() {
+          gsap.to(carousel, { timeScale: 0.2, duration: 0.5 });
+        });
+        carousel.addEventListener('mouseleave', function() {
+          gsap.to(carousel, { timeScale: 1, duration: 0.5 });
+        });
+      } else {
+        carousel.style.animation = 'spin3d 20s linear infinite';
+      }
+    })();
 
     // ── Scroll reveal (panels) ──
     const revealObserver = new IntersectionObserver((entries) => {
