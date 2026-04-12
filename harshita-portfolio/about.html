@@ -913,16 +913,6 @@
       }
     });
 
-    // ── Mobile nav ──
-    const hamburger = document.getElementById('hamburgerBtn');
-    const mobileNav = document.getElementById('navMobile');
-    hamburger.addEventListener('click', () => {
-      const open = hamburger.classList.toggle('open');
-      mobileNav.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', open);
-      document.body.style.overflow = open ? 'hidden' : '';
-    });
-
     // ── 3D Carousel (auto-rotate) ──
     (function initCarousel3D() {
       var carousel = document.getElementById('aboutCarousel');
