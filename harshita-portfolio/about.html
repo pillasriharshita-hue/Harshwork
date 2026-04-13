@@ -208,80 +208,119 @@
     }
 
     /* ═══════════════════════════════════════
-       VERTICAL SLIDING CAROUSEL
+       TWO-ROW HORIZONTAL CAROUSEL
        ═══════════════════════════════════════ */
     .about-hero__carousel {
       flex-shrink: 0;
-      width: 320px;
-      height: 420px;
-      position: relative;
+      width: 420px;
       display: flex;
-      justify-content: center;
       flex-direction: column;
+      gap: 12px;
       overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
     }
-    .carousel__item {
+    .carousel__row {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
-      will-change: transform, opacity;
-      animation: carousel-slide 24s linear infinite;
+      gap: 12px;
+      width: max-content;
+    }
+    .carousel__row--top {
+      animation: scroll-left 20s linear infinite;
+    }
+    .carousel__row--bottom {
+      animation: scroll-right 20s linear infinite;
+    }
+    .carousel__row:hover {
+      animation-play-state: paused;
     }
     .carousel__item-img {
-      width: 280px;
-      height: 380px;
-      border-radius: 12px;
+      width: 180px;
+      height: 220px;
+      border-radius: 10px;
       object-fit: cover;
-      background-color: #1e1e24;
+      display: block;
+      flex-shrink: 0;
       border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.3s ease;
+    }
+    .carousel__item-img:hover {
+      transform: scale(1.04);
     }
 
-    /* Staggered delays for 8 items */
-    .carousel__item:nth-child(1) { animation-delay: calc(3s * -1); }
-    .carousel__item:nth-child(2) { animation-delay: calc(3s * 0); }
-    .carousel__item:nth-child(3) { animation-delay: calc(3s * 1); }
-    .carousel__item:nth-child(4) { animation-delay: calc(3s * 2); }
-    .carousel__item:nth-child(5) { animation-delay: calc(3s * 3); }
-    .carousel__item:nth-child(6) { animation-delay: calc(3s * 4); }
-    .carousel__item:nth-child(7) { animation-delay: calc(3s * 5); }
-    .carousel__item:last-child   { animation-delay: calc(3s * -2); }
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes scroll-right {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
 
-    @keyframes carousel-slide {
-      0% {
-        transform: translateY(100%) scale(0.5);
-        opacity: 0;
-        visibility: hidden;
-      }
-      3%, 12.5% {
-        transform: translateY(100%) scale(0.7);
-        opacity: 0.4;
-        visibility: visible;
-      }
-      15.5%, 25% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-        visibility: visible;
-      }
-      28%, 37.5% {
-        transform: translateY(-100%) scale(0.7);
-        opacity: 0.4;
-        visibility: visible;
-      }
-      40.5% {
-        transform: translateY(-100%) scale(0.5);
-        opacity: 0;
-        visibility: visible;
-      }
-      100% {
-        transform: translateY(-100%) scale(0.5);
-        opacity: 0;
-        visibility: hidden;
-      }
+    /* ═══════════════════════════════════════
+       CURVED CAROUSEL — LIFE BEYOND WORK
+       ═══════════════════════════════════════ */
+    .life-section {
+      padding: 60px 0 40px;
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .life-section.visible {
+      opacity: 1; transform: translateY(0);
+    }
+    .life-section__title {
+      font-family: var(--handwriting);
+      font-size: 22px;
+      color: var(--accent);
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .curved-carousel {
+      width: 100%;
+      overflow: hidden;
+      padding: 20px 0;
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+    .curved-carousel__track {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+      animation: curved-scroll 40s linear infinite;
+    }
+    .curved-carousel__track:hover {
+      animation-play-state: paused;
+    }
+    .curved-carousel__item {
+      flex-shrink: 0;
+      width: 260px;
+      height: 180px;
+      border-radius: 12px;
+      overflow: hidden;
+      transform: perspective(800px) rotateY(0deg);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .curved-carousel__item:nth-child(odd) {
+      transform: perspective(800px) rotateY(-3deg);
+    }
+    .curved-carousel__item:nth-child(even) {
+      transform: perspective(800px) rotateY(3deg);
+    }
+    .curved-carousel__item:hover {
+      transform: perspective(800px) rotateY(0deg) scale(1.05);
+      box-shadow: 0 8px 30px rgba(232,115,74,0.2);
+    }
+    .curved-carousel__item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @keyframes curved-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     /* ═══════════════════════════════════════
@@ -589,8 +628,8 @@
         gap: 32px;
       }
       .about-hero__bio { max-width: 100%; }
-      .about-hero__carousel { width: 260px; height: 340px; margin: 0 auto; }
-      .carousel__item-img { width: 230px; height: 310px; }
+      .about-hero__carousel { width: 100%; margin: 0 auto; }
+      .carousel__item-img { width: 140px; height: 170px; }
 
       .nav { padding: 16px 24px; }
       .nav__links { display: none; }
@@ -714,14 +753,30 @@
     <!-- ═══════ HERO — ORIGIN STORY ═══════ -->
     <section class="about-hero" data-reveal>
       <div class="about-hero__carousel">
-        <div class="carousel__item"><img class="carousel__item-img" src="./assets/about/about landing/2.png" alt="Harshita photo 1" /></div>
-        <div class="carousel__item"><img class="carousel__item-img" src="./assets/about/about landing/3.png" alt="Harshita photo 2" /></div>
-        <div class="carousel__item"><img class="carousel__item-img" src="./assets/about/about landing/4.png" alt="Harshita photo 3" /></div>
-        <div class="carousel__item"><img class="carousel__item-img" src="./assets/about/about landing/5.png" alt="Harshita photo 4" /></div>
-        <div class="carousel__item"><img class="carousel__item-img" src="./assets/about/about landing/6.png" alt="Harshita photo 5" /></div>
-        <div class="carousel__item"><img class="carousel__item-img" src="./assets/about/about landing/7.1.png" alt="Harshita photo 6" /></div>
-        <div class="carousel__item"><img class="carousel__item-img" src="./assets/about/about landing/8.png" alt="Harshita photo 7" /></div>
-        <div class="carousel__item"><img class="carousel__item-img" src="./assets/about/about landing/9.png" alt="Harshita photo 8" /></div>
+        <!-- Top row — scrolls left -->
+        <div class="carousel__row carousel__row--top">
+          <img class="carousel__item-img" src="./assets/about/about landing/2.png" alt="" />
+          <img class="carousel__item-img" src="./assets/about/about landing/3.png" alt="" />
+          <img class="carousel__item-img" src="./assets/about/about landing/4.png" alt="" />
+          <img class="carousel__item-img" src="./assets/about/about landing/5.png" alt="" />
+          <!-- Duplicate for seamless loop -->
+          <img class="carousel__item-img" src="./assets/about/about landing/2.png" alt="" />
+          <img class="carousel__item-img" src="./assets/about/about landing/3.png" alt="" />
+          <img class="carousel__item-img" src="./assets/about/about landing/4.png" alt="" />
+          <img class="carousel__item-img" src="./assets/about/about landing/5.png" alt="" />
+        </div>
+        <!-- Bottom row — scrolls right -->
+        <div class="carousel__row carousel__row--bottom">
+          <img class="carousel__item-img" src="./assets/about/about landing/6.png" alt="" />
+          <img class="carousel__item-img" src="./assets/about/about landing/7.1.png" alt="" />
+          <img class="carousel__item-img" src="./assets/about/about landing/8.png" alt="" />
+          <img class="carousel__item-img" src="./assets/about/about landing/9.png" alt="" />
+          <!-- Duplicate for seamless loop -->
+          <img class="carousel__item-img" src="./assets/about/about landing/6.png" alt="" />
+          <img class="carousel__item-img" src="./assets/about/about landing/7.1.png" alt="" />
+          <img class="carousel__item-img" src="./assets/about/about landing/8.png" alt="" />
+          <img class="carousel__item-img" src="./assets/about/about landing/9.png" alt="" />
+        </div>
       </div>
       <div class="about-hero__text">
         <p class="about-hero__eyebrow">the origin story ✐</p>
@@ -751,10 +806,83 @@
       </div>
     </section>
 
-    <!-- connector -->
-    <div class="panel-connector"><div class="panel-connector__line"></div><div class="panel-connector__dot"></div><div class="panel-connector__line"></div></div>
-
-    <!-- ═══════ STATS MARQUEE ═══════ -->
+    <!-- ═══════ LIFE BEYOND WORK — CURVED CAROUSEL ═══════ -->
+    <section class="life-section" data-reveal>
+      <p class="life-section__title">life beyond work</p>
+      <div class="curved-carousel">
+        <div class="curved-carousel__track">
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/047d22e0-a680-4e8b-b155-b743ad1357eb.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/07499012-c5c2-4162-8881-13fb3f30b483.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/080578a0-3352-4f68-8aa0-b4114d12d536.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/196b3381-9b2b-4547-be35-392742627f97.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/2a2cf4be-d36d-4f19-80c8-205569864aa6.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/2b18af48-fb5c-4d33-9700-01b7ff7532c2.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/2c66403d-6fec-4231-be74-9fc62cb018ed.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/2fe074df-07d5-46ef-bd99-7883b75a1cd9.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/3334981e-f543-421e-a90d-af3871bf3c87.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/3958d2d1-9cca-4d1a-85ba-dbe3fd5025b1.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/3caa4aff-6d11-488e-a9a1-ed7fabe3f10d.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/4d8fda2e-9de0-4cf4-bcac-32c0c77db84b.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/4fdf572b-e7b2-4afe-8f2a-18e6450befe4.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/59a09700-7f6d-4b8e-8f4c-8df0cf5df20b.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/695d934f-d828-490a-bc04-b54bf65518d3.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/6b09803f-f04c-4e9b-9c7a-d8adcecc6cbc.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/75117ef6-55e0-4a7d-91d1-b54de7465edc.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/77e99503-711c-4145-b413-87d6ac0ae2ef.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/7ae65000-6906-4632-95ce-1ddd559dac3b.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/82e6aac1-efb3-4d14-a792-422526563833.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/8cac7321-67a5-4d0a-a4b6-03faec34d832.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/8e1fcb48-9710-4017-bd22-02b565549c44.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/a8c79527-c9a8-4083-ae72-4500d8c91a22.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/b4c78ff4-6e51-4a45-907c-591d0cb392d7.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/c4778df3-2131-4027-84e0-f9f4d635cc00.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/c4ff3852-258e-4cf1-bd89-930eaa9cca18.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/c5ba4387-088b-4535-97ac-4a7aa806ecad.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/d65ede35-483d-43b9-8397-910173acc438.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/d8b525f4-cc92-48b0-859e-5d8986a2afa2.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/dba3df16-deea-464b-87be-af124e1d7fe0.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/e1f39b9a-5bf4-483b-a6e8-f687e304cd5d.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/e78c4404-a1b0-4db2-a9dd-cc74592b0c6f.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/eaa285e8-7448-40c3-9d9e-ff415965a475.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/f1b4edb3-6951-475b-952c-2b7edb0a2a37.jpg" alt="" loading="lazy" /></div>
+          <!-- Duplicate set for seamless loop -->
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/047d22e0-a680-4e8b-b155-b743ad1357eb.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/07499012-c5c2-4162-8881-13fb3f30b483.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/080578a0-3352-4f68-8aa0-b4114d12d536.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/196b3381-9b2b-4547-be35-392742627f97.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/2a2cf4be-d36d-4f19-80c8-205569864aa6.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/2b18af48-fb5c-4d33-9700-01b7ff7532c2.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/2c66403d-6fec-4231-be74-9fc62cb018ed.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/2fe074df-07d5-46ef-bd99-7883b75a1cd9.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/3334981e-f543-421e-a90d-af3871bf3c87.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/3958d2d1-9cca-4d1a-85ba-dbe3fd5025b1.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/3caa4aff-6d11-488e-a9a1-ed7fabe3f10d.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/4d8fda2e-9de0-4cf4-bcac-32c0c77db84b.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/4fdf572b-e7b2-4afe-8f2a-18e6450befe4.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/59a09700-7f6d-4b8e-8f4c-8df0cf5df20b.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/695d934f-d828-490a-bc04-b54bf65518d3.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/6b09803f-f04c-4e9b-9c7a-d8adcecc6cbc.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/75117ef6-55e0-4a7d-91d1-b54de7465edc.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/77e99503-711c-4145-b413-87d6ac0ae2ef.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/7ae65000-6906-4632-95ce-1ddd559dac3b.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/82e6aac1-efb3-4d14-a792-422526563833.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/8cac7321-67a5-4d0a-a4b6-03faec34d832.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/8e1fcb48-9710-4017-bd22-02b565549c44.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/a8c79527-c9a8-4083-ae72-4500d8c91a22.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/b4c78ff4-6e51-4a45-907c-591d0cb392d7.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/c4778df3-2131-4027-84e0-f9f4d635cc00.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/c4ff3852-258e-4cf1-bd89-930eaa9cca18.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/c5ba4387-088b-4535-97ac-4a7aa806ecad.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/d65ede35-483d-43b9-8397-910173acc438.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/d8b525f4-cc92-48b0-859e-5d8986a2afa2.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/dba3df16-deea-464b-87be-af124e1d7fe0.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/e1f39b9a-5bf4-483b-a6e8-f687e304cd5d.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/e78c4404-a1b0-4db2-a9dd-cc74592b0c6f.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/eaa285e8-7448-40c3-9d9e-ff415965a475.jpg" alt="" loading="lazy" /></div>
+          <div class="curved-carousel__item"><img src="./assets/about/images for other things/f1b4edb3-6951-475b-952c-2b7edb0a2a37.jpg" alt="" loading="lazy" /></div>
+        </div>
+      </div>
+    </section>
 
     <!-- connector -->
     <div class="panel-connector"><div class="panel-connector__line"></div><div class="panel-connector__dot"></div><div class="panel-connector__line"></div></div>
