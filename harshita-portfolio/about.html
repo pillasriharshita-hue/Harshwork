@@ -169,12 +169,12 @@
     }
 
     /* ═══════════════════════════════════════
-       ABOUT HERO — CAROUSEL LEFT + TEXT RIGHT
+       ABOUT HERO — CAROUSEL TOP + TEXT BELOW
        ═══════════════════════════════════════ */
     .about-hero {
       display: flex;
-      align-items: center;
-      gap: 60px;
+      flex-direction: column;
+      gap: 40px;
       padding: 60px 0 20px;
       opacity: 0; transform: translateY(30px);
       transition: opacity 0.8s ease, transform 0.8s ease;
@@ -183,7 +183,7 @@
       opacity: 1; transform: translateY(0);
     }
     .about-hero__text {
-      flex: 1;
+      width: 100%;
     }
     .about-hero__eyebrow {
       font-family: var(--handwriting); font-size: 20px; color: var(--accent);
@@ -211,14 +211,13 @@
        TWO-ROW HORIZONTAL CAROUSEL
        ═══════════════════════════════════════ */
     .about-hero__carousel {
-      flex-shrink: 0;
-      width: 420px;
+      width: 100%;
       display: flex;
       flex-direction: column;
       gap: 12px;
       overflow: hidden;
-      -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
-      mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
     }
     .carousel__row {
       display: flex;
@@ -226,10 +225,10 @@
       width: max-content;
     }
     .carousel__row--top {
-      animation: scroll-left 20s linear infinite;
+      animation: scroll-left 10s linear infinite;
     }
     .carousel__row--bottom {
-      animation: scroll-right 20s linear infinite;
+      animation: scroll-right 10s linear infinite;
     }
     .carousel__row:hover {
       animation-play-state: paused;
@@ -622,13 +621,8 @@
 
     /* ≤ 900px */
     @media (max-width: 900px) {
-      .about-hero {
-        flex-direction: column;
-        text-align: center;
-        gap: 32px;
-      }
+      .about-hero { gap: 28px; }
       .about-hero__bio { max-width: 100%; }
-      .about-hero__carousel { width: 100%; margin: 0 auto; }
       .carousel__item-img { width: 140px; height: 170px; }
 
       .nav { padding: 16px 24px; }
