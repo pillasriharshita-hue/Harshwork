@@ -248,14 +248,20 @@
       transition: transform 0.3s ease;
     }
     .comic-panel:hover {
-      z-index: 2;
-      transform: scale(1.02);
+      z-index: 10;
+      transform: scale(1.15);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+      border-color: var(--accent);
     }
     .comic-panel img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.3s ease;
+    }
+    .comic-panel:hover img {
+      transform: scale(1.05);
     }
     /* Title panel */
     .comic-panel--title {
@@ -281,6 +287,18 @@
       color: var(--accent);
       margin-top: 8px;
     }
+    .comic-panel__bio {
+      margin-top: 16px;
+      max-width: 42ch;
+    }
+    .comic-panel__bio p {
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
     /* Grid placement */
     .comic-panel--1 { grid-column: 4 / 7; grid-row: 1 / 2; }
     .comic-panel--2 { grid-column: 1 / 3; grid-row: 2 / 3; }
@@ -291,7 +309,7 @@
     .comic-panel--7 { grid-column: 1 / 7; grid-row: 4 / 5; min-height: 200px; }
 
     /* ═══════════════════════════════════════
-       CURVED CAROUSEL — LIFE BEYOND WORK
+       LIFE BEYOND WORK — CAROUSEL LEFT + TEXT RIGHT
        ═══════════════════════════════════════ */
     .life-section {
       padding: 60px 0 40px;
@@ -301,67 +319,73 @@
     .life-section.visible {
       opacity: 1; transform: translateY(0);
     }
+    .life-section__layout {
+      display: flex;
+      gap: 48px;
+      align-items: center;
+    }
+    .life-section__carousels {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      -webkit-mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
+      mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
+    }
+    .life-section__row {
+      display: flex;
+      gap: 14px;
+      width: max-content;
+    }
+    .life-section__row--right {
+      animation: life-scroll-right 80s linear infinite;
+    }
+    .life-section__row--left {
+      animation: life-scroll-left 80s linear infinite;
+    }
+    .life-section__row:hover {
+      animation-play-state: paused;
+    }
+    .life-section__img {
+      flex-shrink: 0;
+      width: 220px;
+      height: 160px;
+      border-radius: 10px;
+      object-fit: cover;
+      display: block;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.3s ease;
+    }
+    .life-section__img:hover {
+      transform: scale(1.05);
+    }
+    .life-section__text {
+      flex-shrink: 0;
+      width: 380px;
+    }
     .life-section__title {
       font-family: var(--handwriting);
       font-size: 22px;
       color: var(--accent);
       letter-spacing: 1px;
-      text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
-    .life-section__bio {
-      max-width: 680px;
-      margin: 0 auto 32px;
-      text-align: center;
-    }
-    .curved-carousel {
-      width: 100%;
-      overflow: hidden;
-      padding: 30px 0;
-      perspective: 1200px;
-      -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-      mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-    }
-    .curved-carousel__track {
-      display: flex;
-      gap: 18px;
-      width: max-content;
-      animation: curved-scroll 100s linear infinite;
-      transform-style: preserve-3d;
-      transform: rotateY(-2deg);
-    }
-    .curved-carousel__track:hover {
-      animation-play-state: paused;
-    }
-    .curved-carousel__item {
-      flex-shrink: 0;
-      width: 260px;
-      height: 180px;
-      border-radius: 10px;
-      overflow: hidden;
-      transform-style: preserve-3d;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-    /* Curved arc — items at edges rotate more, center stays flat */
-    .curved-carousel__item:nth-child(5n+1) { transform: perspective(600px) rotateY(-12deg); }
-    .curved-carousel__item:nth-child(5n+2) { transform: perspective(600px) rotateY(-5deg); }
-    .curved-carousel__item:nth-child(5n+3) { transform: perspective(600px) rotateY(0deg); }
-    .curved-carousel__item:nth-child(5n+4) { transform: perspective(600px) rotateY(5deg); }
-    .curved-carousel__item:nth-child(5n+5) { transform: perspective(600px) rotateY(12deg); }
-    .curved-carousel__item:hover {
-      transform: perspective(600px) rotateY(0deg) scale(1.06);
-      box-shadow: 0 8px 30px rgba(232,115,74,0.25);
-    }
-    .curved-carousel__item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+    .life-section__bio p {
+      font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.8;
+      margin-bottom: 16px;
     }
 
-    @keyframes curved-scroll {
-      0% { transform: rotateY(-2deg) translateX(0); }
-      100% { transform: rotateY(-2deg) translateX(-50%); }
+    @keyframes life-scroll-right {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes life-scroll-left {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
     }
 
     /* ═══════════════════════════════════════
@@ -805,6 +829,11 @@
         <div class="comic-panel comic-panel--title">
           <h2>The Story Behind<br>the Designer</h2>
           <span class="comic-subtitle">in frames ✦</span>
+          <div class="comic-panel__bio">
+            <p>I've always been someone who notices. How people move through a room, where they hesitate, what feels effortless and what feels slightly off.</p>
+            <p>Architecture taught me to think in systems. Structure, flow, function, and the human body moving through all of it. But the deeper I went, the more I realized I was less interested in the building itself and more interested in the person inside it.</p>
+            <p>The moment of hesitation at a corridor. The friction no one else noticed. The experience behind the form. That's what brought me to UX.</p>
+          </div>
         </div>
         <!-- Frame 1 -->
         <div class="comic-panel comic-panel--1">
@@ -866,94 +895,97 @@
       </div>
     </section>
 
-    <!-- ═══════ LIFE BEYOND WORK — CURVED CAROUSEL ═══════ -->
+    <!-- ═══════ LIFE BEYOND WORK ═══════ -->
     <section class="life-section" data-reveal>
-      <p class="life-section__title">life beyond work ✿</p>
-      <div class="life-section__bio">
-        <p class="about-hero__bio">
-          I don't really switch off the designer brain. I just point it at different things.
-        </p>
-        <p class="about-hero__bio">
-          When I'm not designing products, I'm noticing how a sidewalk guides you with painted arrows, how a bookstore shelf is angled to catch your eye, or why one cafe feels welcoming while the next one doesn't. I sketch what I see. I photograph patterns most people step over. I read about why humans behave the way they do.
-        </p>
-        <p class="about-hero__bio">
-          I also paint, sketch urbanscapes, and recently started clay modeling. The same instinct that makes me notice friction in a user flow also makes me notice it everywhere else.
-        </p>
-        <p class="about-hero__bio">
-          Everything is design if you're paying attention.
-        </p>
-      </div>
-      <div class="curved-carousel">
-        <div class="curved-carousel__track">
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/047d22e0-a680-4e8b-b155-b743ad1357eb.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/07499012-c5c2-4162-8881-13fb3f30b483.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/080578a0-3352-4f68-8aa0-b4114d12d536.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/196b3381-9b2b-4547-be35-392742627f97.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/2a2cf4be-d36d-4f19-80c8-205569864aa6.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/2b18af48-fb5c-4d33-9700-01b7ff7532c2.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/2c66403d-6fec-4231-be74-9fc62cb018ed.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/2fe074df-07d5-46ef-bd99-7883b75a1cd9.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/3334981e-f543-421e-a90d-af3871bf3c87.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/3958d2d1-9cca-4d1a-85ba-dbe3fd5025b1.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/3caa4aff-6d11-488e-a9a1-ed7fabe3f10d.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/4d8fda2e-9de0-4cf4-bcac-32c0c77db84b.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/4fdf572b-e7b2-4afe-8f2a-18e6450befe4.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/59a09700-7f6d-4b8e-8f4c-8df0cf5df20b.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/695d934f-d828-490a-bc04-b54bf65518d3.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/6b09803f-f04c-4e9b-9c7a-d8adcecc6cbc.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/75117ef6-55e0-4a7d-91d1-b54de7465edc.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/77e99503-711c-4145-b413-87d6ac0ae2ef.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/7ae65000-6906-4632-95ce-1ddd559dac3b.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/82e6aac1-efb3-4d14-a792-422526563833.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/8cac7321-67a5-4d0a-a4b6-03faec34d832.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/8e1fcb48-9710-4017-bd22-02b565549c44.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/a8c79527-c9a8-4083-ae72-4500d8c91a22.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/b4c78ff4-6e51-4a45-907c-591d0cb392d7.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/c4778df3-2131-4027-84e0-f9f4d635cc00.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/c4ff3852-258e-4cf1-bd89-930eaa9cca18.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/c5ba4387-088b-4535-97ac-4a7aa806ecad.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/d65ede35-483d-43b9-8397-910173acc438.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/d8b525f4-cc92-48b0-859e-5d8986a2afa2.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/dba3df16-deea-464b-87be-af124e1d7fe0.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/e1f39b9a-5bf4-483b-a6e8-f687e304cd5d.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/e78c4404-a1b0-4db2-a9dd-cc74592b0c6f.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/eaa285e8-7448-40c3-9d9e-ff415965a475.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/f1b4edb3-6951-475b-952c-2b7edb0a2a37.jpg" alt="" loading="lazy" /></div>
-          <!-- Duplicate set for seamless loop -->
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/047d22e0-a680-4e8b-b155-b743ad1357eb.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/07499012-c5c2-4162-8881-13fb3f30b483.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/080578a0-3352-4f68-8aa0-b4114d12d536.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/196b3381-9b2b-4547-be35-392742627f97.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/2a2cf4be-d36d-4f19-80c8-205569864aa6.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/2b18af48-fb5c-4d33-9700-01b7ff7532c2.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/2c66403d-6fec-4231-be74-9fc62cb018ed.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/2fe074df-07d5-46ef-bd99-7883b75a1cd9.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/3334981e-f543-421e-a90d-af3871bf3c87.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/3958d2d1-9cca-4d1a-85ba-dbe3fd5025b1.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/3caa4aff-6d11-488e-a9a1-ed7fabe3f10d.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/4d8fda2e-9de0-4cf4-bcac-32c0c77db84b.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/4fdf572b-e7b2-4afe-8f2a-18e6450befe4.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/59a09700-7f6d-4b8e-8f4c-8df0cf5df20b.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/695d934f-d828-490a-bc04-b54bf65518d3.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/6b09803f-f04c-4e9b-9c7a-d8adcecc6cbc.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/75117ef6-55e0-4a7d-91d1-b54de7465edc.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/77e99503-711c-4145-b413-87d6ac0ae2ef.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/7ae65000-6906-4632-95ce-1ddd559dac3b.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/82e6aac1-efb3-4d14-a792-422526563833.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/8cac7321-67a5-4d0a-a4b6-03faec34d832.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/8e1fcb48-9710-4017-bd22-02b565549c44.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/a8c79527-c9a8-4083-ae72-4500d8c91a22.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/b4c78ff4-6e51-4a45-907c-591d0cb392d7.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/c4778df3-2131-4027-84e0-f9f4d635cc00.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/c4ff3852-258e-4cf1-bd89-930eaa9cca18.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/c5ba4387-088b-4535-97ac-4a7aa806ecad.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/d65ede35-483d-43b9-8397-910173acc438.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/d8b525f4-cc92-48b0-859e-5d8986a2afa2.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/dba3df16-deea-464b-87be-af124e1d7fe0.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/e1f39b9a-5bf4-483b-a6e8-f687e304cd5d.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/e78c4404-a1b0-4db2-a9dd-cc74592b0c6f.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/eaa285e8-7448-40c3-9d9e-ff415965a475.jpg" alt="" loading="lazy" /></div>
-          <div class="curved-carousel__item"><img src="./assets/about/images for other things/f1b4edb3-6951-475b-952c-2b7edb0a2a37.jpg" alt="" loading="lazy" /></div>
+      <div class="life-section__layout">
+        <!-- LEFT — Two-row carousel -->
+        <div class="life-section__carousels">
+          <!-- Row 1 — scrolls right -->
+          <div class="life-section__row life-section__row--right">
+            <img class="life-section__img" src="./assets/about/images for other things/047d22e0-a680-4e8b-b155-b743ad1357eb.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/07499012-c5c2-4162-8881-13fb3f30b483.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/080578a0-3352-4f68-8aa0-b4114d12d536.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/196b3381-9b2b-4547-be35-392742627f97.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/2a2cf4be-d36d-4f19-80c8-205569864aa6.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/2b18af48-fb5c-4d33-9700-01b7ff7532c2.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/2c66403d-6fec-4231-be74-9fc62cb018ed.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/2fe074df-07d5-46ef-bd99-7883b75a1cd9.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/3334981e-f543-421e-a90d-af3871bf3c87.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/3958d2d1-9cca-4d1a-85ba-dbe3fd5025b1.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/3caa4aff-6d11-488e-a9a1-ed7fabe3f10d.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/4d8fda2e-9de0-4cf4-bcac-32c0c77db84b.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/4fdf572b-e7b2-4afe-8f2a-18e6450befe4.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/59a09700-7f6d-4b8e-8f4c-8df0cf5df20b.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/695d934f-d828-490a-bc04-b54bf65518d3.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/6b09803f-f04c-4e9b-9c7a-d8adcecc6cbc.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/75117ef6-55e0-4a7d-91d1-b54de7465edc.jpg" alt="" loading="lazy" />
+            <!-- Duplicate for seamless loop -->
+            <img class="life-section__img" src="./assets/about/images for other things/047d22e0-a680-4e8b-b155-b743ad1357eb.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/07499012-c5c2-4162-8881-13fb3f30b483.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/080578a0-3352-4f68-8aa0-b4114d12d536.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/196b3381-9b2b-4547-be35-392742627f97.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/2a2cf4be-d36d-4f19-80c8-205569864aa6.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/2b18af48-fb5c-4d33-9700-01b7ff7532c2.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/2c66403d-6fec-4231-be74-9fc62cb018ed.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/2fe074df-07d5-46ef-bd99-7883b75a1cd9.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/3334981e-f543-421e-a90d-af3871bf3c87.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/3958d2d1-9cca-4d1a-85ba-dbe3fd5025b1.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/3caa4aff-6d11-488e-a9a1-ed7fabe3f10d.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/4d8fda2e-9de0-4cf4-bcac-32c0c77db84b.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/4fdf572b-e7b2-4afe-8f2a-18e6450befe4.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/59a09700-7f6d-4b8e-8f4c-8df0cf5df20b.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/695d934f-d828-490a-bc04-b54bf65518d3.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/6b09803f-f04c-4e9b-9c7a-d8adcecc6cbc.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/75117ef6-55e0-4a7d-91d1-b54de7465edc.jpg" alt="" loading="lazy" />
+          </div>
+          <!-- Row 2 — scrolls left -->
+          <div class="life-section__row life-section__row--left">
+            <img class="life-section__img" src="./assets/about/images for other things/77e99503-711c-4145-b413-87d6ac0ae2ef.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/7ae65000-6906-4632-95ce-1ddd559dac3b.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/82e6aac1-efb3-4d14-a792-422526563833.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/8cac7321-67a5-4d0a-a4b6-03faec34d832.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/8e1fcb48-9710-4017-bd22-02b565549c44.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/a8c79527-c9a8-4083-ae72-4500d8c91a22.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/b4c78ff4-6e51-4a45-907c-591d0cb392d7.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/c4778df3-2131-4027-84e0-f9f4d635cc00.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/c4ff3852-258e-4cf1-bd89-930eaa9cca18.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/c5ba4387-088b-4535-97ac-4a7aa806ecad.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/d65ede35-483d-43b9-8397-910173acc438.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/d8b525f4-cc92-48b0-859e-5d8986a2afa2.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/dba3df16-deea-464b-87be-af124e1d7fe0.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/e1f39b9a-5bf4-483b-a6e8-f687e304cd5d.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/e78c4404-a1b0-4db2-a9dd-cc74592b0c6f.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/eaa285e8-7448-40c3-9d9e-ff415965a475.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/f1b4edb3-6951-475b-952c-2b7edb0a2a37.jpg" alt="" loading="lazy" />
+            <!-- Duplicate for seamless loop -->
+            <img class="life-section__img" src="./assets/about/images for other things/77e99503-711c-4145-b413-87d6ac0ae2ef.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/7ae65000-6906-4632-95ce-1ddd559dac3b.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/82e6aac1-efb3-4d14-a792-422526563833.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/8cac7321-67a5-4d0a-a4b6-03faec34d832.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/8e1fcb48-9710-4017-bd22-02b565549c44.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/a8c79527-c9a8-4083-ae72-4500d8c91a22.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/b4c78ff4-6e51-4a45-907c-591d0cb392d7.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/c4778df3-2131-4027-84e0-f9f4d635cc00.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/c4ff3852-258e-4cf1-bd89-930eaa9cca18.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/c5ba4387-088b-4535-97ac-4a7aa806ecad.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/d65ede35-483d-43b9-8397-910173acc438.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/d8b525f4-cc92-48b0-859e-5d8986a2afa2.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/dba3df16-deea-464b-87be-af124e1d7fe0.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/e1f39b9a-5bf4-483b-a6e8-f687e304cd5d.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/e78c4404-a1b0-4db2-a9dd-cc74592b0c6f.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/eaa285e8-7448-40c3-9d9e-ff415965a475.jpg" alt="" loading="lazy" />
+            <img class="life-section__img" src="./assets/about/images for other things/f1b4edb3-6951-475b-952c-2b7edb0a2a37.jpg" alt="" loading="lazy" />
+          </div>
+        </div>
+        <!-- RIGHT — Text -->
+        <div class="life-section__text">
+          <p class="life-section__title">life beyond work ✿</p>
+          <div class="life-section__bio">
+            <p>I don't really switch off the designer brain. I just point it at different things.</p>
+            <p>When I'm not designing products, I'm noticing how a sidewalk guides you with painted arrows, how a bookstore shelf is angled to catch your eye, or why one cafe feels welcoming while the next one doesn't. I sketch what I see. I photograph patterns most people step over. I read about why humans behave the way they do.</p>
+            <p>I also paint, sketch urbanscapes, and recently started clay modeling. The same instinct that makes me notice friction in a user flow also makes me notice it everywhere else.</p>
+            <p>Everything is design if you're paying attention.</p>
+          </div>
         </div>
       </div>
     </section>
