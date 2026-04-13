@@ -43,7 +43,6 @@
        ═══════════════════════════════════════ */
     :root {
       --accent: #E8734A;
-      --accent-glow: rgba(232, 115, 74, 0.15);
       --bg: #16161a;
       --grid-color: rgba(114,114,114,0.18);
       --bg-card: #1f1f28;
@@ -118,7 +117,7 @@
     }
     .about-hero__content {
       display: flex;
-      align-items: flex-start;
+      align-items: stretch;
       gap: 48px;
       margin-top: 40px;
     }
@@ -129,7 +128,7 @@
     .vcarousel {
       flex-shrink: 0;
       width: 340px;
-      height: 520px;
+      height: auto;
       overflow: hidden;
       border-radius: 12px;
       position: relative;
@@ -140,7 +139,7 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
-      animation: vscroll 25s linear infinite;
+      animation: vscroll 120s linear infinite;
     }
     .vcarousel__track:hover {
       animation-play-state: paused;
@@ -258,140 +257,6 @@
     }
 
     /* ═══════════════════════════════════════
-       COMIC PANEL BASE STYLES
-       ═══════════════════════════════════════ */
-    .panel {
-      background: var(--bg-card);
-      border: 2px solid var(--comic-border);
-      border-radius: 12px;
-      margin-bottom: 40px;
-      overflow: hidden;
-      position: relative;
-      opacity: 0; transform: translateY(40px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .panel.visible {
-      opacity: 1; transform: translateY(0);
-    }
-    .panel__header {
-      padding: 20px 28px 12px;
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; gap: 12px;
-    }
-    .panel__number {
-      font-family: var(--handwriting); font-size: 32px; font-weight: 700;
-      color: var(--accent); line-height: 1;
-    }
-    .panel__label {
-      font-size: 11px; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 3px; color: var(--text-dim);
-    }
-    .panel__body { padding: 28px; }
-
-    /* ═══════════════════════════════════════
-       PANEL : SKILLS (Comic grid)
-       ═══════════════════════════════════════ */
-    .skills__grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-    }
-    .skill-cell {
-      background: var(--comic-bg); border: 2px solid var(--comic-border);
-      border-radius: 8px; padding: 24px; position: relative;
-      transition: transform 0.3s, border-color 0.3s;
-    }
-    .skill-cell:hover {
-      transform: translateY(-4px); border-color: var(--accent);
-    }
-    .skill-cell__icon {
-      width: 48px; height: 48px; border-radius: 10px;
-      background: var(--accent-glow); display: flex; align-items: center; justify-content: center;
-      font-size: 22px; margin-bottom: 14px;
-    }
-    .skill-cell__title {
-      font-size: 16px; font-weight: 600; color: var(--white); margin-bottom: 8px;
-    }
-    .skill-cell__tags {
-      display: flex; flex-wrap: wrap; gap: 6px;
-    }
-    .skill-tag {
-      font-size: 12px; color: var(--text-dim); background: rgba(255,255,255,0.05);
-      padding: 4px 10px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.08);
-      transition: all 0.2s;
-    }
-    .skill-tag:hover {
-      color: var(--accent); border-color: var(--accent); background: var(--accent-glow);
-    }
-
-    /* Annotation arrow (handwritten style) */
-    .annotation {
-      font-family: var(--handwriting); font-size: 16px; color: var(--accent);
-      display: flex; align-items: center; gap: 8px; margin-top: 16px;
-    }
-    .annotation svg { flex-shrink: 0; }
-
-    /* ═══════════════════════════════════════
-       PANEL : VALUES / PHILOSOPHY
-       ═══════════════════════════════════════ */
-    .values__strip {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-    }
-    .value-card {
-      background: var(--comic-bg); border: 2px solid var(--comic-border);
-      border-radius: 12px; padding: 28px 24px; text-align: center;
-      transition: all 0.3s; position: relative; overflow: hidden;
-    }
-    .value-card:hover {
-      transform: translateY(-6px); border-color: var(--accent);
-      box-shadow: 0 12px 40px rgba(232,115,74,0.15);
-    }
-    .value-card__emoji { font-size: 36px; margin-bottom: 14px; display: block; }
-    .value-card__title {
-      font-family: var(--serif); font-size: 20px; font-weight: 700;
-      color: var(--white); margin-bottom: 8px;
-    }
-    .value-card__desc {
-      font-size: 13px; color: var(--text-dim); line-height: 1.7;
-    }
-    .value-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--accent), transparent);
-      opacity: 0; transition: opacity 0.3s;
-    }
-    .value-card:hover::before { opacity: 1; }
-
-    /* ═══════════════════════════════════════
-       PANEL : FUN FACTS (Comic strip row)
-       ═══════════════════════════════════════ */
-    .funfacts__strip {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
-      border: 2px solid var(--comic-border); border-radius: 8px; overflow: hidden;
-    }
-    .funfact {
-      padding: 28px 20px; text-align: center;
-      border-right: 2px solid var(--comic-border);
-      position: relative; background: var(--comic-bg);
-      transition: background 0.3s;
-    }
-    .funfact:last-child { border-right: none; }
-    .funfact:hover { background: rgba(232,115,74,0.05); }
-    .funfact__illustration {
-      width: 100%; height: 120px;
-      background: var(--bg-card); border: 2px dashed var(--border); border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 14px;
-    }
-    .funfact__illustration-label {
-      font-family: var(--handwriting); font-size: 14px; color: var(--text-dim);
-    }
-    .funfact__text {
-      font-family: var(--handwriting); font-size: 18px; color: var(--white);
-      line-height: 1.4;
-    }
-    .funfact__caption {
-      font-size: 12px; color: var(--text-dim); margin-top: 6px;
-    }
-
-    /* ═══════════════════════════════════════
        PANEL : CTA (Let's work together)
        ═══════════════════════════════════════ */
     .cta-panel {
@@ -447,19 +312,6 @@
     .footer__text a:hover { opacity: 0.8; }
 
     /* ═══════════════════════════════════════
-       PAGE TRANSITION LINES (between panels)
-       ═══════════════════════════════════════ */
-    .panel-connector {
-      display: flex; flex-direction: column; align-items: center;
-      padding: 20px 0; opacity: 0.4;
-    }
-    .panel-connector__line { width: 2px; height: 40px; background: var(--border); }
-    .panel-connector__dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--accent); margin: 8px 0;
-    }
-
-    /* ═══════════════════════════════════════
        RESPONSIVE
        ═══════════════════════════════════════ */
 
@@ -474,30 +326,11 @@
       .about-hero__bio { max-width: 100%; }
       .vcarousel { width: 100%; height: 360px; }
       .comic { padding: 80px 24px 40px; }
-
-      .skills__grid { grid-template-columns: 1fr 1fr; }
-
-      .values__strip { grid-template-columns: 1fr 1fr; }
-      .values__strip .value-card:last-child {
-        grid-column: 1 / -1; max-width: 400px; margin: 0 auto;
-      }
-
-      .funfacts__strip { grid-template-columns: 1fr; }
-      .funfact { border-right: none; border-bottom: 2px solid var(--comic-border); }
-      .funfact:last-child { border-bottom: none; }
     }
 
     /* ≤ 600px */
     @media (max-width: 600px) {
       .comic { padding: 70px 16px 32px; }
-
-      .panel__body { padding: 20px 16px; }
-      .panel__header { padding: 16px 16px 10px; }
-
-      .skills__grid { grid-template-columns: 1fr; }
-
-      .values__strip { grid-template-columns: 1fr; }
-      .values__strip .value-card:last-child { max-width: 100%; }
 
       .cta-panel { padding: 40px 20px; }
       .cta-panel__illustration { width: 150px; height: 150px; }
@@ -719,139 +552,7 @@
       </div>
     </section>
 
-    <!-- connector -->
-    <div class="panel-connector"><div class="panel-connector__line"></div><div class="panel-connector__dot"></div><div class="panel-connector__line"></div></div>
-
-    <!-- ═══════ PANEL 2 — SKILLS ═══════ -->
-    <article class="panel" data-reveal>
-      <div class="panel__header">
-        <span class="panel__number">02</span>
-        <span class="panel__label">Powers &amp; Abilities</span>
-      </div>
-      <div class="panel__body">
-        <div class="skills__grid">
-          <div class="skill-cell">
-            <div class="skill-cell__icon">🔍</div>
-            <h4 class="skill-cell__title">Research</h4>
-            <div class="skill-cell__tags">
-              <span class="skill-tag">User Interviews</span>
-              <span class="skill-tag">Usability Testing</span>
-              <span class="skill-tag">Survey Design</span>
-              <span class="skill-tag">Affinity Mapping</span>
-              <span class="skill-tag">Heuristic Eval</span>
-            </div>
-          </div>
-          <div class="skill-cell">
-            <div class="skill-cell__icon">🎨</div>
-            <h4 class="skill-cell__title">Design</h4>
-            <div class="skill-cell__tags">
-              <span class="skill-tag">Figma</span>
-              <span class="skill-tag">Framer</span>
-              <span class="skill-tag">Prototyping</span>
-              <span class="skill-tag">Interaction Design</span>
-              <span class="skill-tag">Visual Design</span>
-              <span class="skill-tag">Design Systems</span>
-            </div>
-          </div>
-          <div class="skill-cell">
-            <div class="skill-cell__icon">🧠</div>
-            <h4 class="skill-cell__title">Strategy</h4>
-            <div class="skill-cell__tags">
-              <span class="skill-tag">Product Thinking</span>
-              <span class="skill-tag">Behavioral Design</span>
-              <span class="skill-tag">Data-Informed</span>
-              <span class="skill-tag">Stakeholder Mgmt</span>
-            </div>
-          </div>
-          <div class="skill-cell">
-            <div class="skill-cell__icon">⚡</div>
-            <h4 class="skill-cell__title">Tech</h4>
-            <div class="skill-cell__tags">
-              <span class="skill-tag">HTML / CSS</span>
-              <span class="skill-tag">JavaScript</span>
-              <span class="skill-tag">React Basics</span>
-              <span class="skill-tag">AI / ML Concepts</span>
-              <span class="skill-tag">Accessibility</span>
-            </div>
-          </div>
-        </div>
-        <div class="annotation">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-          hover over the tags — they're all real superpowers!
-        </div>
-      </div>
-    </article>
-
-    <!-- connector -->
-    <div class="panel-connector"><div class="panel-connector__line"></div><div class="panel-connector__dot"></div><div class="panel-connector__line"></div></div>
-
-    <!-- ═══════ PANEL 4 — VALUES / PHILOSOPHY ═══════ -->
-    <article class="panel" data-reveal>
-      <div class="panel__header">
-        <span class="panel__number">03</span>
-        <span class="panel__label">Design Philosophy</span>
-      </div>
-      <div class="panel__body">
-        <div class="values__strip">
-          <div class="value-card">
-            <span class="value-card__emoji">🔬</span>
-            <h4 class="value-card__title">Research First</h4>
-            <p class="value-card__desc">Every design decision starts with understanding the human behind the screen. Assumptions are hypotheses, not answers.</p>
-          </div>
-          <div class="value-card">
-            <span class="value-card__emoji">✨</span>
-            <h4 class="value-card__title">Craft Matters</h4>
-            <p class="value-card__desc">The details aren't just details — they are the design. Pixel-perfect execution and thoughtful micro-interactions make the difference.</p>
-          </div>
-          <div class="value-card">
-            <span class="value-card__emoji">🧬</span>
-            <h4 class="value-card__title">Design for Behavior</h4>
-            <p class="value-card__desc">Great products don't just look good — they guide behavior. I design with cognitive biases, mental models, and real-world context in mind.</p>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- connector -->
-    <div class="panel-connector"><div class="panel-connector__line"></div><div class="panel-connector__dot"></div><div class="panel-connector__line"></div></div>
-
-    <!-- ═══════ PANEL 5 — FUN FACTS (Comic strip) ═══════ -->
-    <article class="panel" data-reveal>
-      <div class="panel__header">
-        <span class="panel__number">04</span>
-        <span class="panel__label">Off-Screen Adventures</span>
-      </div>
-      <div class="panel__body" style="padding:0;">
-        <div class="funfacts__strip">
-          <div class="funfact">
-            <div class="funfact__illustration">
-              <span class="funfact__illustration-label">✏️ Sketch: coffee + sketchbook</span>
-            </div>
-            <p class="funfact__text">Fueled by coffee & lo-fi beats</p>
-            <p class="funfact__caption">My productivity stack is embarrassingly simple</p>
-          </div>
-          <div class="funfact">
-            <div class="funfact__illustration">
-              <span class="funfact__illustration-label">✏️ Sketch: travel journal</span>
-            </div>
-            <p class="funfact__text">Collects design inspo from every city</p>
-            <p class="funfact__caption">Signage, menus, wayfinding — it's all research</p>
-          </div>
-          <div class="funfact">
-            <div class="funfact__illustration">
-              <span class="funfact__illustration-label">✏️ Sketch: reading by window</span>
-            </div>
-            <p class="funfact__text">Reads behavioral psychology for fun</p>
-            <p class="funfact__caption">Kahneman, Ariely, and Thaler are basically coworkers</p>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- connector -->
-    <div class="panel-connector"><div class="panel-connector__line"></div><div class="panel-connector__dot"></div><div class="panel-connector__line"></div></div>
-
-    <!-- ═══════ PANEL 6 — CTA ═══════ -->
+    <!-- ═══════ CTA ═══════ -->
     <article class="panel cta-panel" data-reveal>
       <div class="cta-panel__illustration">
         <span class="cta-panel__illustration-label">✏️ Illustration: Harshita waving hello</span>
