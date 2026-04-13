@@ -209,53 +209,56 @@
     }
 
     /* ═══════════════════════════════════════
-       3D CAROUSEL (Codrops-inspired)
+       3D CAROUSEL (Codrops 3DCarousel)
        ═══════════════════════════════════════ */
     .about-hero__carousel {
       flex-shrink: 0;
-      width: 320px;
-      height: 420px;
+      width: 420px;
+      height: 500px;
       perspective: 900px;
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
     }
-    .carousel3d {
-      width: 220px;
-      height: 300px;
+    .carousel {
+      width: 400px;
+      height: 500px;
+      position: absolute;
+      transform-style: preserve-3d;
+      will-change: transform;
+      transform: translateZ(-500px);
+    }
+    .carousel__cell {
+      position: absolute;
+      width: 280px;
+      height: 360px;
+      left: 50%;
+      top: 50%;
+      margin-left: -140px;
+      margin-top: -180px;
+      transform-style: preserve-3d;
+    }
+    .card {
+      width: 100%;
+      height: 100%;
       position: relative;
       transform-style: preserve-3d;
-      transform: translateZ(-280px);
     }
-    .carousel3d__cell {
+    .card__face {
+      width: 100%;
+      height: 100%;
       position: absolute;
-      width: 220px;
-      height: 300px;
       backface-visibility: hidden;
-    }
-    .carousel3d__card {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-    }
-    .carousel3d__face {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 12px;
-      overflow: hidden;
-    }
-    .carousel3d__face--front {
       background-image: var(--img);
       background-size: cover;
       background-position: center;
-      border: 2px solid var(--border);
+      border-radius: 8px;
     }
-    .carousel3d__face--back {
-      background: var(--bg-card);
-      border: 2px solid var(--border);
+    .card__face--back {
+      background-image: var(--img);
       transform: rotateY(180deg);
+      filter: brightness(0.4);
     }
 
     /* ═══════════════════════════════════════
@@ -526,8 +529,8 @@
        ANIMATIONS
        ═══════════════════════════════════════ */
     @keyframes spin3d {
-      0%   { transform: translateZ(-280px) rotateY(0deg); }
-      100% { transform: translateZ(-280px) rotateY(360deg); }
+      0%   { transform: translateZ(-500px) rotateY(0deg); }
+      100% { transform: translateZ(-500px) rotateY(360deg); }
     }
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
@@ -567,9 +570,9 @@
         gap: 32px;
       }
       .about-hero__bio { max-width: 100%; }
-      .about-hero__carousel { width: 260px; height: 340px; margin: 0 auto; }
-      .carousel3d { width: 180px; height: 240px; transform: translateZ(-220px); }
-      .carousel3d__cell { width: 180px; height: 240px; }
+      .about-hero__carousel { width: 300px; height: 380px; margin: 0 auto; }
+      .carousel { width: 300px; height: 380px; transform: translateZ(-350px); }
+      .carousel__cell { width: 200px; height: 260px; margin-left: -100px; margin-top: -130px; }
 
       .nav { padding: 16px 24px; }
       .nav__links { display: none; }
@@ -693,11 +696,31 @@
     <!-- ═══════ HERO — ORIGIN STORY ═══════ -->
     <section class="about-hero" data-reveal>
       <div class="about-hero__carousel">
-        <div class="carousel3d" id="aboutCarousel">
-          <div class="carousel3d__cell"><div class="carousel3d__card" style="--img:url(../assets/about/profile.jpg)"><div class="carousel3d__face carousel3d__face--front"></div><div class="carousel3d__face carousel3d__face--back"></div></div></div>
-          <div class="carousel3d__cell"><div class="carousel3d__card" style="--img:url(../assets/about/slide2.jpg)"><div class="carousel3d__face carousel3d__face--front"></div><div class="carousel3d__face carousel3d__face--back"></div></div></div>
-          <div class="carousel3d__cell"><div class="carousel3d__card" style="--img:url(../assets/about/slide3.jpg)"><div class="carousel3d__face carousel3d__face--front"></div><div class="carousel3d__face carousel3d__face--back"></div></div></div>
-          <div class="carousel3d__cell"><div class="carousel3d__card" style="--img:url(../assets/about/slide4.jpg)"><div class="carousel3d__face carousel3d__face--front"></div><div class="carousel3d__face carousel3d__face--back"></div></div></div>
+        <div class="carousel" id="aboutCarousel">
+          <div class="carousel__cell">
+            <div class="card" style="--img:url(./assets/about/profile.jpg)">
+              <div class="card__face card__face--front"></div>
+              <div class="card__face card__face--back"></div>
+            </div>
+          </div>
+          <div class="carousel__cell">
+            <div class="card" style="--img:url(./assets/about/slide2.jpg)">
+              <div class="card__face card__face--front"></div>
+              <div class="card__face card__face--back"></div>
+            </div>
+          </div>
+          <div class="carousel__cell">
+            <div class="card" style="--img:url(./assets/about/slide3.jpg)">
+              <div class="card__face card__face--front"></div>
+              <div class="card__face card__face--back"></div>
+            </div>
+          </div>
+          <div class="carousel__cell">
+            <div class="card" style="--img:url(./assets/about/slide4.jpg)">
+              <div class="card__face card__face--front"></div>
+              <div class="card__face card__face--back"></div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="about-hero__text">
@@ -913,13 +936,14 @@
       }
     });
 
-    // ── 3D Carousel (auto-rotate) ──
+    // ── 3D Carousel (Codrops-style auto-rotate) ──
     (function initCarousel3D() {
       var carousel = document.getElementById('aboutCarousel');
       if (!carousel) return;
-      var cells = carousel.querySelectorAll('.carousel3d__cell');
+      var cells = carousel.querySelectorAll('.carousel__cell');
+      var cards = carousel.querySelectorAll('.card');
       var count = cells.length;
-      var radius = 280;
+      var radius = 500;
       var angleStep = 360 / count;
 
       // Position cells in a 3D circle
@@ -927,23 +951,40 @@
         cell.style.transform = 'rotateY(' + (i * angleStep) + 'deg) translateZ(' + radius + 'px)';
       });
 
-      // Auto-rotate with GSAP if available, else CSS fallback
       if (typeof gsap !== 'undefined') {
-        gsap.to(carousel, {
+        // Main rotation
+        var rotAnim = gsap.to(carousel, {
           rotationY: 360,
-          duration: 20,
+          duration: 16,
           ease: 'none',
           repeat: -1
         });
-        // Pause on hover
+
+        // Subtle continuous tilt wobble
+        gsap.to(carousel, {
+          rotationX: 3,
+          rotationZ: 2,
+          duration: 4,
+          ease: 'sine.inOut',
+          yoyo: true,
+          repeat: -1
+        });
+
+        // Brightness pulse on cards
+        gsap.fromTo(cards,
+          { filter: 'brightness(1)' },
+          { filter: 'brightness(0.85)', duration: 3, ease: 'sine.inOut', yoyo: true, repeat: -1, stagger: 0.5 }
+        );
+
+        // Slow on hover, resume on leave
         carousel.addEventListener('mouseenter', function() {
-          gsap.to(carousel, { timeScale: 0.2, duration: 0.5 });
+          gsap.to(rotAnim, { timeScale: 0.15, duration: 0.8, ease: 'power2.out' });
         });
         carousel.addEventListener('mouseleave', function() {
-          gsap.to(carousel, { timeScale: 1, duration: 0.5 });
+          gsap.to(rotAnim, { timeScale: 1, duration: 0.8, ease: 'power2.out' });
         });
       } else {
-        carousel.style.animation = 'spin3d 20s linear infinite';
+        carousel.style.animation = 'spin3d 16s linear infinite';
       }
     })();
 
