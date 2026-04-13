@@ -251,14 +251,19 @@
       position: absolute;
       backface-visibility: hidden;
       background-image: var(--img);
+      background-color: #1e1e24;
       background-size: cover;
       background-position: center;
       border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .card__face--front {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
     }
     .card__face--back {
       background-image: var(--img);
+      background-color: #14141a;
       transform: rotateY(180deg);
-      filter: brightness(0.4);
     }
 
     /* ═══════════════════════════════════════
@@ -698,25 +703,49 @@
       <div class="about-hero__carousel">
         <div class="carousel" id="aboutCarousel">
           <div class="carousel__cell">
-            <div class="card" style="--img:url(./assets/about/profile.jpg)">
+            <div class="card" style="--img:url(./assets/about/2.png)">
               <div class="card__face card__face--front"></div>
               <div class="card__face card__face--back"></div>
             </div>
           </div>
           <div class="carousel__cell">
-            <div class="card" style="--img:url(./assets/about/slide2.jpg)">
+            <div class="card" style="--img:url(./assets/about/3.png)">
               <div class="card__face card__face--front"></div>
               <div class="card__face card__face--back"></div>
             </div>
           </div>
           <div class="carousel__cell">
-            <div class="card" style="--img:url(./assets/about/slide3.jpg)">
+            <div class="card" style="--img:url(./assets/about/4.png)">
               <div class="card__face card__face--front"></div>
               <div class="card__face card__face--back"></div>
             </div>
           </div>
           <div class="carousel__cell">
-            <div class="card" style="--img:url(./assets/about/slide4.jpg)">
+            <div class="card" style="--img:url(./assets/about/5.png)">
+              <div class="card__face card__face--front"></div>
+              <div class="card__face card__face--back"></div>
+            </div>
+          </div>
+          <div class="carousel__cell">
+            <div class="card" style="--img:url(./assets/about/6.png)">
+              <div class="card__face card__face--front"></div>
+              <div class="card__face card__face--back"></div>
+            </div>
+          </div>
+          <div class="carousel__cell">
+            <div class="card" style="--img:url(./assets/about/7.1.png)">
+              <div class="card__face card__face--front"></div>
+              <div class="card__face card__face--back"></div>
+            </div>
+          </div>
+          <div class="carousel__cell">
+            <div class="card" style="--img:url(./assets/about/8.png)">
+              <div class="card__face card__face--front"></div>
+              <div class="card__face card__face--back"></div>
+            </div>
+          </div>
+          <div class="carousel__cell">
+            <div class="card" style="--img:url(./assets/about/9.png)">
               <div class="card__face card__face--front"></div>
               <div class="card__face card__face--back"></div>
             </div>
@@ -724,16 +753,30 @@
         </div>
       </div>
       <div class="about-hero__text">
-        <p class="about-hero__eyebrow">The Origin Story</p>
+        <p class="about-hero__eyebrow">the origin story ✐</p>
         <h1 class="about-hero__title">Sri Harshita <span>Pilla</span></h1>
         <p class="about-hero__bio">
-          She's a <strong>Product Designer</strong> who approaches digital products as living ecosystems, shaping <strong>end-to-end user experiences</strong> from the ground up. With a <strong>Master's in Human-Computer Interaction</strong> from DePaul University and a background in <strong>architecture</strong>, she bridges the gap between high-level spatial strategy and the granular details of a seamless interface.
+          I've always been someone who notices. How people move through a room, where they hesitate, what feels effortless and what feels slightly off.
         </p>
         <p class="about-hero__bio">
-          To her, product design is about the whole journey — ensuring every interaction feels as natural and intentional as a well-planned building.
+          Architecture taught me to think in systems. Structure, flow, function, and the human body moving through all of it. But the deeper I went, the more I realized I was less interested in the building itself and more interested in the person inside it.
         </p>
-        <p class="about-hero__bio about-hero__bio--dim">
-          She also has a soft spot for whimsical things 🧚, greens 🌱, and sunsets 🌇.
+        <p class="about-hero__bio">
+          The moment of hesitation at a corridor. The friction no one else noticed. The experience behind the form. That's what brought me to UX.
+        </p>
+
+        <p class="about-hero__eyebrow" style="margin-top: 32px;">now ✦</p>
+        <p class="about-hero__bio">
+          I love the research that reframes a problem, the engineering conversation that changes the approach, and the tenth iteration of a flow that finally clicks into place.
+        </p>
+        <p class="about-hero__bio">
+          I don't rush to solutions. I'd rather sit with the complexity until it starts making sense.
+        </p>
+        <p class="about-hero__bio">
+          I see products the way I once saw buildings. As systems people move through. Structure, flow, friction, and moments of clarity all matter.
+        </p>
+        <p class="about-hero__bio">
+          In an industry full of quick answers, I'd rather be the one still asking the right questions. And designing for what I find.
         </p>
       </div>
     </section>
