@@ -227,9 +227,6 @@
     .carousel__row--top {
       animation: scroll-left 10s linear infinite;
     }
-    .carousel__row--bottom {
-      animation: scroll-right 10s linear infinite;
-    }
     .carousel__row:hover {
       animation-play-state: paused;
     }
@@ -250,10 +247,6 @@
     @keyframes scroll-left {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
-    }
-    @keyframes scroll-right {
-      0% { transform: translateX(-50%); }
-      100% { transform: translateX(0); }
     }
 
     /* ═══════════════════════════════════════
@@ -747,25 +740,20 @@
     <!-- ═══════ HERO — ORIGIN STORY ═══════ -->
     <section class="about-hero" data-reveal>
       <div class="about-hero__carousel">
-        <!-- Top row — scrolls left -->
         <div class="carousel__row carousel__row--top">
           <img class="carousel__item-img" src="./assets/about/about landing/2.png" alt="" />
           <img class="carousel__item-img" src="./assets/about/about landing/3.png" alt="" />
           <img class="carousel__item-img" src="./assets/about/about landing/4.png" alt="" />
           <img class="carousel__item-img" src="./assets/about/about landing/5.png" alt="" />
-          <!-- Duplicate for seamless loop -->
-          <img class="carousel__item-img" src="./assets/about/about landing/2.png" alt="" />
-          <img class="carousel__item-img" src="./assets/about/about landing/3.png" alt="" />
-          <img class="carousel__item-img" src="./assets/about/about landing/4.png" alt="" />
-          <img class="carousel__item-img" src="./assets/about/about landing/5.png" alt="" />
-        </div>
-        <!-- Bottom row — scrolls right -->
-        <div class="carousel__row carousel__row--bottom">
           <img class="carousel__item-img" src="./assets/about/about landing/6.png" alt="" />
           <img class="carousel__item-img" src="./assets/about/about landing/7.1.png" alt="" />
           <img class="carousel__item-img" src="./assets/about/about landing/8.png" alt="" />
           <img class="carousel__item-img" src="./assets/about/about landing/9.png" alt="" />
           <!-- Duplicate for seamless loop -->
+          <img class="carousel__item-img" src="./assets/about/about landing/2.png" alt="" />
+          <img class="carousel__item-img" src="./assets/about/about landing/3.png" alt="" />
+          <img class="carousel__item-img" src="./assets/about/about landing/4.png" alt="" />
+          <img class="carousel__item-img" src="./assets/about/about landing/5.png" alt="" />
           <img class="carousel__item-img" src="./assets/about/about landing/6.png" alt="" />
           <img class="carousel__item-img" src="./assets/about/about landing/7.1.png" alt="" />
           <img class="carousel__item-img" src="./assets/about/about landing/8.png" alt="" />
