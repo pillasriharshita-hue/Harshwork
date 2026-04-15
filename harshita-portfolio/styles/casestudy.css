@@ -79,7 +79,17 @@
   font-size: clamp(1rem, 1.5vw, 1.25rem);
   color: var(--color-text-secondary);
   line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+.cs-hero__desc {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
   margin-bottom: 32px;
+  max-width: 56ch;
+  opacity: 0.85;
 }
 
 .cs-hero--viewport .cs-hero__image {
