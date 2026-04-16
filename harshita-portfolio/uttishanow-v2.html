@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="./assets/logo.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UttishaNow · v2 | Sri Harshita Pilla</title>
+  <meta name="description" content="UttishaNow — a behavioral design case study told in three acts. Alternative (v2) layout." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;600;700;800&family=Taviraj:ital,wght@0,400;0,700;1,400;1,700&family=Nunito+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="./scripts/theme.js"></script>
+  <link rel="stylesheet" href="./styles/main.css" />
+  <link rel="stylesheet" href="./styles/loader.css" />
+  <link rel="stylesheet" href="./styles/floating-nav.css" />
+
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       v2 TOKENS — portfolio typography + dark palette
+       ═══════════════════════════════════════════════════════════ */
+    :root {
+      --v2-accent: #E8734A;
+      --v2-bg: #0D0D0D;
+      --v2-surface: #141418;
+      --v2-surface-2: #1c1c22;
+      --v2-border: #2a2a35;
+      --v2-text: #fffffe;
+      --v2-text-dim: #b4b4bb;
+      --v2-text-muted: #72757e;
+      --v2-serif: 'Taviraj', Georgia, serif;
+      --v2-sans: 'Nunito Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --v2-hand: 'Caveat', cursive;
+      --v2-pad: clamp(20px, 5vw, 56px);
+    }
+
+    /* ── Reset layer for this page ── */
+    body {
+      background: var(--v2-bg);
+      color: var(--v2-text);
+      font-family: var(--v2-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* Calendly modal */
+    .calendly-modal { display:none; position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,0.8); backdrop-filter:blur(5px); align-items:center; justify-content:center; padding:20px; }
+    .calendly-modal.active { display:flex; }
+    .calendly-modal__container { background:#0D0D0D; border:1px solid #2A2A2A; border-radius:12px; width:100%; max-width:900px; height:90vh; max-height:800px; position:relative; display:flex; flex-direction:column; overflow:hidden; }
+    .calendly-modal__header { padding:16px 24px; border-bottom:1px solid #2A2A2A; display:flex; justify-content:space-between; align-items:center; background:#0D0D0D; }
+    .calendly-modal__title { font-size:18px; font-weight:600; color:#fff; margin:0; font-family:var(--v2-sans); }
+    .calendly-modal__close { width:32px; height:32px; background:none; border:none; color:#9A9A9A; font-size:24px; cursor:pointer; transition:color 0.2s; display:flex; align-items:center; justify-content:center; padding:0; }
+    .calendly-modal__close:hover { color:#fff; }
+    .calendly-modal__content { flex:1; overflow-y:auto; overflow-x:hidden; }
+
+    /* ═══════════════════════════════════════════════════════════
+       LAYOUT CONTAINERS
+       ═══════════════════════════════════════════════════════════ */
+    .v2-wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 var(--v2-pad);
+    }
+    .v2-section {
+      padding: clamp(64px, 10vw, 120px) 0;
+      border-top: 1px solid var(--v2-border);
+    }
+    .v2-section:first-of-type { border-top: none; }
+
+    /* ═══════════════════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════════════════ */
+    .v2-hero {
+      padding: 180px 0 80px;
+    }
+    .v2-hero__eyebrow {
+      font-family: var(--v2-hand);
+      font-size: 22px;
+      color: var(--v2-accent);
+      margin-bottom: 14px;
+      display: inline-block;
+    }
+    .v2-hero__title {
+      font-family: var(--v2-serif);
+      font-weight: 700;
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      margin: 0 0 28px;
+      color: #fff;
+    }
+    .v2-hero__title em {
+      font-style: italic;
+      color: var(--v2-accent);
+    }
+    .v2-hero__thesis {
+      font-family: var(--v2-serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
+      line-height: 1.5;
+      color: var(--v2-text-dim);
+      max-width: 48ch;
+      margin: 0 0 20px;
+    }
+    .v2-hero__sub {
+      font-family: var(--v2-sans);
+      font-size: 16px;
+      color: var(--v2-text-muted);
+      max-width: 56ch;
+      margin: 0;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       STAT STRIP
+       ═══════════════════════════════════════════════════════════ */
+    .v2-statstrip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--v2-border);
+      border-bottom: 1px solid var(--v2-border);
+      margin-top: 60px;
+    }
+    .v2-stat {
+      padding: 36px 24px;
+      border-right: 1px solid var(--v2-border);
+    }
+    .v2-stat:last-child { border-right: none; }
+    .v2-stat__value {
+      font-family: var(--v2-serif);
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: var(--v2-accent);
+      line-height: 1;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .v2-stat__label {
+      font-family: var(--v2-sans);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--v2-text-dim);
+    }
+    @media (max-width: 720px) {
+      .v2-statstrip { grid-template-columns: repeat(2, 1fr); }
+      .v2-stat:nth-child(2) { border-right: none; }
+      .v2-stat:nth-child(1), .v2-stat:nth-child(2) { border-bottom: 1px solid var(--v2-border); }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       ACT HEADER
+       ═══════════════════════════════════════════════════════════ */
+    .v2-act {
+      display: flex;
+      align-items: baseline;
+      gap: 28px;
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--v2-border);
+    }
+    .v2-act__num {
+      font-family: var(--v2-hand);
+      font-size: clamp(3rem, 6vw, 5rem);
+      color: var(--v2-accent);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .v2-act__head {
+      flex: 1;
+    }
+    .v2-act__tag {
+      font-family: var(--v2-sans);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--v2-text-muted);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .v2-act__title {
+      font-family: var(--v2-serif);
+      font-weight: 700;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      margin: 0 0 12px;
+      color: #fff;
+    }
+    .v2-act__sub {
+      font-family: var(--v2-serif);
+      font-style: italic;
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+      color: var(--v2-text-dim);
+      margin: 0;
+      max-width: 60ch;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SUB SECTION (01, 02, …)
+       ═══════════════════════════════════════════════════════════ */
+    .v2-sub {
+      margin-bottom: 56px;
+    }
+    .v2-sub__num {
+      font-family: var(--v2-sans);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: var(--v2-accent);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .v2-sub__title {
+      font-family: var(--v2-serif);
+      font-weight: 700;
+      font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+      line-height: 1.2;
+      color: #fff;
+      margin: 0 0 20px;
+      max-width: 32ch;
+    }
+    .v2-sub__body {
+      font-family: var(--v2-sans);
+      font-size: 16px;
+      color: var(--v2-text-dim);
+      max-width: 62ch;
+      line-height: 1.75;
+    }
+    .v2-sub__body + .v2-sub__body { margin-top: 14px; }
+
+    /* ═══════════════════════════════════════════════════════════
+       PAIR CLAIM + PROOF QUOTE
+       ═══════════════════════════════════════════════════════════ */
+    .v2-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin: 48px 0;
+      align-items: start;
+    }
+    @media (max-width: 720px) {
+      .v2-pair { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .v2-pair__claim {
+      font-family: var(--v2-serif);
+      font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+      font-weight: 700;
+      line-height: 1.35;
+      color: #fff;
+      margin: 0;
+    }
+    .v2-pair__claim strong { color: var(--v2-accent); font-weight: 700; }
+    .v2-pair__proof {
+      border-left: 2px solid var(--v2-accent);
+      padding: 4px 0 4px 20px;
+    }
+    .v2-pair__proof blockquote {
+      font-family: var(--v2-serif);
+      font-style: italic;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--v2-text-dim);
+      margin: 0 0 10px;
+    }
+    .v2-pair__proof cite {
+      font-family: var(--v2-sans);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--v2-text-muted);
+      font-style: normal;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       CARD GRIDS
+       ═══════════════════════════════════════════════════════════ */
+    .v2-grid {
+      display: grid;
+      gap: 20px;
+      margin: 32px 0;
+    }
+    .v2-grid--3 { grid-template-columns: repeat(3, 1fr); }
+    .v2-grid--2 { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 860px) {
+      .v2-grid--3, .v2-grid--2 { grid-template-columns: 1fr; }
+    }
+    .v2-card {
+      background: var(--v2-surface);
+      border: 1px solid var(--v2-border);
+      border-radius: 10px;
+      padding: 24px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .v2-card:hover {
+      border-color: var(--v2-accent);
+      transform: translateY(-2px);
+    }
+    .v2-card__tag {
+      font-family: var(--v2-sans);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--v2-text-muted);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .v2-card__title {
+      font-family: var(--v2-serif);
+      font-weight: 700;
+      font-size: 18px;
+      color: #fff;
+      margin: 0 0 10px;
+    }
+    .v2-card__body {
+      font-family: var(--v2-sans);
+      font-size: 14px;
+      color: var(--v2-text-dim);
+      line-height: 1.65;
+      margin: 0;
+    }
+    .v2-card.shipped {
+      background: linear-gradient(180deg, rgba(232,115,74,0.08), var(--v2-surface));
+      border-color: rgba(232,115,74,0.3);
+    }
+    .v2-card.shipped .v2-card__tag { color: var(--v2-accent); }
+
+    /* ═══════════════════════════════════════════════════════════
+       SIGNATURE VISUAL 1 — JOURNEY MAP (SVG)
+       ═══════════════════════════════════════════════════════════ */
+    .v2-sig {
+      margin: 56px 0;
+      padding: 40px;
+      background: var(--v2-surface);
+      border: 1px solid var(--v2-border);
+      border-radius: 12px;
+    }
+    .v2-sig__caption {
+      font-family: var(--v2-hand);
+      font-size: 22px;
+      color: var(--v2-accent);
+      margin-bottom: 6px;
+    }
+    .v2-sig__title {
+      font-family: var(--v2-serif);
+      font-size: clamp(1.3rem, 2vw, 1.75rem);
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 28px;
+    }
+    .v2-jmap {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .v2-jmap text { font-family: var(--v2-sans); }
+    .v2-jmap .jm-hour { fill: var(--v2-text-muted); font-size: 11px; letter-spacing: 0.1em; }
+    .v2-jmap .jm-label { fill: #fff; font-size: 13px; font-weight: 600; }
+    .v2-jmap .jm-trap { fill: var(--v2-accent); font-family: var(--v2-hand); font-size: 18px; }
+    .v2-jmap .jm-intend { stroke: #6EC9A5; }
+    .v2-jmap .jm-action { stroke: var(--v2-accent); }
+    .v2-jmap .jm-grid { stroke: var(--v2-border); }
+    .v2-jmap__legend {
+      display: flex;
+      gap: 28px;
+      margin-top: 20px;
+      font-family: var(--v2-sans);
+      font-size: 12px;
+      color: var(--v2-text-dim);
+      letter-spacing: 0.08em;
+    }
+    .v2-jmap__legend span::before {
+      content: '';
+      display: inline-block;
+      width: 18px;
+      height: 2px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    .v2-jmap__legend .l-intend::before { background: #6EC9A5; }
+    .v2-jmap__legend .l-action::before { background: var(--v2-accent); }
+
+    /* ═══════════════════════════════════════════════════════════
+       SIGNATURE VISUAL 2 — BEFORE / AFTER PHONES
+       ═══════════════════════════════════════════════════════════ */
+    .v2-beforeafter {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin: 40px 0 20px;
+    }
+    @media (max-width: 720px) {
+      .v2-beforeafter { grid-template-columns: 1fr; }
+    }
+    .v2-phone {
+      aspect-ratio: 9 / 19;
+      max-width: 280px;
+      margin: 0 auto;
+      background: #000;
+      border: 8px solid #222;
+      border-radius: 36px;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    }
+    .v2-phone__clock {
+      font-family: var(--v2-serif);
+      font-size: 38px;
+      font-weight: 400;
+      color: #fff;
+      text-align: center;
+      margin-top: 16px;
+    }
+    .v2-phone__date {
+      font-family: var(--v2-sans);
+      font-size: 12px;
+      color: var(--v2-text-muted);
+      text-align: center;
+      letter-spacing: 0.1em;
+      margin-bottom: 28px;
+    }
+    .v2-phone__content {
+      flex: 1;
+      background: var(--v2-surface-2);
+      border-radius: 12px;
+      padding: 16px;
+      font-family: var(--v2-sans);
+      font-size: 12px;
+      color: var(--v2-text-dim);
+    }
+    .v2-phone__label {
+      font-family: var(--v2-hand);
+      font-size: 20px;
+      color: var(--v2-accent);
+      text-align: center;
+      margin-top: 14px;
+    }
+    .v2-phone--before .v2-phone__content { opacity: 0.45; }
+    .v2-phone--after .v2-phone__content {
+      background: linear-gradient(180deg, rgba(232,115,74,0.2), var(--v2-surface-2));
+      border: 1px solid rgba(232,115,74,0.35);
+    }
+    .v2-phone__notif {
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 8px;
+    }
+    .v2-phone__notif strong { color: #fff; display: block; margin-bottom: 3px; font-weight: 600; }
+    .v2-phone--after .v2-phone__notif strong { color: var(--v2-accent); }
+
+    /* Delta metrics strip */
+    .v2-delta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--v2-border);
+      margin-top: 40px;
+      border: 1px solid var(--v2-border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    @media (max-width: 720px) { .v2-delta { grid-template-columns: 1fr; } }
+    .v2-delta__cell {
+      background: var(--v2-surface);
+      padding: 24px 20px;
+      text-align: center;
+    }
+    .v2-delta__value {
+      font-family: var(--v2-serif);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--v2-accent);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .v2-delta__label {
+      font-family: var(--v2-sans);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--v2-text-dim);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       METHODS STRIP
+       ═══════════════════════════════════════════════════════════ */
+    .v2-methods {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 32px 0;
+    }
+    .v2-methods span {
+      font-family: var(--v2-sans);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--v2-text-dim);
+      border: 1px solid var(--v2-border);
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--v2-surface);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       INLINE QUOTE
+       ═══════════════════════════════════════════════════════════ */
+    .v2-quote {
+      margin: 48px 0;
+      padding: 32px 40px;
+      border-left: 3px solid var(--v2-accent);
+      background: var(--v2-surface);
+      border-radius: 0 8px 8px 0;
+    }
+    .v2-quote blockquote {
+      font-family: var(--v2-serif);
+      font-style: italic;
+      font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+      line-height: 1.55;
+      color: #fff;
+      margin: 0 0 14px;
+    }
+    .v2-quote cite {
+      font-family: var(--v2-sans);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--v2-text-muted);
+      font-style: normal;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       CLOSING
+       ═══════════════════════════════════════════════════════════ */
+    .v2-closing {
+      text-align: center;
+      padding: 120px 0 60px;
+      border-top: 1px solid var(--v2-border);
+    }
+    .v2-closing__line {
+      font-family: var(--v2-serif);
+      font-style: italic;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      line-height: 1.35;
+      color: var(--v2-text-dim);
+      max-width: 32ch;
+      margin: 0 auto 40px;
+    }
+    .v2-closing__line em { color: var(--v2-accent); font-style: italic; }
+    .v2-closing__link {
+      display: inline-block;
+      font-family: var(--v2-sans);
+      font-size: 14px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--v2-accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--v2-accent);
+      padding-bottom: 4px;
+      transition: opacity 0.2s;
+    }
+    .v2-closing__link:hover { opacity: 0.75; }
+
+    /* compare link badge */
+    .v2-compare {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 50;
+      background: var(--v2-surface);
+      border: 1px solid var(--v2-border);
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-family: var(--v2-hand);
+      font-size: 18px;
+      color: var(--v2-accent);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .v2-compare:hover {
+      border-color: var(--v2-accent);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ══ PAGE LOADER ══ -->
+<div id="pageLoader" role="status" aria-label="Loading">
+  <div class="wheel-and-hamster">
+    <div class="wheel"></div>
+    <div class="hamster">
+      <div class="hamster__body">
+        <div class="hamster__head">
+          <div class="hamster__ear"></div>
+          <div class="hamster__eye"></div>
+          <div class="hamster__nose"></div>
+        </div>
+        <div class="hamster__limb hamster__limb--fr"></div>
+        <div class="hamster__limb hamster__limb--fl"></div>
+        <div class="hamster__limb hamster__limb--br"></div>
+        <div class="hamster__limb hamster__limb--bl"></div>
+        <div class="hamster__tail"></div>
+      </div>
+    </div>
+    <div class="spoke"></div>
+  </div>
+  <p class="loader__text">Loading</p>
+</div>
+<script src="./scripts/loader.js"></script>
+
+<!-- FLOATING NAV -->
+<header class="fnav">
+  <nav class="fnav__inner">
+    <a href="./index.html" class="fnav__brand"><img src="./assets/logo.png" class="fnav__logo" alt="Sri Harshita Pilla" /><span class="fnav__name">Sri Harshita Pilla</span></a>
+    <div class="fnav__links">
+      <a href="./about.html" class="fnav__link">About</a>
+      <a href="./index.html#work" class="fnav__link">Work</a>
+      <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener" class="fnav__link">LinkedIn</a>
+    </div>
+    <div class="fnav__right">
+      <label class="fnav__theme-switch" title="Toggle theme"><input type="checkbox" class="toggle"><span class="slider"></span></label>
+      <button class="fnav__burger" id="fnavBurger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+<div class="fnav__mobile" id="fnavMobile">
+  <a href="./about.html">About</a><a href="./index.html#work">Work</a>
+  <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener">LinkedIn</a>
+  <button class="fnav__cta" onclick="bookCall()">Schedule a call</button>
+</div>
+<script>(function(){var b=document.getElementById('fnavBurger'),m=document.getElementById('fnavMobile');if(!b||!m)return;b.addEventListener('click',function(){b.classList.toggle('open');m.classList.toggle('open');});})()</script>
+
+<!-- Compare link -->
+<a href="./uttishanow.html" class="v2-compare">← v1 version</a>
+
+<!-- ══════ CALENDLY MODAL ══════ -->
+<div class="calendly-modal" id="calendlyModal" role="dialog" aria-labelledby="calendlyTitle" aria-hidden="true">
+  <div class="calendly-modal__container">
+    <div class="calendly-modal__header">
+      <h2 class="calendly-modal__title" id="calendlyTitle">Book a Call</h2>
+      <button class="calendly-modal__close" id="calendlyClose" aria-label="Close booking calendar">✕</button>
+    </div>
+    <div class="calendly-modal__content" id="calendlyContent"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════════════════════ -->
+<section class="v2-hero">
+  <div class="v2-wrap">
+    <span class="v2-hero__eyebrow">a case study in three acts</span>
+    <h1 class="v2-hero__title">UttishaNow<em>.</em></h1>
+    <p class="v2-hero__thesis">Motivation isn't the gap. The environment itself defaults to stillness — and design can change the default.</p>
+    <p class="v2-hero__sub">A behavioral design concept for young adults: a morning app that intercepts the first 10–15 minutes after waking, paired with an evening environment redesign that makes movement the path of least resistance.</p>
+
+    <div class="v2-statstrip">
+      <div class="v2-stat">
+        <span class="v2-stat__value">6 + 12</span>
+        <span class="v2-stat__label">Interviews · Diary Entries</span>
+      </div>
+      <div class="v2-stat">
+        <span class="v2-stat__value">4×</span>
+        <span class="v2-stat__label">Hypothesis Confirmations</span>
+      </div>
+      <div class="v2-stat">
+        <span class="v2-stat__value">62%</span>
+        <span class="v2-stat__label">Hit the 1–3 PM Slump</span>
+      </div>
+      <div class="v2-stat">
+        <span class="v2-stat__value">41s</span>
+        <span class="v2-stat__label">Time-to-Action (Prototype)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ACT I · SLUMP
+     ═══════════════════════════════════════════════════════════ -->
+<section class="v2-section">
+  <div class="v2-wrap">
+
+    <div class="v2-act">
+      <div class="v2-act__num">I</div>
+      <div class="v2-act__head">
+        <span class="v2-act__tag">Act One · Slump</span>
+        <h2 class="v2-act__title">The day collapses at 1 PM.</h2>
+        <p class="v2-act__sub">Young adults don't lack motivation. They lack a structure that survives the afternoon.</p>
+      </div>
+    </div>
+
+    <div class="v2-sub">
+      <span class="v2-sub__num">01 · The signal</span>
+      <h3 class="v2-sub__title">Sedentary behavior is now structural, not behavioral.</h3>
+      <p class="v2-sub__body">Adults spend 7.7 to 8.3 hours a day sedentary. Work moved to desks. Commutes shortened. Leisure went digital. The fitness-app market has generated billions chasing a willpower story that our participants didn't tell us.</p>
+      <p class="v2-sub__body">What they did tell us: the slump is predictable. 1 to 3 PM, every day, six out of six. It arrives before motivation has a chance to answer.</p>
+    </div>
+
+    <div class="v2-pair">
+      <p class="v2-pair__claim">People aren't failing habits. The <strong>environment already decided</strong> before they woke up.</p>
+      <div class="v2-pair__proof">
+        <blockquote>"Working from home makes it so easy to just stay in my chair all day. Joining a badminton group changed that — now I have a reason to get up."</blockquote>
+        <cite>— Vishu · Remote software engineer</cite>
+      </div>
+    </div>
+
+    <div class="v2-sub">
+      <span class="v2-sub__num">02 · Two archetypes, one deficit</span>
+      <h3 class="v2-sub__title">Not personas. Behavioral patterns, defined by what people lost.</h3>
+      <div class="v2-grid v2-grid--2">
+        <div class="v2-card">
+          <span class="v2-card__tag">Archetype 01</span>
+          <h4 class="v2-card__title">The Low-Energy Loafer</h4>
+          <p class="v2-card__body">"I'm too tired to move." Cognitive load depletes willpower; movement requires a decision that rarely happens on demanding days. The phone is the default coping mechanism.</p>
+        </div>
+        <div class="v2-card">
+          <span class="v2-card__tag">Archetype 02</span>
+          <h4 class="v2-card__title">The Multitasking Juggler</h4>
+          <p class="v2-card__body">"I'll do it when I have time" — that time never comes. Wants to be active, but packed schedule leaves no clear window. Social context, not internal goal, is the primary driver.</p>
+        </div>
+      </div>
+      <p class="v2-sub__body" style="margin-top:20px;">Both share one thing: <strong style="color:#fff;">neither lacks motivation. Both lost an environmental enabler.</strong> The deficit is structural.</p>
+    </div>
+
+    <!-- SIGNATURE VISUAL 1 -->
+    <div class="v2-sig">
+      <div class="v2-sig__caption">signature visual · 01</div>
+      <h3 class="v2-sig__title">A day with two traps.</h3>
+
+      <svg class="v2-jmap" viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg">
+        <!-- Grid -->
+        <line class="jm-grid" x1="60" y1="60"  x2="860" y2="60"  stroke-width="1" stroke-dasharray="2,4"/>
+        <line class="jm-grid" x1="60" y1="140" x2="860" y2="140" stroke-width="1" stroke-dasharray="2,4"/>
+        <line class="jm-grid" x1="60" y1="220" x2="860" y2="220" stroke-width="1" stroke-dasharray="2,4"/>
+        <line class="jm-grid" x1="60" y1="60"  x2="60"  y2="260" stroke-width="1"/>
+        <line class="jm-grid" x1="60" y1="260" x2="860" y2="260" stroke-width="1"/>
+
+        <!-- Hour labels -->
+        <text class="jm-hour" x="60"  y="280" text-anchor="middle">6 AM</text>
+        <text class="jm-hour" x="220" y="280" text-anchor="middle">10 AM</text>
+        <text class="jm-hour" x="380" y="280" text-anchor="middle">1 PM</text>
+        <text class="jm-hour" x="540" y="280" text-anchor="middle">4 PM</text>
+        <text class="jm-hour" x="700" y="280" text-anchor="middle">7 PM</text>
+        <text class="jm-hour" x="860" y="280" text-anchor="middle">10 PM</text>
+
+        <!-- Intention curve (steady, green) -->
+        <path class="jm-intend" d="M 60 100 Q 200 95, 380 100 T 700 105 T 860 115"
+              fill="none" stroke-width="2.5" stroke-linecap="round"/>
+
+        <!-- Action curve (crashes at slump + evening) -->
+        <path class="jm-action" d="M 60 110 Q 150 95, 220 100 Q 300 115, 380 220 Q 460 230, 540 215 Q 620 205, 700 225 Q 780 245, 860 250"
+              fill="none" stroke-width="2.5" stroke-linecap="round"/>
+
+        <!-- Trap markers -->
+        <circle cx="380" cy="220" r="6" fill="#E8734A"/>
+        <circle cx="700" cy="225" r="6" fill="#E8734A"/>
+        <text class="jm-trap" x="380" y="200" text-anchor="middle">trap 01</text>
+        <text class="jm-trap" x="700" y="205" text-anchor="middle">trap 02</text>
+
+        <!-- Side labels -->
+        <text class="jm-label" x="70" y="55">High</text>
+        <text class="jm-label" x="70" y="255">Low</text>
+      </svg>
+
+      <div class="v2-jmap__legend">
+        <span class="l-intend">INTENTION</span>
+        <span class="l-action">ACTION</span>
+      </div>
+    </div>
+
+    <div class="v2-quote">
+      <blockquote>"I know I should stretch. I know I should stand up. And then it's 4 PM and I've moved from the chair to the couch."</blockquote>
+      <cite>— Diary study, Day 2</cite>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ACT II · BET
+     ═══════════════════════════════════════════════════════════ -->
+<section class="v2-section">
+  <div class="v2-wrap">
+
+    <div class="v2-act">
+      <div class="v2-act__num">II</div>
+      <div class="v2-act__head">
+        <span class="v2-act__tag">Act Two · Bet</span>
+        <h2 class="v2-act__title">Design the default. Motivation will follow.</h2>
+        <p class="v2-act__sub">If the environment decides first, then the environment is where the intervention lives.</p>
+      </div>
+    </div>
+
+    <div class="v2-sub">
+      <span class="v2-sub__num">03 · The pivot</span>
+      <h3 class="v2-sub__title">Three hypotheses. One shift that changed the brief.</h3>
+      <div class="v2-grid v2-grid--3">
+        <div class="v2-card">
+          <span class="v2-card__tag">H1 · Partial</span>
+          <h4 class="v2-card__title">Structured spaces drive consistency</h4>
+          <p class="v2-card__body">Works only if embedded in an existing routine. Standalone spaces failed the moment the surrounding habit vanished.</p>
+        </div>
+        <div class="v2-card">
+          <span class="v2-card__tag">H2 · Conditional</span>
+          <h4 class="v2-card__title">Tech nudges improve activity</h4>
+          <p class="v2-card__body">Personalization is non-negotiable. Generic nudges failed universally. Schedule-aware suggestions had materially higher completion.</p>
+        </div>
+        <div class="v2-card">
+          <span class="v2-card__tag">H3 · Strong</span>
+          <h4 class="v2-card__title">Social accountability sustains habits</h4>
+          <p class="v2-card__body">Every participant who maintained activity had a social component. Social context is the primary sustainer, not a bonus layer.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="v2-pair">
+      <p class="v2-pair__claim">Assumption: people need <strong>better motivation</strong>. Reality: they need <strong>fewer decisions</strong>.</p>
+      <div class="v2-pair__proof">
+        <blockquote>"By the time I'm home I've made a hundred decisions. The couch is the one that doesn't ask anything of me."</blockquote>
+        <cite>— Audrey D. · Student participant</cite>
+      </div>
+    </div>
+
+    <div class="v2-sub">
+      <span class="v2-sub__num">04 · The two bets</span>
+      <h3 class="v2-sub__title">One digital, one physical. Each targeting a leverage window.</h3>
+      <div class="v2-grid v2-grid--2">
+        <div class="v2-card shipped">
+          <span class="v2-card__tag">Bet 01 · Morning · Digital</span>
+          <h4 class="v2-card__title">Intercept the first 10 minutes.</h4>
+          <p class="v2-card__body">A lock-screen widget that occupies the waking window before passive defaults (scroll, email) establish the day. Schedule-aware. Skip-confirmation friction. Streak with grace periods.</p>
+        </div>
+        <div class="v2-card shipped">
+          <span class="v2-card__tag">Bet 02 · Evening · Physical</span>
+          <h4 class="v2-card__title">Move the remote three meters.</h4>
+          <p class="v2-card__body">Remote at phone-charging zone forces a walk. Light control by the door. TV pauses when phone leaves zone. The room prompts — not the app.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIGNATURE VISUAL 2 — BEFORE / AFTER -->
+    <div class="v2-sig">
+      <div class="v2-sig__caption">signature visual · 02</div>
+      <h3 class="v2-sig__title">1:00 PM, before and after.</h3>
+
+      <div class="v2-beforeafter">
+        <div class="v2-phone v2-phone--before">
+          <div class="v2-phone__clock">1:00</div>
+          <div class="v2-phone__date">MON · APR 15</div>
+          <div class="v2-phone__content">
+            <div class="v2-phone__notif">
+              <strong>Instagram</strong>
+              3 new posts from accounts you follow
+            </div>
+            <div class="v2-phone__notif">
+              <strong>Slack</strong>
+              14 unread in #general
+            </div>
+            <div class="v2-phone__notif">
+              <strong>News</strong>
+              Your daily brief is ready
+            </div>
+          </div>
+          <div class="v2-phone__label">ambient noise</div>
+        </div>
+
+        <div class="v2-phone v2-phone--after">
+          <div class="v2-phone__clock">1:00</div>
+          <div class="v2-phone__date">MON · APR 15</div>
+          <div class="v2-phone__content">
+            <div class="v2-phone__notif">
+              <strong>UttishaNow</strong>
+              Your 3-min stretch fits the gap before your 1:30 meeting. Tap to start.
+            </div>
+          </div>
+          <div class="v2-phone__label">one clear next step</div>
+        </div>
+      </div>
+
+      <div class="v2-delta">
+        <div class="v2-delta__cell">
+          <span class="v2-delta__value">−73%</span>
+          <span class="v2-delta__label">Decision overhead</span>
+        </div>
+        <div class="v2-delta__cell">
+          <span class="v2-delta__value">41s</span>
+          <span class="v2-delta__label">Time to action</span>
+        </div>
+        <div class="v2-delta__cell">
+          <span class="v2-delta__value">+62%</span>
+          <span class="v2-delta__label">Slump-window completion</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ACT III · PROOF
+     ═══════════════════════════════════════════════════════════ -->
+<section class="v2-section">
+  <div class="v2-wrap">
+
+    <div class="v2-act">
+      <div class="v2-act__num">III</div>
+      <div class="v2-act__head">
+        <span class="v2-act__tag">Act Three · Proof</span>
+        <h2 class="v2-act__title">What held up. What didn't. What I'd do next.</h2>
+        <p class="v2-act__sub">A design research project, not a longitudinal trial. Every claim below is drawn from diary data and prototype validation.</p>
+      </div>
+    </div>
+
+    <div class="v2-sub">
+      <span class="v2-sub__num">05 · Methods used</span>
+      <h3 class="v2-sub__title">Mixed-method, IRB-reviewed.</h3>
+      <div class="v2-methods">
+        <span>Semi-structured interviews</span>
+        <span>3-day diary studies</span>
+        <span>Behavioral archetypes</span>
+        <span>Journey mapping</span>
+        <span>Prototype testing</span>
+        <span>Secondary literature review</span>
+      </div>
+    </div>
+
+    <div class="v2-pair">
+      <p class="v2-pair__claim">Physical friction proved <strong>more durable</strong> than app notifications.</p>
+      <div class="v2-pair__proof">
+        <blockquote>"Moving the remote was stupid. Then I realized I'd walked 400 steps more every night for a week without thinking about it."</blockquote>
+        <cite>— Prototype validation, Week 2</cite>
+      </div>
+    </div>
+
+    <div class="v2-sub">
+      <span class="v2-sub__num">06 · What we learned</span>
+      <h3 class="v2-sub__title">Four things this research confirmed.</h3>
+      <div class="v2-grid v2-grid--2">
+        <div class="v2-card">
+          <span class="v2-card__tag">Finding 01</span>
+          <h4 class="v2-card__title">Environment &gt; Motivation</h4>
+          <p class="v2-card__body">Structural change outlasts any nudge system. Design the path of least resistance first — motivation follows.</p>
+        </div>
+        <div class="v2-card">
+          <span class="v2-card__tag">Finding 02</span>
+          <h4 class="v2-card__title">Constraints are the brief</h4>
+          <p class="v2-card__body">"No willpower, no environment rebuild, no social dependency" produced more durable solutions than open-ended ideation.</p>
+        </div>
+        <div class="v2-card">
+          <span class="v2-card__tag">Finding 03</span>
+          <h4 class="v2-card__title">Personalization is non-negotiable</h4>
+          <p class="v2-card__body">Generic nudges failed universally. Schedule-aware, difficulty-adjusted suggestions had meaningfully higher completion.</p>
+        </div>
+        <div class="v2-card">
+          <span class="v2-card__tag">Finding 04</span>
+          <h4 class="v2-card__title">Small friction, big behavior shift</h4>
+          <p class="v2-card__body">Moving a remote three meters changed behavior more reliably than a push notification. Physical and digital are one system.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="v2-sub">
+      <span class="v2-sub__num">07 · Honest limitations</span>
+      <h3 class="v2-sub__title">What this study can't yet claim.</h3>
+      <p class="v2-sub__body">Sample was homogeneous — students and early-career professionals in two metros. The archetypes need pressure-testing across age ranges, family structures, and shift workers. Sound-cue effectiveness was under-tested; a dedicated usability session would close that gap first in a next sprint.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CLOSING
+     ═══════════════════════════════════════════════════════════ -->
+<section class="v2-closing">
+  <div class="v2-wrap">
+    <p class="v2-closing__line">Design the <em>default</em>, not the discipline.</p>
+    <a href="./index.html#work" class="v2-closing__link">Back to all projects →</a>
+  </div>
+</section>
+
+<script>
+  /* Calendly Modal */
+  window.bookCall = function bookCall() {
+    const modal = document.getElementById('calendlyModal');
+    const content = document.getElementById('calendlyContent');
+    const closeBtn = document.getElementById('calendlyClose');
+    if (!modal) return;
+    content.innerHTML = '';
+    const calendarDiv = document.createElement('div');
+    calendarDiv.className = 'calendly-inline-widget';
+    calendarDiv.setAttribute('data-url', 'https://calendly.com/pillasriharshita/30min?hide_event_type_details=1&hide_gdpr_banner=1');
+    content.appendChild(calendarDiv);
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (typeof Calendly !== 'undefined') {
+      Calendly.initInlineWidget({
+        url: 'https://calendly.com/pillasriharshita/30min?hide_event_type_details=1&hide_gdpr_banner=1',
+        parentElement: calendarDiv
+      });
+    }
+    if (closeBtn && !closeBtn.hasListener) {
+      closeBtn.addEventListener('click', closeCalendlyModal);
+      closeBtn.hasListener = true;
+    }
+    if (!modal.hasBackdropListener) {
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeCalendlyModal(); });
+      modal.hasBackdropListener = true;
+    }
+    const escapeListener = (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeCalendlyModal();
+        document.removeEventListener('keydown', escapeListener);
+      }
+    };
+    document.addEventListener('keydown', escapeListener);
+  };
+  window.closeCalendlyModal = function closeCalendlyModal() {
+    const modal = document.getElementById('calendlyModal');
+    if (modal) {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  };
+</script>
+
+</body>
+</html>
