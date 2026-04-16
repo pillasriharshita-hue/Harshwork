@@ -569,6 +569,43 @@
     }
     .v2-closing__link:hover { opacity: 0.75; }
 
+    .v2-closing__actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .v2-closing__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--v2-sans);
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--v2-bg);
+      background: var(--v2-accent);
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 999px;
+      border: 1px solid var(--v2-accent);
+      transition: all 0.2s;
+    }
+    .v2-closing__btn:hover {
+      background: transparent;
+      color: var(--v2-accent);
+      transform: translateY(-2px);
+    }
+    .v2-closing__btn-num {
+      font-family: var(--v2-hand);
+      font-size: 22px;
+      text-transform: none;
+      letter-spacing: 0;
+      line-height: 1;
+    }
+
     /* compare link badge */
     .v2-compare {
       position: fixed;
@@ -985,7 +1022,13 @@
 <section class="v2-closing">
   <div class="v2-wrap">
     <p class="v2-closing__line">Design the <em>default</em>, not the discipline.</p>
-    <a href="./index.html#work" class="v2-closing__link">Back to all projects →</a>
+    <div class="v2-closing__actions">
+      <a href="./uttishanow.html" class="v2-closing__btn">
+        <span class="v2-closing__btn-num">.1</span>
+        <span>View v1 version</span>
+      </a>
+      <a href="./index.html#work" class="v2-closing__link">Back to all projects →</a>
+    </div>
   </div>
 </section>
 
