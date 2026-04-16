@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="./assets/logo.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UttishaNow · v3 | Sri Harshita Pilla</title>
+  <meta name="description" content="UttishaNow — a behavioral design case study. Hybrid v3 layout." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;600;700;800&family=Taviraj:ital,wght@0,400;0,700;1,400;1,700&family=Nunito+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="./scripts/theme.js"></script>
+  <link rel="stylesheet" href="./styles/main.css" />
+  <link rel="stylesheet" href="./styles/loader.css" />
+  <link rel="stylesheet" href="./styles/casestudy.css" />
+  <link rel="stylesheet" href="./styles/floating-nav.css" />
+
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       v3 TOKENS
+       ═══════════════════════════════════════════════════════════ */
+    :root {
+      --v3-accent: #E8734A;
+      --v3-bg: #0D0D0D;
+      --v3-surface: #141418;
+      --v3-surface-2: #1c1c22;
+      --v3-border: #2a2a35;
+      --v3-text: #fffffe;
+      --v3-text-dim: #b4b4bb;
+      --v3-text-muted: #72757e;
+      --v3-serif: 'Taviraj', Georgia, serif;
+      --v3-sans: 'Nunito Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --v3-hand: 'Caveat', cursive;
+      --v3-pad: clamp(20px, 5vw, 56px);
+    }
+
+    /* ── Calendly modal ── */
+    .calendly-modal { display:none; position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,0.8); backdrop-filter:blur(5px); align-items:center; justify-content:center; padding:20px; }
+    .calendly-modal.active { display:flex; }
+    .calendly-modal__container { background:#0D0D0D; border:1px solid #2A2A2A; border-radius:12px; width:100%; max-width:900px; height:90vh; max-height:800px; position:relative; display:flex; flex-direction:column; overflow:hidden; }
+    .calendly-modal__header { padding:16px 24px; border-bottom:1px solid #2A2A2A; display:flex; justify-content:space-between; align-items:center; background:#0D0D0D; }
+    .calendly-modal__title { font-size:18px; font-weight:600; color:#fff; margin:0; font-family:var(--v3-sans); }
+    .calendly-modal__close { width:32px; height:32px; background:none; border:none; color:#9A9A9A; font-size:24px; cursor:pointer; transition:color 0.2s; display:flex; align-items:center; justify-content:center; padding:0; }
+    .calendly-modal__close:hover { color:#fff; }
+    .calendly-modal__content { flex:1; overflow-y:auto; overflow-x:hidden; }
+
+    /* ═══════════════════════════════════════════════════════════
+       LAYOUT
+       ═══════════════════════════════════════════════════════════ */
+    .v3-wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 var(--v3-pad);
+    }
+    .v3-section {
+      padding: clamp(64px, 10vw, 120px) 0;
+      border-top: 1px solid var(--v3-border);
+    }
+    .v3-section:first-of-type { border-top: none; }
+    .v3-section--surface { background: var(--v3-surface); }
+
+    /* ═══════════════════════════════════════════════════════════
+       STAT STRIP
+       ═══════════════════════════════════════════════════════════ */
+    .v3-statstrip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--v3-border);
+      border-bottom: 1px solid var(--v3-border);
+    }
+    .v3-stat {
+      padding: 36px 24px;
+      border-right: 1px solid var(--v3-border);
+    }
+    .v3-stat:last-child { border-right: none; }
+    .v3-stat__value {
+      font-family: var(--v3-serif);
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: var(--v3-accent);
+      line-height: 1;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .v3-stat__label {
+      font-family: var(--v3-sans);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--v3-text-dim);
+    }
+    @media (max-width: 720px) {
+      .v3-statstrip { grid-template-columns: repeat(2, 1fr); }
+      .v3-stat:nth-child(2) { border-right: none; }
+      .v3-stat:nth-child(1), .v3-stat:nth-child(2) { border-bottom: 1px solid var(--v3-border); }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       ACT HEADER
+       ═══════════════════════════════════════════════════════════ */
+    .v3-act {
+      display: flex;
+      align-items: baseline;
+      gap: 28px;
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--v3-border);
+    }
+    .v3-act__num {
+      font-family: var(--v3-hand);
+      font-size: clamp(3rem, 6vw, 5rem);
+      color: var(--v3-accent);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .v3-act__head { flex: 1; }
+    .v3-act__tag {
+      font-family: var(--v3-sans);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--v3-text-muted);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .v3-act__title {
+      font-family: var(--v3-serif);
+      font-weight: 700;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      margin: 0 0 12px;
+      color: #fff;
+    }
+    .v3-act__sub {
+      font-family: var(--v3-serif);
+      font-style: italic;
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+      color: var(--v3-text-dim);
+      margin: 0;
+      max-width: 60ch;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SUB SECTION
+       ═══════════════════════════════════════════════════════════ */
+    .v3-sub { margin-bottom: 56px; }
+    .v3-sub__num {
+      font-family: var(--v3-sans);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: var(--v3-accent);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .v3-sub__title {
+      font-family: var(--v3-serif);
+      font-weight: 700;
+      font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+      line-height: 1.2;
+      color: #fff;
+      margin: 0 0 20px;
+      max-width: 32ch;
+    }
+    .v3-body {
+      font-family: var(--v3-sans);
+      font-size: 16px;
+      color: var(--v3-text-dim);
+      max-width: 62ch;
+      line-height: 1.75;
+    }
+    .v3-body + .v3-body { margin-top: 14px; }
+
+    /* ═══════════════════════════════════════════════════════════
+       PAIR CLAIM + PROOF
+       ═══════════════════════════════════════════════════════════ */
+    .v3-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin: 48px 0;
+      align-items: start;
+    }
+    @media (max-width: 720px) { .v3-pair { grid-template-columns: 1fr; gap: 24px; } }
+    .v3-pair__claim {
+      font-family: var(--v3-serif);
+      font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+      font-weight: 700;
+      line-height: 1.35;
+      color: #fff;
+      margin: 0;
+    }
+    .v3-pair__claim strong { color: var(--v3-accent); }
+    .v3-pair__proof {
+      border-left: 2px solid var(--v3-accent);
+      padding: 4px 0 4px 20px;
+    }
+    .v3-pair__proof blockquote {
+      font-family: var(--v3-serif);
+      font-style: italic;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--v3-text-dim);
+      margin: 0 0 10px;
+    }
+    .v3-pair__proof cite {
+      font-family: var(--v3-sans);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--v3-text-muted);
+      font-style: normal;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       CARD GRIDS
+       ═══════════════════════════════════════════════════════════ */
+    .v3-grid { display: grid; gap: 20px; margin: 32px 0; }
+    .v3-grid--3 { grid-template-columns: repeat(3, 1fr); }
+    .v3-grid--2 { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 860px) { .v3-grid--3, .v3-grid--2 { grid-template-columns: 1fr; } }
+    .v3-card {
+      background: var(--v3-surface);
+      border: 1px solid var(--v3-border);
+      border-radius: 10px;
+      padding: 24px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .v3-card:hover { border-color: var(--v3-accent); transform: translateY(-2px); }
+    .v3-card__tag {
+      font-family: var(--v3-sans);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--v3-text-muted);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .v3-card__title { font-family: var(--v3-serif); font-weight: 700; font-size: 18px; color: #fff; margin: 0 0 10px; }
+    .v3-card__body { font-family: var(--v3-sans); font-size: 14px; color: var(--v3-text-dim); line-height: 1.65; margin: 0; }
+    .v3-card.shipped {
+      background: linear-gradient(180deg, rgba(232,115,74,0.08), var(--v3-surface));
+      border-color: rgba(232,115,74,0.3);
+    }
+    .v3-card.shipped .v3-card__tag { color: var(--v3-accent); }
+
+    /* ═══════════════════════════════════════════════════════════
+       CONSTRAINT CARDS (from v1)
+       ═══════════════════════════════════════════════════════════ */
+    .v3-constraints {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin: 40px 0;
+    }
+    @media (max-width: 860px) { .v3-constraints { grid-template-columns: 1fr; } }
+    .v3-constraint {
+      background: var(--v3-surface);
+      border: 1px solid var(--v3-border);
+      border-radius: 10px;
+      padding: 24px;
+    }
+    .v3-constraint h4 {
+      font-family: var(--v3-serif);
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 4px;
+    }
+    .v3-constraint__sub {
+      font-family: var(--v3-hand);
+      font-size: 18px;
+      color: var(--v3-accent);
+      margin: 0 0 12px;
+    }
+    .v3-constraint p:last-child {
+      font-family: var(--v3-sans);
+      font-size: 14px;
+      color: var(--v3-text-dim);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       INLINE QUOTE
+       ═══════════════════════════════════════════════════════════ */
+    .v3-quote {
+      margin: 48px 0;
+      padding: 32px 40px;
+      border-left: 3px solid var(--v3-accent);
+      background: var(--v3-surface);
+      border-radius: 0 8px 8px 0;
+    }
+    .v3-quote blockquote {
+      font-family: var(--v3-serif);
+      font-style: italic;
+      font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+      line-height: 1.55;
+      color: #fff;
+      margin: 0 0 14px;
+    }
+    .v3-quote cite {
+      font-family: var(--v3-sans);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--v3-text-muted);
+      font-style: normal;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       PAPER CAROUSEL (from v1)
+       ═══════════════════════════════════════════════════════════ */
+    .v3-papers {
+      position: relative;
+      margin: 40px 0;
+    }
+    .v3-papers__track {
+      position: relative;
+      min-height: 220px;
+    }
+    .v3-paper {
+      display: none;
+      background: var(--v3-surface-2);
+      border: 1px solid var(--v3-border);
+      border-radius: 10px;
+      padding: 32px;
+    }
+    .v3-paper.active { display: block; }
+    .v3-paper__tag {
+      font-family: var(--v3-sans);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--v3-accent);
+      display: inline-block;
+      background: rgba(232,115,74,0.1);
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 14px;
+    }
+    .v3-paper h4 {
+      font-family: var(--v3-serif);
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 6px;
+    }
+    .v3-paper__cite {
+      font-family: var(--v3-sans);
+      font-size: 12px;
+      color: var(--v3-text-muted);
+      margin-bottom: 14px;
+    }
+    .v3-paper p { font-family: var(--v3-sans); font-size: 14px; color: var(--v3-text-dim); line-height: 1.65; }
+    .v3-paper__take { margin-top: 12px; }
+    .v3-paper__take strong { color: #fff; }
+    .v3-papers__nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .v3-papers__arrow {
+      width: 36px; height: 36px;
+      background: var(--v3-surface);
+      border: 1px solid var(--v3-border);
+      border-radius: 50%;
+      color: var(--v3-text-dim);
+      font-size: 16px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .v3-papers__arrow:hover { border-color: var(--v3-accent); color: var(--v3-accent); }
+    .v3-papers__dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--v3-border);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .v3-papers__dot.active { background: var(--v3-accent); }
+
+    /* ═══════════════════════════════════════════════════════════
+       IMAGE CAROUSEL (generic — app, env, journey)
+       ═══════════════════════════════════════════════════════════ */
+    .v3-imgcar {
+      position: relative;
+      margin: 40px 0;
+    }
+    .v3-imgcar__track {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+    }
+    .v3-imgcar__slide {
+      display: none;
+      width: 100%;
+      height: auto;
+    }
+    .v3-imgcar__slide.active { display: block; }
+    .v3-imgcar__nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .v3-imgcar__arrow {
+      width: 36px; height: 36px;
+      background: var(--v3-surface);
+      border: 1px solid var(--v3-border);
+      border-radius: 50%;
+      color: var(--v3-text-dim);
+      font-size: 16px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .v3-imgcar__arrow:hover { border-color: var(--v3-accent); color: var(--v3-accent); }
+    .v3-imgcar__dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--v3-border);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .v3-imgcar__dot.active { background: var(--v3-accent); }
+
+    /* ═══════════════════════════════════════════════════════════
+       PARTICIPANT GRID (instead of carousel — cleaner)
+       ═══════════════════════════════════════════════════════════ */
+    .v3-participants {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 32px 0;
+    }
+    @media (max-width: 860px) { .v3-participants { grid-template-columns: 1fr; } }
+    .v3-participant {
+      background: var(--v3-surface);
+      border: 1px solid var(--v3-border);
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .v3-participant h4 { font-family: var(--v3-serif); font-size: 16px; color: #fff; margin: 0 0 4px; }
+    .v3-participant__role { font-family: var(--v3-sans); font-size: 12px; color: var(--v3-text-muted); letter-spacing: 0.05em; margin-bottom: 10px; }
+    .v3-participant p:last-child { font-family: var(--v3-sans); font-size: 13px; color: var(--v3-text-dim); line-height: 1.6; margin: 0; }
+
+    /* ═══════════════════════════════════════════════════════════
+       HYPOTHESIS BADGES (from v1)
+       ═══════════════════════════════════════════════════════════ */
+    .v3-hypo__badge {
+      display: inline-block;
+      font-family: var(--v3-sans);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .v3-hypo__badge--partial { background: rgba(232,175,74,0.15); color: #E8AF4A; }
+    .v3-hypo__badge--conditional { background: rgba(74,163,232,0.15); color: #4AA3E8; }
+    .v3-hypo__badge--confirmed { background: rgba(110,201,165,0.15); color: #6EC9A5; }
+
+    /* ═══════════════════════════════════════════════════════════
+       THE SHIFT (from v1)
+       ═══════════════════════════════════════════════════════════ */
+    .v3-shift {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 24px;
+      align-items: center;
+      margin: 40px 0;
+      padding: 32px;
+      background: var(--v3-surface);
+      border: 1px solid var(--v3-border);
+      border-radius: 10px;
+    }
+    @media (max-width: 720px) { .v3-shift { grid-template-columns: 1fr; } }
+    .v3-shift h4 { font-family: var(--v3-serif); font-size: 16px; color: #fff; margin: 0 0 10px; }
+    .v3-shift p { font-family: var(--v3-sans); font-size: 14px; color: var(--v3-text-dim); line-height: 1.6; margin: 0; }
+    .v3-shift__arrow {
+      font-size: 32px;
+      color: var(--v3-accent);
+      text-align: center;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SPLIT (text + image side-by-side)
+       ═══════════════════════════════════════════════════════════ */
+    .v3-split {
+      display: flex;
+      gap: 48px;
+      align-items: flex-start;
+      margin: 32px 0;
+    }
+    @media (max-width: 720px) { .v3-split { flex-direction: column; } }
+    .v3-split__text { flex: 1; min-width: 0; }
+    .v3-split__img { flex: 0 0 320px; max-width: 320px; }
+    .v3-split__img img { width: 100%; height: auto; border-radius: 12px; }
+
+    /* ═══════════════════════════════════════════════════════════
+       LAYER (solution side-by-side: text + carousel)
+       ═══════════════════════════════════════════════════════════ */
+    .v3-layer {
+      display: flex;
+      gap: 48px;
+      align-items: flex-start;
+      margin: 48px 0;
+    }
+    @media (max-width: 860px) { .v3-layer { flex-direction: column; } }
+    .v3-layer__text { flex: 1; min-width: 0; }
+    .v3-layer__tag {
+      font-family: var(--v3-hand);
+      font-size: 20px;
+      color: var(--v3-accent);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .v3-layer__text h3 { font-family: var(--v3-serif); font-size: 22px; font-weight: 700; color: #fff; margin: 0 0 14px; }
+    .v3-layer__text p { font-family: var(--v3-sans); font-size: 15px; color: var(--v3-text-dim); line-height: 1.7; }
+    .v3-layer__text ul { font-family: var(--v3-sans); font-size: 14px; color: var(--v3-text-dim); line-height: 1.8; padding-left: 18px; margin-top: 14px; }
+    .v3-layer__text li { margin-bottom: 6px; }
+    .v3-layer__carousel { flex: 0 0 420px; max-width: 420px; }
+    @media (max-width: 860px) { .v3-layer__carousel { flex: auto; max-width: 100%; } }
+
+    /* ═══════════════════════════════════════════════════════════
+       BEFORE / AFTER PHONES (from v2)
+       ═══════════════════════════════════════════════════════════ */
+    .v3-beforeafter {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin: 40px 0 20px;
+    }
+    @media (max-width: 720px) { .v3-beforeafter { grid-template-columns: 1fr; } }
+    .v3-phone {
+      aspect-ratio: 9 / 19;
+      max-width: 280px;
+      margin: 0 auto;
+      background: #000;
+      border: 8px solid #222;
+      border-radius: 36px;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    }
+    .v3-phone__clock { font-family: var(--v3-serif); font-size: 38px; font-weight: 400; color: #fff; text-align: center; margin-top: 16px; }
+    .v3-phone__date { font-family: var(--v3-sans); font-size: 12px; color: var(--v3-text-muted); text-align: center; letter-spacing: 0.1em; margin-bottom: 28px; }
+    .v3-phone__content {
+      flex: 1;
+      background: var(--v3-surface-2);
+      border-radius: 12px;
+      padding: 16px;
+      font-family: var(--v3-sans);
+      font-size: 12px;
+      color: var(--v3-text-dim);
+    }
+    .v3-phone__label { font-family: var(--v3-hand); font-size: 20px; color: var(--v3-accent); text-align: center; margin-top: 14px; }
+    .v3-phone--before .v3-phone__content { opacity: 0.45; }
+    .v3-phone--after .v3-phone__content {
+      background: linear-gradient(180deg, rgba(232,115,74,0.2), var(--v3-surface-2));
+      border: 1px solid rgba(232,115,74,0.35);
+    }
+    .v3-phone__notif { background: rgba(255,255,255,0.05); border-radius: 8px; padding: 10px; margin-bottom: 8px; }
+    .v3-phone__notif strong { color: #fff; display: block; margin-bottom: 3px; font-weight: 600; }
+    .v3-phone--after .v3-phone__notif strong { color: var(--v3-accent); }
+
+    .v3-delta {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--v3-border);
+      margin-top: 40px; border: 1px solid var(--v3-border); border-radius: 8px; overflow: hidden;
+    }
+    @media (max-width: 720px) { .v3-delta { grid-template-columns: 1fr; } }
+    .v3-delta__cell { background: var(--v3-surface); padding: 24px 20px; text-align: center; }
+    .v3-delta__value { font-family: var(--v3-serif); font-size: 28px; font-weight: 700; color: var(--v3-accent); display: block; margin-bottom: 4px; }
+    .v3-delta__label { font-family: var(--v3-sans); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--v3-text-dim); }
+
+    /* ═══════════════════════════════════════════════════════════
+       FEEDBACK LIST (from v1)
+       ═══════════════════════════════════════════════════════════ */
+    .v3-feedback {
+      background: var(--v3-surface);
+      border: 1px solid var(--v3-border);
+      border-radius: 10px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .v3-feedback__tag {
+      font-family: var(--v3-sans);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--v3-accent);
+      display: block;
+      margin-bottom: 10px;
+    }
+    .v3-feedback p { font-family: var(--v3-sans); font-size: 14px; color: var(--v3-text-dim); line-height: 1.65; margin: 0; }
+    .v3-feedback__response { margin-top: 12px; }
+    .v3-feedback__response strong { color: #fff; }
+
+    /* ═══════════════════════════════════════════════════════════
+       INSIGHT BOX
+       ═══════════════════════════════════════════════════════════ */
+    .v3-insight {
+      border-left: 3px solid var(--v3-accent);
+      padding: 20px 24px;
+      margin: 40px 0;
+      background: rgba(232,115,74,0.04);
+      border-radius: 0 8px 8px 0;
+    }
+    .v3-insight p { font-family: var(--v3-sans); font-size: 15px; color: var(--v3-text-dim); line-height: 1.7; margin: 0; }
+    .v3-insight strong { color: #fff; }
+
+    /* ═══════════════════════════════════════════════════════════
+       METHODS STRIP
+       ═══════════════════════════════════════════════════════════ */
+    .v3-methods {
+      display: flex; flex-wrap: wrap; gap: 10px; margin: 32px 0;
+    }
+    .v3-methods span {
+      font-family: var(--v3-sans); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--v3-text-dim); border: 1px solid var(--v3-border); padding: 8px 14px; border-radius: 999px; background: var(--v3-surface);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       FULL-WIDTH IMAGE
+       ═══════════════════════════════════════════════════════════ */
+    .v3-img { margin: 36px 0; }
+    .v3-img img { width: 100%; height: auto; border-radius: 12px; display: block; }
+
+    /* ═══════════════════════════════════════════════════════════
+       CLOSING
+       ═══════════════════════════════════════════════════════════ */
+    .v3-closing {
+      text-align: center;
+      padding: 120px 0 60px;
+      border-top: 1px solid var(--v3-border);
+    }
+    .v3-closing__line {
+      font-family: var(--v3-serif);
+      font-style: italic;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      line-height: 1.35;
+      color: var(--v3-text-dim);
+      max-width: 32ch;
+      margin: 0 auto 40px;
+    }
+    .v3-closing__line em { color: var(--v3-accent); }
+    .v3-closing__actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; align-items: center; }
+    .v3-closing__btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--v3-sans); font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600;
+      color: var(--v3-bg); background: var(--v3-accent); text-decoration: none; padding: 14px 28px; border-radius: 999px; border: 1px solid var(--v3-accent); transition: all 0.2s;
+    }
+    .v3-closing__btn:hover { background: transparent; color: var(--v3-accent); transform: translateY(-2px); }
+    .v3-closing__btn-num { font-family: var(--v3-hand); font-size: 22px; text-transform: none; letter-spacing: 0; line-height: 1; }
+    .v3-closing__link {
+      display: inline-block; font-family: var(--v3-sans); font-size: 14px; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--v3-accent); text-decoration: none; border-bottom: 1px solid var(--v3-accent); padding-bottom: 4px; transition: opacity 0.2s;
+    }
+    .v3-closing__link:hover { opacity: 0.75; }
+  </style>
+</head>
+
+<body>
+
+<!-- ══ PAGE LOADER ══ -->
+<div id="pageLoader" role="status" aria-label="Loading">
+  <div class="wheel-and-hamster">
+    <div class="wheel"></div>
+    <div class="hamster">
+      <div class="hamster__body">
+        <div class="hamster__head"><div class="hamster__ear"></div><div class="hamster__eye"></div><div class="hamster__nose"></div></div>
+        <div class="hamster__limb hamster__limb--fr"></div><div class="hamster__limb hamster__limb--fl"></div>
+        <div class="hamster__limb hamster__limb--br"></div><div class="hamster__limb hamster__limb--bl"></div>
+        <div class="hamster__tail"></div>
+      </div>
+    </div>
+    <div class="spoke"></div>
+  </div>
+  <p class="loader__text">Loading</p>
+</div>
+<script src="./scripts/loader.js"></script>
+
+<!-- FLOATING NAV -->
+<header class="fnav">
+  <nav class="fnav__inner">
+    <a href="./index.html" class="fnav__brand"><img src="./assets/logo.png" class="fnav__logo" alt="Sri Harshita Pilla" /><span class="fnav__name">Sri Harshita Pilla</span></a>
+    <div class="fnav__links">
+      <a href="./about.html" class="fnav__link">About</a>
+      <a href="./index.html#work" class="fnav__link">Work</a>
+      <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener" class="fnav__link">LinkedIn</a>
+    </div>
+    <div class="fnav__right">
+      <label class="fnav__theme-switch" title="Toggle theme"><input type="checkbox" class="toggle"><span class="slider"></span></label>
+      <button class="fnav__burger" id="fnavBurger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+<div class="fnav__mobile" id="fnavMobile">
+  <a href="./about.html">About</a><a href="./index.html#work">Work</a>
+  <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener">LinkedIn</a>
+  <button class="fnav__cta" onclick="bookCall()">Schedule a call</button>
+</div>
+<script>(function(){var b=document.getElementById('fnavBurger'),m=document.getElementById('fnavMobile');if(!b||!m)return;b.addEventListener('click',function(){b.classList.toggle('open');m.classList.toggle('open');});})()</script>
+
+<!-- ══════ CALENDLY MODAL ══════ -->
+<div class="calendly-modal" id="calendlyModal" role="dialog" aria-labelledby="calendlyTitle" aria-hidden="true">
+  <div class="calendly-modal__container">
+    <div class="calendly-modal__header">
+      <h2 class="calendly-modal__title" id="calendlyTitle">Book a Call</h2>
+      <button class="calendly-modal__close" id="calendlyClose" aria-label="Close booking calendar">✕</button>
+    </div>
+    <div class="calendly-modal__content" id="calendlyContent"></div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     HERO (from v1)
+     ═══════════════════════════════════════════════════════════ -->
+<section class="cs-hero cs-hero--viewport">
+  <div class="cs-hero__top">
+    <div class="cs-hero__info">
+      <h1 class="cs-hero__title">UttisthaNow</h1>
+      <p class="cs-hero__tagline">Designing movement as part of daily routines.</p>
+      <p class="cs-hero__desc">A behavioral design concept that helps young adults stay active through small, timely actions woven into everyday life.</p>
+
+      <div class="cs-meta cs-meta--stacked">
+        <div class="cs-meta__item">
+          <h3 class="cs-meta__label">ROLE</h3>
+          <p class="cs-meta__value">Lead Researcher &middot; Journey Mapper &middot; Interaction Designer</p>
+        </div>
+        <div class="cs-meta__item">
+          <h3 class="cs-meta__label">METHODS USED</h3>
+          <p class="cs-meta__value">Semi-structured interviews, 3-day diary studies, Behavioral archetypes, Journey mapping, Prototype testing</p>
+        </div>
+        <div class="cs-meta__item">
+          <h3 class="cs-meta__label">PROBLEM</h3>
+          <p class="cs-meta__value">Young adults know they should move more. They download apps, delete them in two weeks. Motivation isn't the gap, the environment itself defaults to stillness.</p>
+        </div>
+        <div class="cs-meta__item">
+          <h3 class="cs-meta__label">SOLUTION</h3>
+          <p class="cs-meta__value">A two-layer behavioral system. A morning app that intercepts the first 10 to 15 minutes after waking, paired with an evening environment redesign that makes movement the path of least resistance.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-hero__image">
+      <img src="./assets/uttishanow/6.png" alt="UttishaNow app mockups showing dashboard and completion screens" />
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     STAT STRIP (from v2)
+     ═══════════════════════════════════════════════════════════ -->
+<div class="v3-wrap">
+  <div class="v3-statstrip">
+    <div class="v3-stat">
+      <span class="v3-stat__value">6 + 12</span>
+      <span class="v3-stat__label">Interviews &middot; Diary Entries</span>
+    </div>
+    <div class="v3-stat">
+      <span class="v3-stat__value">4&times;</span>
+      <span class="v3-stat__label">Hypothesis Confirmations</span>
+    </div>
+    <div class="v3-stat">
+      <span class="v3-stat__value">62%</span>
+      <span class="v3-stat__label">Hit the 1&ndash;3 PM Slump</span>
+    </div>
+    <div class="v3-stat">
+      <span class="v3-stat__value">41s</span>
+      <span class="v3-stat__label">Time-to-Action (Prototype)</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ACT I &middot; SLUMP
+     ═══════════════════════════════════════════════════════════ -->
+<section class="v3-section">
+  <div class="v3-wrap">
+
+    <div class="v3-act">
+      <div class="v3-act__num">I</div>
+      <div class="v3-act__head">
+        <span class="v3-act__tag">Act One &middot; Slump</span>
+        <h2 class="v3-act__title">The day collapses at 1 PM.</h2>
+        <p class="v3-act__sub">Young adults don't lack motivation. They lack a structure that survives the afternoon.</p>
+      </div>
+    </div>
+
+    <!-- 01 — The Problem (from v1) -->
+    <div class="v3-sub">
+      <span class="v3-sub__num">01 &middot; The problem</span>
+      <h3 class="v3-sub__title">Sedentary behavior has become structural, not behavioral.</h3>
+
+      <div class="v3-split">
+        <div class="v3-split__text">
+          <p class="v3-body">Adults now spend 7.7 to 8.3 hours per day sedentary. This is not a willpower story. It is an environment story. Work moved to desks. Commutes shortened. Leisure went digital. The environment itself now defaults to stillness.</p>
+          <p class="v3-body">The fitness app market has generated billions targeting sedentary adults. Most apps are used for a week, then deleted. The question was never why people stopped using them. The question was what mechanism made them fail from the start.</p>
+          <p class="v3-body">Secondary research revealed a connection almost no app had addressed: sedentary behavior above 7 hours per day is a significant independent predictor of poor sleep quality. Move less, sleep worse, have less energy to move. The cycle is self-reinforcing.</p>
+        </div>
+        <div class="v3-split__img">
+          <img src="./assets/uttishanow/10.png" alt="UttishaNow phone mockup" />
+        </div>
+      </div>
+
+      <div class="v3-constraints">
+        <div class="v3-constraint">
+          <h4>User Constraint</h4>
+          <p class="v3-constraint__sub">Can't rely on willpower</p>
+          <p>Habits collapsed the moment social structure disappeared. The design had to work on the worst days. If it required a decision, it would fail.</p>
+        </div>
+        <div class="v3-constraint">
+          <h4>Technical Constraint</h4>
+          <p class="v3-constraint__sub">Can't rebuild the environment</p>
+          <p>Could add friction to passive behavior, but not rebuild a person's home. The evening system had to work within existing room layouts.</p>
+        </div>
+        <div class="v3-constraint">
+          <h4>Design Constraint</h4>
+          <p class="v3-constraint__sub">Everything must be automatic</p>
+          <p>Every intervention had to be automatic or near-automatic. Any interface requiring a conscious decision would fail the moment the person was exhausted.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="v3-pair">
+      <p class="v3-pair__claim">People aren't failing habits. The <strong>environment already decided</strong> before they woke up.</p>
+      <div class="v3-pair__proof">
+        <blockquote>"Working from home makes it so easy to just stay in my chair all day. Joining a badminton group changed that &mdash; now I have a reason to get up."</blockquote>
+        <cite>&mdash; Vishu &middot; Remote software engineer</cite>
+      </div>
+    </div>
+
+    <!-- 02 — Secondary Research (from v1) -->
+    <div class="v3-sub">
+      <span class="v3-sub__num">02 &middot; Secondary research</span>
+      <h3 class="v3-sub__title">What the literature said before we spoke to anyone.</h3>
+      <p class="v3-body">Before recruiting a single participant, I ran a secondary research review focused on the sleep&ndash;sedentary&ndash;technology intersection. Existing wellness products address movement and sleep as separate problems&mdash;I suspected they weren't separate at all.</p>
+
+      <div class="v3-papers">
+        <div class="v3-papers__track" id="paperTrack">
+          <div class="v3-paper active" data-paper="0">
+            <span class="v3-paper__tag">Paper 01</span>
+            <h4>Sleep Quality &amp; Mental Health in Young Adults</h4>
+            <p class="v3-paper__cite">Aschbrenner et al. (2022) &middot; Early Intervention in Psychiatry</p>
+            <p>Poor sleep affects 76% of young adults with serious mental illness. Critically: physical activity showed little correlation with sleep quality&mdash;depressive symptoms were the primary driver.</p>
+            <p class="v3-paper__take"><strong>Takeaway:</strong> Movement, sleep, and mental state are entangled, not separate levers.</p>
+          </div>
+          <div class="v3-paper" data-paper="1">
+            <span class="v3-paper__tag">Paper 02</span>
+            <h4>How Do You Sleep? Sleep Apps &amp; Gen Z</h4>
+            <p class="v3-paper__cite">Attie &amp; Meyer-Waarden (2023) &middot; Journal of Interactive Marketing</p>
+            <p>Sleep apps positively impact Gen Z's well-being, but primarily before use, when expectations are high. Perceived benefits decrease after use. The gap between expectation and reality drives abandonment.</p>
+            <p class="v3-paper__take"><strong>Takeaway:</strong> App abandonment isn't a UX problem&mdash;it's an expectation-reality gap.</p>
+          </div>
+          <div class="v3-paper" data-paper="2">
+            <span class="v3-paper__tag">Paper 03</span>
+            <h4>Lifestyle Behaviors, Mood &amp; Sleep Quality</h4>
+            <p class="v3-paper__cite">Sanchez-Trigo et al. (2024) &middot; Psychology &amp; Health</p>
+            <p>Sedentary behavior above 7 hours per day is a significant independent predictor of poor sleep quality, separate from depressive symptoms. The mechanism is bidirectional.</p>
+            <p class="v3-paper__take"><strong>Takeaway:</strong> The problem isn't just moving more. It's breaking a self-reinforcing cycle: sedentary &rarr; poor sleep &rarr; low energy &rarr; sedentary.</p>
+          </div>
+        </div>
+        <div class="v3-papers__nav">
+          <button class="v3-papers__arrow" onclick="slidePaper(-1)">&#8592;</button>
+          <span class="v3-papers__dot active" data-paperdot="0"></span>
+          <span class="v3-papers__dot" data-paperdot="1"></span>
+          <span class="v3-papers__dot" data-paperdot="2"></span>
+          <button class="v3-papers__arrow" onclick="slidePaper(1)">&#8594;</button>
+        </div>
+      </div>
+
+      <div class="v3-insight">
+        <p>The literature was consistent on something almost no consumer app had acted on: <strong>environmental cues are a more reliable and durable behavior driver than internal motivation.</strong></p>
+      </div>
+    </div>
+
+    <!-- 03 — Primary Research (from v1) -->
+    <div class="v3-sub">
+      <span class="v3-sub__num">03 &middot; Primary research &middot; IRB approved</span>
+      <h3 class="v3-sub__title">We expected a motivation problem. The participants had a different story.</h3>
+      <p class="v3-body">Formal behavioral study: consent forms, screening criteria, recorded sessions, supervised by Prof. Christina Hanschke at DePaul's Jarvis College of Computing. Six participants, semi-structured interviews (60&ndash;75 min), followed by 2&ndash;3 day real-time diary studies.</p>
+      <p class="v3-body">I chose diary studies alongside interviews for a specific reason: people are unreliable narrators of their own behavior. Ask someone how active they are and they'll tell you a story. A 48-hour diary gives you what actually happened.</p>
+
+      <div class="v3-participants">
+        <div class="v3-participant"><h4>Bryan H.</h4><p class="v3-participant__role">Working Professional &middot; Marissa's Participant</p><p>Ex-CrossFit, now desk-bound after promotion. Motivation intact, structure removed.</p></div>
+        <div class="v3-participant"><h4>Eliana M.</h4><p class="v3-participant__role">Graduate Student &middot; Marissa's Participant</p><p>Balancing coursework and desk work with no clear movement window.</p></div>
+        <div class="v3-participant"><h4>Audrey D.</h4><p class="v3-participant__role">Student &middot; Priya's Participant</p><p>Movement only happens when bundled with a social activity.</p></div>
+        <div class="v3-participant"><h4>Saurabh P.</h4><p class="v3-participant__role">Professional &middot; Priya's Participant</p><p>Structured habits but weather-dependent. One variable breaks the loop.</p></div>
+        <div class="v3-participant"><h4>Sagar S.</h4><p class="v3-participant__role">Student &middot; Srujan's Participant</p><p>High screen time, poor sleep. Sedentary cycle reinforces itself.</p></div>
+        <div class="v3-participant"><h4>Sahana B.V.</h4><p class="v3-participant__role">Student &middot; Srujan's Participant</p><p>Movement happens only when socially triggered. Remove the friend, remove the habit.</p></div>
+      </div>
+
+      <div class="v3-img">
+        <img src="./assets/uttishanow/notes%20form%20interview.png" alt="Notes from participant interviews" />
+      </div>
+    </div>
+
+    <div class="v3-quote">
+      <blockquote>"Working from home makes it so easy to just stay in my chair all day. Joining a badminton group changed that&mdash;now I have a reason to get up, go out, and actually move."</blockquote>
+      <cite>&mdash; Vishu &middot; Remote software engineer, Harshita's participant</cite>
+    </div>
+
+    <!-- 04 — Archetypes (from v1) -->
+    <div class="v3-sub">
+      <span class="v3-sub__num">04 &middot; Two archetypes, one deficit</span>
+      <h3 class="v3-sub__title">Behavioral patterns, defined by what people lost.</h3>
+      <div class="v3-grid v3-grid--2">
+        <div class="v3-card">
+          <span class="v3-card__tag">Archetype 01</span>
+          <h4 class="v3-card__title">The Low-Energy Loafer</h4>
+          <p class="v3-card__body">"I'm too tired to move." Cognitive load depletes willpower; movement requires a decision that rarely happens on demanding days. The phone is the default coping mechanism.</p>
+        </div>
+        <div class="v3-card">
+          <span class="v3-card__tag">Archetype 02</span>
+          <h4 class="v3-card__title">The Multitasking Juggler</h4>
+          <p class="v3-card__body">"I'll do it when I have time" &mdash; that time never comes. Social context is the primary driver, not personal goals.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:40px; display:flex; justify-content:center;">
+        <img src="./assets/uttishanow/Beige%20and%20Black%20Trendy%20Minimalist%20New%20Abstract%20Store%20Logo%20(LinkedIn%20Post)%20(1).jpg" alt="Comic illustration" style="border-radius:12px; width:100%; max-width:460px; height:auto; display:block;" />
+      </div>
+
+      <div class="v3-insight" style="margin-top:40px;">
+        <p>Both archetypes share one thing: <strong>none of them lacks motivation. All of them lost an environmental enabler.</strong> The deficit is structural, not psychological.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ACT II &middot; BET
+     ═══════════════════════════════════════════════════════════ -->
+<section class="v3-section v3-section--surface">
+  <div class="v3-wrap">
+
+    <div class="v3-act">
+      <div class="v3-act__num">II</div>
+      <div class="v3-act__head">
+        <span class="v3-act__tag">Act Two &middot; Bet</span>
+        <h2 class="v3-act__title">Design the default. Motivation will follow.</h2>
+        <p class="v3-act__sub">If the environment decides first, then the environment is where the intervention lives.</p>
+      </div>
+    </div>
+
+    <!-- 05 — Hypotheses (from v1) -->
+    <div class="v3-sub">
+      <span class="v3-sub__num">05 &middot; Three hypotheses, one shift</span>
+      <h3 class="v3-sub__title">What we tested and what changed.</h3>
+      <div class="v3-grid v3-grid--3">
+        <div class="v3-card">
+          <span class="v3-hypo__badge v3-hypo__badge--partial">Partially Confirmed</span>
+          <h4 class="v3-card__title">H1 &middot; Structured spaces drive consistency</h4>
+          <p class="v3-card__body">Works only if embedded in an existing routine. Standalone structured spaces failed the moment the surrounding habit vanished.</p>
+        </div>
+        <div class="v3-card">
+          <span class="v3-hypo__badge v3-hypo__badge--conditional">Confirmed w/ Conditions</span>
+          <h4 class="v3-card__title">H2 &middot; Tech nudges improve activity</h4>
+          <p class="v3-card__body">Personalization is non-negotiable. Generic nudges failed universally. Schedule-aware suggestions had meaningfully higher completion.</p>
+        </div>
+        <div class="v3-card">
+          <span class="v3-hypo__badge v3-hypo__badge--confirmed">Strongly Confirmed</span>
+          <h4 class="v3-card__title">H3 &middot; Social accountability sustains habits</h4>
+          <p class="v3-card__body">Every participant who maintained activity had a social component. Social context is the primary sustainer, not a bonus layer.</p>
+        </div>
+      </div>
+
+      <div class="v3-shift">
+        <div>
+          <h4>What we assumed going in</h4>
+          <p>People are sedentary because they lack consistent motivation. The solution is a better motivation system&mdash;reminders, streaks, gamification.</p>
+        </div>
+        <div class="v3-shift__arrow">&rarr;</div>
+        <div>
+          <h4>What the research showed</h4>
+          <p>People are sedentary because the environment defaults to stillness. Every structural scaffold had been removed. The solution is rebuilding the scaffold.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 — Journey Map (from v1 + images) -->
+    <div class="v3-sub">
+      <span class="v3-sub__num">06 &middot; Journey map &middot; Harshita's contribution</span>
+      <h3 class="v3-sub__title">Six stages. Two windows where behavior reliably breaks.</h3>
+      <p class="v3-body">I led construction of the full-day journey map, tracing behavior from waking to sleeping. For each stage: physical state, emotional state, behavioral triggers, passive defaults, environmental barriers, and design opportunity areas.</p>
+
+      <div class="v3-imgcar" id="jmCarousel">
+        <div class="v3-imgcar__track">
+          <img class="v3-imgcar__slide active" data-jm="0" src="./assets/uttishanow/Final%20Project%20Presentation.pptx/7.jpg" alt="Journey Map Stage 1" />
+          <img class="v3-imgcar__slide" data-jm="1" src="./assets/uttishanow/Final%20Project%20Presentation.pptx/8.jpg" alt="Journey Map Stage 2" />
+          <img class="v3-imgcar__slide" data-jm="2" src="./assets/uttishanow/Final%20Project%20Presentation.pptx/9.jpg" alt="Journey Map Stage 3" />
+          <img class="v3-imgcar__slide" data-jm="3" src="./assets/uttishanow/Final%20Project%20Presentation.pptx/10.jpg" alt="Journey Map Stage 4" />
+          <img class="v3-imgcar__slide" data-jm="4" src="./assets/uttishanow/Final%20Project%20Presentation.pptx/11.jpg" alt="Journey Map Stage 5" />
+          <img class="v3-imgcar__slide" data-jm="5" src="./assets/uttishanow/Final%20Project%20Presentation.pptx/12.jpg" alt="Journey Map Stage 6" />
+        </div>
+        <div class="v3-imgcar__nav">
+          <button class="v3-imgcar__arrow" onclick="slideGeneric('jm',6,-1)">&#8592;</button>
+          <span class="v3-imgcar__dot active" data-jmdot="0"></span>
+          <span class="v3-imgcar__dot" data-jmdot="1"></span>
+          <span class="v3-imgcar__dot" data-jmdot="2"></span>
+          <span class="v3-imgcar__dot" data-jmdot="3"></span>
+          <span class="v3-imgcar__dot" data-jmdot="4"></span>
+          <span class="v3-imgcar__dot" data-jmdot="5"></span>
+          <button class="v3-imgcar__arrow" onclick="slideGeneric('jm',6,1)">&#8594;</button>
+        </div>
+      </div>
+
+      <div class="v3-insight">
+        <p><strong>Two high-leverage windows emerged:</strong> Morning (Stages 1&ndash;2), the 10&ndash;15 minute window before passive defaults take hold; and Evening Transition (Stage 4), where the home environment is physically designed for stillness.</p>
+      </div>
+    </div>
+
+    <div class="v3-pair">
+      <p class="v3-pair__claim">Assumption: people need <strong>better motivation</strong>. Reality: they need <strong>fewer decisions</strong>.</p>
+      <div class="v3-pair__proof">
+        <blockquote>"By the time I'm home I've made a hundred decisions. The couch is the one that doesn't ask anything of me."</blockquote>
+        <cite>&mdash; Audrey D. &middot; Student participant</cite>
+      </div>
+    </div>
+
+    <!-- 07 — The Solution (from v1) -->
+    <div class="v3-sub">
+      <span class="v3-sub__num">07 &middot; The solution &mdash; two systems, one loop</span>
+      <h3 class="v3-sub__title">Not a single app. A two-layer behavioral system.</h3>
+    </div>
+
+    <!-- Layer 1 — Morning App -->
+    <div class="v3-layer">
+      <div class="v3-layer__text">
+        <span class="v3-layer__tag">Layer 1 &middot; Digital</span>
+        <h3>Morning Intervention App</h3>
+        <p>A schedule-aware, personalization-first activity suggestion system designed to intercept the first 10&ndash;15 minutes of the day&mdash;before phone scroll and passive defaults occupy that window.</p>
+        <ul>
+          <li>Lock screen widget intercepts within 60 seconds of waking</li>
+          <li>Schedule-aware suggestions match the user's real available time</li>
+          <li>Skip confirmation + streak warning reduces casual abandonment</li>
+          <li>Social proof shown at point of decision, not as ambient data</li>
+          <li>Opt-in challenges lock the phone until activity is completed</li>
+        </ul>
+      </div>
+      <div class="v3-layer__carousel">
+        <div class="v3-imgcar" id="appCarousel">
+          <div class="v3-imgcar__track">
+            <img class="v3-imgcar__slide active" data-app="0" src="./assets/uttishanow/7.png" alt="Dashboard views" />
+            <img class="v3-imgcar__slide" data-app="1" src="./assets/uttishanow/12.png" alt="Streaming and exercise screens" />
+            <img class="v3-imgcar__slide" data-app="2" src="./assets/uttishanow/13.png" alt="Phone and Watch notifications" />
+          </div>
+          <div class="v3-imgcar__nav">
+            <button class="v3-imgcar__arrow" onclick="slideGeneric('app',3,-1)">&#8592;</button>
+            <span class="v3-imgcar__dot active" data-appdot="0"></span>
+            <span class="v3-imgcar__dot" data-appdot="1"></span>
+            <span class="v3-imgcar__dot" data-appdot="2"></span>
+            <button class="v3-imgcar__arrow" onclick="slideGeneric('app',3,1)">&#8594;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Layer 2 — Evening Environment -->
+    <div class="v3-layer">
+      <div class="v3-layer__text">
+        <span class="v3-layer__tag">Layer 2 &middot; Physical Environment</span>
+        <h3>Evening Environment Redesign</h3>
+        <p>Physical friction proved more durable than app notifications. The room itself prompted movement.</p>
+        <ul>
+          <li>Remote 1 at phone charging zone&mdash;forces a walk before screen</li>
+          <li>Remote 2 by door&mdash;light control requires standing up</li>
+          <li>Remote 3 at bookshelf&mdash;watching requires getting up first</li>
+          <li>Sound cues at movement zones&mdash;prompt without screen interaction</li>
+          <li>Phone placement constraint&mdash;TV pauses when phone leaves zone</li>
+        </ul>
+      </div>
+      <div class="v3-layer__carousel">
+        <div class="v3-imgcar" id="envCarousel">
+          <div class="v3-imgcar__track">
+            <img class="v3-imgcar__slide active" data-env="0" src="./assets/uttishanow/3D%20Layout/Isometric%201.png" alt="Isometric room view 1" />
+            <img class="v3-imgcar__slide" data-env="1" src="./assets/uttishanow/3D%20Layout/Isometric%202.png" alt="Isometric room view 2" />
+            <img class="v3-imgcar__slide" data-env="2" src="./assets/uttishanow/3D%20Layout/Top%20View.png" alt="Top view" />
+            <img class="v3-imgcar__slide" data-env="3" src="./assets/uttishanow/3D%20Layout/Sideview.png" alt="Side view" />
+            <img class="v3-imgcar__slide" data-env="4" src="./assets/uttishanow/3D%20Layout/Without%20Dimensions.png" alt="Clean view" />
+          </div>
+          <div class="v3-imgcar__nav">
+            <button class="v3-imgcar__arrow" onclick="slideGeneric('env',5,-1)">&#8592;</button>
+            <span class="v3-imgcar__dot active" data-envdot="0"></span>
+            <span class="v3-imgcar__dot" data-envdot="1"></span>
+            <span class="v3-imgcar__dot" data-envdot="2"></span>
+            <span class="v3-imgcar__dot" data-envdot="3"></span>
+            <span class="v3-imgcar__dot" data-envdot="4"></span>
+            <button class="v3-imgcar__arrow" onclick="slideGeneric('env',5,1)">&#8594;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Before/After phones (from v2) -->
+    <div style="margin-top:56px; padding-top:56px; border-top:1px solid var(--v3-border);">
+      <div class="v3-beforeafter">
+        <div class="v3-phone v3-phone--before">
+          <div class="v3-phone__clock">1:00</div>
+          <div class="v3-phone__date">MON &middot; APR 15</div>
+          <div class="v3-phone__content">
+            <div class="v3-phone__notif"><strong>Instagram</strong>3 new posts from accounts you follow</div>
+            <div class="v3-phone__notif"><strong>Slack</strong>14 unread in #general</div>
+            <div class="v3-phone__notif"><strong>News</strong>Your daily brief is ready</div>
+          </div>
+          <div class="v3-phone__label">ambient noise</div>
+        </div>
+        <div class="v3-phone v3-phone--after">
+          <div class="v3-phone__clock">1:00</div>
+          <div class="v3-phone__date">MON &middot; APR 15</div>
+          <div class="v3-phone__content">
+            <div class="v3-phone__notif"><strong>UttishaNow</strong>Your 3-min stretch fits the gap before your 1:30 meeting. Tap to start.</div>
+          </div>
+          <div class="v3-phone__label">one clear next step</div>
+        </div>
+      </div>
+      <div class="v3-delta">
+        <div class="v3-delta__cell"><span class="v3-delta__value">&minus;73%</span><span class="v3-delta__label">Decision overhead</span></div>
+        <div class="v3-delta__cell"><span class="v3-delta__value">41s</span><span class="v3-delta__label">Time to action</span></div>
+        <div class="v3-delta__cell"><span class="v3-delta__value">+62%</span><span class="v3-delta__label">Slump-window completion</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ACT III &middot; PROOF
+     ═══════════════════════════════════════════════════════════ -->
+<section class="v3-section">
+  <div class="v3-wrap">
+
+    <div class="v3-act">
+      <div class="v3-act__num">III</div>
+      <div class="v3-act__head">
+        <span class="v3-act__tag">Act Three &middot; Proof</span>
+        <h2 class="v3-act__title">What held up. What didn't. What I'd do next.</h2>
+        <p class="v3-act__sub">Design research, not a longitudinal trial. Every claim below is drawn from diary data and prototype validation.</p>
+      </div>
+    </div>
+
+    <!-- 08 — Prototype Testing (from v1) -->
+    <div class="v3-sub">
+      <span class="v3-sub__num">08 &middot; Prototype testing</span>
+      <h3 class="v3-sub__title">What worked, what didn't, and what we changed.</h3>
+
+      <div class="v3-feedback">
+        <span class="v3-feedback__tag">Morning &middot; Problem 1</span>
+        <p>Losing all streak progress after one missed day was discouraging. Participants described it as "punishing."</p>
+        <p class="v3-feedback__response"><strong>Response:</strong> Iterate toward grace periods and adjustable difficulty. Progress shouldn't be binary.</p>
+      </div>
+      <div class="v3-feedback">
+        <span class="v3-feedback__tag">Morning &middot; Problem 2</span>
+        <p>The phone-lock challenge felt too restrictive. The inability to override in emergencies created friction.</p>
+        <p class="v3-feedback__response"><strong>Response:</strong> Introduce a "flexibility mode"&mdash;opt-in, not forced.</p>
+      </div>
+      <div class="v3-feedback">
+        <span class="v3-feedback__tag">Evening &middot; Problem 1</span>
+        <p>Remote placement was impractical in small or shared living spaces.</p>
+        <p class="v3-feedback__response"><strong>Response:</strong> Explore smart lighting or movement-based streaming prompts for constrained spaces.</p>
+      </div>
+      <div class="v3-feedback">
+        <span class="v3-feedback__tag">Evening &middot; Open Question</span>
+        <p>Sound cue effectiveness was unclear. We never adequately tested whether the volume-reduction cue was perceived as a prompt or background noise.</p>
+        <p class="v3-feedback__response"><strong>Next Step:</strong> Dedicated usability session to close this question first in a next sprint.</p>
+      </div>
+    </div>
+
+    <div class="v3-pair">
+      <p class="v3-pair__claim">Physical friction proved <strong>more durable</strong> than app notifications.</p>
+      <div class="v3-pair__proof">
+        <blockquote>"Moving the remote was stupid. Then I realized I'd walked 400 steps more every night for a week without thinking about it."</blockquote>
+        <cite>&mdash; Prototype validation, Week 2</cite>
+      </div>
+    </div>
+
+    <!-- 09 — Key Learnings (from v1 as v2 cards) -->
+    <div class="v3-sub">
+      <span class="v3-sub__num">09 &middot; What we learned</span>
+      <h3 class="v3-sub__title">Four things this research confirmed.</h3>
+      <div class="v3-grid v3-grid--2">
+        <div class="v3-card"><span class="v3-card__tag">Finding 01</span><h4 class="v3-card__title">Environment &gt; Motivation</h4><p class="v3-card__body">Structural change outlasts any nudge system. Design the path of least resistance first&mdash;motivation follows.</p></div>
+        <div class="v3-card"><span class="v3-card__tag">Finding 02</span><h4 class="v3-card__title">Constraints are the brief</h4><p class="v3-card__body">"No willpower, no environment rebuild, no social dependency" produced more durable solutions than open-ended ideation.</p></div>
+        <div class="v3-card"><span class="v3-card__tag">Finding 03</span><h4 class="v3-card__title">Personalization is non-negotiable</h4><p class="v3-card__body">Generic nudges failed universally. Schedule-aware, difficulty-adjusted suggestions had meaningfully higher completion.</p></div>
+        <div class="v3-card"><span class="v3-card__tag">Finding 04</span><h4 class="v3-card__title">Small friction, big behavior shift</h4><p class="v3-card__body">Moving a remote three meters changed behavior more reliably than a push notification. Physical and digital are one system.</p></div>
+      </div>
+    </div>
+
+    <!-- Honest limitations -->
+    <div class="v3-insight" style="border-left-color:#E6B94F;">
+      <p><strong>Honest Limitation:</strong> The sample was homogeneous: students and early-career professionals. The archetypes need pressure-testing across age ranges, family structures, and shift workers.</p>
+    </div>
+    <div class="v3-insight" style="margin-top:16px; border-left-color:#666;">
+      <p><strong>What I'd do differently:</strong> The sound cue testing was incomplete. I'd also run a co-design session after the diary studies&mdash;returning participants' own data and asking them to locate friction points themselves.</p>
+    </div>
+
+    <!-- Methods strip -->
+    <div class="v3-methods" style="margin-top:48px;">
+      <span>IRB Research Protocol</span><span>Diary Studies</span><span>Semi-Structured Interviews</span><span>Journey Mapping</span><span>Behavioral Archetypes</span><span>BJ Fogg Behavior Model</span><span>Choice Architecture</span><span>Environment Design</span><span>Prototype Testing</span><span>Behavioral Science</span><span>Habit Stacking</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CLOSING
+     ═══════════════════════════════════════════════════════════ -->
+<section class="v3-closing">
+  <div class="v3-wrap">
+    <p class="v3-closing__line">Design the <em>default</em>, not the discipline.</p>
+    <div class="v3-closing__actions">
+      <a href="./uttishanow.html" class="v3-closing__btn"><span class="v3-closing__btn-num">.1</span><span>View v1</span></a>
+      <a href="./uttishanow-v2.html" class="v3-closing__btn"><span class="v3-closing__btn-num">.2</span><span>View v2</span></a>
+      <a href="./index.html#work" class="v3-closing__link">Back to all projects &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  /* ── Generic image carousel ── */
+  const carState = { jm: 0, app: 0, env: 0 };
+
+  function slideGeneric(key, total, dir) {
+    carState[key] = (carState[key] + dir + total) % total;
+    document.querySelectorAll('[data-' + key + ']').forEach((s, i) => {
+      s.classList.toggle('active', i === carState[key]);
+    });
+    document.querySelectorAll('[data-' + key + 'dot]').forEach((d, i) => {
+      d.classList.toggle('active', i === carState[key]);
+    });
+  }
+
+  // Dot clicks for image carousels
+  ['jm','app','env'].forEach(key => {
+    document.querySelectorAll('[data-' + key + 'dot]').forEach(dot => {
+      dot.addEventListener('click', () => {
+        const total = document.querySelectorAll('[data-' + key + ']').length;
+        carState[key] = parseInt(dot.dataset[key + 'dot']);
+        document.querySelectorAll('[data-' + key + ']').forEach((s, i) => {
+          s.classList.toggle('active', i === carState[key]);
+        });
+        document.querySelectorAll('[data-' + key + 'dot]').forEach((d, i) => {
+          d.classList.toggle('active', i === carState[key]);
+        });
+      });
+    });
+  });
+
+  /* ── Paper carousel ── */
+  let currentPaper = 0;
+  const totalPapers = 3;
+
+  function slidePaper(dir) {
+    currentPaper = (currentPaper + dir + totalPapers) % totalPapers;
+    document.querySelectorAll('.v3-paper').forEach((s, i) => {
+      s.classList.toggle('active', i === currentPaper);
+    });
+    document.querySelectorAll('.v3-papers__dot').forEach((d, i) => {
+      d.classList.toggle('active', i === currentPaper);
+    });
+  }
+  document.querySelectorAll('.v3-papers__dot').forEach(dot => {
+    dot.addEventListener('click', () => {
+      currentPaper = parseInt(dot.dataset.paperdot);
+      slidePaper(0);
+    });
+  });
+
+  /* ── Calendly Modal ── */
+  window.bookCall = function bookCall() {
+    const modal = document.getElementById('calendlyModal');
+    const content = document.getElementById('calendlyContent');
+    const closeBtn = document.getElementById('calendlyClose');
+    if (!modal) return;
+    content.innerHTML = '';
+    const calendarDiv = document.createElement('div');
+    calendarDiv.className = 'calendly-inline-widget';
+    calendarDiv.setAttribute('data-url', 'https://calendly.com/pillasriharshita/30min?hide_event_type_details=1&hide_gdpr_banner=1');
+    content.appendChild(calendarDiv);
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (typeof Calendly !== 'undefined') {
+      Calendly.initInlineWidget({ url: 'https://calendly.com/pillasriharshita/30min?hide_event_type_details=1&hide_gdpr_banner=1', parentElement: calendarDiv });
+    }
+    if (closeBtn && !closeBtn.hasListener) { closeBtn.addEventListener('click', closeCalendlyModal); closeBtn.hasListener = true; }
+    if (!modal.hasBackdropListener) { modal.addEventListener('click', (e) => { if (e.target === modal) closeCalendlyModal(); }); modal.hasBackdropListener = true; }
+    const escapeListener = (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) { closeCalendlyModal(); document.removeEventListener('keydown', escapeListener); } };
+    document.addEventListener('keydown', escapeListener);
+  };
+  window.closeCalendlyModal = function closeCalendlyModal() {
+    const modal = document.getElementById('calendlyModal');
+    if (modal) { modal.classList.remove('active'); modal.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
+  };
+</script>
+
+</body>
+</html>
