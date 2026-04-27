@@ -19,8 +19,8 @@
   --color-footer-bg:     #16161a;
   --grid-color:          rgba(114, 114, 114, 0.18);
   --font-display: 'Bricolage Grotesque', sans-serif;
-  --font-serif:   'Bricolage Grotesque', sans-serif;
-  --font-body:    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif:   'Lato', sans-serif;
+  --font-body:    'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --text-xs: 0.75rem; --text-sm: 0.875rem; --text-base: 1rem;
   --text-lg: 1.125rem; --text-xl: 1.25rem; --text-2xl: 1.5rem;
   --text-3xl: 1.875rem; --text-4xl: 2.25rem; --text-5xl: 3rem;
@@ -78,7 +78,8 @@ img, svg, video { display: block; max-width: 100%; height: auto; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; font-size: inherit; color: inherit; }
 a { color: inherit; text-decoration: none; }
 ul, ol { list-style: none; }
-h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.15; font-weight: 700; }
+h1 { font-family: 'Bricolage Grotesque', sans-serif; line-height: 1.23; font-weight: 400; }
+h2, h3, h4 { font-family: 'Lato', sans-serif; line-height: 1.3; font-weight: 500; }
 p { max-width: 65ch; }
 
 /* ════════════════════════════════════════════════════
