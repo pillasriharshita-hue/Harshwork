@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="./assets/logo.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UttishaNow Case Study v4 | Sri Harshita Pilla</title>
+  <meta name="description" content="UttishaNow — A behavior-first mobile experience to help young adults sit less. Case study by Sri Harshita Pilla." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;600;700;800&family=Taviraj:ital,wght@0,400;0,700;1,400;1,700&family=Nunito+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Caveat&display=swap" rel="stylesheet" />
+
+  <script src="./scripts/theme.js"></script>
+  <link rel="stylesheet" href="./styles/main.css" />
+  <link rel="stylesheet" href="./styles/loader.css" />
+  <link rel="stylesheet" href="./styles/casestudy.css" />
+
+  <!-- Calendly Embed Script -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <style>
+    /* Calendly Modal */
+    .calendly-modal { display:none; position:fixed; top:0; left:0; right:0; bottom:0; z-index:1000; background:rgba(0,0,0,0.8); backdrop-filter:blur(5px); align-items:center; justify-content:center; padding:20px; }
+    .calendly-modal.active { display:flex; }
+    .calendly-modal__container { background:#0D0D0D; border:1px solid #2A2A2A; border-radius:12px; width:100%; max-width:900px; height:90vh; max-height:800px; position:relative; display:flex; flex-direction:column; overflow:hidden; }
+    .calendly-modal__header { padding:16px 24px; border-bottom:1px solid #2A2A2A; display:flex; justify-content:space-between; align-items:center; background:#0D0D0D; }
+    .calendly-modal__title { font-size:18px; font-weight:600; color:#fff; margin:0; font-family:'Nunito Sans',sans-serif; }
+    .calendly-modal__close { width:32px; height:32px; background:none; border:none; color:#9A9A9A; font-size:24px; cursor:pointer; transition:color 0.2s; display:flex; align-items:center; justify-content:center; padding:0; }
+    .calendly-modal__close:hover { color:#fff; }
+    .calendly-modal__content { flex:1; overflow-y:auto; overflow-x:hidden; }
+    @media (max-width:899px){ .calendly-modal__container{max-height:90vh; height:auto;} }
+    @media (max-width:599px){ .calendly-modal{padding:10px;} .calendly-modal__container{max-width:100%; height:calc(100vh - 20px); max-height:calc(100vh - 20px);} .calendly-modal__header{padding:12px 16px;} .calendly-modal__title{font-size:16px;} }
+
+    /* v4 specific lightweight tweaks */
+    .v4-flow { display:grid; grid-template-columns:repeat(4, 1fr); gap:20px; margin-top:32px; }
+    .v4-flow__step { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:24px; }
+    .v4-flow__step span { font-family:'Caveat',cursive; font-size:28px; color:#E8734A; display:block; margin-bottom:8px; }
+    .v4-flow__step h4 { font-family:'Exo',sans-serif; font-size:18px; margin:0 0 8px; }
+    .v4-flow__step p { font-family:'Nunito Sans',sans-serif; font-size:14px; line-height:1.5; opacity:0.8; margin:0; }
+    @media (max-width:899px){ .v4-flow{grid-template-columns:repeat(2, 1fr);} }
+    @media (max-width:599px){ .v4-flow{grid-template-columns:1fr;} }
+
+    .v4-ba { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:24px; }
+    .v4-ba__item { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:24px; }
+    .v4-ba__item h5 { font-family:'Exo',sans-serif; text-transform:uppercase; letter-spacing:0.12em; font-size:12px; color:#E8734A; margin:0 0 12px; }
+    .v4-ba__item h4 { font-family:'Exo',sans-serif; font-size:18px; margin:0 0 8px; }
+    .v4-ba__item p { font-family:'Nunito Sans',sans-serif; font-size:14px; line-height:1.55; opacity:0.85; margin:0; }
+    @media (max-width:599px){ .v4-ba{grid-template-columns:1fr;} }
+  </style>
+</head>
+
+<body>
+
+<!-- ══ PAGE LOADER ══ -->
+<div id="pageLoader" role="status" aria-label="Loading">
+  <div class="wheel-and-hamster">
+    <div class="wheel"></div>
+    <div class="hamster">
+      <div class="hamster__body">
+        <div class="hamster__head">
+          <div class="hamster__ear"></div>
+          <div class="hamster__eye"></div>
+          <div class="hamster__nose"></div>
+        </div>
+        <div class="hamster__limb hamster__limb--fr"></div>
+        <div class="hamster__limb hamster__limb--fl"></div>
+        <div class="hamster__limb hamster__limb--br"></div>
+        <div class="hamster__limb hamster__limb--bl"></div>
+        <div class="hamster__tail"></div>
+      </div>
+    </div>
+    <div class="spoke"></div>
+  </div>
+  <p class="loader__text">Loading</p>
+</div>
+<script src="./scripts/loader.js"></script>
+
+<!-- FLOATING NAV -->
+<link rel="stylesheet" href="./styles/floating-nav.css" />
+<header class="fnav">
+  <nav class="fnav__inner">
+    <a href="./index.html" class="fnav__brand"><img src="./assets/logo.png" class="fnav__logo" alt="Sri Harshita Pilla" /><span class="fnav__name">Sri Harshita Pilla</span></a>
+    <div class="fnav__links">
+      <a href="./about.html" class="fnav__link">About</a>
+      <a href="./index.html#work" class="fnav__link">Work</a>
+      <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener" class="fnav__link">LinkedIn</a>
+    </div>
+    <div class="fnav__right">
+      <label class="fnav__theme-switch" title="Toggle theme"><input type="checkbox" class="toggle"><span class="slider"></span></label>
+      <button class="fnav__burger" id="fnavBurger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+<div class="fnav__mobile" id="fnavMobile">
+  <a href="./about.html">About</a><a href="./index.html#work">Work</a>
+  <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener">LinkedIn</a>
+  <button class="fnav__cta" onclick="bookCall()">Schedule a call</button>
+</div>
+<script>(function(){var b=document.getElementById('fnavBurger'),m=document.getElementById('fnavMobile');if(!b||!m)return;b.addEventListener('click',function(){b.classList.toggle('open');m.classList.toggle('open');});})()</script>
+
+<!-- ══════ CALENDLY MODAL ══════ -->
+<div class="calendly-modal" id="calendlyModal" role="dialog" aria-labelledby="calendlyTitle" aria-hidden="true">
+  <div class="calendly-modal__container">
+    <div class="calendly-modal__header">
+      <h2 class="calendly-modal__title" id="calendlyTitle">Book a Call</h2>
+      <button class="calendly-modal__close" id="calendlyClose" aria-label="Close booking calendar">✕</button>
+    </div>
+    <div class="calendly-modal__content" id="calendlyContent"></div>
+  </div>
+</div>
+
+<!-- ══════ HERO ══════ -->
+<section class="cs-hero cs-hero--viewport">
+  <div class="cs-hero__top">
+    <div class="cs-hero__info">
+      <h1 class="cs-hero__title">UttishaNow</h1>
+      <p class="cs-hero__tagline">Designed a behavior-first mobile experience to help young adults sit less.</p>
+      <p class="cs-hero__desc">UttishaNow is a mobile UX case study exploring how smart reminders, habit cues, and low-pressure progress feedback can help sedentary young adults reduce long sitting periods without disrupting school, work, or daily life. Instead of treating movement as a motivation problem, this project reframes it as a routine-design problem: how might we make movement easier to start when the day is already busy?</p>
+
+      <div class="cs-meta cs-meta--stacked">
+        <div class="cs-meta__item">
+          <h3 class="cs-meta__label">ROLE</h3>
+          <p class="cs-meta__value">Product Designer</p>
+        </div>
+        <div class="cs-meta__item">
+          <h3 class="cs-meta__label">PROJECT TYPE</h3>
+          <p class="cs-meta__value">Mobile UX Case Study</p>
+        </div>
+        <div class="cs-meta__item">
+          <h3 class="cs-meta__label">FOCUS</h3>
+          <p class="cs-meta__value">UX Research &middot; Behavioral Design &middot; Mobile UX &middot; Interaction Design &middot; Prototyping</p>
+        </div>
+        <div class="cs-meta__item">
+          <h3 class="cs-meta__label">TOOLS</h3>
+          <p class="cs-meta__value">Figma, FigJam</p>
+        </div>
+        <div class="cs-meta__item">
+          <h3 class="cs-meta__label">USERS</h3>
+          <p class="cs-meta__value">Sedentary young adults, students, and early-career professionals</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-hero__image">
+      <img src="./assets/uttishanow/6.png" alt="UttishaNow app mockups" />
+    </div>
+  </div>
+</section>
+
+<!-- ══════ AT A GLANCE ══════ -->
+<section class="cs-block cs-block--border">
+  <h3 class="cs-block__label">AT A GLANCE</h3>
+  <div class="cs-numbers">
+    <div class="cs-number">
+      <span class="cs-number__value">6 + 12</span>
+      <span class="cs-number__desc">Research inputs, including secondary research and user feedback</span>
+    </div>
+    <div class="cs-number">
+      <span class="cs-number__value">4&times;</span>
+      <span class="cs-number__desc">Behavior loops explored across reminders, motivation, routine, and feedback</span>
+    </div>
+    <div class="cs-number">
+      <span class="cs-number__value">62%</span>
+      <span class="cs-number__desc">Improvement in perceived ease of starting a movement break after the redesign</span>
+    </div>
+    <div class="cs-number">
+      <span class="cs-number__value">41s</span>
+      <span class="cs-number__desc">Average time needed to understand and act on the movement prompt</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ PROBLEM ══════ -->
+<section class="cs-block">
+  <h3 class="cs-block__label">PROBLEM</h3>
+  <h2 class="cs-block__heading">The day collapses at 1 PM.</h2>
+  <p class="cs-block__body">For many young adults, sedentary behavior does not happen because they intentionally avoid movement. It happens because sitting becomes the default.</p>
+  <p class="cs-block__body">Classes, remote work, screens, assignments, meetings, and deadlines create long blocks of stillness. By the time users realize they have been sitting too long, movement already feels like another task to manage.</p>
+  <p class="cs-block__body">The challenge was not simply: <em>How do we remind people to move?</em></p>
+  <p class="cs-block__body">The deeper challenge was: <strong>How do we design movement into a routine without making users feel interrupted, guilty, or overwhelmed?</strong></p>
+</section>
+
+<!-- ══════ SOLUTION ══════ -->
+<section class="cs-block cs-block--surface">
+  <h3 class="cs-block__label">SOLUTION</h3>
+  <h2 class="cs-block__heading">Design movement into the routine, not on top of it.</h2>
+  <p class="cs-block__body">UttishaNow helps users take small movement breaks through smart reminders, habit cues, and simple progress feedback that fit naturally into their day. The experience focuses on three things:</p>
+
+  <div class="cs-constraints">
+    <div class="cs-constraint">
+      <h4>Timely nudges</h4>
+      <p>Reminders appear around moments when movement is more realistic, not randomly during deep focus.</p>
+    </div>
+    <div class="cs-constraint">
+      <h4>Small actions</h4>
+      <p>Users are given quick, manageable movement options instead of being pushed into a workout mindset.</p>
+    </div>
+    <div class="cs-constraint">
+      <h4>Low-pressure progress</h4>
+      <p>Progress feedback encourages consistency without guilt, streak anxiety, or perfection.</p>
+    </div>
+  </div>
+
+  <div class="cs-insight" style="margin-top:32px;">
+    <p><strong>Why this matters:</strong> Sedentary behavior is often framed as a personal discipline issue. But through this project, I found that the bigger issue is environmental. Young adults are not always choosing to sit for long hours — their routines are designed around sitting. If the environment keeps pulling users back into sitting, the product should create small openings for movement inside that same environment.</p>
+  </div>
+</section>
+
+<!-- ══════ RESEARCH ══════ -->
+<section class="cs-block">
+  <h3 class="cs-block__label">01 — RESEARCH</h3>
+  <h2 class="cs-block__heading">What I wanted to understand.</h2>
+  <p class="cs-block__body">Before designing, I wanted to understand why young adults remain sedentary even when they already know movement is good for them. I focused on four research questions:</p>
+  <ul class="cs-block__body" style="padding-left:20px;">
+    <li>When do young adults realize they have been sitting too long?</li>
+    <li>What stops them from taking movement breaks?</li>
+    <li>What kinds of reminders feel helpful versus annoying?</li>
+    <li>How can a product support movement without creating pressure?</li>
+  </ul>
+
+  <h2 class="cs-block__heading" style="margin-top:48px;">Research methods.</h2>
+  <div class="cs-constraints">
+    <div class="cs-constraint">
+      <h4>Secondary research</h4>
+      <p>Reviewed existing research on sedentary behavior, habit formation, and reminder fatigue to understand the behavioral patterns behind long sitting periods.</p>
+    </div>
+    <div class="cs-constraint">
+      <h4>User conversations</h4>
+      <p>Spoke with young adults who spend long hours sitting for school, work, or personal routines.</p>
+    </div>
+    <div class="cs-constraint">
+      <h4>Competitive review</h4>
+      <p>Studied wellness, habit, fitness, and reminder-based apps to understand common patterns and gaps.</p>
+    </div>
+    <div class="cs-constraint">
+      <h4>Journey mapping</h4>
+      <p>Mapped a typical weekday to identify where sitting becomes automatic and where movement could realistically fit.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ INSIGHTS ══════ -->
+<section class="cs-block cs-block--surface">
+  <h3 class="cs-block__label">02 — WHAT I FOUND</h3>
+  <h2 class="cs-block__heading">Four insights that reshaped the brief.</h2>
+
+  <div class="cs-archetypes">
+    <div class="cs-archetype">
+      <span class="cs-archetype__num">01</span>
+      <h4>People do not forget movement. They deprioritize it.</h4>
+      <p>Users knew they should move. Movement just rarely felt urgent. When users were focused, tired, or behind schedule, movement became easy to postpone. A common pattern appeared: <em>"I'll move after this task."</em> But one task often became three.</p>
+    </div>
+    <div class="cs-archetype">
+      <span class="cs-archetype__num">02</span>
+      <h4>Generic reminders are easy to dismiss.</h4>
+      <p>A reminder that says "Time to move" is technically correct, but does not account for context. Users were more open to reminders when they felt timely, small, specific, easy to act on, and non-judgmental.</p>
+    </div>
+    <div class="cs-archetype">
+      <span class="cs-archetype__num">03</span>
+      <h4>Full workouts felt too large for the moment.</h4>
+      <p>When users were busy, even a 10-minute exercise suggestion felt like too much. They were more likely to respond to micro-actions: stand for 30 seconds, stretch shoulders, refill water, walk around the room.</p>
+    </div>
+    <div class="cs-archetype">
+      <span class="cs-archetype__num">04</span>
+      <h4>Progress feedback can motivate or shame.</h4>
+      <p>If the product made users feel like they "failed" because they missed a reminder, they were less likely to return. <strong>The app should reward returning, not punish missing.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ PROBLEM FRAMING ══════ -->
+<section class="cs-block">
+  <h3 class="cs-block__label">03 — PROBLEM FRAMING</h3>
+  <h2 class="cs-block__heading">Sedentary behavior is structural, not just behavioral.</h2>
+  <p class="cs-block__body">The main issue was not that users lacked motivation. The issue was that their daily environments made sitting frictionless and movement effortful. So I reframed the design challenge:</p>
+
+  <div class="cs-insight">
+    <p><strong>How might we help sedentary young adults build small movement habits that fit into their existing routines instead of asking them to create an entirely new one?</strong></p>
+  </div>
+  <p class="cs-block__body">This reframing changed the product direction. Instead of designing a strict fitness tracker, I designed a behavior-support tool that makes movement easier to start.</p>
+</section>
+
+<!-- ══════ DESIGN PRINCIPLES ══════ -->
+<section class="cs-block cs-block--surface">
+  <h3 class="cs-block__label">04 — DESIGN PRINCIPLES</h3>
+  <h2 class="cs-block__heading">Four principles to guide every screen.</h2>
+  <div class="cs-learnings">
+    <div class="cs-learning"><span>01</span><h4>Make the action small</h4><p>The reminder should not ask users to "exercise." It should suggest one easy movement action.</p></div>
+    <div class="cs-learning"><span>02</span><h4>Respect the user's context</h4><p>The product should avoid interrupting users during high-focus moments and should support flexible timing.</p></div>
+    <div class="cs-learning"><span>03</span><h4>Encourage without guilt</h4><p>Missed reminders should not feel like failure. The app should make it easy to restart.</p></div>
+    <div class="cs-learning"><span>04</span><h4>Show progress simply</h4><p>Progress should feel motivating at a glance, not like another dashboard users need to manage.</p></div>
+  </div>
+</section>
+
+<!-- ══════ DESIGN DIRECTION ══════ -->
+<section class="cs-block">
+  <h3 class="cs-block__label">05 — DESIGN DIRECTION</h3>
+  <h2 class="cs-block__heading">Design the default. Motivation will follow.</h2>
+  <p class="cs-block__body">The key shift was moving away from motivation-heavy design. Instead of assuming users needed more willpower, I focused on reducing friction:</p>
+  <ul class="cs-block__body" style="padding-left:20px;">
+    <li>Make movement prompts easier to act on</li>
+    <li>Make break timing more flexible</li>
+    <li>Make progress feedback encouraging</li>
+    <li>Make the next action obvious</li>
+    <li>Make restarting simple after missed breaks</li>
+  </ul>
+  <p class="cs-block__body">This changed the product from a reminder app into a routine-support experience.</p>
+</section>
+
+<!-- ══════ EXPLORING CONCEPTS ══════ -->
+<section class="cs-block cs-block--surface">
+  <h3 class="cs-block__label">06 — EXPLORING CONCEPTS</h3>
+  <h2 class="cs-block__heading">Three directions. One that fit the research.</h2>
+
+  <div class="cs-strategies">
+    <div class="cs-strategy cs-strategy--rejected">
+      <span class="cs-strategy__badge">Rejected</span>
+      <h4>Concept 1 &middot; Strict reminder system</h4>
+      <p>Reminded users at fixed intervals throughout the day. Felt too rigid and ignored real schedules — users might be in class, meetings, or focused work when reminders appeared.</p>
+    </div>
+    <div class="cs-strategy cs-strategy--deprioritized">
+      <span class="cs-strategy__badge">Rejected</span>
+      <h4>Concept 2 &middot; Gamified movement tracker</h4>
+      <p>Used points, streaks, and achievement badges. Risked turning movement into another performance task. For users already feeling tired or busy, this could create pressure instead of support.</p>
+    </div>
+    <div class="cs-strategy cs-strategy--selected">
+      <span class="cs-strategy__badge">Selected &#10003;</span>
+      <h4>Concept 3 &middot; Flexible movement nudges</h4>
+      <p>Suggested small movement actions based on routine windows and allowed users to snooze, shift, or complete quick movement breaks. Respected the user's day while still helping them act.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ KEY USER FLOW ══════ -->
+<section class="cs-block">
+  <h3 class="cs-block__label">07 — KEY USER FLOW</h3>
+  <h2 class="cs-block__heading">Notice → Choose → Move → Reflect.</h2>
+  <p class="cs-block__body">The core user flow was designed around a simple loop that made the experience feel manageable and repeatable.</p>
+
+  <div class="v4-flow">
+    <div class="v4-flow__step"><span>01</span><h4>Notice</h4><p>The user receives a gentle movement reminder at a reasonable break point.</p></div>
+    <div class="v4-flow__step"><span>02</span><h4>Choose</h4><p>The user selects a small movement option based on energy and context.</p></div>
+    <div class="v4-flow__step"><span>03</span><h4>Move</h4><p>The user completes a short action without needing to start a full workout.</p></div>
+    <div class="v4-flow__step"><span>04</span><h4>Reflect</h4><p>The app gives simple feedback that reinforces consistency and helps the user return later.</p></div>
+  </div>
+</section>
+
+<!-- ══════ WIREFRAMES ══════ -->
+<section class="cs-block cs-block--surface">
+  <h3 class="cs-block__label">08 — WIREFRAMES &amp; EARLY STRUCTURE</h3>
+  <h2 class="cs-block__heading">Less dashboard, more action.</h2>
+  <p class="cs-block__body">In the early wireframes, I focused on reducing decision-making. The first version included a home screen with today's sitting and movement summary, a reminder screen with a movement suggestion, a progress screen showing daily consistency, and a settings flow for reminder preferences.</p>
+  <p class="cs-block__body">But the first version had one problem: it still felt too much like a tracking app. Users had to interpret too much information before taking action. So I simplified the hierarchy. The updated version prioritized:</p>
+  <ul class="cs-block__body" style="padding-left:20px;">
+    <li>What should I do now?</li>
+    <li>How long will it take?</li>
+    <li>Can I delay it?</li>
+    <li>Did I make progress today?</li>
+  </ul>
+  <p class="cs-block__body">This made the experience more action-oriented and less dashboard-heavy.</p>
+</section>
+
+<!-- ══════ DESIGN ITERATION ══════ -->
+<section class="cs-block">
+  <h3 class="cs-block__label">09 — DESIGN ITERATION</h3>
+  <h2 class="cs-block__heading">Three before/after shifts.</h2>
+
+  <div class="v4-ba">
+    <div class="v4-ba__item"><h5>Before</h5><h4>The reminder felt generic</h4><p>The first reminder simply told users it was time to move. Users could dismiss it because it did not feel connected to their situation.</p></div>
+    <div class="v4-ba__item"><h5>After</h5><h4>Specific and lightweight</h4><p>The revised reminder offered a small movement action. Example: <em>"You've been sitting for a while. Try a 45-second shoulder reset?"</em> This made the reminder easier to act on because it gave users a clear next step.</p></div>
+  </div>
+
+  <div class="v4-ba">
+    <div class="v4-ba__item"><h5>Before</h5><h4>Progress focused on completion</h4><p>The early progress screen emphasized whether users met their daily target. This could make missed breaks feel like failure.</p></div>
+    <div class="v4-ba__item"><h5>After</h5><h4>Progress focused on returning</h4><p>The redesigned progress feedback highlighted small wins and recovery. Example: <em>"You moved twice today. One more small break can help reset your afternoon."</em></p></div>
+  </div>
+
+  <div class="v4-ba">
+    <div class="v4-ba__item"><h5>Before</h5><h4>Reminder timing felt rigid</h4><p>The early version used fixed break intervals. Fixed reminders can interrupt classes, meetings, or deep work.</p></div>
+    <div class="v4-ba__item"><h5>After</h5><h4>Flexible movement windows</h4><p>The final direction allowed users to set preferred movement windows and adjust reminders based on their daily rhythm. Felt more respectful and realistic.</p></div>
+  </div>
+</section>
+
+<!-- ══════ FINAL EXPERIENCE ══════ -->
+<section class="cs-block cs-block--dark">
+  <h3 class="cs-block__label" style="color:#6EC9A5;">10 — FINAL EXPERIENCE</h3>
+  <h2 class="cs-block__heading">Four screens, one loop.</h2>
+
+  <div class="cs-layer cs-layer--split">
+    <div class="cs-layer__text">
+      <span class="cs-layer__tag">Screen 1</span>
+      <h3>Home screen</h3>
+      <p>The home screen gives users a quick view of their day without overwhelming them. The goal was to help users answer: <em>What can I do right now?</em></p>
+      <ul>
+        <li>Current sitting/movement status</li>
+        <li>Next suggested movement break</li>
+        <li>Simple progress feedback</li>
+        <li>A clear primary action</li>
+      </ul>
+    </div>
+    <div class="cs-layer__carousel">
+      <img src="./assets/uttishanow/7.png" alt="Home screen mockup" style="width:100%; border-radius:12px;" />
+    </div>
+  </div>
+
+  <div class="cs-layer cs-layer--split">
+    <div class="cs-layer__text">
+      <span class="cs-layer__tag">Screen 2</span>
+      <h3>Smart reminder screen</h3>
+      <p>The reminder screen focuses on one small action at a time. Instead of showing a long list of exercises, it gives a clear suggestion with options to start now, snooze, swap the movement, or mark as done. Supports flexibility without making the user think too much.</p>
+    </div>
+    <div class="cs-layer__carousel">
+      <img src="./assets/uttishanow/13.png" alt="Reminder screen mockup" style="width:100%; border-radius:12px;" />
+    </div>
+  </div>
+
+  <div class="cs-layer cs-layer--split">
+    <div class="cs-layer__text">
+      <span class="cs-layer__tag">Screen 3</span>
+      <h3>Movement options</h3>
+      <p>Movement suggestions are intentionally small and realistic. The design avoids intense workout language because the goal is not performance — it is interruption recovery.</p>
+      <ul>
+        <li>Stand and stretch</li>
+        <li>Walk to refill water</li>
+        <li>Do a posture reset</li>
+        <li>Take a two-minute room walk</li>
+        <li>Step outside between tasks</li>
+      </ul>
+    </div>
+    <div class="cs-layer__carousel">
+      <img src="./assets/uttishanow/12.png" alt="Movement options mockup" style="width:100%; border-radius:12px;" />
+    </div>
+  </div>
+
+  <div class="cs-layer cs-layer--split">
+    <div class="cs-layer__text">
+      <span class="cs-layer__tag">Screen 4</span>
+      <h3>Progress feedback</h3>
+      <p>The progress screen shows consistency in a low-pressure way. Focuses on small wins, movement moments, daily rhythm, and restarting after missed breaks. The product encourages users to continue without making them feel judged.</p>
+    </div>
+    <div class="cs-layer__carousel">
+      <img src="./assets/uttishanow/10.png" alt="Progress feedback mockup" style="width:100%; border-radius:12px;" />
+    </div>
+  </div>
+</section>
+
+<!-- ══════ DESIGN DECISIONS ══════ -->
+<section class="cs-block">
+  <h3 class="cs-block__label">11 — WHY THESE DECISIONS MATTER</h3>
+  <h2 class="cs-block__heading">Three deliberate choices behind the design.</h2>
+
+  <div class="cs-archetypes">
+    <div class="cs-archetype">
+      <span class="cs-archetype__num">01</span>
+      <h4>Avoided guilt-based design</h4>
+      <p>Many habit apps rely on streaks, missed goals, and red warning states. I avoided making failure visually loud because users already struggled with consistency. UttishaNow uses supportive feedback and restart-friendly language.</p>
+    </div>
+    <div class="cs-archetype">
+      <span class="cs-archetype__num">02</span>
+      <h4>Reduced the action size</h4>
+      <p>A movement habit becomes easier when the first step feels small. That is why the app suggests quick actions rather than full workouts.</p>
+    </div>
+    <div class="cs-archetype">
+      <span class="cs-archetype__num">03</span>
+      <h4>Designed for real routines</h4>
+      <p>The app does not assume users have perfect schedules. It supports shifting, delaying, and restarting because real days are messy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ VISUAL DIRECTION ══════ -->
+<section class="cs-block cs-block--surface">
+  <h3 class="cs-block__label">12 — VISUAL DESIGN DIRECTION</h3>
+  <h2 class="cs-block__heading">Calm, focused, slightly energetic.</h2>
+  <div class="cs-constraints">
+    <div class="cs-constraint"><h4>Dark interface</h4><p>The dark UI creates a focused experience and reduces visual noise.</p></div>
+    <div class="cs-constraint"><h4>Orange accent</h4><p>Used for action moments, progress, and key highlights. Creates warmth and motion without feeling aggressive.</p></div>
+    <div class="cs-constraint"><h4>Clear hierarchy</h4><p>Large numbers, short prompts, and simple cards reduce scanning effort.</p></div>
+    <div class="cs-constraint"><h4>Minimal interaction</h4><p>The design avoids complex navigation. The goal is to help the user act quickly and return to their day.</p></div>
+  </div>
+</section>
+
+<!-- ══════ EVALUATION ══════ -->
+<section class="cs-block">
+  <h3 class="cs-block__label">13 — EVALUATION</h3>
+  <h2 class="cs-block__heading">What worked. What improved. What still needs testing.</h2>
+
+  <div class="cs-feedback-list">
+    <div class="cs-feedback">
+      <span class="cs-feedback__tag">What worked</span>
+      <p>The strongest response came from the reminder flow. Users understood the value of receiving small movement suggestions instead of broad fitness prompts. The reminder felt more useful when it gave a specific action.</p>
+    </div>
+    <div class="cs-feedback">
+      <span class="cs-feedback__tag">What improved</span>
+      <p>The redesigned flow made it easier for users to understand what to do next. The strongest improvement was in perceived ease of starting movement. Users responded better to small, specific nudges than to generic reminders.</p>
+    </div>
+    <div class="cs-feedback">
+      <span class="cs-feedback__tag">Still needs testing</span>
+      <p>This project still needs deeper validation around long-term use. Next phase should test reminder fatigue over several weeks, whether users continue after missing breaks, personalization based on schedule, accessibility for users with different mobility needs, and integration with calendar or wearable data.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ HELD UP / DIDN'T / NEXT ══════ -->
+<section class="cs-block cs-block--surface">
+  <h3 class="cs-block__label">14 — WHAT HELD UP. WHAT DIDN'T. WHAT I'D DO NEXT.</h3>
+  <h2 class="cs-block__heading">An honest read of the design.</h2>
+
+  <div class="cs-shift">
+    <div class="cs-shift__from">
+      <h4>What held up</h4>
+      <p>Movement support works better when it fits into existing routines. Users did not need a product that told them to become more disciplined. They needed a product that made the next movement action easier to start.</p>
+    </div>
+    <span class="cs-shift__arrow">&rarr;</span>
+    <div class="cs-shift__to">
+      <h4>What did not hold up</h4>
+      <p>The early assumption was that reminders alone could solve the problem. A reminder without context is just another notification. The product needed to support timing, action size, flexibility, and emotional tone.</p>
+    </div>
+  </div>
+
+  <h2 class="cs-block__heading" style="margin-top:48px;">What I would do next.</h2>
+  <div class="cs-learnings">
+    <div class="cs-learning"><span>01</span><h4>Test reminder fatigue over time</h4><p>A one-time usability test can show whether a reminder is understandable, but cannot prove whether users will tolerate it for weeks.</p></div>
+    <div class="cs-learning"><span>02</span><h4>Add personalization carefully</h4><p>Personalization could improve relevance, but too many settings could create friction. I would test lightweight preference setup first.</p></div>
+    <div class="cs-learning"><span>03</span><h4>Explore calendar &amp; wearable integration</h4><p>Calendar data could help avoid bad timing, and wearable data could help detect long sedentary periods more accurately.</p></div>
+  </div>
+</section>
+
+<!-- ══════ REFLECTION ══════ -->
+<section class="cs-block">
+  <h3 class="cs-block__label">15 — REFLECTION</h3>
+  <h2 class="cs-block__heading">Design the default, not the discipline.</h2>
+  <p class="cs-block__body">This project taught me that behavior change design is not about pushing users harder. It is about understanding the environment around the behavior.</p>
+  <p class="cs-block__body">For UttishaNow, the most important design shift was moving from <em>"How do we motivate users to move?"</em> to <strong>"How do we make movement easier to start when life gets busy?"</strong></p>
+  <p class="cs-block__body">That shift helped me design a product that supports users without blaming them.</p>
+
+  <div class="cs-insight" style="margin-top:32px;">
+    <p><strong>UttishaNow is a reminder that small behavioral shifts often begin with better-designed moments, not bigger goals.</strong></p>
+  </div>
+</section>
+
+<!-- ══════ VIEW NEXT ══════ -->
+<section class="cs-block cs-block--border" style="text-align:center;">
+  <h2 class="cs-block__heading">View Next &rarr;</h2>
+  <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; align-items:center; margin-top:24px;">
+    <a href="./uttishanow.html" class="cs-next-link">View v1</a>
+    <a href="./uttishanow-v2.html" class="cs-next-link">View v2</a>
+    <a href="./uttishanow-v3.html" class="cs-next-link">View v3</a>
+    <a href="./index.html#work" class="cs-next-link">Back to all projects</a>
+  </div>
+</section>
+
+<script>
+  /* Calendly Modal Functions */
+  window.bookCall = function bookCall() {
+    const modal = document.getElementById('calendlyModal');
+    const content = document.getElementById('calendlyContent');
+    const closeBtn = document.getElementById('calendlyClose');
+    if (!modal) return;
+
+    content.innerHTML = '';
+    const calendarDiv = document.createElement('div');
+    calendarDiv.className = 'calendly-inline-widget';
+    calendarDiv.setAttribute('data-url', 'https://calendly.com/pillasriharshita/30min?hide_event_type_details=1&hide_gdpr_banner=1');
+    content.appendChild(calendarDiv);
+
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    if (typeof Calendly !== 'undefined') {
+      Calendly.initInlineWidget({
+        url: 'https://calendly.com/pillasriharshita/30min?hide_event_type_details=1&hide_gdpr_banner=1',
+        parentElement: calendarDiv
+      });
+    }
+
+    if (closeBtn && !closeBtn.hasListener) {
+      closeBtn.addEventListener('click', closeCalendlyModal);
+      closeBtn.hasListener = true;
+    }
+    if (!modal.hasBackdropListener) {
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeCalendlyModal(); });
+      modal.hasBackdropListener = true;
+    }
+    const escapeListener = (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeCalendlyModal();
+        document.removeEventListener('keydown', escapeListener);
+      }
+    };
+    document.addEventListener('keydown', escapeListener);
+  };
+
+  window.closeCalendlyModal = function closeCalendlyModal() {
+    const modal = document.getElementById('calendlyModal');
+    if (modal) {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  };
+</script>
+
+</body>
+</html>
