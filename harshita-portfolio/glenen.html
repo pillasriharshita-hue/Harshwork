@@ -4,79 +4,71 @@
   <meta charset="UTF-8" />
   <link rel="icon" href="./assets/logo.png" type="image/png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Glenen AI RAG | Sri Harshita Pilla</title>
-  <meta name="description" content="Glenen AI RAG — Case study by Sri Harshita Pilla." />
+  <title>Glenen AI Case Study | Sri Harshita Pilla</title>
+  <meta name="description" content="Glenen AI — Designing probabilistic product discovery for 2,900+ retail items. Case study by Sri Harshita Pilla." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;600;700;800&family=Taviraj:ital,wght@0,400;0,700;1,400;1,700&family=Nunito+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;600;700;800&family=Taviraj:ital,wght@0,400;0,700;1,400;1,700&family=Nunito+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Caveat&display=swap" rel="stylesheet" />
 
   <script src="./scripts/theme.js"></script>
+  <link rel="stylesheet" href="./styles/main.css" />
   <link rel="stylesheet" href="./styles/loader.css" />
+  <link rel="stylesheet" href="./styles/casestudy.css" />
+
   <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
   <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--bg:#16161a;--grid-color:rgba(114,114,114,0.18);--surface:#1f1f28;--border:rgba(255,255,255,.08);--white:#fffffe;--mist:rgba(255,255,254,.6);--mist2:rgba(255,255,254,.35);--accent:#ff8906;--max:900px;--side:40px}
-    [data-theme="light"]{--bg:#fffffe;--grid-color:#e0dfe8;--surface:#f4f4f8;--border:rgba(0,0,0,.08);--white:#0f0e17;--mist:rgba(15,14,23,.6);--mist2:rgba(15,14,23,.35);--accent:#ff8906;}
-    html{scroll-behavior:smooth}
-    body{background-color:var(--bg);
-      background-image:linear-gradient(0deg,transparent 24%,var(--grid-color) 25%,var(--grid-color) 26%,transparent 27%,transparent 74%,var(--grid-color) 75%,var(--grid-color) 76%,transparent 77%,transparent),linear-gradient(90deg,transparent 24%,var(--grid-color) 25%,var(--grid-color) 26%,transparent 27%,transparent 74%,var(--grid-color) 75%,var(--grid-color) 76%,transparent 77%,transparent);
-      background-size:55px 55px;
-      color:var(--white);font-family:'Nunito Sans',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background-color .3s,color .3s;}
-    a{text-decoration:none;color:inherit}
-    img{display:block;max-width:100%}
+    /* Calendly Modal */
+    .calendly-modal { display:none; position:fixed; top:0; left:0; right:0; bottom:0; z-index:1000; background:rgba(0,0,0,0.8); backdrop-filter:blur(5px); align-items:center; justify-content:center; padding:20px; }
+    .calendly-modal.active { display:flex; }
+    .calendly-modal__container { background:#0D0D0D; border:1px solid #2A2A2A; border-radius:12px; width:100%; max-width:900px; height:90vh; max-height:800px; position:relative; display:flex; flex-direction:column; overflow:hidden; }
+    .calendly-modal__header { padding:16px 24px; border-bottom:1px solid #2A2A2A; display:flex; justify-content:space-between; align-items:center; background:#0D0D0D; }
+    .calendly-modal__title { font-size:18px; font-weight:600; color:#fff; margin:0; font-family:'Nunito Sans',sans-serif; }
+    .calendly-modal__close { width:32px; height:32px; background:none; border:none; color:#9A9A9A; font-size:24px; cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0; }
+    .calendly-modal__close:hover { color:#fff; }
+    .calendly-modal__content { flex:1; overflow-y:auto; overflow-x:hidden; }
 
-    /* Back link */
-    .back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--mist2);padding:24px var(--side);transition:color .2s}
-    .back:hover{color:var(--white)}
+    /* Glenen-specific tweaks */
+    .gl-ps { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:24px; }
+    .gl-ps__col { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:28px; }
+    .gl-ps__col h3 { font-family:'Exo',sans-serif; font-size:20px; margin:0 0 16px; }
+    .gl-ps__col p { font-family:'Nunito Sans',sans-serif; font-size:14px; line-height:1.6; opacity:0.85; margin:0 0 12px; }
+    .gl-ps__col blockquote { border-left:3px solid #E8734A; padding:8px 14px; margin:12px 0; font-family:'Taviraj',serif; font-style:italic; opacity:0.85; font-size:14px; }
+    .gl-chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+    .gl-chip { font-family:'Nunito Sans',sans-serif; font-size:12px; padding:6px 12px; border:1px solid rgba(255,255,255,0.15); border-radius:999px; opacity:0.8; }
+    @media (max-width:899px){ .gl-ps{grid-template-columns:1fr;} }
 
-    /* Hero */
-    .gl-hero{max-width:var(--max);margin:0 auto;padding:80px var(--side) 60px;text-align:center}
-    .gl-hero__eyebrow{font-family:'Taviraj',Georgia,serif;font-style:italic;font-size:18px;color:var(--accent);margin-bottom:16px;display:block}
-    .gl-hero__title{font-family:'Taviraj',Georgia,serif;font-size:clamp(36px,6vw,64px);font-weight:700;line-height:1.1;color:var(--white);margin-bottom:20px}
-    .gl-hero__title span{color:var(--accent)}
-    .gl-hero__desc{font-size:16px;line-height:1.7;color:var(--mist);max-width:600px;margin:0 auto 48px}
+    .gl-flow { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-top:24px; padding:24px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:12px; font-family:'Nunito Sans',sans-serif; font-size:13px; }
+    .gl-flow__step { padding:8px 14px; background:rgba(232,116,74,0.12); border:1px solid rgba(232,116,74,0.3); border-radius:8px; color:#E8734A; }
+    .gl-flow__sep { opacity:0.4; }
 
-    /* Meta row */
-    .gl-meta{display:flex;justify-content:center;gap:60px;border-top:2px solid var(--accent);padding-top:28px;max-width:700px;margin:0 auto}
-    .gl-meta__item{text-align:center}
-    .gl-meta__label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--mist2);margin-bottom:6px;display:block}
-    .gl-meta__value{font-size:14px;font-weight:500;color:var(--white)}
+    .gl-axes { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-top:24px; }
+    .gl-axis { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:20px; }
+    .gl-axis h4 { font-family:'Exo',sans-serif; font-size:14px; text-transform:uppercase; letter-spacing:0.1em; color:#E8734A; margin:0 0 8px; }
+    .gl-axis p { font-family:'Nunito Sans',sans-serif; font-size:14px; line-height:1.5; opacity:0.85; margin:0; }
+    @media (max-width:899px){ .gl-axes{grid-template-columns:repeat(2, 1fr);} }
+    @media (max-width:599px){ .gl-axes{grid-template-columns:1fr;} }
 
-    /* Dark card sections */
-    .gl-card{max-width:var(--max);margin:60px auto;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:60px var(--side);text-align:center}
-    .gl-card__label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:block}
-    .gl-card__heading{font-family:'Taviraj',Georgia,serif;font-size:clamp(24px,3.5vw,36px);font-weight:700;color:var(--white);margin-bottom:16px;line-height:1.2}
-    .gl-card__body{font-size:15px;line-height:1.8;color:var(--mist);max-width:600px;margin:0 auto 32px}
-    .gl-card__img{border-radius:12px;overflow:hidden;border:1px solid var(--border);margin:0 auto;max-width:100%}
-    .gl-card__img img{width:100%;display:block}
+    .gl-table { width:100%; border-collapse:collapse; margin-top:24px; font-family:'Nunito Sans',sans-serif; font-size:14px; }
+    .gl-table th, .gl-table td { text-align:left; padding:14px 16px; border-bottom:1px solid rgba(255,255,255,0.08); vertical-align:top; }
+    .gl-table th { font-family:'Exo',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:0.12em; color:#E8734A; font-weight:600; }
+    .gl-table td { line-height:1.5; opacity:0.9; }
+    .gl-table-wrap { overflow-x:auto; }
 
-    /* Placeholder */
-    .gl-placeholder{display:flex;align-items:center;justify-content:center;min-height:300px;border-radius:12px;border:1px dashed var(--border);background:rgba(255,255,255,.02);margin:0 auto;max-width:100%}
-    .gl-placeholder__text{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mist2)}
+    .gl-decision { display:grid; grid-template-columns:1fr 1fr 1fr; gap:0; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:24px; margin-top:16px; }
+    .gl-decision h4 { grid-column:1 / -1; font-family:'Exo',sans-serif; font-size:18px; margin:0 0 16px; color:#E8734A; }
+    .gl-decision__col { padding:0 16px; border-left:1px solid rgba(255,255,255,0.08); }
+    .gl-decision__col:first-of-type { border-left:none; padding-left:0; }
+    .gl-decision__col h5 { font-family:'Exo',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:0.12em; opacity:0.6; margin:0 0 8px; }
+    .gl-decision__col p { font-family:'Nunito Sans',sans-serif; font-size:14px; line-height:1.5; opacity:0.9; margin:0; }
+    @media (max-width:899px){ .gl-decision{grid-template-columns:1fr;} .gl-decision__col{border-left:none; padding:12px 0; border-top:1px solid rgba(255,255,255,0.08);} .gl-decision__col:first-of-type{border-top:none; padding-top:0;} }
 
-    /* Divider */
-    .gl-divider{max-width:var(--max);margin:0 auto;height:1px;background:var(--border)}
-
-    /* Coming soon badge */
-    .gl-badge{display:inline-block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(232,97,45,.3);padding:6px 16px;border-radius:20px;margin-top:24px}
-
-    /* Calendly */
-    .calendly-modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:1000;background:rgba(0,0,0,.8);backdrop-filter:blur(5px);align-items:center;justify-content:center;padding:20px}
-    .calendly-modal.active{display:flex}
-    .calendly-modal__container{background:#0D0D0D;border:1px solid #2A2A2A;border-radius:12px;width:100%;max-width:900px;height:90vh;max-height:800px;position:relative;display:flex;flex-direction:column;overflow:hidden}
-    .calendly-modal__header{padding:16px 24px;border-bottom:1px solid #2A2A2A;display:flex;justify-content:space-between;align-items:center}
-    .calendly-modal__title{font-size:18px;font-weight:600;color:#fff;margin:0}
-    .calendly-modal__close{width:32px;height:32px;background:none;border:none;color:#9A9A9A;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-    .calendly-modal__close:hover{color:#fff}
-    .calendly-modal__content{flex:1;overflow-y:auto;overflow-x:hidden}
-
-    @media(max-width:600px){
-      .gl-hero{padding:60px 24px 40px}
-      .gl-meta{flex-direction:column;gap:24px;align-items:center}
-      .gl-card{margin:40px 16px;padding:40px 24px}
-      .back{padding:16px 24px}
-    }
+    .gl-card-demo { background:#1f1f28; border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:28px; margin-top:24px; max-width:520px; }
+    .gl-card-demo__tag { display:inline-block; padding:4px 10px; background:rgba(232,116,74,0.15); color:#E8734A; font-family:'Exo',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; border-radius:999px; margin-bottom:12px; }
+    .gl-card-demo__title { font-family:'Exo',sans-serif; font-size:20px; margin:0 0 6px; }
+    .gl-card-demo__sub { font-family:'Nunito Sans',sans-serif; font-size:13px; opacity:0.7; margin:0 0 16px; }
+    .gl-card-demo__why { font-family:'Nunito Sans',sans-serif; font-size:13px; line-height:1.5; padding:12px; background:rgba(255,255,255,0.03); border-left:2px solid #E8734A; border-radius:4px; opacity:0.9; }
+    .gl-card-demo__why strong { display:block; margin-bottom:4px; color:#E8734A; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; }
   </style>
 </head>
 
@@ -88,15 +80,9 @@
     <div class="wheel"></div>
     <div class="hamster">
       <div class="hamster__body">
-        <div class="hamster__head">
-          <div class="hamster__ear"></div>
-          <div class="hamster__eye"></div>
-          <div class="hamster__nose"></div>
-        </div>
-        <div class="hamster__limb hamster__limb--fr"></div>
-        <div class="hamster__limb hamster__limb--fl"></div>
-        <div class="hamster__limb hamster__limb--br"></div>
-        <div class="hamster__limb hamster__limb--bl"></div>
+        <div class="hamster__head"><div class="hamster__ear"></div><div class="hamster__eye"></div><div class="hamster__nose"></div></div>
+        <div class="hamster__limb hamster__limb--fr"></div><div class="hamster__limb hamster__limb--fl"></div>
+        <div class="hamster__limb hamster__limb--br"></div><div class="hamster__limb hamster__limb--bl"></div>
         <div class="hamster__tail"></div>
       </div>
     </div>
@@ -129,104 +115,542 @@
 </div>
 <script>(function(){var b=document.getElementById('fnavBurger'),m=document.getElementById('fnavMobile');if(!b||!m)return;b.addEventListener('click',function(){b.classList.toggle('open');m.classList.toggle('open');});})()</script>
 
-<!-- CALENDLY MODAL -->
-<div class="calendly-modal" id="calendlyModal" role="dialog" aria-hidden="true">
+<!-- ══════ CALENDLY MODAL ══════ -->
+<div class="calendly-modal" id="calendlyModal" role="dialog" aria-labelledby="calendlyTitle" aria-hidden="true">
   <div class="calendly-modal__container">
     <div class="calendly-modal__header">
-      <h2 class="calendly-modal__title">Book a Call</h2>
-      <button class="calendly-modal__close" id="calendlyClose" aria-label="Close">&#10005;</button>
+      <h2 class="calendly-modal__title" id="calendlyTitle">Book a Call</h2>
+      <button class="calendly-modal__close" id="calendlyClose" aria-label="Close booking calendar">✕</button>
     </div>
     <div class="calendly-modal__content" id="calendlyContent"></div>
   </div>
 </div>
 
-<!-- BACK LINK -->
-<a href="./index.html#work" class="back">&larr; Back to Portfolio</a>
+<!-- ══════ 1. HERO ══════ -->
+<section class="cs-hero cs-hero--viewport">
+  <div class="cs-hero__top">
+    <div class="cs-hero__info">
+      <h1 class="cs-hero__title">Glenen AI</h1>
+      <p class="cs-hero__tagline">Designing probabilistic product discovery for 2,900+ retail items.</p>
+      <p class="cs-hero__desc">An AI-powered retail kiosk that helps shoppers describe what they want in everyday language and receive ranked, explainable product recommendations through conversational search.</p>
 
-<!-- HERO -->
-<section class="gl-hero">
-  <span class="gl-hero__eyebrow">AI Product Design</span>
-  <h1 class="gl-hero__title">Glenen <span>AI RAG</span></h1>
-  <p class="gl-hero__desc">Project details coming soon. This case study is currently under development.</p>
-
-  <div class="gl-meta">
-    <div class="gl-meta__item">
-      <span class="gl-meta__label">Role</span>
-      <span class="gl-meta__value">Coming Soon</span>
+      <div class="cs-meta cs-meta--stacked">
+        <div class="cs-meta__item"><h3 class="cs-meta__label">ROLE</h3><p class="cs-meta__value">Product Designer</p></div>
+        <div class="cs-meta__item"><h3 class="cs-meta__label">PLATFORM</h3><p class="cs-meta__value">In-store Kiosk &middot; Web App &middot; Mobile</p></div>
+        <div class="cs-meta__item"><h3 class="cs-meta__label">CORE CAPABILITY</h3><p class="cs-meta__value">Probabilistic Search &middot; RAG &middot; Conversational AI</p></div>
+        <div class="cs-meta__item"><h3 class="cs-meta__label">STATUS</h3><p class="cs-meta__value">In Progress</p></div>
+      </div>
     </div>
-    <div class="gl-meta__item">
-      <span class="gl-meta__label">Team</span>
-      <span class="gl-meta__value">Coming Soon</span>
-    </div>
-    <div class="gl-meta__item">
-      <span class="gl-meta__label">Timeline</span>
-      <span class="gl-meta__value">Coming Soon</span>
+    <div class="cs-hero__image">
+      <img src="./assets/Frame 36.png" alt="Glenen AI kiosk concept" />
     </div>
   </div>
 </section>
 
-<div class="gl-divider"></div>
-
-<!-- SECTION 1 -->
-<div class="gl-card">
-  <span class="gl-card__label">Overview</span>
-  <h2 class="gl-card__heading">Project Overview</h2>
-  <p class="gl-card__body">Content for this section will be added once the project details are finalized.</p>
-  <div class="gl-placeholder">
-    <span class="gl-placeholder__text">Image placeholder</span>
+<!-- ══════ HERO METRICS ══════ -->
+<section class="cs-block cs-block--border">
+  <h3 class="cs-block__label">AT A GLANCE</h3>
+  <div class="cs-numbers">
+    <div class="cs-number"><span class="cs-number__value">2,900+</span><span class="cs-number__desc">Products in catalog</span></div>
+    <div class="cs-number"><span class="cs-number__value">4 intents</span><span class="cs-number__desc">Taste &middot; Cocktail &middot; Pairing &middot; Education</span></div>
+    <div class="cs-number"><span class="cs-number__value">+89%</span><span class="cs-number__desc">RAG quality improvement vs keyword baseline</span></div>
+    <div class="cs-number"><span class="cs-number__value">~400ms</span><span class="cs-number__desc">Chat endpoint latency</span></div>
   </div>
-</div>
+</section>
 
-<!-- SECTION 2 -->
-<div class="gl-card">
-  <span class="gl-card__label">The Problem</span>
-  <h2 class="gl-card__heading">Problem Statement</h2>
-  <p class="gl-card__body">Content for this section will be added once the project details are finalized.</p>
-  <div class="gl-placeholder">
-    <span class="gl-placeholder__text">Image placeholder</span>
+<!-- ══════ 2. PROBLEM → SOLUTION ══════ -->
+<section class="cs-block">
+  <h3 class="cs-block__label">PROBLEM &rarr; SOLUTION</h3>
+  <h2 class="cs-block__heading">Search works only when users know what to search for.</h2>
+
+  <div class="gl-ps">
+    <div class="gl-ps__col">
+      <span class="cs-layer__tag">Problem</span>
+      <h3>Search expects users to speak in catalog language.</h3>
+      <p>In specialty retail, customers often walk in with vague needs, not exact product names. They may know the occasion, budget, taste, or person they are buying for, but not the right brand, category, or product vocabulary.</p>
+      <p>Traditional search and filters expect users to speak in catalog language. But shoppers usually speak in human language:</p>
+      <blockquote>"I need a gift under $60."</blockquote>
+      <blockquote>"I want something smooth but not too strong."</blockquote>
+      <blockquote>"What goes well with grilled salmon?"</blockquote>
+      <blockquote>"I like smoky, but I'm still a beginner."</blockquote>
+      <div class="gl-chips">
+        <span class="gl-chip">Choice overload</span>
+        <span class="gl-chip">Vague intent</span>
+        <span class="gl-chip">Keyword friction</span>
+        <span class="gl-chip">Staff dependency</span>
+      </div>
+    </div>
+
+    <div class="gl-ps__col">
+      <span class="cs-layer__tag">Solution</span>
+      <h3>Turn product discovery into a guided AI conversation.</h3>
+      <p>Glenen AI uses probabilistic search and RAG-based retrieval to map customer language to product metadata, rank relevant options, and explain why each recommendation fits.</p>
+      <p>Instead of returning a long list of products, the system gives shoppers a small set of explainable recommendations they can compare, refine, and act on.</p>
+      <div class="gl-chips">
+        <span class="gl-chip">Intent recognition</span>
+        <span class="gl-chip">Probabilistic ranking</span>
+        <span class="gl-chip">Explainable results</span>
+        <span class="gl-chip">Guided comparison</span>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- SECTION 3 -->
-<div class="gl-card">
-  <span class="gl-card__label">The Solution</span>
-  <h2 class="gl-card__heading">Design Solution</h2>
-  <p class="gl-card__body">Content for this section will be added once the project details are finalized.</p>
-  <div class="gl-placeholder">
-    <span class="gl-placeholder__text">Image placeholder</span>
+<!-- ══════ 3. PRODUCT VISION ══════ -->
+<section class="cs-block cs-block--surface">
+  <h3 class="cs-block__label">PRODUCT VISION</h3>
+  <h2 class="cs-block__heading">Not a search bar. A conversation with the store's best expert.</h2>
+  <p class="cs-block__body">Glenen AI was designed around one product belief: <strong>The best retail experience does not start with filters. It starts with understanding what the customer is trying to do.</strong></p>
+  <p class="cs-block__body">In a specialty store, the most valuable employee is often the person who can translate vague customer language into confident product suggestions. Glenen AI brings that behavior into a kiosk experience: always available, fast, explainable, and connected to the live catalog.</p>
+
+  <div class="cs-insight">
+    <p><strong>Product vision:</strong> Glenen AI is not a better search interface for a liquor store. It is a decision-support system that helps every customer move from uncertainty to a confident product choice.</p>
   </div>
-</div>
+</section>
 
-<!-- COMING SOON -->
-<div style="text-align:center;padding:60px var(--side) 100px;">
-  <span class="gl-badge">Coming Soon</span>
-</div>
+<!-- ══════ 4. WHO IT IS DESIGNED FOR ══════ -->
+<section class="cs-block">
+  <h3 class="cs-block__label">WHO IT IS DESIGNED FOR</h3>
+  <h2 class="cs-block__heading">Four shopper archetypes, four design needs.</h2>
+
+  <div class="gl-table-wrap">
+    <table class="gl-table">
+      <thead>
+        <tr><th>Archetype</th><th>Situation</th><th>What they say</th><th>Design need</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Occasion Buyer</strong></td><td>Buying for dinner, party, or gift</td><td><em>"Just tell me what works."</em></td><td>Fast recommendation with a clear reason</td></tr>
+        <tr><td><strong>First-Timer</strong></td><td>New to the category</td><td><em>"I don't know the vocabulary."</em></td><td>Plain-language guidance without judgment</td></tr>
+        <tr><td><strong>Flavor Chaser</strong></td><td>Knows what they like</td><td><em>"I like smoky. What should I try next?"</em></td><td>Taste matching and intelligent exploration</td></tr>
+        <tr><td><strong>Home Bartender</strong></td><td>Has ingredients at home</td><td><em>"What can I make with what I have?"</em></td><td>Cocktail suggestions based on available inventory</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════ 5. CORE DESIGN CHALLENGE ══════ -->
+<section class="cs-block cs-block--surface">
+  <h3 class="cs-block__label">CORE DESIGN CHALLENGE</h3>
+  <h2 class="cs-block__heading">Designing a conversation, not just an interface.</h2>
+  <p class="cs-block__body">The hardest design problem in Glenen AI was not the screen layout. It was the dialogue. The assistant had to understand what the customer meant, ask the right follow-up questions, remember the conversation context, and move naturally between different shopping intents.</p>
+  <p class="cs-block__body">A shopper might start by asking for a gift, then switch to a food pairing, then ask for a cocktail idea. The interface needed to support that movement without making the user restart.</p>
+
+  <div class="gl-flow">
+    <span class="gl-flow__step">Customer intent</span>
+    <span class="gl-flow__sep">&rarr;</span>
+    <span class="gl-flow__step">Clarifying question</span>
+    <span class="gl-flow__sep">&rarr;</span>
+    <span class="gl-flow__step">Product retrieval</span>
+    <span class="gl-flow__sep">&rarr;</span>
+    <span class="gl-flow__step">Ranked recommendation</span>
+    <span class="gl-flow__sep">&rarr;</span>
+    <span class="gl-flow__step">Explanation</span>
+    <span class="gl-flow__sep">&rarr;</span>
+    <span class="gl-flow__step">Compare / refine / locate</span>
+  </div>
+</section>
+
+<!-- ══════ 6. FOUR INTENT TYPES ══════ -->
+<section class="cs-block">
+  <h3 class="cs-block__label">FOUR INTENT TYPES</h3>
+  <h2 class="cs-block__heading">One assistant. Four shopping mindsets.</h2>
+
+  <div class="cs-archetypes">
+    <div class="cs-archetype">
+      <span class="cs-archetype__num">01</span>
+      <h4>Taste Matching</h4>
+      <p class="cs-archetype__tag"><em>"I like something smooth, not too boozy, for a first whiskey."</em></p>
+      <p><strong>Goal:</strong> Find something based on taste preference.</p>
+      <p class="cs-archetype__need"><strong>Approach:</strong> Map sensory language to product flavor metadata and return 3–5 matches with plain-language explanations.</p>
+    </div>
+    <div class="cs-archetype">
+      <span class="cs-archetype__num">02</span>
+      <h4>Cocktail Creation</h4>
+      <p class="cs-archetype__tag"><em>"I have Aperol, gin, and lime. What can I make?"</em></p>
+      <p><strong>Goal:</strong> Make a drink using available ingredients.</p>
+      <p class="cs-archetype__need"><strong>Approach:</strong> Cross-reference available ingredients with cocktail logic and recommend recipes based on what the shopper has or can buy in-store.</p>
+    </div>
+    <div class="cs-archetype">
+      <span class="cs-archetype__num">03</span>
+      <h4>Food Pairing</h4>
+      <p class="cs-archetype__tag"><em>"I'm making grilled salmon."</em></p>
+      <p><strong>Goal:</strong> Find a bottle for a meal.</p>
+      <p class="cs-archetype__need"><strong>Approach:</strong> Match the food profile to relevant product attributes and explain the recommendation in everyday language, not expert jargon.</p>
+    </div>
+    <div class="cs-archetype">
+      <span class="cs-archetype__num">04</span>
+      <h4>Taste Education</h4>
+      <p class="cs-archetype__tag"><em>"What's the difference between bourbon and scotch?"</em></p>
+      <p><strong>Goal:</strong> Learn enough to make a better decision.</p>
+      <p class="cs-archetype__need"><strong>Approach:</strong> Teach through comparison, then pivot to a recommendation so education still supports product discovery.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 7. PROBABILISTIC SEARCH SYSTEM ══════ -->
+<section class="cs-block cs-block--surface">
+  <h3 class="cs-block__label">PROBABILISTIC SEARCH SYSTEM</h3>
+  <h2 class="cs-block__heading">Bridging customer language and product data.</h2>
+  <p class="cs-block__body">The biggest product challenge was the vocabulary gap.</p>
+
+  <div class="gl-ps">
+    <div class="gl-ps__col">
+      <span class="cs-layer__tag">Customers say</span>
+      <blockquote>"Smooth, fruity, not too sweet, good for a gift."</blockquote>
+    </div>
+    <div class="gl-ps__col">
+      <span class="cs-layer__tag">Catalogs say</span>
+      <p>Brand, category, ABV, price, region, tasting notes, shelf location, inventory status.</p>
+    </div>
+  </div>
+
+  <p class="cs-block__body" style="margin-top:24px;">Glenen AI uses probabilistic search to translate messy customer language into ranked product matches. The system does not depend on exact keywords. It evaluates multiple signals and ranks products based on fit.</p>
+
+  <div class="gl-flow">
+    <span class="gl-flow__step">Customer request</span>
+    <span class="gl-flow__sep">&rarr;</span>
+    <span class="gl-flow__step">Intent extraction</span>
+    <span class="gl-flow__sep">&rarr;</span>
+    <span class="gl-flow__step">Preference signals</span>
+    <span class="gl-flow__sep">&rarr;</span>
+    <span class="gl-flow__step">Probabilistic retrieval</span>
+    <span class="gl-flow__sep">&rarr;</span>
+    <span class="gl-flow__step">Multi-axis ranking</span>
+    <span class="gl-flow__sep">&rarr;</span>
+    <span class="gl-flow__step">AI explanation</span>
+    <span class="gl-flow__sep">&rarr;</span>
+    <span class="gl-flow__step">Recommendation cards</span>
+  </div>
+
+  <h2 class="cs-block__heading" style="margin-top:48px; font-size:24px;">Six-axis taste taxonomy.</h2>
+  <div class="gl-axes">
+    <div class="gl-axis"><h4>Taste Profile</h4><p>Smooth · Smoky · Fruity · Spicy</p></div>
+    <div class="gl-axis"><h4>Occasion</h4><p>Gift · Dinner Party · BBQ · Cocktails</p></div>
+    <div class="gl-axis"><h4>Experience</h4><p>Beginner · Curious · Enthusiast · Expert</p></div>
+    <div class="gl-axis"><h4>Food Context</h4><p>Red Meat · Seafood · Dessert · Cheese</p></div>
+    <div class="gl-axis"><h4>Body</h4><p>Light · Medium · Full · Fizzy</p></div>
+    <div class="gl-axis"><h4>Budget Feel</h4><p>Everyday · Special · Gift-Worthy · Splurge</p></div>
+  </div>
+</section>
+
+<!-- ══════ 8. MAPPING EXAMPLE ══════ -->
+<section class="cs-block">
+  <h3 class="cs-block__label">MAPPING EXAMPLE</h3>
+  <h2 class="cs-block__heading">From sentence to signals.</h2>
+
+  <div class="cs-insight">
+    <p><strong>Customer query:</strong> <em>"I want something smooth for a first-timer who's into cocktails and has a $30 budget."</em></p>
+  </div>
+
+  <div class="gl-table-wrap">
+    <table class="gl-table">
+      <thead>
+        <tr><th>Extracted signal</th><th>Mapped axis</th><th>Product logic</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>"smooth"</td><td>Taste Profile</td><td>Smooth, approachable, low-burn products</td></tr>
+        <tr><td>"first-timer"</td><td>Experience</td><td>Beginner-friendly, clear flavor notes</td></tr>
+        <tr><td>"into cocktails"</td><td>Occasion</td><td>Works well in mixed drinks</td></tr>
+        <tr><td>"$30 budget"</td><td>Budget Feel</td><td>Everyday or accessible price range</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="cs-block__body" style="margin-top:24px;">The system retrieves candidates from the vector store, ranks them by multi-axis fit, and uses the AI layer to explain why each product matches the user's request.</p>
+</section>
+
+<!-- ══════ 9. KEY DESIGN DECISIONS ══════ -->
+<section class="cs-block cs-block--surface">
+  <h3 class="cs-block__label">KEY DESIGN DECISIONS</h3>
+  <h2 class="cs-block__heading">Five decisions that shaped the product.</h2>
+
+  <div class="gl-decision">
+    <h4>01. Conversation-first, not search-first</h4>
+    <div class="gl-decision__col"><h5>Chose</h5><p>Open-ended dialogue with intent classification.</p></div>
+    <div class="gl-decision__col"><h5>Rejected</h5><p>Traditional search bar with AI-enhanced filters.</p></div>
+    <div class="gl-decision__col"><h5>Why</h5><p>Filters require customers to know vocabulary they often do not have.</p></div>
+  </div>
+
+  <div class="gl-decision">
+    <h4>02. Recommendations need a "because"</h4>
+    <div class="gl-decision__col"><h5>Chose</h5><p>Every recommendation card includes a reason.</p></div>
+    <div class="gl-decision__col"><h5>Rejected</h5><p>A plain list of product names and prices.</p></div>
+    <div class="gl-decision__col"><h5>Why</h5><p>Customers buy confidence, not just products.</p></div>
+  </div>
+
+  <div class="gl-decision">
+    <h4>03. Show options, not one final answer</h4>
+    <div class="gl-decision__col"><h5>Chose</h5><p>Return 3 to 5 ranked options.</p></div>
+    <div class="gl-decision__col"><h5>Rejected</h5><p>One "best" recommendation.</p></div>
+    <div class="gl-decision__col"><h5>Why</h5><p>A single AI answer can feel too final. Comparison gives users control.</p></div>
+  </div>
+
+  <div class="gl-decision">
+    <h4>04. Make refinement lightweight</h4>
+    <div class="gl-decision__col"><h5>Chose</h5><p>Quick chips like "cheaper," "more premium," "more unique," "similar."</p></div>
+    <div class="gl-decision__col"><h5>Rejected</h5><p>Restarting the conversation for every change.</p></div>
+    <div class="gl-decision__col"><h5>Why</h5><p>Users should be able to steer the AI without losing progress.</p></div>
+  </div>
+
+  <div class="gl-decision">
+    <h4>05. Design for public, standing use</h4>
+    <div class="gl-decision__col"><h5>Chose</h5><p>Short responses, large tap targets, scannable cards.</p></div>
+    <div class="gl-decision__col"><h5>Rejected</h5><p>Long chatbot-style responses.</p></div>
+    <div class="gl-decision__col"><h5>Why</h5><p>A kiosk needs to be faster and more visual than a desktop chat.</p></div>
+  </div>
+</section>
+
+<!-- ══════ 10. MAIN USER FLOW ══════ -->
+<section class="cs-block">
+  <h3 class="cs-block__label">MAIN USER FLOW</h3>
+  <h2 class="cs-block__heading">From vague request to confident choice.</h2>
+
+  <div class="gl-flow">
+    <span class="gl-flow__step">Start</span>
+    <span class="gl-flow__sep">&rarr;</span>
+    <span class="gl-flow__step">Describe need</span>
+    <span class="gl-flow__sep">&rarr;</span>
+    <span class="gl-flow__step">Clarify</span>
+    <span class="gl-flow__sep">&rarr;</span>
+    <span class="gl-flow__step">Recommend</span>
+    <span class="gl-flow__sep">&rarr;</span>
+    <span class="gl-flow__step">Compare</span>
+    <span class="gl-flow__sep">&rarr;</span>
+    <span class="gl-flow__step">Locate / Save / Ask staff</span>
+  </div>
+
+  <div class="cs-archetypes" style="margin-top:32px;">
+    <div class="cs-archetype"><span class="cs-archetype__num">01</span><h4>Welcome screen</h4><p>Helps users start with guided prompts instead of a blank chat box.</p></div>
+    <div class="cs-archetype"><span class="cs-archetype__num">02</span><h4>Intent capture</h4><p>Lets users type naturally or tap chips for budget, occasion, taste, or experience level.</p></div>
+    <div class="cs-archetype"><span class="cs-archetype__num">03</span><h4>Clarifying question</h4><p>Asks one useful follow-up only when it improves recommendation quality.</p></div>
+    <div class="cs-archetype"><span class="cs-archetype__num">04</span><h4>Recommendation results</h4><p>Shows ranked product cards with match reasons.</p></div>
+    <div class="cs-archetype"><span class="cs-archetype__num">05</span><h4>Compare mode</h4><p>Helps users decide between similar products.</p></div>
+    <div class="cs-archetype"><span class="cs-archetype__num">06</span><h4>Store handoff</h4><p>Lets users locate the item, save the result, or ask an associate.</p></div>
+  </div>
+</section>
+
+<!-- ══════ 11. RECOMMENDATION CARD DESIGN ══════ -->
+<section class="cs-block cs-block--surface">
+  <h3 class="cs-block__label">RECOMMENDATION CARD DESIGN</h3>
+  <h2 class="cs-block__heading">The recommendation card became the trust layer.</h2>
+  <p class="cs-block__body">The card does not just show a result. It explains the reasoning behind the result. That explanation is what makes the AI feel trustworthy.</p>
+
+  <div class="cs-layer cs-layer--split">
+    <div class="cs-layer__text">
+      <span class="cs-layer__tag">Card anatomy</span>
+      <h3>What goes on every card.</h3>
+      <ul>
+        <li>Product name</li>
+        <li>Price</li>
+        <li>Availability</li>
+        <li>Match score or best-for label</li>
+        <li>Why this fits</li>
+        <li>Taste / occasion tags</li>
+        <li>Compare action</li>
+        <li>Find in store</li>
+      </ul>
+    </div>
+    <div class="cs-layer__carousel">
+      <div class="gl-card-demo">
+        <span class="gl-card-demo__tag">Best gift-friendly pick</span>
+        <h4 class="gl-card-demo__title">Sample Bottle Name</h4>
+        <p class="gl-card-demo__sub">Under $60 &middot; Smooth profile &middot; Beginner-friendly &middot; Available today</p>
+        <div class="gl-card-demo__why">
+          <strong>Why this fits</strong>
+          This option matches your budget, works well for first-time buyers, and feels gift-worthy without being too niche.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 12. ITERATIONS ══════ -->
+<section class="cs-block">
+  <h3 class="cs-block__label">ITERATIONS</h3>
+  <h2 class="cs-block__heading">Four shifts that made the experience trustworthy.</h2>
+
+  <div class="cs-feedback-list">
+    <div class="cs-feedback">
+      <span class="cs-feedback__tag">Iteration 01 &middot; From blank chat to guided prompts</span>
+      <p><strong>Before:</strong> The kiosk opened with a blank input. Users had to figure out what to ask.</p>
+      <p class="cs-feedback__response"><strong>After:</strong> Added starter prompts like "Find a gift," "Shop by budget," "Pair with dinner," and "Compare products."</p>
+    </div>
+    <div class="cs-feedback">
+      <span class="cs-feedback__tag">Iteration 02 &middot; From long AI text to product cards</span>
+      <p><strong>Before:</strong> The assistant returned recommendations as paragraphs. Text-heavy responses were hard to scan on a kiosk.</p>
+      <p class="cs-feedback__response"><strong>After:</strong> Created visual product cards with price, match reason, availability, and actions.</p>
+    </div>
+    <div class="cs-feedback">
+      <span class="cs-feedback__tag">Iteration 03 &middot; From one answer to ranked options</span>
+      <p><strong>Before:</strong> The AI returned a single best recommendation. Users did not fully trust one answer.</p>
+      <p class="cs-feedback__response"><strong>After:</strong> Returned 3 to 5 ranked options, each with a different reason to choose it.</p>
+    </div>
+    <div class="cs-feedback">
+      <span class="cs-feedback__tag">Iteration 04 &middot; From hidden logic to explainable matching</span>
+      <p><strong>Before:</strong> Users saw what was recommended, but not why. The AI felt like a black box.</p>
+      <p class="cs-feedback__response"><strong>After:</strong> Added "Why this fits" labels and matched-signal explanations to each card.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 13. SYSTEM OVERVIEW ══════ -->
+<section class="cs-block cs-block--surface">
+  <h3 class="cs-block__label">SYSTEM OVERVIEW</h3>
+  <h2 class="cs-block__heading">How the system supports the experience.</h2>
+
+  <div class="gl-flow">
+    <span class="gl-flow__step">Kiosk UI</span>
+    <span class="gl-flow__sep">&rarr;</span>
+    <span class="gl-flow__step">FastAPI NLP backend</span>
+    <span class="gl-flow__sep">&rarr;</span>
+    <span class="gl-flow__step">LangGraph agent pipeline</span>
+    <span class="gl-flow__sep">&rarr;</span>
+    <span class="gl-flow__step">ChromaDB vector search</span>
+    <span class="gl-flow__sep">&rarr;</span>
+    <span class="gl-flow__step">Product catalog</span>
+    <span class="gl-flow__sep">&rarr;</span>
+    <span class="gl-flow__step">LLM response synthesis</span>
+    <span class="gl-flow__sep">&rarr;</span>
+    <span class="gl-flow__step">Recommendation UI</span>
+  </div>
+
+  <p class="cs-block__body" style="margin-top:24px;">The experience is supported by a modular AI architecture: a kiosk frontend, NLP backend, product data API, product catalog, and Night Agent QA workflow. Five components working together to deliver fast, explainable, on-catalog recommendations.</p>
+</section>
+
+<!-- ══════ 14. HUMAN IN THE LOOP ══════ -->
+<section class="cs-block">
+  <h3 class="cs-block__label">HUMAN-IN-THE-LOOP SAFETY</h3>
+  <h2 class="cs-block__heading">AI suggests. Humans approve.</h2>
+  <p class="cs-block__body">For inventory and product data, Glenen AI uses a human-in-the-loop process. AI-generated enrichments and catalog changes are not automatically pushed live. Operators review and approve changes before they reach the production catalog.</p>
+
+  <div class="cs-insight">
+    <p><strong>Why this matters for UX:</strong> This protects trust in a live retail environment. Customers should not receive recommendations based on unapproved or inaccurate product data. The diff-then-apply pipeline, enrichment proposals, and audit logs ensure operator approval before catalog changes go live.</p>
+  </div>
+</section>
+
+<!-- ══════ 15. OUTCOMES ══════ -->
+<section class="cs-block cs-block--surface">
+  <h3 class="cs-block__label">OUTCOMES</h3>
+  <h2 class="cs-block__heading">What the system delivered.</h2>
+
+  <div class="gl-ps">
+    <div class="gl-ps__col">
+      <span class="cs-layer__tag">Product outcomes</span>
+      <p><strong>3,264 SKUs in RAM</strong> — Fast access to product data during live kiosk use.</p>
+      <p><strong>87% cache hit rate</strong> — Most lookups are served without slowing the conversation.</p>
+      <p><strong>0% context bleed</strong> — One customer's conversation does not leak into another session.</p>
+      <p><strong>+89% RAG quality improvement</strong> — Semantic retrieval outperformed the keyword baseline.</p>
+    </div>
+    <div class="gl-ps__col">
+      <span class="cs-layer__tag">UX outcomes</span>
+      <p><strong>Faster product discovery</strong> — Users do not have to browse the full catalog manually.</p>
+      <p><strong>Higher trust in recommendations</strong> — Each result includes a reason.</p>
+      <p><strong>Better support for vague intent</strong> — Users can describe needs naturally.</p>
+      <p><strong>More confident comparison</strong> — Users can compare ranked options without restarting.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 16. WHAT I WOULD TEST NEXT ══════ -->
+<section class="cs-block">
+  <h3 class="cs-block__label">WHAT I WOULD TEST NEXT</h3>
+  <h2 class="cs-block__heading">Four open questions worth validating.</h2>
+
+  <div class="cs-learnings">
+    <div class="cs-learning"><span>01</span><h4>How many questions are too many?</h4><p>Test whether users prefer one, two, or three clarifying questions before seeing recommendations.</p></div>
+    <div class="cs-learning"><span>02</span><h4>Do explanations increase trust?</h4><p>Compare product cards with and without "Why this fits" explanations.</p></div>
+    <div class="cs-learning"><span>03</span><h4>Does kiosk context change behavior?</h4><p>Test standing use, public typing comfort, visibility, and time pressure inside a real store.</p></div>
+    <div class="cs-learning"><span>04</span><h4>Does probabilistic search improve decision quality?</h4><p>Compare keyword search, filtered browsing, and probabilistic recommendation flows.</p></div>
+  </div>
+</section>
+
+<!-- ══════ 17. REFLECTION ══════ -->
+<section class="cs-block cs-block--surface">
+  <h3 class="cs-block__label">REFLECTION</h3>
+  <h2 class="cs-block__heading">What this project taught me about AI product design.</h2>
+  <p class="cs-block__body">Glenen AI taught me that AI product design is not just about generating answers. The real challenge is designing the conditions around the answer: how users express intent, how the system clarifies ambiguity, how recommendations are explained, and how people stay in control.</p>
+
+  <div class="cs-shift">
+    <div class="cs-shift__from">
+      <h4>The original question</h4>
+      <p>"How can AI recommend products?"</p>
+    </div>
+    <span class="cs-shift__arrow">&rarr;</span>
+    <div class="cs-shift__to">
+      <h4>The better question</h4>
+      <p>"How can AI help shoppers feel confident about why a product fits?"</p>
+    </div>
+  </div>
+
+  <p class="cs-block__body" style="margin-top:32px;">That shift shaped the product: guided prompts instead of blank search, recommendation cards instead of long responses, comparison instead of a single answer, and explanations instead of black-box AI.</p>
+</section>
+
+<!-- ══════ 18. CLOSING LINE ══════ -->
+<section class="cs-block" style="text-align:center;">
+  <h2 class="cs-block__heading" style="font-style:italic; max-width:800px; margin:0 auto;">Good AI does not just give an answer. It helps people make a decision they trust.</h2>
+</section>
+
+<!-- ══════ VIEW NEXT ══════ -->
+<section class="cs-block cs-block--border" style="text-align:center;">
+  <h2 class="cs-block__heading">View Next &rarr;</h2>
+  <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; align-items:center; margin-top:24px;">
+    <a href="./uttishanow.html" class="cs-next-link">UttishaNow</a>
+    <a href="./wander.html" class="cs-next-link">Wander</a>
+    <a href="./irctc.html" class="cs-next-link">IRCTC</a>
+    <a href="./index.html#work" class="cs-next-link">Back to all projects</a>
+  </div>
+</section>
 
 <script>
-window.bookCall = function() {
-  var modal = document.getElementById('calendlyModal');
-  var content = document.getElementById('calendlyContent');
-  var closeBtn = document.getElementById('calendlyClose');
-  if (!modal) return;
-  content.innerHTML = '';
-  var calendarDiv = document.createElement('div');
-  calendarDiv.className = 'calendly-inline-widget';
-  calendarDiv.setAttribute('data-url', 'https://calendly.com/pillasriharshita/30min?hide_event_type_details=1&hide_gdpr_banner=1');
-  content.appendChild(calendarDiv);
-  modal.classList.add('active');
-  modal.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
-  if (typeof Calendly !== 'undefined') {
-    Calendly.initInlineWidget({ url: 'https://calendly.com/pillasriharshita/30min?hide_event_type_details=1&hide_gdpr_banner=1', parentElement: calendarDiv });
-  }
-  if (closeBtn && !closeBtn.hasListener) { closeBtn.addEventListener('click', closeCalendlyModal); closeBtn.hasListener = true; }
-  if (!modal.hasBackdropListener) { modal.addEventListener('click', function(e) { if (e.target === modal) closeCalendlyModal(); }); modal.hasBackdropListener = true; }
-  document.addEventListener('keydown', function esc(e) { if (e.key === 'Escape' && modal.classList.contains('active')) { closeCalendlyModal(); document.removeEventListener('keydown', esc); } });
-};
-window.closeCalendlyModal = function() {
-  var modal = document.getElementById('calendlyModal');
-  if (modal) { modal.classList.remove('active'); modal.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
-};
+  window.bookCall = function bookCall() {
+    const modal = document.getElementById('calendlyModal');
+    const content = document.getElementById('calendlyContent');
+    const closeBtn = document.getElementById('calendlyClose');
+    if (!modal) return;
+
+    content.innerHTML = '';
+    const calendarDiv = document.createElement('div');
+    calendarDiv.className = 'calendly-inline-widget';
+    calendarDiv.setAttribute('data-url', 'https://calendly.com/pillasriharshita/30min?hide_event_type_details=1&hide_gdpr_banner=1');
+    content.appendChild(calendarDiv);
+
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    if (typeof Calendly !== 'undefined') {
+      Calendly.initInlineWidget({
+        url: 'https://calendly.com/pillasriharshita/30min?hide_event_type_details=1&hide_gdpr_banner=1',
+        parentElement: calendarDiv
+      });
+    }
+
+    if (closeBtn && !closeBtn.hasListener) {
+      closeBtn.addEventListener('click', closeCalendlyModal);
+      closeBtn.hasListener = true;
+    }
+    if (!modal.hasBackdropListener) {
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeCalendlyModal(); });
+      modal.hasBackdropListener = true;
+    }
+    const escapeListener = (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeCalendlyModal();
+        document.removeEventListener('keydown', escapeListener);
+      }
+    };
+    document.addEventListener('keydown', escapeListener);
+  };
+
+  window.closeCalendlyModal = function closeCalendlyModal() {
+    const modal = document.getElementById('calendlyModal');
+    if (modal) {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  };
 </script>
+
 </body>
 </html>
