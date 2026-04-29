@@ -1,0 +1,140 @@
+/* ============================================================
+   SELECTED-WORK.CSS — Featured Work Section Layout
+   Sri Harshita Pilla Portfolio
+   ============================================================ */
+
+/* ─────────────────────────────────────────────────────────
+   SECTION CONTAINER
+   ───────────────────────────────────────────────────────── */
+.selected-work {
+  padding: 100px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ─────────────────────────────────────────────────────────
+   SECTION HEADER
+   ───────────────────────────────────────────────────────── */
+.selected-work__header {
+  margin-bottom: 60px;
+}
+
+.selected-work__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-accent-orange);
+  font-family: 'Courier New', monospace;
+  margin-bottom: 16px;
+}
+
+.selected-work__label::before {
+  content: '●';
+  font-size: 0.5em;
+}
+
+.selected-work__title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+  margin: 0;
+}
+
+.selected-work__title-accent {
+  color: var(--color-accent-orange);
+  font-style: italic;
+  font-weight: 600;
+}
+
+/* ─────────────────────────────────────────────────────────
+   CARDS CONTAINER
+   ───────────────────────────────────────────────────────── */
+.selected-work__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* ─────────────────────────────────────────────────────────
+   RESPONSIVE BREAKPOINTS
+   ───────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .selected-work {
+    padding: 80px 32px;
+  }
+
+  .selected-work__header {
+    margin-bottom: 48px;
+  }
+
+  .selected-work__title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .selected-work__cards {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .selected-work {
+    padding: 60px 24px;
+  }
+
+  .selected-work__header {
+    margin-bottom: 40px;
+  }
+
+  .selected-work__title {
+    font-size: clamp(1.75rem, 3vw, 3rem);
+  }
+
+  .selected-work__cards {
+    gap: 32px;
+  }
+
+  .selected-work__label {
+    margin-bottom: 12px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 640px) {
+  .selected-work {
+    padding: 50px 16px;
+  }
+
+  .selected-work__header {
+    margin-bottom: 32px;
+  }
+
+  .selected-work__title {
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  }
+
+  .selected-work__cards {
+    gap: 24px;
+  }
+
+  .selected-work__label {
+    font-size: 10px;
+    margin-bottom: 8px;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────
+   ACCESSIBILITY — Reduced motion
+   ───────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .selected-work__label,
+  .selected-work__title {
+    animation: none !important;
+    transition: none !important;
+  }
+}

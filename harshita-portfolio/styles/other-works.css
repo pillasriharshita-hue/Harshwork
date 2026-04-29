@@ -1,0 +1,174 @@
+/* ============================================================
+   OTHER-WORKS.CSS — Grid Layout for Other Works Section
+   Sri Harshita Pilla Portfolio
+   ============================================================ */
+
+/* ─────────────────────────────────────────────────────────
+   SECTION CONTAINER
+   ───────────────────────────────────────────────────────── */
+.other-works {
+  padding: 100px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ─────────────────────────────────────────────────────────
+   SECTION HEADER
+   ───────────────────────────────────────────────────────── */
+.other-works__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 60px;
+  gap: 40px;
+}
+
+.other-works__left {
+  flex: 1;
+}
+
+.other-works__label {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-accent-orange);
+  font-family: 'Courier New', monospace;
+  margin-bottom: 16px;
+}
+
+.other-works__label::before {
+  content: '● ';
+  font-size: 0.5em;
+}
+
+.other-works__title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+}
+
+.other-works__title-accent {
+  color: var(--color-accent-orange);
+  font-style: italic;
+  font-weight: 600;
+}
+
+.other-works__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-accent-orange);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  margin-top: 16px;
+}
+
+.other-works__link:hover {
+  gap: 8px;
+}
+
+.other-works__link::after {
+  content: '→';
+}
+
+/* ─────────────────────────────────────────────────────────
+   GRID LAYOUT
+   ───────────────────────────────────────────────────────── */
+.other-works__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* ─────────────────────────────────────────────────────────
+   RESPONSIVE BREAKPOINTS
+   ───────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .other-works {
+    padding: 80px 32px;
+  }
+
+  .other-works__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .other-works__header {
+    margin-bottom: 48px;
+    gap: 24px;
+  }
+
+  .other-works__title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .other-works {
+    padding: 60px 24px;
+  }
+
+  .other-works__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .other-works__header {
+    flex-direction: column;
+    margin-bottom: 40px;
+  }
+
+  .other-works__title {
+    font-size: clamp(1.75rem, 3vw, 3rem);
+  }
+
+  .other-works__label {
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .other-works {
+    padding: 50px 16px;
+  }
+
+  .other-works__grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .other-works__title {
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  }
+
+  .other-works__label {
+    font-size: 10px;
+    margin-bottom: 8px;
+  }
+
+  .other-works__link {
+    font-size: 12px;
+    margin-top: 12px;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────
+   ACCESSIBILITY — Reduced motion
+   ───────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .other-works__link {
+    transition: none !important;
+  }
+
+  .other-works__link:hover {
+    gap: 4px;
+  }
+}

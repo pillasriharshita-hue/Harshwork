@@ -106,7 +106,7 @@ window.scrollToSection = function scrollToSection(selector) {
 /* ─── Staggered reveal on scroll ─── */
 (function initScrollReveal() {
   const revealEls = document.querySelectorAll(
-    '.card, .mini-card:not(.mini-card--hidden), .works__head, .other__title, .footer'
+    '.mini-card:not(.mini-card--hidden), .other__title, .footer'
   );
   if (!revealEls.length) return;
 
@@ -130,6 +130,83 @@ window.scrollToSection = function scrollToSection(selector) {
   );
 
   revealEls.forEach((el) => revealObserver.observe(el));
+})();
+
+/* ─── Selected Work animations ─── */
+(function initSelectedWorkAnimations() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) document.body.classList.add('reduced-motion');
+
+  const heading = document.querySelector('.works__head');
+  const cards = document.querySelectorAll('.works__featured .card');
+  if (!heading && !cards.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  if (heading) observer.observe(heading);
+  cards.forEach((card) => observer.observe(card));
+
+  if (reduceMotion) return;
+
+  const watermarks = document.querySelectorAll('.card__watermark');
+  if (!watermarks.length) return;
+
+  let ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      watermarks.forEach((wm) => {
+        const card = wm.closest('.card');
+        if (!card) return;
+        const rect = card.getBoundingClientRect();
+        const offset = rect.top * 0.3;
+        wm.style.transform = `translateY(${offset}px)`;
+      });
+      ticking = false;
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+
+/* ─── Other Works filter tabs ─── */
+(function initOtherWorksFilters() {
+  const tabs = document.querySelectorAll('.filter-tab');
+  const cards = document.querySelectorAll('.other-project-card--interactive');
+  if (!tabs.length || !cards.length) return;
+
+  function applyFilter(activeTab) {
+    const filter = activeTab.getAttribute('data-filter') || 'All';
+    tabs.forEach((tab) => {
+      const isActive = tab === activeTab;
+      tab.classList.toggle('is-active', isActive);
+      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+
+    cards.forEach((card) => {
+      const category = card.getAttribute('data-category') || 'All';
+      const shouldShow = filter === 'All' || category === filter;
+      card.style.display = shouldShow ? '' : 'none';
+    });
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => applyFilter(tab));
+  });
+
+  applyFilter(tabs[0]);
 })();
 
 /* ─── Hamburger menu toggle (mobile only) ─── */

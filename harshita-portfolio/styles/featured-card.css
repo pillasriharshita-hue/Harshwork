@@ -1,0 +1,292 @@
+/* ============================================================
+   FEATURED-CARD.CSS — Large Project Card Component
+   Sri Harshita Pilla Portfolio
+   ============================================================ */
+
+/* ─────────────────────────────────────────────────────────
+   CARD CONTAINER — Full width panel
+   ───────────────────────────────────────────────────────── */
+.featured-card {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  gap: 40px;
+  padding: 48px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  margin-bottom: 48px;
+  transition: all var(--transition-base);
+}
+
+.featured-card:hover {
+  border-color: var(--color-border-hover);
+}
+
+/* ─────────────────────────────────────────────────────────
+   LEFT PANE — Project Info
+   ───────────────────────────────────────────────────────── */
+.featured-card__left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.featured-card__number {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-accent-orange);
+  font-family: 'Courier New', monospace;
+}
+
+.featured-card__title {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+  margin: 0;
+}
+
+.featured-card__subtitle {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-accent-orange);
+  font-style: italic;
+  margin: 0;
+}
+
+.featured-card__description {
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────────────────────
+   TAGS
+   ───────────────────────────────────────────────────────── */
+.featured-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.featured-card__tag {
+  display: inline-block;
+  padding: 6px 12px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  font-family: 'Courier New', monospace;
+  transition: all var(--transition-fast);
+}
+
+.featured-card__tag:hover {
+  border-color: var(--color-accent-orange);
+  color: var(--color-accent-orange);
+}
+
+/* ─────────────────────────────────────────────────────────
+   CTA LINK
+   ───────────────────────────────────────────────────────── */
+.featured-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-accent-orange);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  width: fit-content;
+}
+
+.featured-card__cta:hover {
+  gap: 8px;
+}
+
+.featured-card__cta::after {
+  content: '→';
+}
+
+/* ─────────────────────────────────────────────────────────
+   RIGHT PANE — Image/Mockup
+   ───────────────────────────────────────────────────────── */
+.featured-card__right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.featured-card__image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--color-surface-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.featured-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform var(--transition-base);
+}
+
+.featured-card:hover .featured-card__image img {
+  transform: scale(1.02);
+}
+
+.featured-card__image-shadow {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────────────────────
+   VARIANT — Reversed layout (for alternation)
+   ───────────────────────────────────────────────────────── */
+.featured-card--reversed {
+  grid-template-columns: 60% 40%;
+}
+
+.featured-card--reversed .featured-card__left {
+  order: 2;
+}
+
+.featured-card--reversed .featured-card__right {
+  order: 1;
+}
+
+/* ─────────────────────────────────────────────────────────
+   RESPONSIVE BREAKPOINTS
+   ───────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .featured-card {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 40px;
+    margin-bottom: 40px;
+  }
+
+  .featured-card--reversed {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-card__left,
+  .featured-card__right {
+    order: unset !important;
+  }
+
+  .featured-card__title {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .featured-card {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 32px 24px;
+    margin-bottom: 32px;
+  }
+
+  .featured-card__title {
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+  }
+
+  .featured-card__left {
+    gap: 20px;
+  }
+
+  .featured-card__tags {
+    gap: 6px;
+  }
+
+  .featured-card__tag {
+    padding: 4px 10px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .featured-card {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 20px 16px;
+    margin-bottom: 24px;
+  }
+
+  .featured-card__number {
+    font-size: 10px;
+  }
+
+  .featured-card__title {
+    font-size: 1.25rem;
+  }
+
+  .featured-card__description {
+    font-size: 14px;
+  }
+
+  .featured-card__left {
+    gap: 16px;
+  }
+
+  .featured-card__tags {
+    gap: 6px;
+  }
+
+  .featured-card__tag {
+    padding: 4px 8px;
+    font-size: 9px;
+  }
+
+  .featured-card__cta {
+    font-size: 12px;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────
+   ACCESSIBILITY — Reduced motion
+   ───────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .featured-card,
+  .featured-card__image img,
+  .featured-card__cta,
+  .featured-card__tag {
+    transition: none !important;
+  }
+
+  .featured-card__cta:hover {
+    gap: 4px;
+  }
+
+  .featured-card:hover .featured-card__image img {
+    transform: none;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────
+   FOCUS STATE — Keyboard navigation
+   ───────────────────────────────────────────────────────── */
+.featured-card__cta:focus-visible,
+.featured-card__tag:focus-visible {
+  outline: 2px solid var(--color-accent-orange);
+  outline-offset: 2px;
+}

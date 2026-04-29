@@ -1,0 +1,338 @@
+/* ============================================================
+   NEW-HERO.CSS — Hero Section (Updated Design)
+   Sri Harshita Pilla Portfolio
+   ============================================================ */
+
+/* ─────────────────────────────────────────────────────────
+   HERO CONTAINER — Two-column layout
+   ───────────────────────────────────────────────────────── */
+.hero-new {
+  padding: 120px 40px 80px;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 55% 45%;
+  gap: 60px;
+  align-items: center;
+  min-height: calc(100vh - 70px);
+}
+
+/* ─────────────────────────────────────────────────────────
+   LEFT COLUMN — Copy
+   ───────────────────────────────────────────────────────── */
+.hero-new__left {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.hero-new__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  font-family: 'Courier New', monospace;
+  width: fit-content;
+}
+
+.hero-new__status::before {
+  content: '●';
+  color: var(--color-accent-orange);
+  font-size: 0.5em;
+}
+
+.hero-new__heading {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+  margin: 0;
+}
+
+.hero-new__heading-accent {
+  color: var(--color-accent-orange);
+  font-style: italic;
+  font-weight: 600;
+}
+
+.hero-new__description {
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  max-width: 500px;
+}
+
+.hero-new__cta-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-new__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 24px;
+  background: transparent;
+  border: 1px solid var(--color-text-primary);
+  border-radius: 8px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: var(--font-body);
+}
+
+.hero-new__cta:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--color-accent-orange);
+  color: var(--color-accent-orange);
+}
+
+.hero-new__cta::after {
+  content: '→';
+  font-size: 12px;
+}
+
+.hero-new__arrow {
+  font-size: 18px;
+  color: var(--color-text-primary);
+}
+
+/* ─────────────────────────────────────────────────────────
+   RIGHT COLUMN — Card with illustration
+   ───────────────────────────────────────────────────────── */
+.hero-new__right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-new__card {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+}
+
+.hero-new__card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(232, 82, 26, 0.1) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────────────────────
+   CARD PILLS (Work / About / Resume)
+   ───────────────────────────────────────────────────────── */
+.hero-new__card-pills {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+}
+
+.hero-new__card-pill {
+  flex: 1;
+  padding: 8px 12px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  font-size: 11px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: var(--font-body);
+  white-space: nowrap;
+}
+
+.hero-new__card-pill:hover,
+.hero-new__card-pill.active {
+  border-color: var(--color-accent-orange);
+  color: var(--color-accent-orange);
+  background: rgba(232, 82, 26, 0.05);
+}
+
+/* ─────────────────────────────────────────────────────────
+   ILLUSTRATION AREA
+   ───────────────────────────────────────────────────────── */
+.hero-new__illustration {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 120px;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.hero-new__illustration img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 40px rgba(232, 82, 26, 0.15));
+}
+
+/* ─────────────────────────────────────────────────────────
+   RESPONSIVE BREAKPOINTS
+   ───────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hero-new {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 100px 32px 60px;
+    min-height: auto;
+  }
+
+  .hero-new__heading {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+  }
+
+  .hero-new__card {
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-new {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 80px 24px 50px;
+  }
+
+  .hero-new__left {
+    gap: 24px;
+  }
+
+  .hero-new__heading {
+    font-size: clamp(2rem, 3vw, 3rem);
+  }
+
+  .hero-new__description {
+    font-size: 14px;
+  }
+
+  .hero-new__card {
+    max-width: 300px;
+    padding: 24px;
+  }
+
+  .hero-new__card-pills {
+    gap: 6px;
+  }
+
+  .hero-new__card-pill {
+    font-size: 10px;
+    padding: 6px 10px;
+  }
+
+  .hero-new__illustration {
+    font-size: 80px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-new {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 60px 16px 40px;
+  }
+
+  .hero-new__left {
+    gap: 20px;
+  }
+
+  .hero-new__heading {
+    font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+  }
+
+  .hero-new__description {
+    font-size: 13px;
+  }
+
+  .hero-new__status {
+    font-size: 10px;
+    padding: 6px 12px;
+  }
+
+  .hero-new__cta {
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+
+  .hero-new__card {
+    max-width: 250px;
+    padding: 16px;
+  }
+
+  .hero-new__card-pills {
+    top: 12px;
+    left: 12px;
+    right: 12px;
+  }
+
+  .hero-new__illustration {
+    font-size: 60px;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────
+   ACCESSIBILITY — Reduced motion & focus states
+   ───────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-new__illustration,
+  .hero-new__cta,
+  .hero-new__card-pill {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .hero-new__cta:hover {
+    background: none;
+  }
+}
+
+.hero-new__cta:focus-visible,
+.hero-new__card-pill:focus-visible {
+  outline: 2px solid var(--color-accent-orange);
+  outline-offset: 2px;
+}
