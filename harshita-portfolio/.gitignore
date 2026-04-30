@@ -1,0 +1,2 @@
+# Ignore Claude worktrees and all files under it
+.claude/worktrees/
