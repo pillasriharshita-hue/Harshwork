@@ -26,8 +26,6 @@
   <link rel="stylesheet" href="./styles/cards.css" />
   <link rel="stylesheet" href="./styles/featured-card.css" />
   <link rel="stylesheet" href="./styles/selected-work.css" />
-  <link rel="stylesheet" href="./styles/other-work-card.css" />
-  <link rel="stylesheet" href="./styles/other-works.css" />
   <link rel="stylesheet" href="./styles/footer.css" />
   <link rel="stylesheet" href="./styles/new-footer.css" />
   <link rel="stylesheet" href="./styles/accessibility.css" />
@@ -170,7 +168,6 @@
   </div>
 
   <!-- ══════ FLOATING NAV ══════ -->
-<!-- ══════ FLOATING NAV ══════ -->
 <link rel="stylesheet" href="./styles/floating-nav.css" />
 
 <header class="fnav">
@@ -214,59 +211,13 @@
 (function(){
   var burger = document.getElementById('fnavBurger');
   var mobile = document.getElementById('fnavMobile');
-
   if (!burger || !mobile) return;
-
   burger.addEventListener('click', function(){
     burger.classList.toggle('open');
     mobile.classList.toggle('open');
   });
 })();
 </script>
-  (function(){
-    var burger=document.getElementById('fnavBurger');
-    var mobile=document.getElementById('fnavMobile');
-    if(!burger||!mobile)return;
-    burger.addEventListener('click',function(){
-      burger.classList.toggle('open');
-      mobile.classList.toggle('open');
-    });
-  })();
-  </script>
-  <nav class="nav" id="mainNav" aria-label="Main navigation" style="opacity:0;pointer-events:none;transform:translateX(-50%) translateY(-100%);">
-    <div class="nav__orange-bar"></div>
-    <ul class="nav__links" role="list">
-      <li>
-        <a href="#home" class="nav__link" aria-label="Go to Home">
-          <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          <span>Home</span>
-        </a>
-      </li>
-      <li>
-        <a href="#work" class="nav__link" aria-label="Go to Work">
-          <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          <span>Work</span>
-        </a>
-      </li>
-      <li>
-        <a href="./about.html" class="nav__link" aria-label="About">
-          <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <span>About</span>
-        </a>
-      </li>
-      <li>
-        <a href="./resume.html" class="nav__link" aria-label="Go to Resume">
-          <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          <span>Resume</span>
-        </a>
-      </li>
-      <li>
-        <button class="nav__link nav__calendly" onclick="bookCall()" aria-label="Book a call with Harshita" style="background:#E8734A;color:#fff;padding:6px 14px;border-radius:20px;min-width:auto;width:auto;transition:background 0.2s;cursor:pointer;">
-          <span>Book a Call</span>
-        </button>
-      </li>
-    </ul>
-  </nav>
 
   <!-- ══════ HERO SECTION ══════ -->
 <section class="hero-new" id="home" aria-label="Hero section">
@@ -570,7 +521,6 @@
   <script src="./scripts/carousel.js" defer></script>
   <script src="./scripts/cards.js" defer></script>
   <script src="./scripts/animations.js" defer></script>
-  <script src="./scripts/navbar.js" defer></script>
 
 </body>
 </html>
