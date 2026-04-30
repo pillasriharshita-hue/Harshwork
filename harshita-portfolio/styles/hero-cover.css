@@ -1,0 +1,119 @@
+/* ============================================================
+   HERO-COVER.CSS — Full-bleed image hero
+   Sri Harshita Pilla Portfolio
+   ============================================================ */
+
+.hero-cover {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 500px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* ─── Background image ─── */
+.hero-cover__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  z-index: 0;
+}
+
+/* ─── Dark gradient overlay (left side darker for text legibility) ─── */
+.hero-cover__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.72) 0%,
+    rgba(0, 0, 0, 0.45) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  z-index: 1;
+}
+
+/* ─── Text content ─── */
+.hero-cover__content {
+  position: relative;
+  z-index: 2;
+  padding: 0 60px 72px;
+  max-width: 680px;
+}
+
+/* ─── Name + badge ─── */
+.hero-cover__name {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.15;
+  margin: 0 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-cover__badge {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ─── Meta line ─── */
+.hero-cover__meta {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 20px;
+  font-family: var(--font-body);
+  letter-spacing: 0.01em;
+}
+
+/* ─── Description ─── */
+.hero-cover__desc {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 520px;
+  margin: 0;
+  font-family: var(--font-body);
+}
+
+/* ─────────────────────────────────────────────────────────
+   RESPONSIVE
+   ───────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero-cover__content {
+    padding: 0 32px 56px;
+  }
+
+  .hero-cover__name {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+  }
+
+  .hero-cover__badge {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-cover__content {
+    padding: 0 20px 48px;
+  }
+
+  .hero-cover__meta {
+    font-size: 0.95rem;
+  }
+
+  .hero-cover__desc {
+    font-size: 0.9rem;
+  }
+}
