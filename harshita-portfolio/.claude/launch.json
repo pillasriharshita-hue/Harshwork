@@ -4,8 +4,8 @@
     {
       "name": "portfolio",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "-l", "3000", "C:/Users/pilla/OneDrive/Desktop/Harsh'work/harshita-portfolio"],
-      "port": 3000
+      "runtimeArgs": ["serve", "-p", "8080", "."],
+      "port": 8080
     }
   ]
 }

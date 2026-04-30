@@ -1,0 +1,332 @@
+/* ============================================================
+   PROJ-CARD.CSS — Megan Yap-inspired Project Cards
+   Sri Harshita Pilla Portfolio
+   ============================================================ */
+
+/* ─────────────────────────────────────────────────────────
+   GRID CONTAINER
+   ───────────────────────────────────────────────────────── */
+.proj-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* ─────────────────────────────────────────────────────────
+   CARD BASE
+   ───────────────────────────────────────────────────────── */
+.proj-card {
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  overflow: hidden;
+  background: transparent;
+  transition: border-color var(--transition-base);
+}
+
+.proj-card:hover {
+  border-color: var(--color-border-hover);
+}
+
+/* ─────────────────────────────────────────────────────────
+   IMAGE WRAP — full bleed top
+   ───────────────────────────────────────────────────────── */
+.proj-card__img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.proj-card__img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.proj-card:hover .proj-card__img-wrap img {
+  transform: scale(1.03);
+}
+
+/* ─── NO. 01 label (top-right) ─── */
+.proj-card__number {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Courier New', monospace;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 4px 10px;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+}
+
+/* ─── Hover CTA overlay ─── */
+.proj-card__cta-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+  text-decoration: none;
+}
+
+.proj-card:hover .proj-card__cta-overlay {
+  opacity: 1;
+}
+
+.proj-card__cta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: var(--color-accent-orange);
+  color: #fff;
+  border-radius: 40px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: transform 0.2s ease, background 0.2s ease;
+  font-family: var(--font-body);
+}
+
+.proj-card:hover .proj-card__cta-pill {
+  transform: scale(1.04);
+}
+
+/* ─── Coming Soon overlay (non-linked cards) ─── */
+.proj-card__coming-soon-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.proj-card:hover .proj-card__coming-soon-overlay {
+  opacity: 1;
+}
+
+.proj-card__coming-soon-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  border-radius: 40px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: var(--font-body);
+}
+
+/* ─── Visual placeholder (for cards without real images) ─── */
+.proj-card__visual-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface-2);
+}
+
+/* ─────────────────────────────────────────────────────────
+   CARD BODY
+   ───────────────────────────────────────────────────────── */
+.proj-card__body {
+  padding: 28px 32px 32px;
+}
+
+/* ─── Top row: title + tags ─── */
+.proj-card__row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.proj-card__title {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.proj-card__tags {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.proj-card__tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  font-family: 'Courier New', monospace;
+  white-space: nowrap;
+}
+
+.proj-card__tag--accent {
+  border-color: var(--color-accent-orange);
+  color: var(--color-accent-orange);
+}
+
+/* ─── Description ─── */
+.proj-card__desc {
+  font-size: var(--text-sm);
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  margin: 0 0 0 0;
+  max-width: 72ch;
+}
+
+/* ─────────────────────────────────────────────────────────
+   METADATA ROWS — revealed on hover
+   ───────────────────────────────────────────────────────── */
+.proj-card__meta {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows 0.4s ease;
+}
+
+.proj-card:hover .proj-card__meta {
+  grid-template-rows: 1fr;
+}
+
+.proj-card__meta-inner {
+  overflow: hidden;
+}
+
+.proj-card__meta-rows {
+  border-top: 1px dashed var(--color-border);
+  margin-top: 20px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.proj-card__meta-row {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+}
+
+.proj-card__meta-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  font-family: 'Courier New', monospace;
+  min-width: 90px;
+  flex-shrink: 0;
+}
+
+.proj-card__meta-value {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+}
+
+/* ─────────────────────────────────────────────────────────
+   RESPONSIVE
+   ───────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .proj-card__body {
+    padding: 20px 20px 24px;
+  }
+
+  .proj-card__row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .proj-card__tags {
+    justify-content: flex-start;
+  }
+
+  .proj-card__title {
+    font-size: 1.375rem;
+  }
+
+  .proj-card__meta-label {
+    min-width: 75px;
+  }
+}
+
+@media (max-width: 480px) {
+  .proj-card__body {
+    padding: 16px 16px 20px;
+  }
+
+  .proj-card__img-wrap {
+    aspect-ratio: 4 / 3;
+  }
+
+  .proj-card__title {
+    font-size: 1.25rem;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────
+   ACCESSIBILITY
+   ───────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .proj-card__img-wrap img,
+  .proj-card__cta-overlay,
+  .proj-card__coming-soon-overlay,
+  .proj-card__meta {
+    transition: none !important;
+  }
+
+  .proj-card:hover .proj-card__meta {
+    grid-template-rows: 1fr;
+  }
+
+  .proj-card:hover .proj-card__img-wrap img {
+    transform: none;
+  }
+}
+
+.proj-card__cta-overlay:focus-visible .proj-card__cta-pill {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}

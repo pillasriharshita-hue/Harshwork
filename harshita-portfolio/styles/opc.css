@@ -1,0 +1,261 @@
+/* ============================================================
+   OPC.CSS — Other Works Cards (Megan Yap style)
+   Sri Harshita Pilla Portfolio
+   ============================================================ */
+
+/* ─────────────────────────────────────────────────────────
+   CARD BASE
+   ───────────────────────────────────────────────────────── */
+.opc {
+  border-radius: 16px;
+  overflow: hidden;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  transition: border-color var(--transition-base), transform var(--transition-base);
+  cursor: pointer;
+}
+
+.opc:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-3px);
+}
+
+.opc:focus-visible {
+  outline: 2px solid var(--color-accent-orange);
+  outline-offset: 3px;
+}
+
+/* ─────────────────────────────────────────────────────────
+   IMAGE WRAP
+   ───────────────────────────────────────────────────────── */
+.opc__img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--card-bg, var(--color-surface-2));
+}
+
+.opc__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
+  transition: transform 0.5s ease;
+  max-width: none;
+}
+
+.opc:hover .opc__img {
+  transform: scale(1.05);
+}
+
+/* ─── NO. 01 label ─── */
+.opc__number {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: 'Courier New', monospace;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 3px 9px;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+}
+
+/* ─── Hover CTA overlay ─── */
+.opc__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+  text-decoration: none;
+}
+
+.opc:hover .opc__overlay {
+  opacity: 1;
+}
+
+.opc__overlay--disabled {
+  pointer-events: none;
+}
+
+.opc__overlay-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 22px;
+  background: var(--color-accent-orange);
+  color: #fff;
+  border-radius: 40px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: var(--font-body);
+  transition: transform 0.2s ease;
+}
+
+.opc:hover .opc__overlay-pill {
+  transform: scale(1.04);
+}
+
+.opc__overlay-pill--muted {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* ─────────────────────────────────────────────────────────
+   CARD BODY — always visible
+   ───────────────────────────────────────────────────────── */
+.opc__body {
+  padding: 18px 20px 20px;
+  background: transparent;
+}
+
+/* ─── Title row ─── */
+.opc__row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.opc__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.opc__tags {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.opc__tag {
+  display: inline-block;
+  padding: 3px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  font-family: 'Courier New', monospace;
+  white-space: nowrap;
+}
+
+.opc__tag--muted {
+  border-color: rgba(232, 82, 26, 0.4);
+  color: var(--color-accent-orange);
+  opacity: 0.7;
+}
+
+/* ─── Description ─── */
+.opc__desc {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 100%;
+}
+
+/* ─────────────────────────────────────────────────────────
+   METADATA — revealed on hover (grid-rows trick)
+   ───────────────────────────────────────────────────────── */
+.opc__meta {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows 0.4s ease;
+}
+
+.opc:hover .opc__meta {
+  grid-template-rows: 1fr;
+}
+
+.opc__meta-inner {
+  overflow: hidden;
+}
+
+.opc__meta-rows {
+  border-top: 1px dashed var(--color-border);
+  margin-top: 14px;
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.opc__meta-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.opc__meta-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  font-family: 'Courier New', monospace;
+  min-width: 44px;
+  flex-shrink: 0;
+}
+
+.opc__meta-value {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+/* ─────────────────────────────────────────────────────────
+   LIGHT THEME
+   ───────────────────────────────────────────────────────── */
+[data-theme="light"] .opc {
+  background: transparent;
+  border-color: rgba(0,0,0,0.08);
+}
+
+[data-theme="light"] .opc__number {
+  background: rgba(0,0,0,0.3);
+}
+
+/* ─────────────────────────────────────────────────────────
+   ACCESSIBILITY — reduced motion
+   ───────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .opc,
+  .opc__img,
+  .opc__overlay,
+  .opc__meta {
+    transition: none !important;
+  }
+
+  .opc:hover .opc__meta {
+    grid-template-rows: 1fr;
+  }
+
+  .opc:hover .opc__img {
+    transform: none;
+  }
+}

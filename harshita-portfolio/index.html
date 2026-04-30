@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="./styles/cards.css" />
   <link rel="stylesheet" href="./styles/featured-card.css" />
   <link rel="stylesheet" href="./styles/selected-work.css" />
+  <link rel="stylesheet" href="./styles/opc.css" />
   <link rel="stylesheet" href="./styles/footer.css" />
   <link rel="stylesheet" href="./styles/new-footer.css" />
   <link rel="stylesheet" href="./styles/accessibility.css" />
@@ -234,7 +235,6 @@
     
     <div class="hero-new__cta-group">
       <a href="./about.html" class="hero-new__cta">About me</a>
-      <span class="hero-new__arrow">——→</span>
     </div>
   </div>
 
@@ -268,111 +268,72 @@
     <article class="featured-card" aria-label="UttishaNow project">
       <span class="featured-card__watermark">01</span>
 
-      <!-- LEFT CONTENT -->
       <div class="featured-card__left">
         <div class="featured-card__number">01</div>
-
         <h3 class="featured-card__title">UttishaNow</h3>
-
-        <p class="featured-card__subtitle">
-          Building healthier daily routines
-        </p>
-
-        <p class="featured-card__description">
-          Designed movement nudges to help sedentary young adults build healthier daily routines. Focused on reducing inactivity through behavioral triggers, habit loops, and simplified daily tracking.
-        </p>
-
+        <p class="featured-card__subtitle">Building healthier daily routines</p>
+        <p class="featured-card__description">Designed movement nudges to help sedentary young adults build healthier daily routines. Focused on reducing inactivity through behavioral triggers, habit loops, and simplified daily tracking.</p>
         <div class="featured-card__tags">
           <span class="featured-card__tag">UX Research</span>
           <span class="featured-card__tag">Behavioral Design</span>
           <span class="featured-card__tag">Mobile UX</span>
           <span class="featured-card__tag">Interaction Design</span>
         </div>
-
-        <a href="./uttishanow.html" class="featured-card__cta">
-          View case study
-        </a>
+        <a href="./uttishanow.html" class="featured-card__cta">View case study</a>
       </div>
 
-      <!-- RIGHT VISUAL -->
       <div class="featured-card__right">
         <div class="featured-card__image">
           <img src="./assets/other-works/utn.png" alt="UttishaNow app" loading="lazy" />
           <div class="featured-card__image-shadow"></div>
         </div>
       </div>
-
     </article>
-
 
     <!-- ══════ CARD 2: Glenen AI ══════ -->
     <article class="featured-card featured-card--reversed" aria-label="Glenen AI project">
       <span class="featured-card__watermark">02</span>
 
-      <!-- LEFT CONTENT -->
       <div class="featured-card__left">
         <div class="featured-card__number">02</div>
-
         <h3 class="featured-card__title">Glenen AI</h3>
-
-        <p class="featured-card__subtitle">
-          AI retail assistant for in-store discovery
-        </p>
-
-        <p class="featured-card__description">
-          Designed a conversational retail assistant for navigating 2,900+ products in-store. Reduced decision friction through guided discovery and AI-assisted recommendations.
-        </p>
-
+        <p class="featured-card__subtitle">AI retail assistant for in-store discovery</p>
+        <p class="featured-card__description">Designed a conversational retail assistant for navigating 2,900+ products in-store. Reduced decision friction through guided discovery and AI-assisted recommendations.</p>
         <div class="featured-card__tags">
           <span class="featured-card__tag">Conversational AI</span>
           <span class="featured-card__tag">RAG</span>
           <span class="featured-card__tag">Retail UX</span>
           <span class="featured-card__tag">AI Product Design</span>
         </div>
-
-        <a href="./glenen.html" class="featured-card__cta">
-          View case study
-        </a>
+        <a href="./glenen.html" class="featured-card__cta">View case study</a>
       </div>
 
-      <!-- RIGHT VISUAL -->
       <div class="featured-card__right">
         <div class="featured-card__image">
           <div class="card__mockup card__mockup--payment">
-              <div class="card__mockup-payment-header">Payment Method</div>
-              <div class="card__mockup-payment-option">
-                <span class="card__mockup-payment-icon">&#128179;</span>
-                <div>
-                  <strong>Add Card</strong>
-                  <small>Add a card of any bank</small>
-                </div>
-              </div>
-              <div class="card__mockup-payment-option">
-                <span class="card__mockup-payment-icon">&#9830;</span>
-                <div>
-                  <strong>Add Crypto Wallet</strong>
-                  <small>Connect your crypto wallet</small>
-                </div>
-              </div>
-              <div class="card__mockup-payment-option">
-                <span class="card__mockup-payment-icon card__mockup-payment-icon--green">&#9679;</span>
-                <div>
-                  <strong>Add Unipay Account</strong>
-                  <small>Hold all payments via the app</small>
-                </div>
-                <span class="card__mockup-check">&#10003;</span>
-              </div>
-              <div class="card__mockup-payment-cards">
-                <span class="card__mockup-visa">VISA</span>
-                <span class="card__mockup-mc">&bull;&bull;</span>
-                <span class="card__mockup-visa">VISA</span>
-                <span class="card__mockup-visa card__mockup-visa--dark">VISA</span>
-              </div>
+            <div class="card__mockup-payment-header">Payment Method</div>
+            <div class="card__mockup-payment-option">
+              <span class="card__mockup-payment-icon">&#128179;</span>
+              <div><strong>Add Card</strong><small>Add a card of any bank</small></div>
+            </div>
+            <div class="card__mockup-payment-option">
+              <span class="card__mockup-payment-icon">&#9830;</span>
+              <div><strong>Add Crypto Wallet</strong><small>Connect your crypto wallet</small></div>
+            </div>
+            <div class="card__mockup-payment-option">
+              <span class="card__mockup-payment-icon card__mockup-payment-icon--green">&#9679;</span>
+              <div><strong>Add Unipay Account</strong><small>Hold all payments via the app</small></div>
+              <span class="card__mockup-check">&#10003;</span>
+            </div>
+            <div class="card__mockup-payment-cards">
+              <span class="card__mockup-visa">VISA</span>
+              <span class="card__mockup-mc">&bull;&bull;</span>
+              <span class="card__mockup-visa">VISA</span>
+              <span class="card__mockup-visa card__mockup-visa--dark">VISA</span>
             </div>
           </div>
         </div>
       </div>
-
     </article>
 
   </div>
@@ -391,97 +352,123 @@
       <button class="filter-tab" role="tab" aria-selected="false" type="button" data-filter="Interaction" aria-controls="other-works-grid">Interaction</button>
     </div>
     <div class="other-projects-grid__container" id="other-works-grid" role="tabpanel">
-      <article class="other-project-card other-project-card--interactive" style="background:#F5E6D3;" tabindex="0" aria-label="Wander project" data-category="Product">
-        <div class="other-project-card__default">
-          <div class="other-project-card__header">Wander</div>
-          <h3 class="other-project-card__title">An AR-based walking app that turns every stroll into a story-driven experience.</h3>
-          <a href="wander.html" class="other-project-card__cta">Read more →</a>
+
+      <!-- WANDER -->
+      <article class="opc other-project-card--interactive" tabindex="0" aria-label="Wander project" data-category="Product">
+        <div class="opc__img-wrap">
+          <span class="opc__number">NO. 01</span>
+          <a href="wander.html" class="opc__overlay">
+            <span class="opc__overlay-pill">Read more →</span>
+          </a>
+          <img src="./assets/other-works/Wander.jpg" alt="Wander, AR walking app" class="opc__img" loading="lazy" />
         </div>
-        <div class="other-project-card__hover">
-          <div class="other-project-card__header-hover">Wander</div>
-          <p class="other-project-card__subtitle">Turning everyday walks into immersive story-driven experiences</p>
-          <p class="other-project-card__desc">An AR walking app that transforms ordinary strolls into engaging narrative journeys, blending location-based storytelling, augmented reality, and spatial design.</p>
-          <div class="other-project-card__tags">
-            <span>AR Experience</span>
-            <span>Mobile App</span>
-            <span>Spatial Design</span>
-            <span>Interaction Design</span>
+        <div class="opc__body">
+          <div class="opc__row">
+            <h3 class="opc__title">Wander</h3>
+            <div class="opc__tags">
+              <span class="opc__tag">AR Experience</span>
+              <span class="opc__tag">Mobile App</span>
+            </div>
           </div>
-          <a href="wander.html" class="other-project-card__cta--hover">Read more →</a>
-        </div>
-        <div class="other-project-card__img-wrap">
-          <img src="./assets/other-works/Wander.jpg" alt="Wander, AR walking app" class="other-project-card__img" loading="lazy" />
+          <p class="opc__desc">An AR walking app that transforms ordinary strolls into engaging narrative journeys, blending location-based storytelling and spatial design.</p>
+          <div class="opc__meta">
+            <div class="opc__meta-inner">
+              <div class="opc__meta-rows">
+                <div class="opc__meta-row"><span class="opc__meta-label">TYPE</span><span class="opc__meta-value">Product Design</span></div>
+                <div class="opc__meta-row"><span class="opc__meta-label">TAGS</span><span class="opc__meta-value">Spatial Design · Interaction Design</span></div>
+              </div>
+            </div>
+          </div>
         </div>
       </article>
 
-      <article class="other-project-card other-project-card--interactive" style="background:#E8D5C4;" tabindex="0" aria-label="IRCTC Redesign project" data-category="Interaction">
-        <div class="other-project-card__default">
-          <div class="other-project-card__header">IRCTC Redesign</div>
-          <h3 class="other-project-card__title">An interaction redesign for one of India's most-used train booking platforms.</h3>
-          <a href="irctc.html" class="other-project-card__cta">Read more →</a>
+      <!-- IRCTC -->
+      <article class="opc other-project-card--interactive" tabindex="0" aria-label="IRCTC Redesign project" data-category="Interaction">
+        <div class="opc__img-wrap">
+          <span class="opc__number">NO. 02</span>
+          <a href="irctc.html" class="opc__overlay">
+            <span class="opc__overlay-pill">Read more →</span>
+          </a>
+          <img src="./assets/other-works/irctc.png" alt="IRCTC Redesign" class="opc__img" loading="lazy" />
         </div>
-        <div class="other-project-card__hover">
-          <div class="other-project-card__header-hover">IRCTC Redesign</div>
-          <p class="other-project-card__subtitle">Redesigning a high-traffic booking flow for clarity and confidence</p>
-          <p class="other-project-card__desc">An interaction design project focused on simplifying search, ticket selection, and booking decisions for users navigating a complex public transportation platform.</p>
-          <div class="other-project-card__tags">
-            <span>Interaction Design</span>
-            <span>UX Audit</span>
-            <span>Booking Flow</span>
-            <span>UI Redesign</span>
+        <div class="opc__body">
+          <div class="opc__row">
+            <h3 class="opc__title">IRCTC Redesign</h3>
+            <div class="opc__tags">
+              <span class="opc__tag">Interaction Design</span>
+              <span class="opc__tag">UX Audit</span>
+            </div>
           </div>
-          <a href="irctc.html" class="other-project-card__cta--hover">Read more →</a>
-        </div>
-        <div class="other-project-card__img-wrap">
-          <img src="./assets/other-works/irctc.png" alt="IRCTC Redesign" class="other-project-card__img" loading="lazy" />
+          <p class="opc__desc">An interaction redesign for one of India's most-used train booking platforms, simplifying search and booking decisions.</p>
+          <div class="opc__meta">
+            <div class="opc__meta-inner">
+              <div class="opc__meta-rows">
+                <div class="opc__meta-row"><span class="opc__meta-label">TYPE</span><span class="opc__meta-value">Interaction Design</span></div>
+                <div class="opc__meta-row"><span class="opc__meta-label">TAGS</span><span class="opc__meta-value">Booking Flow · UI Redesign</span></div>
+              </div>
+            </div>
+          </div>
         </div>
       </article>
 
-      <article class="other-project-card other-project-card--interactive" style="background:#F4B896;" tabindex="0" aria-label="Tron project" data-category="Branding">
-        <div class="other-project-card__default">
-          <div class="other-project-card__header">Tron</div>
-          <h3 class="other-project-card__title">A branding project exploring visual identity through typography and motion.</h3>
-          <a href="tron.html" class="other-project-card__cta">Read more →</a>
+      <!-- TRON -->
+      <article class="opc other-project-card--interactive" tabindex="0" aria-label="Tron project" data-category="Branding">
+        <div class="opc__img-wrap">
+          <span class="opc__number">NO. 03</span>
+          <a href="tron.html" class="opc__overlay">
+            <span class="opc__overlay-pill">Read more →</span>
+          </a>
+          <img src="./assets/other-works/Tron.png" alt="Tron, branding project" class="opc__img" loading="lazy" />
         </div>
-        <div class="other-project-card__hover">
-          <div class="other-project-card__header-hover">Tron</div>
-          <p class="other-project-card__subtitle">Exploring a motion-led visual identity system</p>
-          <p class="other-project-card__desc">A branding exploration focused on typography, visual rhythm, motion, and digital expression to create a futuristic identity language.</p>
-          <div class="other-project-card__tags">
-            <span>Brand Identity</span>
-            <span>Typography</span>
-            <span>Motion Design</span>
-            <span>Visual Design</span>
+        <div class="opc__body">
+          <div class="opc__row">
+            <h3 class="opc__title">Tron</h3>
+            <div class="opc__tags">
+              <span class="opc__tag">Brand Identity</span>
+              <span class="opc__tag">Motion Design</span>
+            </div>
           </div>
-          <a href="tron.html" class="other-project-card__cta--hover">Read more →</a>
-        </div>
-        <div class="other-project-card__img-wrap">
-          <img src="./assets/other-works/Tron.png" alt="Tron, branding project" class="other-project-card__img" loading="lazy" />
+          <p class="opc__desc">A branding exploration focused on typography, visual rhythm and motion to create a futuristic identity language.</p>
+          <div class="opc__meta">
+            <div class="opc__meta-inner">
+              <div class="opc__meta-rows">
+                <div class="opc__meta-row"><span class="opc__meta-label">TYPE</span><span class="opc__meta-value">Branding</span></div>
+                <div class="opc__meta-row"><span class="opc__meta-label">TAGS</span><span class="opc__meta-value">Typography · Visual Design</span></div>
+              </div>
+            </div>
+          </div>
         </div>
       </article>
 
-      <article class="other-project-card other-project-card--interactive" style="background:#D4C9B8;" tabindex="0" aria-label="Archi Project" data-category="Interaction">
-        <div class="other-project-card__default">
-          <div class="other-project-card__header">Archi Project</div>
-          <h3 class="other-project-card__title">An architectural visualization tool connecting spatial design intent with interactive digital walkthroughs.</h3>
-          <span class="other-project-card__cta" aria-disabled="true" style="cursor: default; pointer-events: none;">Coming Soon →</span>
-        </div>
-        <div class="other-project-card__hover">
-          <div class="other-project-card__header-hover">Archi Project</div>
-          <p class="other-project-card__subtitle">Bridging architectural thinking with interactive spatial walkthroughs</p>
-          <p class="other-project-card__desc">A concept project exploring how digital walkthroughs can help communicate layout, movement, atmosphere, and spatial intent before a space is built.</p>
-          <div class="other-project-card__tags">
-            <span>Spatial Design</span>
-            <span>Interaction Design</span>
-            <span>Visualization</span>
-            <span>Concept Design</span>
+      <!-- ARCHI PROJECT -->
+      <article class="opc other-project-card--interactive" tabindex="0" aria-label="Archi Project" data-category="Interaction">
+        <div class="opc__img-wrap">
+          <span class="opc__number">NO. 04</span>
+          <div class="opc__overlay opc__overlay--disabled">
+            <span class="opc__overlay-pill opc__overlay-pill--muted">Coming Soon</span>
           </div>
-          <span class="other-project-card__cta--hover" aria-disabled="true" style="cursor: default; pointer-events: none;">Coming Soon →</span>
+          <img src="./assets/other-works/Archi-Project.png" alt="Archi Project, architectural visualization" class="opc__img" loading="lazy" />
         </div>
-        <div class="other-project-card__img-wrap">
-          <img src="./assets/other-works/Archi-Project.png" alt="Archi Project, architectural visualization" class="other-project-card__img" loading="lazy" />
+        <div class="opc__body">
+          <div class="opc__row">
+            <h3 class="opc__title">Archi Project</h3>
+            <div class="opc__tags">
+              <span class="opc__tag">Spatial Design</span>
+              <span class="opc__tag opc__tag--muted">Coming Soon</span>
+            </div>
+          </div>
+          <p class="opc__desc">A concept exploring digital walkthroughs to communicate layout, movement, and spatial intent before a space is built.</p>
+          <div class="opc__meta">
+            <div class="opc__meta-inner">
+              <div class="opc__meta-rows">
+                <div class="opc__meta-row"><span class="opc__meta-label">TYPE</span><span class="opc__meta-value">Concept Design</span></div>
+                <div class="opc__meta-row"><span class="opc__meta-label">TAGS</span><span class="opc__meta-value">Visualization · Interaction Design</span></div>
+              </div>
+            </div>
+          </div>
         </div>
       </article>
+
     </div>
   </section>
 
