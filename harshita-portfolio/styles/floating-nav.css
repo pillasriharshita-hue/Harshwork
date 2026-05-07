@@ -2,21 +2,13 @@
    FLOATING NAV — Koyeb-style spacing
    ═══════════════════════════════════════════ */
 .fnav{
-  position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:500;
-  width:calc(100% - 80px);
-  max-width:1080px;
-  border-radius:10px;border:1px solid rgba(255,255,255,0);
-  background:transparent;
-  backdrop-filter:blur(0px);-webkit-backdrop-filter:blur(0px);
-  box-shadow:none;
-  padding:8px 20px;
-  transition:background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease;
-}
-.fnav.fnav--scrolled{
+  position:sticky;top:16px;z-index:500;
+  max-width:1080px;margin:0 auto;
+  border-radius:10px;border:1px solid rgba(255,255,255,.08);
   background:rgba(13,13,13,.92);
-  border-color:rgba(255,255,255,.08);
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   box-shadow:0 4px 32px rgba(0,0,0,.35);
+  padding:8px 20px;
 }
 .fnav__inner{
   display:flex;align-items:center;justify-content:space-between;gap:16px;
