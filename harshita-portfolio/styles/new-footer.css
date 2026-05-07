@@ -58,6 +58,14 @@
   color: var(--color-text-primary);
 }
 
+.footer__link--new {
+  color: var(--color-accent-orange);
+  font-weight: 600;
+}
+.footer__link--new:hover {
+  color: var(--color-text-primary);
+}
+
 /* ─────────────────────────────────────────────────────────
    SOCIAL LINKS — Icon + Text
    ───────────────────────────────────────────────────────── */
