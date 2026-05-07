@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="./assets/logo.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Sri Harshita Pilla</title>
+  <meta name="description" content="About Sri Harshita Pilla — Product Designer, UX Researcher, and Behavioral Design Thinker." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="./scripts/theme.js"></script>
+  <link rel="stylesheet" href="./styles/main.css" />
+  <link rel="stylesheet" href="./styles/loader.css" />
+  <link rel="stylesheet" href="./styles/floating-nav.css" />
+
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+  <style>
+    /* ── Base ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Page wrapper ── */
+    .ab1-page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 140px 40px 100px;
+    }
+
+    /* ── HERO ── */
+    .ab1-hero {
+      margin-bottom: 80px;
+    }
+    .ab1-hero__tag {
+      display: inline-block;
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-accent-orange);
+      margin-bottom: 20px;
+    }
+    .ab1-hero__heading {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 800;
+      color: var(--color-text-primary);
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+    .ab1-hero__tagline {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+      font-style: italic;
+      max-width: 560px;
+    }
+
+    /* ── DIVIDER ── */
+    .ab1-divider {
+      height: 1px;
+      background: var(--color-border);
+      margin: 60px 0;
+    }
+
+    /* ── SECTION ── */
+    .ab1-section {
+      margin-bottom: 64px;
+    }
+    .ab1-section__label {
+      display: block;
+      font-family: 'Courier New', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-accent-orange);
+      margin-bottom: 16px;
+    }
+    .ab1-section__title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--color-text-primary);
+      line-height: 1.25;
+      margin-bottom: 24px;
+    }
+    .ab1-section__body p {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--color-text-secondary);
+      margin-bottom: 18px;
+    }
+    .ab1-section__body p:last-child { margin-bottom: 0; }
+    .ab1-section__body strong {
+      color: var(--color-text-primary);
+      font-weight: 600;
+    }
+
+    /* ── ROLE PILL ROW ── */
+    .ab1-roles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .ab1-role {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .ab1-role:hover {
+      border-color: var(--color-accent-orange);
+      color: var(--color-accent-orange);
+    }
+    .ab1-role__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-accent-orange);
+      flex-shrink: 0;
+    }
+
+    /* ── SKILLS TABLE ── */
+    .ab1-skills {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .ab1-skill-group__label {
+      font-family: 'Courier New', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent-orange);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .ab1-skill-group__items {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--color-text-secondary);
+    }
+
+    /* ── CREATIVE INTERESTS ── */
+    .ab1-interests {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .ab1-interest {
+      padding: 8px 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--color-text-secondary);
+    }
+    [data-theme="light"] .ab1-interest {
+      background: rgba(0,0,0,0.04);
+    }
+
+    /* ── SCROLLING IMAGE STRIP ── */
+    .ab1-image-strip {
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 48px;
+      margin-bottom: 48px;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    }
+    .ab1-strip-row {
+      display: flex;
+      gap: 14px;
+      width: max-content;
+    }
+    .ab1-strip-row--fwd  { animation: ab1-scroll-fwd  60s linear infinite; }
+    .ab1-strip-row--back { animation: ab1-scroll-back 60s linear infinite; }
+    .ab1-strip-row:hover { animation-play-state: paused; }
+    .ab1-strip-img {
+      flex-shrink: 0;
+      width: 260px;
+      height: 180px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,0.07);
+      display: block;
+      transition: transform 0.3s;
+    }
+    .ab1-strip-img:hover { transform: scale(1.04); }
+    @keyframes ab1-scroll-fwd  {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes ab1-scroll-back {
+      0%   { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* ── QUOTE BLOCK ── */
+    .ab1-quote {
+      padding: 28px 32px;
+      border-left: 3px solid var(--color-accent-orange);
+      background: rgba(232, 82, 26, 0.05);
+      border-radius: 0 12px 12px 0;
+      margin: 32px 0;
+    }
+    .ab1-quote p {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 500;
+      line-height: 1.65;
+      color: var(--color-text-primary);
+      font-style: italic;
+      margin: 0;
+    }
+
+    /* ── CTA ── */
+    .ab1-cta {
+      margin-top: 80px;
+      padding: 60px 0;
+      border-top: 1px solid var(--color-border);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .ab1-cta__heading {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--color-text-primary);
+      line-height: 1.2;
+    }
+    .ab1-cta__sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+      max-width: 480px;
+    }
+    .ab1-cta__actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .ab1-cta__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+    .ab1-cta__btn--primary {
+      background: var(--color-accent-orange);
+      color: #fff;
+      border-color: var(--color-accent-orange);
+    }
+    .ab1-cta__btn--primary:hover { background: #d0491a; border-color: #d0491a; }
+    .ab1-cta__btn--ghost {
+      background: transparent;
+      color: var(--color-text-primary);
+      border-color: var(--color-border);
+    }
+    .ab1-cta__btn--ghost:hover {
+      border-color: var(--color-accent-orange);
+      color: var(--color-accent-orange);
+    }
+
+    /* ── FOOTER ── */
+    .ab1-footer {
+      text-align: center;
+      padding: 32px 40px;
+      border-top: 1px solid var(--color-border);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--color-text-secondary);
+    }
+    .ab1-footer a { color: var(--color-accent-orange); }
+
+    /* ── CALENDLY MODAL ── */
+    .calendly-modal {
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    .calendly-modal.active { display: flex; }
+    .calendly-modal__container {
+      background: #0D0D0D; border: 1px solid #2a2a2a; border-radius: 12px;
+      width: 100%; max-width: 900px; height: 90vh; max-height: 800px;
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    .calendly-modal__header {
+      padding: 16px 24px; border-bottom: 1px solid #2a2a2a;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .calendly-modal__title { font-size: 18px; font-weight: 600; color: #fff; margin: 0; font-family: 'Inter', sans-serif; }
+    .calendly-modal__close {
+      width: 32px; height: 32px; background: none; border: none;
+      color: #9a9a9a; font-size: 24px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .calendly-modal__close:hover { color: #fff; }
+    .calendly-modal__content { flex: 1; overflow-y: auto; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .ab1-page { padding: 100px 24px 80px; }
+      .ab1-skills { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .ab1-page { padding: 90px 16px 60px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- PAGE LOADER -->
+<div id="pageLoader" role="status" aria-label="Loading">
+  <div class="wheel-and-hamster">
+    <div class="wheel"></div>
+    <div class="hamster">
+      <div class="hamster__body">
+        <div class="hamster__head">
+          <div class="hamster__ear"></div>
+          <div class="hamster__eye"></div>
+          <div class="hamster__nose"></div>
+        </div>
+        <div class="hamster__limb hamster__limb--fr"></div>
+        <div class="hamster__limb hamster__limb--fl"></div>
+        <div class="hamster__limb hamster__limb--br"></div>
+        <div class="hamster__limb hamster__limb--bl"></div>
+        <div class="hamster__tail"></div>
+      </div>
+    </div>
+    <div class="spoke"></div>
+  </div>
+  <p class="loader__text">Loading</p>
+</div>
+<script src="./scripts/loader.js"></script>
+
+<!-- FLOATING NAV -->
+<header class="fnav">
+  <nav class="fnav__inner">
+    <a href="./index.html" class="fnav__brand">
+      <img src="./assets/logo.png" class="fnav__logo" alt="Sri Harshita Pilla" />
+      <span class="fnav__name">Sri Harshita Pilla</span>
+    </a>
+    <div class="fnav__links">
+      <a href="./about.1.html" class="fnav__link">About</a>
+      <a href="./index.html#work" class="fnav__link">Work</a>
+      <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener" class="fnav__link">LinkedIn</a>
+    </div>
+    <div class="fnav__right">
+      <label class="fnav__theme-switch" title="Toggle theme">
+        <input type="checkbox" class="toggle"><span class="slider"></span>
+      </label>
+      <button class="fnav__burger" id="fnavBurger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+<div class="fnav__mobile" id="fnavMobile">
+  <a href="./about.1.html">About</a>
+  <a href="./index.html#work">Work</a>
+  <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener">LinkedIn</a>
+  <button class="fnav__cta" onclick="bookCall()">Schedule a call</button>
+</div>
+<script>
+(function(){
+  var b=document.getElementById('fnavBurger'),m=document.getElementById('fnavMobile');
+  if(b&&m){b.addEventListener('click',function(){b.classList.toggle('open');m.classList.toggle('open');});}
+  var fnav=document.querySelector('.fnav');
+  if(fnav){function u(){fnav.classList.toggle('fnav--scrolled',window.scrollY>60);}window.addEventListener('scroll',u,{passive:true});u();}
+})();
+</script>
+
+<!-- CALENDLY MODAL -->
+<div class="calendly-modal" id="calendlyModal" role="dialog" aria-hidden="true">
+  <div class="calendly-modal__container">
+    <div class="calendly-modal__header">
+      <h2 class="calendly-modal__title">Book a Call</h2>
+      <button class="calendly-modal__close" id="calendlyClose">✕</button>
+    </div>
+    <div class="calendly-modal__content" id="calendlyContent"></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     PAGE CONTENT
+     ════════════════════════════════════ -->
+<main class="ab1-page">
+
+  <!-- HERO -->
+  <section class="ab1-hero">
+    <span class="ab1-hero__tag">About</span>
+    <h1 class="ab1-hero__heading">The journey from<br>imagination to reality.</h1>
+    <p class="ab1-hero__tagline">Architect-trained. Research-obsessed. Designing experiences that move people.</p>
+  </section>
+
+  <div class="ab1-divider"></div>
+
+  <!-- WHERE IT STARTED -->
+  <section class="ab1-section">
+    <span class="ab1-section__label">Where it all started</span>
+    <h2 class="ab1-section__title">Architecture taught me to see people, not just spaces.</h2>
+    <div class="ab1-section__body">
+      <p>I have always been someone who notices. How people move through a room, where they hesitate, what feels effortless and what feels slightly off.</p>
+      <p>Architecture taught me to think in systems. Structure, flow, function, and the human body moving through all of it. But the deeper I went, the more I realized I was less interested in the building itself and more interested in the person inside it.</p>
+      <p>The moment of hesitation at a corridor. The friction no one else noticed. The experience behind the form. That is what brought me to UX.</p>
+      <p>I hold a <strong>Master's degree in Human-Computer Interaction</strong> from DePaul University. Architectural training informed the way I approach how people move through digital spaces: where they pause, what feels natural, and what quietly creates friction.</p>
+    </div>
+  </section>
+
+  <div class="ab1-divider"></div>
+
+  <!-- NOW -->
+  <section class="ab1-section">
+    <span class="ab1-section__label">Now</span>
+    <h2 class="ab1-section__title">Product Designer</h2>
+    <div class="ab1-section__body">
+      <p>I love the research that reframes a problem, the engineering conversation that changes the approach, and the tenth iteration of a flow that finally clicks into place.</p>
+      <p>I don't rush to solutions. I'd rather sit with the complexity until it starts making sense.</p>
+      <p>I see products the way I once saw buildings: as systems people move through. Structure, flow, friction, and moments of clarity all matter.</p>
+      <p>In an industry full of quick answers, I'd rather be the one still asking the right questions. And designing for what I find.</p>
+    </div>
+
+    <div class="ab1-roles">
+      <span class="ab1-role"><span class="ab1-role__dot"></span>UX Research</span>
+      <span class="ab1-role"><span class="ab1-role__dot"></span>Interaction Design</span>
+      <span class="ab1-role"><span class="ab1-role__dot"></span>Behavioral Design</span>
+      <span class="ab1-role"><span class="ab1-role__dot"></span>Journey Mapping</span>
+      <span class="ab1-role"><span class="ab1-role__dot"></span>Prototyping</span>
+      <span class="ab1-role"><span class="ab1-role__dot"></span>Systems Thinking</span>
+    </div>
+  </section>
+
+  <div class="ab1-divider"></div>
+
+  <!-- SKILLS -->
+  <section class="ab1-section">
+    <span class="ab1-section__label">Toolkit</span>
+    <h2 class="ab1-section__title">How I work.</h2>
+    <div class="ab1-skills">
+      <div class="ab1-skill-group">
+        <span class="ab1-skill-group__label">Design</span>
+        <p class="ab1-skill-group__items">Figma · FigJam · Prototyping<br>Wireframing · Design Systems<br>Visual Design · Motion</p>
+      </div>
+      <div class="ab1-skill-group">
+        <span class="ab1-skill-group__label">Research</span>
+        <p class="ab1-skill-group__items">User Interviews · Diary Studies<br>Usability Testing · Maze<br>Affinity Mapping · Synthesis</p>
+      </div>
+      <div class="ab1-skill-group">
+        <span class="ab1-skill-group__label">Methods</span>
+        <p class="ab1-skill-group__items">Jobs-to-be-Done · HCD<br>Behavioral Design · Miro<br>Journey Mapping · Notion</p>
+      </div>
+      <div class="ab1-skill-group">
+        <span class="ab1-skill-group__label">Collaboration</span>
+        <p class="ab1-skill-group__items">Cross-functional teams<br>Engineering handoff · Stakeholder<br>presentations · Agile sprints</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ab1-divider"></div>
+
+  <!-- CREATIVE PRACTICE -->
+  <section class="ab1-section">
+    <span class="ab1-section__label">Creative practice</span>
+    <h2 class="ab1-section__title">Design as a way of seeing, not just doing.</h2>
+    <div class="ab1-section__body">
+      <p>I don't really switch off the designer brain. I just point it at different things.</p>
+      <p>When I'm not designing products, I'm noticing how a sidewalk guides you with painted arrows, how a bookstore shelf is angled to catch your eye, or why one cafe feels welcoming while the next one doesn't.</p>
+      <p>I also paint, sketch urbanscapes, and recently started clay modeling. The same instinct that makes me notice friction in a user flow also makes me notice it everywhere else.</p>
+    </div>
+
+    <div class="ab1-interests">
+      <span class="ab1-interest">Sketching</span>
+      <span class="ab1-interest">Painting</span>
+      <span class="ab1-interest">Urbanscapes</span>
+      <span class="ab1-interest">Clay Modeling</span>
+      <span class="ab1-interest">Photography</span>
+      <span class="ab1-interest">Behavioral Patterns</span>
+      <span class="ab1-interest">Spatial Design</span>
+    </div>
+  </section>
+
+</main>
+
+<!-- SCROLLING IMAGE STRIP — full bleed between sections -->
+<div class="ab1-image-strip">
+  <!-- Row 1 — forwards -->
+  <div class="ab1-strip-row ab1-strip-row--fwd">
+    <img class="ab1-strip-img" src="./assets/about/images for other things/047d22e0-a680-4e8b-b155-b743ad1357eb.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/07499012-c5c2-4162-8881-13fb3f30b483.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/080578a0-3352-4f68-8aa0-b4114d12d536.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/196b3381-9b2b-4547-be35-392742627f97.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/2a2cf4be-d36d-4f19-80c8-205569864aa6.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/2b18af48-fb5c-4d33-9700-01b7ff7532c2.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/2c66403d-6fec-4231-be74-9fc62cb018ed.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/2fe074df-07d5-46ef-bd99-7883b75a1cd9.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/3334981e-f543-421e-a90d-af3871bf3c87.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/3958d2d1-9cca-4d1a-85ba-dbe3fd5025b1.jpg" alt="" loading="lazy" />
+    <!-- Duplicate for seamless loop -->
+    <img class="ab1-strip-img" src="./assets/about/images for other things/047d22e0-a680-4e8b-b155-b743ad1357eb.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/07499012-c5c2-4162-8881-13fb3f30b483.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/080578a0-3352-4f68-8aa0-b4114d12d536.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/196b3381-9b2b-4547-be35-392742627f97.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/2a2cf4be-d36d-4f19-80c8-205569864aa6.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/2b18af48-fb5c-4d33-9700-01b7ff7532c2.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/2c66403d-6fec-4231-be74-9fc62cb018ed.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/2fe074df-07d5-46ef-bd99-7883b75a1cd9.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/3334981e-f543-421e-a90d-af3871bf3c87.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/3958d2d1-9cca-4d1a-85ba-dbe3fd5025b1.jpg" alt="" loading="lazy" />
+  </div>
+  <!-- Row 2 — backwards -->
+  <div class="ab1-strip-row ab1-strip-row--back">
+    <img class="ab1-strip-img" src="./assets/about/images for other things/77e99503-711c-4145-b413-87d6ac0ae2ef.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/7ae65000-6906-4632-95ce-1ddd559dac3b.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/82e6aac1-efb3-4d14-a792-422526563833.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/8cac7321-67a5-4d0a-a4b6-03faec34d832.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/8e1fcb48-9710-4017-bd22-02b565549c44.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/a8c79527-c9a8-4083-ae72-4500d8c91a22.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/b4c78ff4-6e51-4a45-907c-591d0cb392d7.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/c4778df3-2131-4027-84e0-f9f4d635cc00.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/c4ff3852-258e-4cf1-bd89-930eaa9cca18.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/d65ede35-483d-43b9-8397-910173acc438.jpg" alt="" loading="lazy" />
+    <!-- Duplicate for seamless loop -->
+    <img class="ab1-strip-img" src="./assets/about/images for other things/77e99503-711c-4145-b413-87d6ac0ae2ef.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/7ae65000-6906-4632-95ce-1ddd559dac3b.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/82e6aac1-efb3-4d14-a792-422526563833.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/8cac7321-67a5-4d0a-a4b6-03faec34d832.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/8e1fcb48-9710-4017-bd22-02b565549c44.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/a8c79527-c9a8-4083-ae72-4500d8c91a22.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/b4c78ff4-6e51-4a45-907c-591d0cb392d7.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/c4778df3-2131-4027-84e0-f9f4d635cc00.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/c4ff3852-258e-4cf1-bd89-930eaa9cca18.jpg" alt="" loading="lazy" />
+    <img class="ab1-strip-img" src="./assets/about/images for other things/d65ede35-483d-43b9-8397-910173acc438.jpg" alt="" loading="lazy" />
+  </div>
+</div>
+
+<!-- CTA + FOOTER back in page wrapper -->
+<div class="ab1-page" style="padding-top:0;">
+
+  <!-- LIFE BEYOND WORK -->
+  <section class="ab1-section">
+    <span class="ab1-section__label">Life beyond work</span>
+    <h2 class="ab1-section__title">Everything is design if you're paying attention.</h2>
+    <div class="ab1-section__body">
+      <p>I sketch what I see. I photograph patterns most people step over. I read about why humans behave the way they do.</p>
+      <p>The same instinct that makes me notice friction in a user flow also makes me notice it in a badly-lit stairwell, a confusing menu, or a queue that moves inexplicably faster on the left.</p>
+    </div>
+
+    <div class="ab1-quote">
+      <p>"Patterns, shapes, and composition are everywhere. I just can't stop seeing them."</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="ab1-cta">
+    <h2 class="ab1-cta__heading">Let's create something<br>meaningful together.</h2>
+    <p class="ab1-cta__sub">Whether you're looking for a designer who digs deep into research, obsesses over details, or just someone who genuinely cares about getting it right — let's talk.</p>
+    <div class="ab1-cta__actions">
+      <button class="ab1-cta__btn ab1-cta__btn--primary" onclick="bookCall()">Schedule a call</button>
+      <a href="mailto:pillasriharshita@gmail.com" class="ab1-cta__btn ab1-cta__btn--ghost">Contact me</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="ab1-footer">
+  <p>© 2026 Sri Harshita Pilla · <a href="./index.html">Back to Portfolio</a></p>
+</footer>
+
+<script>
+  // Calendly
+  window.bookCall = function() {
+    const modal = document.getElementById('calendlyModal');
+    const content = document.getElementById('calendlyContent');
+    if (!modal) return;
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (!content.querySelector('.calendly-inline-widget') && typeof Calendly !== 'undefined') {
+      Calendly.initInlineWidget({ url: 'https://calendly.com/pillasriharshita/30min', parentElement: content });
+    }
+  };
+  document.getElementById('calendlyClose').addEventListener('click', function() {
+    document.getElementById('calendlyModal').classList.remove('active');
+    document.getElementById('calendlyModal').setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  });
+  document.getElementById('calendlyModal').addEventListener('click', function(e) {
+    if (e.target === e.currentTarget) {
+      e.currentTarget.classList.remove('active');
+      e.currentTarget.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  });
+</script>
+
+</body>
+</html>
