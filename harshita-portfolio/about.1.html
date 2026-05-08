@@ -9,7 +9,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;600;700;800&family=Taviraj:ital,wght@0,400;0,700;1,400;1,700&family=Nunito+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <script src="./scripts/theme.js"></script>
   <link rel="stylesheet" href="./styles/loader.css" />
@@ -18,66 +18,62 @@
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; font-size: 16px; }
+
+    :root {
+      --bg: #0a0a0a;
+      --card: #111111;
+      --card2: #161616;
+      --border: #1f1f1f;
+      --text: #ffffff;
+      --text-dim: #888888;
+      --text-muted: #555555;
+      --accent: #E8734A;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      /* floating-nav compat */
+      --color-accent-orange: #E8734A;
+      --color-text-primary: #ffffff;
+      --color-text-secondary: #888888;
+      --color-border: #1f1f1f;
+      --color-surface: #111111;
+      --color-bg: #0a0a0a;
+    }
+    [data-theme="light"] {
+      --bg: #f5f5f5;
+      --card: #ebebeb;
+      --card2: #e0e0e0;
+      --border: #d0d0d0;
+      --text: #0a0a0a;
+      --text-dim: #555555;
+      --text-muted: #999999;
+      --color-text-primary: #0a0a0a;
+      --color-text-secondary: #555555;
+      --color-border: #d0d0d0;
+      --color-surface: #ebebeb;
+      --color-bg: #f5f5f5;
+    }
+
     body {
-      font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: var(--sans);
       background-color: var(--bg);
-      background-image:
-        linear-gradient(0deg, transparent 24%, var(--grid-color) 25%, var(--grid-color) 26%, transparent 27%, transparent 74%, var(--grid-color) 75%, var(--grid-color) 76%, transparent 77%, transparent),
-        linear-gradient(90deg, transparent 24%, var(--grid-color) 25%, var(--grid-color) 26%, transparent 27%, transparent 74%, var(--grid-color) 75%, var(--grid-color) 76%, transparent 77%, transparent);
-      background-size: 55px 55px;
       color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       transition: background-color 0.3s, color 0.3s;
     }
+
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
 
-    :root {
-      --accent: #E8734A;
-      --bg: #16161a;
-      --grid-color: rgba(114,114,114,0.18);
-      --bg-card: #1f1f28;
-      --border: #2a2a35;
-      --text: #fffffe;
-      --text-dim: #94a1b2;
-      --white: #fffffe;
-      --handwriting: 'Caveat', cursive;
-      --serif: 'Taviraj', Georgia, serif;
-      --sans: 'Nunito Sans', -apple-system, sans-serif;
-      /* map portfolio vars so floating-nav works */
-      --color-accent-orange: #E8734A;
-      --color-text-primary: #fffffe;
-      --color-text-secondary: #94a1b2;
-      --color-border: #2a2a35;
-      --color-surface: #1f1f28;
-      --color-bg: #16161a;
-    }
-    [data-theme="light"] {
-      --bg: #fffffe;
-      --grid-color: #e0dfe8;
-      --bg-card: #f4f4f8;
-      --border: #e0dfe8;
-      --text: #0f0e17;
-      --text-dim: #2a2a2a;
-      --white: #0f0e17;
-      --color-text-primary: #0f0e17;
-      --color-text-secondary: #2a2a2a;
-      --color-border: #e0dfe8;
-      --color-surface: #f4f4f8;
-      --color-bg: #fffffe;
-    }
-
-    /* CALENDLY MODAL */
+    /* ── CALENDLY MODAL ── */
     .calendly-modal {
-      display: none; position: fixed; inset: 0; z-index: 1000;
-      background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+      display: none; position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0,0,0,0.85); backdrop-filter: blur(6px);
       align-items: center; justify-content: center; padding: 20px;
     }
     .calendly-modal.active { display: flex; }
     .calendly-modal__container {
-      background: #0D0D0D; border: 1px solid var(--border); border-radius: 12px;
+      background: #0D0D0D; border: 1px solid var(--border); border-radius: 14px;
       width: 100%; max-width: 900px; height: 90vh; max-height: 800px;
       position: relative; display: flex; flex-direction: column; overflow: hidden;
     }
@@ -85,193 +81,312 @@
       padding: 16px 24px; border-bottom: 1px solid var(--border);
       display: flex; justify-content: space-between; align-items: center;
     }
-    .calendly-modal__title { font-size: 18px; font-weight: 600; color: #fff; margin: 0; }
+    .calendly-modal__title { font-size: 17px; font-weight: 600; color: #fff; margin: 0; }
     .calendly-modal__close {
       width: 32px; height: 32px; background: none; border: none;
-      color: var(--text-dim); font-size: 24px; cursor: pointer; transition: color 0.2s;
-      display: flex; align-items: center; justify-content: center; padding: 0;
+      color: var(--text-dim); font-size: 22px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
     }
     .calendly-modal__close:hover { color: #fff; }
-    .calendly-modal__content { flex: 1; overflow-y: auto; overflow-x: hidden; }
+    .calendly-modal__content { flex: 1; overflow-y: auto; }
 
-    /* PAGE WRAPPER */
-    .comic { max-width: 900px; margin: 0 auto; padding: 100px 40px 60px; }
-
-    /* HERO */
-    .ab1-hero {
-      padding: 40px 0 20px;
-      opacity: 0; transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-      display: flex; flex-direction: column; gap: 32px;
-    }
-    .ab1-hero.visible { opacity: 1; transform: translateY(0); }
-    .ab1-hero__img-wrap {
-      width: 100%; border-radius: 14px; overflow: hidden;
-      border: 1px solid var(--border); max-height: 480px;
-    }
-    .ab1-hero__img {
-      width: 100%; height: 480px; object-fit: cover;
-      object-position: center top; display: block;
-    }
-    .ab1-hero__text { display: flex; flex-direction: column; gap: 12px; }
-    .ab1-hero__eyebrow {
-      font-family: var(--handwriting); font-size: 18px;
-      color: var(--accent); letter-spacing: 1px; display: block;
-    }
-    .ab1-hero__heading {
-      font-family: var(--serif); font-size: clamp(2.8rem, 6vw, 5rem);
-      font-weight: 700; color: var(--white); line-height: 1.1; margin: 0;
-    }
-    .ab1-hero__tagline {
-      font-size: 17px; color: var(--text-dim); font-style: italic;
-      line-height: 1.6; max-width: 520px; margin: 0;
+    /* ── PAGE WRAPPER ── */
+    .page {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
     }
 
-    /* STORY GRID */
-    .ab1-story-grid {
-      display: grid; grid-template-columns: 1fr 340px;
-      gap: 48px; align-items: start; margin-top: 4px;
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 52px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
-    .ab1-story-img-wrap {
-      border-radius: 12px; overflow: hidden;
-      border: 1px solid var(--border); position: sticky; top: 90px;
-    }
-    .ab1-story-img { width: 100%; display: block; object-fit: cover; }
+    .breadcrumb a { color: var(--text-muted); transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--text-dim); }
+    .breadcrumb__sep { color: var(--text-muted); }
+    .breadcrumb__current { color: var(--text-dim); }
 
-    /* DIVIDER */
-    .ab1-divider { height: 1px; background: var(--border); margin: 56px 0; }
-
-    /* SECTION */
-    .ab1-section {
-      opacity: 0; transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease; margin-bottom: 0;
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      margin-bottom: 40px;
     }
-    .ab1-section.visible { opacity: 1; transform: translateY(0); }
-    .ab1-section__eyebrow {
-      font-family: var(--handwriting); font-size: 16px;
-      color: var(--accent); letter-spacing: 0.5px; margin-bottom: 12px; display: block;
+    .hero__title {
+      font-size: clamp(28px, 5vw, 36px);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
     }
-    .ab1-section__title {
-      font-family: var(--serif); font-size: clamp(1.4rem, 2.5vw, 1.9rem);
-      font-weight: 700; color: var(--white); line-height: 1.3; margin-bottom: 20px;
-    }
-    .ab1-section__body p {
-      font-size: 15px; line-height: 1.8; color: var(--text-dim);
-      margin-bottom: 16px; max-width: 62ch;
-    }
-    .ab1-section__body p:last-child { margin-bottom: 0; }
-    .ab1-section__body strong { color: var(--white); font-weight: 600; }
-
-    /* ROLE PILLS */
-    .ab1-roles { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
-    .ab1-role {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 7px 16px; border: 1px solid var(--border); border-radius: 20px;
-      font-size: 13px; font-weight: 500; color: var(--text-dim);
-      font-family: var(--sans); transition: border-color 0.2s, color 0.2s;
-    }
-    .ab1-role:hover { border-color: var(--accent); color: var(--accent); }
-    .ab1-role__dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
-
-    /* SKILLS */
-    .ab1-skills { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px; }
-    .ab1-skill-group {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 12px; padding: 20px 22px;
-    }
-    .ab1-skill-group__label {
-      font-family: var(--handwriting); font-size: 14px;
-      color: var(--accent); margin-bottom: 8px; display: block;
-    }
-    .ab1-skill-group__items { font-size: 14px; line-height: 1.8; color: var(--text-dim); font-family: var(--sans); }
-
-    /* INTERESTS */
-    .ab1-interests { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-    .ab1-interest {
-      padding: 7px 16px; background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 8px; font-size: 14px; color: var(--text-dim);
-      font-family: var(--sans); transition: border-color 0.2s, color 0.2s;
-    }
-    .ab1-interest:hover { border-color: var(--accent); color: var(--white); }
-
-    /* SCROLLING IMAGE STRIP */
-    .ab1-image-strip {
-      width: 100vw; margin-left: calc(-50vw + 50%); overflow: hidden;
-      display: flex; flex-direction: column; gap: 14px; padding: 48px 0;
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
-    }
-    .ab1-strip-row { display: flex; gap: 14px; width: max-content; }
-    .ab1-strip-row--fwd  { animation: ab1-fwd  60s linear infinite; }
-    .ab1-strip-row--back { animation: ab1-back 60s linear infinite; }
-    .ab1-strip-row:hover { animation-play-state: paused; }
-    .ab1-strip-img {
-      flex-shrink: 0; width: 260px; height: 180px; border-radius: 10px;
-      object-fit: cover; border: 1px solid rgba(255,255,255,0.06); transition: transform 0.3s;
-    }
-    .ab1-strip-img:hover { transform: scale(1.04); }
-    @keyframes ab1-fwd  { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    @keyframes ab1-back { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
-
-    /* QUOTE */
-    .ab1-quote {
-      padding: 24px 28px; border-left: 3px solid var(--accent);
-      background: rgba(232,115,74,0.06); border-radius: 0 10px 10px 0; margin-top: 24px;
-    }
-    .ab1-quote p {
-      font-family: var(--serif); font-size: 1.1rem; font-style: italic;
-      color: var(--white); line-height: 1.65; margin: 0;
+    .hero__sub {
+      font-size: 14px;
+      color: var(--text-dim);
+      font-weight: 400;
     }
 
-    /* CTA PANEL */
+    /* ── PORTRAIT ── */
+    .portrait {
+      width: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+    .portrait img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(15%);
+    }
+
+    /* ── BIO ── */
+    .bio {
+      margin-bottom: 40px;
+    }
+    .bio__name {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .bio__para {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+    }
+    .bio__para:last-of-type { margin-bottom: 0; }
+    .bio__role {
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .bio__role-sep { color: var(--text-muted); }
+    .bio__role-link {
+      color: var(--text);
+      font-weight: 500;
+      border-bottom: 1px solid var(--text-dim);
+      padding-bottom: 1px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .bio__role-link:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ── BENTO GRID ── */
+    .bento {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 10px;
+      margin: 48px 0;
+    }
+
+    /* layout:
+       [img-tall ] [life-card ]
+       [img-tall ] [img-small ]
+       [creative ] [          ]
+    */
+    .bento__cell { border-radius: 14px; overflow: hidden; }
+
+    .bento__img-tall {
+      grid-column: 1;
+      grid-row: 1 / 3;
+      background: var(--card);
+      min-height: 360px;
+    }
+    .bento__img-tall img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+
+    .bento__life {
+      grid-column: 2;
+      grid-row: 1;
+      background: var(--card);
+      padding: 22px 20px;
+    }
+
+    .bento__img-small {
+      grid-column: 2;
+      grid-row: 2;
+      background: var(--card2);
+      min-height: 160px;
+    }
+    .bento__img-small img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+
+    .bento__creative {
+      grid-column: 1;
+      grid-row: 3;
+      background: var(--card);
+      padding: 22px 20px;
+    }
+
+    /* spacer to keep 2-col grid balanced on row 3 */
+    .bento__spacer {
+      grid-column: 2;
+      grid-row: 3;
+    }
+
+    .bento__card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .bento__card-body {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-dim);
+    }
+
+    /* ── WHERE IT ALL STARTED ── */
+    .started-section {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 48px 32px;
+      margin: 0 0 16px;
+    }
+    .started-section__title {
+      font-size: clamp(20px, 3.5vw, 26px);
+      font-weight: 700;
+      color: var(--text);
+      text-align: center;
+      margin-bottom: 28px;
+      letter-spacing: -0.3px;
+    }
+    .started-collage {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 140px);
+      gap: 6px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .started-collage img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.4s ease;
+    }
+    .started-collage img:hover { transform: scale(1.05); }
+    .started-collage__wide {
+      grid-column: span 2;
+    }
+    .started-collage__tall {
+      grid-row: span 2;
+    }
+
+    /* ── CTA PANEL ── */
     .cta-panel {
-      background: linear-gradient(135deg, var(--bg-card), rgba(232,115,74,0.08));
-      text-align: center; padding: 60px 40px; border-radius: 16px; margin-top: 64px;
+      background: var(--card);
+      border-radius: 18px;
+      padding: 52px 40px;
+      text-align: center;
+      margin-top: 10px;
     }
-    .cta-panel__illustration {
-      width: 200px; height: 200px; margin: 0 auto 28px;
-      background: var(--bg-card); border: 3px dashed var(--border); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    .cta-panel__title {
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      letter-spacing: -0.3px;
     }
-    .cta-panel h3 {
-      font-family: var(--serif); font-size: clamp(28px, 4vw, 42px);
-      font-weight: 700; color: var(--white); margin-bottom: 12px;
+    .cta-panel__sub {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      max-width: 380px;
+      margin: 0 auto 28px;
     }
-    .cta-panel p {
-      font-size: 16px; color: var(--text-dim);
-      max-width: 460px; margin: 0 auto 28px; line-height: 1.7;
+    .cta-panel__buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
-    .cta__buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .cta__btn {
-      padding: 14px 32px; border-radius: 50px; font-size: 15px; font-weight: 600;
-      cursor: pointer; transition: all 0.3s; border: 2px solid transparent;
-      font-family: var(--sans); display: inline-flex; align-items: center; gap: 8px;
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: var(--sans);
+      border: 1px solid var(--border);
     }
-    .cta__btn--primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-    .cta__btn--primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(232,115,74,0.4); }
-    .cta__btn--secondary { background: transparent; color: var(--white); border-color: var(--border); }
-    .cta__btn--secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .cta-btn--primary {
+      background: var(--card2);
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .cta-btn--primary:hover {
+      background: #222;
+      border-color: #333;
+    }
+    .cta-btn--secondary {
+      background: var(--card2);
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .cta-btn--secondary:hover {
+      background: #222;
+      border-color: #333;
+    }
 
-    /* FOOTER */
-    .footer { text-align: center; padding: 40px; border-top: 1px solid var(--border); margin-top: 20px; }
-    .footer__text { font-size: 13px; color: var(--text-dim); }
-    .footer__text a { color: var(--accent); transition: opacity 0.2s; }
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      padding: 40px 24px;
+      margin-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .footer__text {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .footer__text a {
+      color: var(--accent);
+      transition: opacity 0.2s;
+    }
     .footer__text a:hover { opacity: 0.8; }
 
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .comic { padding: 80px 24px 40px; }
-      .ab1-skills { grid-template-columns: 1fr; }
-      .ab1-story-grid { grid-template-columns: 1fr; }
-      .ab1-story-img-wrap { position: static; }
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
-      .comic { padding: 70px 16px 32px; }
-      .ab1-hero__heading { font-size: clamp(2rem, 8vw, 3rem); }
-      .ab1-hero__img { height: 300px; }
-      .cta-panel { padding: 40px 20px; }
-      .cta__buttons { flex-direction: column; align-items: center; }
-      .cta__btn { width: 100%; justify-content: center; max-width: 280px; }
+      .page { padding: 100px 16px 60px; }
+      .bento { grid-template-columns: 1fr; }
+      .bento__img-tall { grid-column: 1; grid-row: auto; min-height: 240px; }
+      .bento__life { grid-column: 1; grid-row: auto; }
+      .bento__img-small { grid-column: 1; grid-row: auto; }
+      .bento__creative { grid-column: 1; grid-row: auto; }
+      .bento__spacer { display: none; }
+      .started-collage { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 120px); }
+      .started-collage__wide { grid-column: span 2; }
+      .started-section { padding: 32px 20px; }
+      .cta-panel { padding: 36px 20px; }
+      .portrait img { height: 260px; }
     }
   </style>
 </head>
@@ -345,201 +460,111 @@
   <div class="calendly-modal__container">
     <div class="calendly-modal__header">
       <h2 class="calendly-modal__title">Schedule a call</h2>
-      <button class="calendly-modal__close" id="calendlyClose">✕</button>
+      <button class="calendly-modal__close" id="calendlyClose" aria-label="Close">✕</button>
     </div>
     <div class="calendly-modal__content" id="calendlyContent"></div>
   </div>
 </div>
 
-<!-- MAIN CONTENT -->
-<main class="comic">
+<!-- PAGE CONTENT -->
+<div class="page">
 
-  <!-- HERO -->
-  <section class="ab1-hero" data-reveal>
-    <div class="ab1-hero__img-wrap">
-      <img src="./assets/about/about page.png" alt="Sri Harshita Pilla" class="ab1-hero__img" />
-    </div>
-    <div class="ab1-hero__text">
-      <span class="ab1-hero__eyebrow">about ✐</span>
-      <h1 class="ab1-hero__heading">The journey from<br>imagination to reality.</h1>
-      <p class="ab1-hero__tagline">Architect-trained. Research-obsessed. Designing experiences that move people.</p>
-    </div>
-  </section>
+  <!-- BREADCRUMB -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="./index.html">Home</a>
+    <span class="breadcrumb__sep">›</span>
+    <span class="breadcrumb__current">About</span>
+  </nav>
 
-  <div class="ab1-divider"></div>
-
-  <!-- WHERE IT STARTED -->
-  <section class="ab1-section" data-reveal>
-    <span class="ab1-section__eyebrow">where it all started ✦</span>
-    <h2 class="ab1-section__title">Architecture taught me to see people, not just spaces.</h2>
-    <div class="ab1-story-grid">
-      <div class="ab1-section__body">
-        <p>I have always been someone who notices. How people move through a room, where they hesitate, what feels effortless and what feels slightly off.</p>
-        <p>Architecture taught me to think in systems. Structure, flow, function, and the human body moving through all of it. But the deeper I went, the more I realized I was less interested in the building itself and more interested in the person inside it.</p>
-        <p>The moment of hesitation at a corridor. The friction no one else noticed. The experience behind the form. That is what brought me to UX.</p>
-        <p>I hold a <strong>Master's degree in Human-Computer Interaction</strong> from DePaul University. Architectural training informed the way I approach how people move through digital spaces: where they pause, what feels natural, and what quietly creates friction.</p>
-      </div>
-      <div class="ab1-story-img-wrap">
-        <img src="./assets/about/behind story.jpg" alt="The story behind the designer" class="ab1-story-img" />
-      </div>
-    </div>
-  </section>
-
-  <div class="ab1-divider"></div>
-
-  <!-- NOW -->
-  <section class="ab1-section" data-reveal>
-    <span class="ab1-section__eyebrow">now ✦</span>
-    <h2 class="ab1-section__title">Product Designer</h2>
-    <div class="ab1-section__body">
-      <p>I love the research that reframes a problem, the engineering conversation that changes the approach, and the tenth iteration of a flow that finally clicks into place.</p>
-      <p>I don't rush to solutions. I'd rather sit with the complexity until it starts making sense.</p>
-      <p>I see products the way I once saw buildings: as systems people move through. Structure, flow, friction, and moments of clarity all matter.</p>
-      <p>In an industry full of quick answers, I'd rather be the one still asking the right questions. And designing for what I find.</p>
-    </div>
-    <div class="ab1-roles">
-      <span class="ab1-role"><span class="ab1-role__dot"></span>UX Research</span>
-      <span class="ab1-role"><span class="ab1-role__dot"></span>Interaction Design</span>
-      <span class="ab1-role"><span class="ab1-role__dot"></span>Behavioral Design</span>
-      <span class="ab1-role"><span class="ab1-role__dot"></span>Journey Mapping</span>
-      <span class="ab1-role"><span class="ab1-role__dot"></span>Prototyping</span>
-      <span class="ab1-role"><span class="ab1-role__dot"></span>Systems Thinking</span>
-    </div>
-  </section>
-
-  <div class="ab1-divider"></div>
-
-  <!-- TOOLKIT -->
-  <section class="ab1-section" data-reveal>
-    <span class="ab1-section__eyebrow">toolkit ✐</span>
-    <h2 class="ab1-section__title">How I work.</h2>
-    <div class="ab1-skills">
-      <div class="ab1-skill-group">
-        <span class="ab1-skill-group__label">Design</span>
-        <p class="ab1-skill-group__items">Figma · FigJam · Prototyping<br>Wireframing · Design Systems<br>Visual Design · Motion</p>
-      </div>
-      <div class="ab1-skill-group">
-        <span class="ab1-skill-group__label">Research</span>
-        <p class="ab1-skill-group__items">User Interviews · Diary Studies<br>Usability Testing · Maze<br>Affinity Mapping · Synthesis</p>
-      </div>
-      <div class="ab1-skill-group">
-        <span class="ab1-skill-group__label">Methods</span>
-        <p class="ab1-skill-group__items">Jobs-to-be-Done · HCD<br>Behavioral Design · Miro<br>Journey Mapping · Notion</p>
-      </div>
-      <div class="ab1-skill-group">
-        <span class="ab1-skill-group__label">Collaboration</span>
-        <p class="ab1-skill-group__items">Cross-functional teams<br>Engineering handoff<br>Stakeholder presentations</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="ab1-divider"></div>
-
-  <!-- CREATIVE PRACTICE -->
-  <section class="ab1-section" data-reveal>
-    <span class="ab1-section__eyebrow">creative practice ✿</span>
-    <h2 class="ab1-section__title">Design as a way of seeing, not just doing.</h2>
-    <div class="ab1-section__body">
-      <p>I don't really switch off the designer brain. I just point it at different things.</p>
-      <p>When I'm not designing products, I'm noticing how a sidewalk guides you with painted arrows, how a bookstore shelf is angled to catch your eye, or why one cafe feels welcoming while the next one doesn't.</p>
-      <p>I also paint, sketch urbanscapes, and recently started clay modeling. The same instinct that makes me notice friction in a user flow also makes me notice it everywhere else.</p>
-    </div>
-    <div class="ab1-interests">
-      <span class="ab1-interest">Sketching</span>
-      <span class="ab1-interest">Painting</span>
-      <span class="ab1-interest">Urbanscapes</span>
-      <span class="ab1-interest">Clay Modeling</span>
-      <span class="ab1-interest">Photography</span>
-      <span class="ab1-interest">Behavioral Patterns</span>
-      <span class="ab1-interest">Spatial Design</span>
-    </div>
-  </section>
-
-</main>
-
-<!-- FULL-BLEED SCROLLING IMAGE STRIP -->
-<div class="ab1-image-strip">
-  <div class="ab1-strip-row ab1-strip-row--fwd">
-    <img class="ab1-strip-img" src="./assets/about/images for other things/047d22e0-a680-4e8b-b155-b743ad1357eb.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/07499012-c5c2-4162-8881-13fb3f30b483.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/080578a0-3352-4f68-8aa0-b4114d12d536.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/196b3381-9b2b-4547-be35-392742627f97.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/2a2cf4be-d36d-4f19-80c8-205569864aa6.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/2b18af48-fb5c-4d33-9700-01b7ff7532c2.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/2c66403d-6fec-4231-be74-9fc62cb018ed.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/2fe074df-07d5-46ef-bd99-7883b75a1cd9.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/3334981e-f543-421e-a90d-af3871bf3c87.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/3958d2d1-9cca-4d1a-85ba-dbe3fd5025b1.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/047d22e0-a680-4e8b-b155-b743ad1357eb.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/07499012-c5c2-4162-8881-13fb3f30b483.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/080578a0-3352-4f68-8aa0-b4114d12d536.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/196b3381-9b2b-4547-be35-392742627f97.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/2a2cf4be-d36d-4f19-80c8-205569864aa6.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/2b18af48-fb5c-4d33-9700-01b7ff7532c2.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/2c66403d-6fec-4231-be74-9fc62cb018ed.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/2fe074df-07d5-46ef-bd99-7883b75a1cd9.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/3334981e-f543-421e-a90d-af3871bf3c87.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/3958d2d1-9cca-4d1a-85ba-dbe3fd5025b1.jpg" alt="" loading="lazy" />
+  <!-- HERO HEADING -->
+  <div class="hero reveal">
+    <h1 class="hero__title">About</h1>
+    <p class="hero__sub">The journey from imagination to reality.</p>
   </div>
-  <div class="ab1-strip-row ab1-strip-row--back">
-    <img class="ab1-strip-img" src="./assets/about/images for other things/77e99503-711c-4145-b413-87d6ac0ae2ef.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/7ae65000-6906-4632-95ce-1ddd559dac3b.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/82e6aac1-efb3-4d14-a792-422526563833.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/8cac7321-67a5-4d0a-a4b6-03faec34d832.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/8e1fcb48-9710-4017-bd22-02b565549c44.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/a8c79527-c9a8-4083-ae72-4500d8c91a22.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/b4c78ff4-6e51-4a45-907c-591d0cb392d7.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/c4778df3-2131-4027-84e0-f9f4d635cc00.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/c4ff3852-258e-4cf1-bd89-930eaa9cca18.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/d65ede35-483d-43b9-8397-910173acc438.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/77e99503-711c-4145-b413-87d6ac0ae2ef.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/7ae65000-6906-4632-95ce-1ddd559dac3b.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/82e6aac1-efb3-4d14-a792-422526563833.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/8cac7321-67a5-4d0a-a4b6-03faec34d832.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/8e1fcb48-9710-4017-bd22-02b565549c44.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/a8c79527-c9a8-4083-ae72-4500d8c91a22.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/b4c78ff4-6e51-4a45-907c-591d0cb392d7.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/c4778df3-2131-4027-84e0-f9f4d635cc00.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/c4ff3852-258e-4cf1-bd89-930eaa9cca18.jpg" alt="" loading="lazy" />
-    <img class="ab1-strip-img" src="./assets/about/images for other things/d65ede35-483d-43b9-8397-910173acc438.jpg" alt="" loading="lazy" />
+
+  <!-- PORTRAIT -->
+  <div class="portrait reveal">
+    <img src="./assets/about/about page.png" alt="Sri Harshita Pilla" />
   </div>
-</div>
 
-<main class="comic" style="padding-top:0;">
+  <!-- BIO -->
+  <div class="bio reveal">
+    <p class="bio__name">An Architect turned Product &amp; UX Designer.</p>
+    <p class="bio__para">
+      Architecture taught me to notice how people move through spaces: where they pause, what feels natural, and what quietly creates friction. My Master's in HCI helped me bring that same lens into digital products.
+    </p>
+    <p class="bio__para">
+      Today, I design end-to-end experiences for complex workflows, AI-driven tools, and products that need to feel clear, usable, and trustworthy.
+    </p>
+    <p class="bio__role">
+      <span>Product Designer</span>
+      <span class="bio__role-sep">·</span>
+      <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener" class="bio__role-link">Open to work</a>
+    </p>
+  </div>
 
-  <!-- LIFE BEYOND WORK -->
-  <section class="ab1-section" data-reveal>
-    <span class="ab1-section__eyebrow">life beyond work ✿</span>
-    <h2 class="ab1-section__title">Everything is design if you're paying attention.</h2>
-    <div class="ab1-section__body">
-      <p>I sketch what I see. I photograph patterns most people step over. I read about why humans behave the way they do.</p>
-      <p>The same instinct that makes me notice friction in a user flow also makes me notice it in a badly-lit stairwell, a confusing menu, or a queue that moves inexplicably faster on the left.</p>
+  <!-- BENTO GRID -->
+  <div class="bento reveal">
+
+    <!-- tall image — left, spans 2 rows -->
+    <div class="bento__cell bento__img-tall">
+      <img src="./assets/about/images for other things/3958d2d1-9cca-4d1a-85ba-dbe3fd5025b1.jpg" alt="" loading="lazy" />
     </div>
-    <div class="ab1-quote">
-      <p>"Patterns, shapes, and composition are everywhere. I just can't stop seeing them."</p>
+
+    <!-- life beyond work — top right -->
+    <div class="bento__cell bento__life">
+      <p class="bento__card-title">Life beyond work ✿</p>
+      <p class="bento__card-body">I don't really switch off the designer brain. I just point it at different things. I'm noticing patterns, shapes, and composition everywhere.</p>
     </div>
-  </section>
+
+    <!-- small image — bottom right -->
+    <div class="bento__cell bento__img-small">
+      <img src="./assets/about/images for other things/c4ff3852-258e-4cf1-bd89-930eaa9cca18.jpg" alt="" loading="lazy" />
+    </div>
+
+    <!-- creative practice — bottom left -->
+    <div class="bento__cell bento__creative">
+      <p class="bento__card-title">Creative practice</p>
+      <p class="bento__card-body">I sketch what I see. I also paint, sketch urbanscapes, and recently started clay modeling. Everything is design if you're paying attention.</p>
+    </div>
+
+    <!-- spacer -->
+    <div class="bento__spacer"></div>
+
+  </div>
+
+  <!-- WHERE IT ALL STARTED -->
+  <div class="started-section reveal">
+    <h2 class="started-section__title">Where it all started?</h2>
+    <div class="started-collage">
+      <img src="./assets/about/about landing/2.png" alt="" loading="lazy" />
+      <img src="./assets/about/about landing/3.png" alt="" loading="lazy" class="started-collage__wide" />
+      <img src="./assets/about/about landing/4.png" alt="" loading="lazy" class="started-collage__tall" />
+      <img src="./assets/about/about landing/5.png" alt="" loading="lazy" />
+      <img src="./assets/about/about landing/6.png" alt="" loading="lazy" />
+      <img src="./assets/about/about landing/7.1.png" alt="" loading="lazy" />
+      <img src="./assets/about/about landing/8.png" alt="" loading="lazy" />
+      <img src="./assets/about/about landing/9.png" alt="" loading="lazy" />
+    </div>
+  </div>
 
   <!-- CTA -->
-  <article class="cta-panel" data-reveal>
-    <div class="cta-panel__illustration">
-      <img src="./assets/DWOHqayDUopF7wq7rF1G2rgu5y4.gif" alt="Harshita waving hello" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />
-    </div>
-    <h3>Let's create something meaningful together.</h3>
-    <p>Whether you're looking for a designer who digs deep into research, obsesses over details, or just someone who genuinely cares about getting it right — let's talk.</p>
-    <div class="cta__buttons">
-      <button class="cta__btn cta__btn--primary" onclick="bookCall()">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-        Schedule a call
+  <article class="cta-panel reveal">
+    <h3 class="cta-panel__title">Let's work together</h3>
+    <p class="cta-panel__sub">Always excited to team up with amazing individuals for interesting projects. Let's bring our ideas to life!</p>
+    <div class="cta-panel__buttons">
+      <button class="cta-btn cta-btn--primary" onclick="bookCall()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        Contact Me
       </button>
-      <a href="mailto:pillasriharshita@gmail.com" class="cta__btn cta__btn--secondary">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Send an Email
+      <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener" class="cta-btn cta-btn--secondary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
       </a>
     </div>
   </article>
 
-</main>
+</div>
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -550,6 +575,7 @@
 </footer>
 
 <script>
+  /* Calendly modal */
   function bookCall() {
     const modal = document.getElementById('calendlyModal');
     const content = document.getElementById('calendlyContent');
@@ -573,16 +599,16 @@
     }
   });
 
-  // Scroll reveal
-  const revealObserver = new IntersectionObserver((entries) => {
+  /* Scroll reveal */
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
+        observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 
 </body>
