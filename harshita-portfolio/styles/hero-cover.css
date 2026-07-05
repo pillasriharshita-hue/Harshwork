@@ -47,24 +47,34 @@
 }
 
 /* ─── Name + badge ─── */
-.hero-cover__name {
+.hero-cover__title {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3.25rem);
   font-weight: 700;
   color: #fff;
-  line-height: 1.15;
-  margin: 0 0 12px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  line-height: 1.05;
+  margin: 0 0 8px;
 }
 
-.hero-cover__badge {
-  width: 32px;
-  height: 32px;
-  flex-shrink: 0;
-  margin-top: 2px;
+.hero-cover__subtitle {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.95);
+  margin: 0 0 14px;
 }
+
+.hero-cover__contact-row {
+  display: flex;
+  gap: 18px;
+  margin-top: 18px;
+  align-items: center;
+  font-family: var(--font-body);
+  color: rgba(255,255,255,0.75);
+  font-size: 0.95rem;
+}
+
+.hero-cover__contact-item { display:inline-block; }
 
 /* ─── Meta line ─── */
 .hero-cover__meta {
@@ -86,6 +96,92 @@
   font-family: var(--font-body);
 }
 
+.hero-cover__desc--gap {
+  margin-top: 12px;
+}
+
+/* ─── Person name ─── */
+.hero-cover__person {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 20px;
+  font-family: var(--font-body);
+  letter-spacing: 0.01em;
+}
+
+/* ─── Location + email row ─── */
+.hero-cover__info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.hero-cover__location {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: var(--font-body);
+}
+
+.hero-cover__email {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  font-family: var(--font-body);
+  transition: color 0.2s;
+}
+
+.hero-cover__email:hover {
+  color: var(--color-accent);
+}
+
+/* ─── CTA buttons ─── */
+.hero-cover__ctas {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.hero-cover__cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.hero-cover__cta--primary {
+  background: var(--color-accent);
+  color: #fff;
+  border: 1px solid var(--color-accent);
+}
+
+.hero-cover__cta--primary:hover {
+  background: #d4551f;
+  border-color: #d4551f;
+  transform: translateY(-1px);
+}
+
+.hero-cover__cta--ghost {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.hero-cover__cta--ghost:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
+}
+
 /* ─────────────────────────────────────────────────────────
    RESPONSIVE
    ───────────────────────────────────────────────────────── */
@@ -94,13 +190,8 @@
     padding: 0 24px 56px;
   }
 
-  .hero-cover__name {
+  .hero-cover__title {
     font-size: clamp(1.75rem, 5vw, 2.5rem);
-  }
-
-  .hero-cover__badge {
-    width: 26px;
-    height: 26px;
   }
 }
 

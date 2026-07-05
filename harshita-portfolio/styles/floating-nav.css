@@ -29,7 +29,7 @@
   object-fit:contain;
 }
 .fnav__name{
-  font-family:'Nunito Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-family:var(--font-body);
   font-size:14px;font-weight:600;color:#fff;white-space:nowrap;
 }
 
@@ -42,7 +42,7 @@
   padding:4px 6px;
 }
 .fnav__link{
-  font-family:'Nunito Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-family:var(--font-body);
   font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
   color:rgba(255,255,255,.55);
   padding:6px 16px;border-radius:6px;text-decoration:none;
@@ -55,9 +55,9 @@
 
 /* CTA button */
 .fnav__cta{
-  font-family:'Nunito Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-family:var(--font-body);
   font-size:12px;font-weight:600;color:#fff;
-  background:#E8612D;border:none;border-radius:8px;
+  background:var(--color-accent);border:none;border-radius:8px;
   padding:7px 16px;cursor:pointer;white-space:nowrap;
   transition:background .2s;
 }
@@ -87,12 +87,12 @@
 }
 .fnav__mobile.open{display:flex;transform:translateX(0)}
 .fnav__mobile a{
-  font-family:'Nunito Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-family:var(--font-body);
   font-size:18px;font-weight:500;color:#fff;text-decoration:none;
   padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);
   transition:color .15s;
 }
-.fnav__mobile a:hover{color:#E8612D}
+.fnav__mobile a:hover{color:var(--color-accent)}
 .fnav__mobile .fnav__cta{
   margin-top:16px;width:100%;padding:14px;font-size:15px;text-align:center;
 }
@@ -101,7 +101,7 @@
 .fnav__theme-switch{
   --switch-main: #fefefe;
   --switch-bg: #111;
-  --switch-focus: #E8612D;
+  --switch-focus: var(--color-accent);
   position:relative;display:flex;align-items:center;justify-content:center;
   width:50px;height:20px;flex-shrink:0;cursor:pointer;
 }
@@ -146,7 +146,7 @@
 [data-theme="light"] .fnav__burger span{background:#111;}
 [data-theme="light"] .fnav__mobile{background:rgba(243,243,243,0.98);}
 [data-theme="light"] .fnav__mobile a{color:#111;border-color:rgba(0,0,0,0.1);}
-[data-theme="light"] .fnav__mobile a:hover{color:#E8612D;}
+[data-theme="light"] .fnav__mobile a:hover{color:var(--color-accent);}
 [data-theme="light"] .fnav__theme-switch{
   --switch-main:#111;
   --switch-bg:#f3f3f3;

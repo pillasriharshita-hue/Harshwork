@@ -4,59 +4,100 @@
   <meta charset="UTF-8" />
   <link rel="icon" href="./assets/logo.png" type="image/png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sri Harshita Pilla — Product Designer</title>
-  <meta name="description" content="Sri Harshita Pilla — Product Designer with 3+ years of experience designing end-to-end AI experiences." />
+  <title>Sri Harshita Pilla, Product Designer</title>
+  <meta name="description" content="Sri Harshita Pilla, Product Designer with 3+ years of experience designing end-to-end AI experiences." />
   <meta name="author" content="Sri Harshita Pilla" />
 
-  <meta property="og:title" content="Sri Harshita Pilla — Product Designer" />
+  <meta property="og:title" content="Sri Harshita Pilla, Product Designer" />
   <meta property="og:description" content="UX Research. Behavioural Design. AI-Driven Interfaces." />
   <meta property="og:type" content="website" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Lato:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <script src="./scripts/theme.js"></script>
   <link rel="stylesheet" href="./styles/main.css" />
-  <link rel="stylesheet" href="./styles/navbar.css" />
   <link rel="stylesheet" href="./styles/atoms.css" />
   <link rel="stylesheet" href="./styles/loader.css" />
-  <link rel="stylesheet" href="./styles/hero.css" />
-  <link rel="stylesheet" href="./styles/new-hero.css" />
   <link rel="stylesheet" href="./styles/hero-cover.css" />
-  <link rel="stylesheet" href="./styles/cards.css" />
   <link rel="stylesheet" href="./styles/featured-card.css" />
   <link rel="stylesheet" href="./styles/selected-work.css" />
-  <link rel="stylesheet" href="./styles/opc.css" />
-  <link rel="stylesheet" href="./styles/footer.css" />
   <link rel="stylesheet" href="./styles/new-footer.css" />
   <link rel="stylesheet" href="./styles/accessibility.css" />
+  <link rel="stylesheet" href="./styles/floating-nav.css" />
 
-  <!-- Calendly Embed Script -->
   <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
   <style>
-    /* Calendly Modal */
+    /* ── Design tokens ── */
+    :root {
+      --color-accent:         #E85000;
+      --color-bg:             #FAFAFA;
+      --color-bg-dark:        #111111;
+      --color-surface:        #FFFFFF;
+      --color-border:         #E8E8E8;
+      --color-text-primary:   #111111;
+      --color-text-secondary: #6E6E73;
+      --color-text-muted:     #AAAAAA;
+
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+      --font-mono:    'IBM Plex Mono', monospace;
+
+      --text-xs:   11px;
+      --text-sm:   13px;
+      --text-base: 16px;
+      --text-md:   18px;
+      --text-lg:   24px;
+      --text-xl:   32px;
+      --text-2xl:  48px;
+      --text-3xl:  64px;
+
+      --space-1:  8px;
+      --space-2:  16px;
+      --space-3:  24px;
+      --space-4:  32px;
+      --space-6:  48px;
+      --space-8:  64px;
+      --space-12: 96px;
+
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.10);
+
+      --transition: 200ms ease-in-out;
+    }
+
+    /* ── Homepage: dark background preserved ── */
+    body {
+      --color-bg:             #111111;
+      --color-surface:        #1A1A1A;
+      --color-border:         rgba(255, 255, 255, 0.08);
+      --color-text-primary:   #FFFFFF;
+      --color-text-secondary: rgba(255, 255, 255, 0.55);
+      --color-text-muted:     rgba(255, 255, 255, 0.35);
+      background-color: #111111;
+    }
+
+    /* ── Calendly modal (intentionally dark) ── */
     .calendly-modal {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       z-index: 1000;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0,0,0,0.8);
       backdrop-filter: blur(5px);
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: var(--space-2);
     }
-    .calendly-modal.active {
-      display: flex;
-    }
+    .calendly-modal.active { display: flex; }
     .calendly-modal__container {
       background: #0D0D0D;
       border: 1px solid #2A2A2A;
-      border-radius: 12px;
+      border-radius: var(--radius-md);
       width: 100%;
       max-width: 900px;
       height: 90vh;
@@ -67,7 +108,7 @@
       overflow: hidden;
     }
     .calendly-modal__header {
-      padding: 16px 24px;
+      padding: var(--space-2) var(--space-3);
       border-bottom: 1px solid #2A2A2A;
       display: flex;
       justify-content: space-between;
@@ -75,55 +116,29 @@
       background: #0D0D0D;
     }
     .calendly-modal__title {
-      font-size: 18px;
-      font-weight: 600;
-      color: #fff;
-      margin: 0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: var(--text-md); font-weight: 600; color: #fff; margin: 0;
+      font-family: var(--font-body);
     }
     .calendly-modal__close {
-      width: 32px;
-      height: 32px;
-      background: none;
-      border: none;
-      color: #9A9A9A;
-      font-size: 24px;
-      cursor: pointer;
-      transition: color 0.2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
+      width: 32px; height: 32px; background: none; border: none;
+      color: var(--color-text-muted); font-size: var(--text-lg); cursor: pointer;
+      transition: color var(--transition); display: flex;
+      align-items: center; justify-content: center; padding: 0;
     }
-    .calendly-modal__close:hover {
-      color: #fff;
-    }
-    .calendly-modal__content {
-      flex: 1;
-      overflow-y: auto;
-      overflow-x: hidden;
-    }
+    .calendly-modal__close:hover { color: #fff; }
+    .calendly-modal__content { flex: 1; overflow-y: auto; overflow-x: hidden; }
     @media (max-width: 899px) {
-      .calendly-modal__container {
-        max-height: 90vh;
-        height: auto;
-      }
+      .calendly-modal__container { max-height: 90vh; height: auto; }
     }
     @media (max-width: 599px) {
-      .calendly-modal {
-        padding: 10px;
-      }
+      .calendly-modal { padding: 10px; }
       .calendly-modal__container {
         max-width: 100%;
         height: calc(100vh - 20px);
         max-height: calc(100vh - 20px);
       }
-      .calendly-modal__header {
-        padding: 12px 16px;
-      }
-      .calendly-modal__title {
-        font-size: 16px;
-      }
+      .calendly-modal__header { padding: 12px var(--space-2); }
+      .calendly-modal__title { font-size: var(--text-base); }
     }
   </style>
 </head>
@@ -159,364 +174,190 @@
     <div class="calendly-modal__container">
       <div class="calendly-modal__header">
         <h2 class="calendly-modal__title" id="calendlyTitle">Book a Call</h2>
-        <button class="calendly-modal__close" id="calendlyClose" aria-label="Close booking calendar">
-          ✕
-        </button>
+        <button class="calendly-modal__close" id="calendlyClose" aria-label="Close booking calendar">✕</button>
       </div>
-      <div class="calendly-modal__content" id="calendlyContent">
-        <!-- Calendly inline embed will be inserted here -->
-      </div>
+      <div class="calendly-modal__content" id="calendlyContent"></div>
     </div>
   </div>
 
   <!-- ══════ FLOATING NAV ══════ -->
-<link rel="stylesheet" href="./styles/floating-nav.css" />
+  <header class="fnav">
+    <nav class="fnav__inner">
+      <a href="./index.html" class="fnav__brand">
+        <img src="./assets/logo.png" class="fnav__logo" alt="Sri Harshita Pilla" />
+        <span class="fnav__name">Sri Harshita Pilla</span>
+      </a>
 
-<header class="fnav">
-  <nav class="fnav__inner">
-    <a href="./index.html" class="fnav__brand">
-      <img src="./assets/logo.png" class="fnav__logo" alt="Sri Harshita Pilla" />
-      <span class="fnav__name">Sri Harshita Pilla</span>
-    </a>
+      <div class="fnav__links">
+        <a href="#home" class="fnav__link">Home</a>
+        <a href="#work" class="fnav__link">Work</a>
+        <a href="#" class="fnav__link">Resume</a>
+        <a href="#contact" class="fnav__link">Contact</a>
+      </div>
 
-    <div class="fnav__links">
-      <a href="./about.html" class="fnav__link">About</a>
-      <a href="./index.html#work" class="fnav__link">Work</a>
-      <a href="./playground.html" class="fnav__link">Playground</a>
-      <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener" class="fnav__link">LinkedIn</a>
-    </div>
+      <div class="fnav__right">
+        <button class="fnav__burger" id="fnavBurger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
 
-    <div class="fnav__right">
-      <label class="fnav__theme-switch" title="Toggle theme">
-        <input type="checkbox" class="toggle">
-        <span class="slider"></span>
-      </label>
+  <div class="fnav__mobile" id="fnavMobile">
+    <a href="#home">Home</a>
+    <a href="#work">Work</a>
+    <a href="#">Resume</a>
+    <a href="#contact">Contact</a>
+  </div>
 
-      <button class="fnav__burger" id="fnavBurger" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </nav>
-</header>
-
-<div class="fnav__mobile" id="fnavMobile">
-  <a href="./about.html">About</a>
-  <a href="./index.html#work">Work</a>
-  <a href="./playground.html">Playground</a>
-  <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener">LinkedIn</a>
-  <button class="fnav__cta" onclick="bookCall()">Schedule a call</button>
-</div>
-
-<script>
-(function(){
-  var burger = document.getElementById('fnavBurger');
-  var mobile = document.getElementById('fnavMobile');
-  if (!burger || !mobile) return;
-  burger.addEventListener('click', function(){
-    burger.classList.toggle('open');
-    mobile.classList.toggle('open');
-  });
-})();
-</script>
+  <script>
+  (function(){
+    var burger = document.getElementById('fnavBurger');
+    var mobile = document.getElementById('fnavMobile');
+    if (!burger || !mobile) return;
+    burger.addEventListener('click', function(){
+      var isOpen = mobile.classList.contains('open');
+      burger.classList.toggle('open');
+      mobile.classList.toggle('open');
+      burger.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+    });
+  })();
+  </script>
 
   <!-- ══════ HERO SECTION ══════ -->
-<section class="hero-cover" id="home" aria-label="Hero section">
-  <img src="./assets/landing image.jpeg" alt="Sri Harshita Pilla" class="hero-cover__bg" />
-  <div class="hero-cover__overlay"></div>
-  <div class="hero-cover__content">
-    <h1 class="hero-cover__name">
-      Sri Harshita Pilla
-      <svg class="hero-cover__badge" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Verified">
-        <circle cx="12" cy="12" r="11" fill="#1D9BF0"/>
-        <path d="M7 12.5l3.5 3.5 6.5-7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </h1>
-    <p class="hero-cover__meta">Product Designer &nbsp;&nbsp; USA, New York</p>
-    <p class="hero-cover__desc">
-      I design end-to-end experiences, turning complex workflows into usable, scalable products through research, systems thinking, and execution.
-    </p>
-  </div>
-</section>
-
-
-<section class="selected-work" aria-label="Featured work section">
-  
-  <div class="selected-work__header">
-    <span class="selected-work__label">Work</span>
-    <h2 class="selected-work__title">
-      Selected <span class="selected-work__title-accent">work</span>
-    </h2>
-  </div>
-
-  <div class="selected-work__cards">
-
-    <!-- ══════ CARD 1: UttishaNow ══════ -->
-    <article class="featured-card" aria-label="UttishaNow project">
-      <span class="featured-card__watermark">01</span>
-
-      <div class="featured-card__left">
-        <div class="featured-card__number">01</div>
-        <h3 class="featured-card__title">UttishaNow</h3>
-        <p class="featured-card__subtitle">Building healthier daily routines</p>
-        <p class="featured-card__description">Designed movement nudges to help sedentary young adults build healthier daily routines. Focused on reducing inactivity through behavioral triggers, habit loops, and simplified daily tracking.</p>
-        <div class="featured-card__tags">
-          <span class="featured-card__tag">UX Research</span>
-          <span class="featured-card__tag">Behavioral Design</span>
-          <span class="featured-card__tag">Mobile UX</span>
-          <span class="featured-card__tag">Interaction Design</span>
-        </div>
-        <a href="./uttishanow.html" class="featured-card__cta">View case study</a>
+  <section class="hero-cover" id="home" aria-label="Hero section">
+    <img src="./assets/landing image.jpeg" alt="Sri Harshita Pilla" class="hero-cover__bg" />
+    <div class="hero-cover__overlay"></div>
+    <div class="hero-cover__content">
+      <h1 class="hero-cover__title">Product Designer</h1>
+      <p class="hero-cover__person">Sri Harshita Pilla</p>
+      <p class="hero-cover__desc">
+        I'm fascinated by how people make decisions, especially when technology gets involved.
+      </p>
+      <p class="hero-cover__desc hero-cover__desc--gap">
+        That's what pulled me into AI product design. I design experiences that help people navigate complexity, build trust, and make confident decisions without feeling overwhelmed.
+      </p>
+      <div class="hero-cover__info">
+        <span class="hero-cover__location">Dallas, TX &nbsp;·&nbsp; Open to Relocate</span>
+        <a href="mailto:pillasriharshita@gmail.com" class="hero-cover__email">pillasriharshita@gmail.com</a>
       </div>
-
-      <div class="featured-card__right">
-        <div class="featured-card__image">
-          <img src="./assets/other-works/utn.png" alt="UttishaNow app" loading="lazy" />
-          <div class="featured-card__image-shadow"></div>
-        </div>
+      <div class="hero-cover__ctas">
+        <a href="#work" class="hero-cover__cta hero-cover__cta--primary">View Work</a>
       </div>
-    </article>
-
-    <!-- ══════ CARD 2: Glenen AI ══════ -->
-    <article class="featured-card featured-card--reversed" aria-label="Glenen AI project">
-      <span class="featured-card__watermark">02</span>
-
-      <div class="featured-card__left">
-        <div class="featured-card__number">02</div>
-        <h3 class="featured-card__title">Glenen AI</h3>
-        <p class="featured-card__subtitle">AI retail assistant for in-store discovery</p>
-        <p class="featured-card__description">Designed a conversational retail assistant for navigating 2,900+ products in-store. Reduced decision friction through guided discovery and AI-assisted recommendations.</p>
-        <div class="featured-card__tags">
-          <span class="featured-card__tag">Conversational AI</span>
-          <span class="featured-card__tag">RAG</span>
-          <span class="featured-card__tag">Retail UX</span>
-          <span class="featured-card__tag">AI Product Design</span>
-        </div>
-        <a href="./glenen.html" class="featured-card__cta">View case study</a>
-      </div>
-
-      <div class="featured-card__right">
-        <div class="featured-card__image">
-          <div class="card__mockup card__mockup--payment">
-            <div class="card__mockup-payment-header">Payment Method</div>
-            <div class="card__mockup-payment-option">
-              <span class="card__mockup-payment-icon">&#128179;</span>
-              <div><strong>Add Card</strong><small>Add a card of any bank</small></div>
-            </div>
-            <div class="card__mockup-payment-option">
-              <span class="card__mockup-payment-icon">&#9830;</span>
-              <div><strong>Add Crypto Wallet</strong><small>Connect your crypto wallet</small></div>
-            </div>
-            <div class="card__mockup-payment-option">
-              <span class="card__mockup-payment-icon card__mockup-payment-icon--green">&#9679;</span>
-              <div><strong>Add Unipay Account</strong><small>Hold all payments via the app</small></div>
-              <span class="card__mockup-check">&#10003;</span>
-            </div>
-            <div class="card__mockup-payment-cards">
-              <span class="card__mockup-visa">VISA</span>
-              <span class="card__mockup-mc">&bull;&bull;</span>
-              <span class="card__mockup-visa">VISA</span>
-              <span class="card__mockup-visa card__mockup-visa--dark">VISA</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-  </div>
-
-</section>
-
-  <!-- ══════ OTHER WORKS — Grid Layout ══════ -->
-  <section class="other-projects-grid" id="other-works" aria-label="Other works">
-    <div class="other-projects-grid__header">
-      <h2 class="other-projects-grid__title">Other Works</h2>
-    </div>
-    <div class="other-projects-grid__filters" role="tablist" aria-label="Filter other works">
-      <button class="filter-tab is-active" role="tab" aria-selected="true" type="button" data-filter="All" aria-controls="other-works-grid">All</button>
-      <button class="filter-tab" role="tab" aria-selected="false" type="button" data-filter="Product" aria-controls="other-works-grid">Product</button>
-      <button class="filter-tab" role="tab" aria-selected="false" type="button" data-filter="Branding" aria-controls="other-works-grid">Branding</button>
-      <button class="filter-tab" role="tab" aria-selected="false" type="button" data-filter="Interaction" aria-controls="other-works-grid">Interaction</button>
-    </div>
-    <div class="other-projects-grid__container" id="other-works-grid" role="tabpanel">
-
-      <!-- WANDER -->
-      <article class="opc other-project-card--interactive" tabindex="0" aria-label="Wander project" data-category="Product">
-        <div class="opc__img-wrap">
-          <span class="opc__number">NO. 01</span>
-          <a href="wander.html" class="opc__overlay">
-            <span class="opc__overlay-pill">Read more →</span>
-          </a>
-          <img src="./assets/other-works/Wander.jpg" alt="Wander, AR walking app" class="opc__img" loading="lazy" />
-        </div>
-        <div class="opc__body">
-          <div class="opc__row">
-            <h3 class="opc__title">Wander</h3>
-            <div class="opc__tags">
-              <span class="opc__tag">AR Experience</span>
-              <span class="opc__tag">Mobile App</span>
-            </div>
-          </div>
-          <p class="opc__desc">An AR walking app that transforms ordinary strolls into engaging narrative journeys, blending location-based storytelling and spatial design.</p>
-          <div class="opc__meta">
-            <div class="opc__meta-inner">
-              <div class="opc__meta-rows">
-                <div class="opc__meta-row"><span class="opc__meta-label">TYPE</span><span class="opc__meta-value">Product Design</span></div>
-                <div class="opc__meta-row"><span class="opc__meta-label">TAGS</span><span class="opc__meta-value">Spatial Design · Interaction Design</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- IRCTC -->
-      <article class="opc other-project-card--interactive" tabindex="0" aria-label="IRCTC Redesign project" data-category="Interaction">
-        <div class="opc__img-wrap">
-          <span class="opc__number">NO. 02</span>
-          <a href="irctc.html" class="opc__overlay">
-            <span class="opc__overlay-pill">Read more →</span>
-          </a>
-          <img src="./assets/other-works/irctc.png" alt="IRCTC Redesign" class="opc__img" loading="lazy" />
-        </div>
-        <div class="opc__body">
-          <div class="opc__row">
-            <h3 class="opc__title">IRCTC Redesign</h3>
-            <div class="opc__tags">
-              <span class="opc__tag">Interaction Design</span>
-              <span class="opc__tag">UX Audit</span>
-            </div>
-          </div>
-          <p class="opc__desc">An interaction redesign for one of India's most-used train booking platforms, simplifying search and booking decisions.</p>
-          <div class="opc__meta">
-            <div class="opc__meta-inner">
-              <div class="opc__meta-rows">
-                <div class="opc__meta-row"><span class="opc__meta-label">TYPE</span><span class="opc__meta-value">Interaction Design</span></div>
-                <div class="opc__meta-row"><span class="opc__meta-label">TAGS</span><span class="opc__meta-value">Booking Flow · UI Redesign</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- TRON -->
-      <article class="opc other-project-card--interactive" tabindex="0" aria-label="Tron project" data-category="Branding">
-        <div class="opc__img-wrap">
-          <span class="opc__number">NO. 03</span>
-          <a href="tron.html" class="opc__overlay">
-            <span class="opc__overlay-pill">Read more →</span>
-          </a>
-          <img src="./assets/other-works/Tron.png" alt="Tron, branding project" class="opc__img" loading="lazy" />
-        </div>
-        <div class="opc__body">
-          <div class="opc__row">
-            <h3 class="opc__title">Tron</h3>
-            <div class="opc__tags">
-              <span class="opc__tag">Brand Identity</span>
-              <span class="opc__tag">Motion Design</span>
-            </div>
-          </div>
-          <p class="opc__desc">A branding exploration focused on typography, visual rhythm and motion to create a futuristic identity language.</p>
-          <div class="opc__meta">
-            <div class="opc__meta-inner">
-              <div class="opc__meta-rows">
-                <div class="opc__meta-row"><span class="opc__meta-label">TYPE</span><span class="opc__meta-value">Branding</span></div>
-                <div class="opc__meta-row"><span class="opc__meta-label">TAGS</span><span class="opc__meta-value">Typography · Visual Design</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- ARCHI PROJECT -->
-      <article class="opc other-project-card--interactive" tabindex="0" aria-label="Archi Project" data-category="Interaction">
-        <div class="opc__img-wrap">
-          <span class="opc__number">NO. 04</span>
-          <div class="opc__overlay opc__overlay--disabled">
-            <span class="opc__overlay-pill opc__overlay-pill--muted">Coming Soon</span>
-          </div>
-          <img src="./assets/other-works/Archi-Project.png" alt="Archi Project, architectural visualization" class="opc__img" loading="lazy" />
-        </div>
-        <div class="opc__body">
-          <div class="opc__row">
-            <h3 class="opc__title">Archi Project</h3>
-            <div class="opc__tags">
-              <span class="opc__tag">Spatial Design</span>
-              <span class="opc__tag opc__tag--muted">Coming Soon</span>
-            </div>
-          </div>
-          <p class="opc__desc">A concept exploring digital walkthroughs to communicate layout, movement, and spatial intent before a space is built.</p>
-          <div class="opc__meta">
-            <div class="opc__meta-inner">
-              <div class="opc__meta-rows">
-                <div class="opc__meta-row"><span class="opc__meta-label">TYPE</span><span class="opc__meta-value">Concept Design</span></div>
-                <div class="opc__meta-row"><span class="opc__meta-label">TAGS</span><span class="opc__meta-value">Visualization · Interaction Design</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
-
     </div>
   </section>
 
+  <!-- ══════ SELECTED WORK ══════ -->
+  <section class="selected-work" id="work" aria-label="Featured work section">
 
-  <!-- ══════ FOOTER ══════ -->
-  <footer class="footer" id="contact" aria-label="Contact and footer">
-    <div class="footer__inner">
-      <!-- 3-column grid -->
-      <div class="footer__grid">
-        <!-- Column 1: NAVIGATE -->
-        <div class="footer__column">
-          <h3 class="footer__column-title">Navigate</h3>
-          <a href="./index.html" class="footer__link">Home</a>
-          <a href="./about.html" class="footer__link">About</a>
-          <a href="./about.1.html" class="footer__link footer__link--new">about.1 ✦</a>
-          <a href="./index.html#work" class="footer__link">Work</a>
-          <a href="#playground" class="footer__link">Playground</a>
-          <a href="#contact" class="footer__link">Contact</a>
+    <div class="selected-work__header">
+      <span class="selected-work__label">Work</span>
+      <h2 class="selected-work__title">
+        Selected <span class="selected-work__title-accent">work</span>
+      </h2>
+    </div>
+
+    <div class="selected-work__cards">
+
+      <!-- ══════ CARD 01: Glenen AI ══════ -->
+      <article class="featured-card" aria-label="Glenen AI project">
+        <span class="featured-card__watermark">01</span>
+
+        <div class="featured-card__left">
+          <div class="featured-card__number">01</div>
+          <h3 class="featured-card__title">Glenen AI</h3>
+          <p class="featured-card__subtitle">AI Retail Assistant &nbsp;•&nbsp; Conversational Commerce</p>
+          <p class="featured-card__description">Glenen is an in-store conversational assistant that helps customers find products through natural language. I designed the interaction model, ranking heuristics, and explainable recommendations to reduce decision time and increase conversion.</p>
+          <div class="featured-card__stats" aria-hidden="true">
+            <div class="featured-card__stat"><strong>2,900+</strong><span>SKUs</span></div>
+            <div class="featured-card__stat"><strong>4</strong><span>Shopping Intents</span></div>
+            <div class="featured-card__stat"><strong>RAG</strong><span>+ Semantic Search</span></div>
+          </div>
+          <div class="featured-card__tags">
+            <span class="featured-card__tag">Conversational AI</span>
+            <span class="featured-card__tag">Semantic Search</span>
+            <span class="featured-card__tag">Retail UX</span>
+          </div>
+          <a href="./glenen.html" class="featured-card__cta">View case study</a>
         </div>
 
-        <!-- Column 2: PROJECTS -->
-        <div class="footer__column">
-          <h3 class="footer__column-title">Projects</h3>
-          <a href="./uttishanow.html" class="footer__link">UttishaNow</a>
-          <a href="./glenen.html" class="footer__link">Glenen AI</a>
-          <a href="./wander.html" class="footer__link">Wander</a>
-          <a href="./irctc.html" class="footer__link">IRCTC Redesign</a>
-          <a href="./tron.html" class="footer__link">Tron</a>
-          <a href="#archi-project" class="footer__link">Archi Project</a>
-        </div>
-
-        <!-- Column 3: CONNECT -->
-        <div class="footer__column">
-          <h3 class="footer__column-title">Connect</h3>
-          <div class="footer__social">
-            <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener" class="footer__social-item" aria-label="LinkedIn">
-              <svg class="footer__social-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-              LinkedIn
-            </a>
-            <a href="https://www.instagram.com/harshitapilla/" target="_blank" rel="noopener" class="footer__social-item" aria-label="Instagram">
-              <svg class="footer__social-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-              Instagram
-            </a>
-            <a href="mailto:pillasriharshita@gmail.com" class="footer__social-item" aria-label="Email">
-              <svg class="footer__social-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
-              Email
-            </a>
+        <div class="featured-card__right">
+          <div class="glenen-mockup" aria-hidden="true">
+            <div class="chat">
+              <div class="chat__bubble chat__bubble--user">I'm looking for a compact blender for smoothies</div>
+                <div class="chat__bubble chat__bubble--assistant">Try the SwiftBlend S12 - compact, powerful, and under $50. Would you like options ranked by price or performance?</div>
+              <div class="recommendations">
+                <div class="rec-card">
+                  <div class="rec-card__title">SwiftBlend S12</div>
+                  <div class="rec-card__meta">Compact · $49</div>
+                </div>
+                <div class="rec-card">
+                  <div class="rec-card__title">BlendPro X</div>
+                  <div class="rec-card__meta">High power · $89</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </article>
 
-      <!-- Copyright -->
-      <div class="footer__bottom">
-        <p class="footer__copyright">© 2026 Harshita Pilla. All rights reserved.</p>
+      <!-- ══════ CARD 02: UttishaNow ══════ -->
+      <article class="featured-card featured-card--reversed" aria-label="UttishaNow project">
+        <span class="featured-card__watermark">02</span>
+
+        <div class="featured-card__left">
+          <div class="featured-card__number">02</div>
+          <h3 class="featured-card__title">Designing a healthier routine without relying on motivation</h3>
+          <p class="featured-card__subtitle">Behavioral Research &nbsp;•&nbsp; Mobile UX</p>
+          <p class="featured-card__description">A behavioral-design study that introduced subtle, persistent nudges to help young adults build movement habits. I led the research, prototyping, and field testing to create low-friction interventions that scale without demanding willpower.</p>
+          <div class="featured-card__tags">
+            <span class="featured-card__tag">Behavioral Research</span>
+            <span class="featured-card__tag">Mobile UX</span>
+            <span class="featured-card__tag">Habit Design</span>
+          </div>
+          <a href="./uttishanow.html" class="featured-card__cta">View case study</a>
+        </div>
+
+        <div class="featured-card__right">
+          <div class="featured-card__image">
+            <img src="./assets/other-works/utn.png" alt="UttishaNow app" loading="lazy" />
+            <div class="featured-card__image-shadow"></div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+  </section>
+
+  <!-- ══════ FOOTER ══════ -->
+  <footer class="footer" id="contact" aria-label="Footer">
+
+    <!-- Scrolling marquee strip -->
+    <div class="footer__marquee-wrap" aria-hidden="true">
+      <div class="footer__marquee-track">
+        <span class="footer__marquee-item">Sri Harshita Pilla &nbsp;✦&nbsp; Product Designer &nbsp;✦&nbsp; Dallas, TX &nbsp;✦&nbsp; Open to Relocate &nbsp;✦&nbsp;</span>
+        <span class="footer__marquee-item">Sri Harshita Pilla &nbsp;✦&nbsp; Product Designer &nbsp;✦&nbsp; Dallas, TX &nbsp;✦&nbsp; Open to Relocate &nbsp;✦&nbsp;</span>
+        <span class="footer__marquee-item">Sri Harshita Pilla &nbsp;✦&nbsp; Product Designer &nbsp;✦&nbsp; Dallas, TX &nbsp;✦&nbsp; Open to Relocate &nbsp;✦&nbsp;</span>
       </div>
     </div>
+
+    <!-- Bottom bar -->
+    <div class="footer__bar">
+      <p class="footer__bar-left">© 2026 &nbsp;·&nbsp; Built with &nbsp;🎨&nbsp; ☕</p>
+      <div class="footer__bar-right">
+        <a href="mailto:pillasriharshita@gmail.com" class="footer__bar-link">Email ↗</a>
+        <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener" class="footer__bar-link">LinkedIn ↗</a>
+        <a href="https://medium.com/@harshitapilla" target="_blank" rel="noopener" class="footer__bar-link">Medium ↗</a>
+        <a href="#" class="footer__bar-link">Resume ↗</a>
+      </div>
+    </div>
+
   </footer>
 
   <script src="./scripts/main.js" defer></script>
-  <script src="./scripts/carousel.js" defer></script>
   <script src="./scripts/cards.js" defer></script>
   <script src="./scripts/animations.js" defer></script>
 

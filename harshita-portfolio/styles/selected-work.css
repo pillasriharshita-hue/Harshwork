@@ -27,8 +27,8 @@
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--color-accent-orange);
-  font-family: 'Courier New', monospace;
+  color: var(--color-accent);
+  font-family: var(--font-mono);
   margin-bottom: 16px;
 }
 
@@ -47,7 +47,7 @@
 }
 
 .selected-work__title-accent {
-  color: var(--color-accent-orange);
+  color: var(--color-accent);
   font-style: italic;
   font-weight: 600;
 }

@@ -5,13 +5,13 @@
   <link rel="icon" href="./assets/logo.png" type="image/png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Glenen AI Case Study | Sri Harshita Pilla</title>
-  <meta name="description" content="Glenen AI — Designing probabilistic product discovery for 2,900+ retail items. Case study by Sri Harshita Pilla." />
+  <meta name="description" content="Glenen AI - Designing probabilistic product discovery for 2,900+ retail items. Case study by Sri Harshita Pilla." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;600;700;800&family=Taviraj:ital,wght@0,400;0,700;1,400;1,700&family=Nunito+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Caveat&display=swap" rel="stylesheet" />
 
-  <script src="./scripts/theme.js"></script>
+  <!-- theme.js removed (site default theme only) -->
   <link rel="stylesheet" href="./styles/main.css" />
   <link rel="stylesheet" href="./styles/loader.css" />
   <link rel="stylesheet" href="./styles/casestudy.css" />
@@ -103,17 +103,16 @@
       <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener" class="fnav__link">LinkedIn</a>
     </div>
     <div class="fnav__right">
-      <label class="fnav__theme-switch" title="Toggle theme"><input type="checkbox" class="toggle"><span class="slider"></span></label>
-      <button class="fnav__burger" id="fnavBurger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      <button class="fnav__burger" id="hamburgerBtn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 </header>
-<div class="fnav__mobile" id="fnavMobile">
-  <a href="./about.html">About</a><a href="./index.html#work">Work</a>
-  <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener">LinkedIn</a>
+<div class="fnav__mobile" id="navMobile">
+  <a href="./about.html" class="nav-mobile__link">About</a>
+  <a href="./index.html#work" class="nav-mobile__link">Work</a>
+  <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener" class="nav-mobile__link">LinkedIn</a>
   <button class="fnav__cta" onclick="bookCall()">Schedule a call</button>
 </div>
-<script>(function(){var b=document.getElementById('fnavBurger'),m=document.getElementById('fnavMobile');if(!b||!m)return;b.addEventListener('click',function(){b.classList.toggle('open');m.classList.toggle('open');});})()</script>
 
 <!-- ══════ CALENDLY MODAL ══════ -->
 <div class="calendly-modal" id="calendlyModal" role="dialog" aria-labelledby="calendlyTitle" aria-hidden="true">
@@ -536,17 +535,17 @@
   <div class="gl-ps">
     <div class="gl-ps__col">
       <span class="cs-layer__tag">Product outcomes</span>
-      <p><strong>3,264 SKUs in RAM</strong> — Fast access to product data during live kiosk use.</p>
-      <p><strong>87% cache hit rate</strong> — Most lookups are served without slowing the conversation.</p>
-      <p><strong>0% context bleed</strong> — One customer's conversation does not leak into another session.</p>
-      <p><strong>+89% RAG quality improvement</strong> — Semantic retrieval outperformed the keyword baseline.</p>
+      <p><strong>3,264 SKUs in RAM</strong> - Fast access to product data during live kiosk use.</p>
+      <p><strong>87% cache hit rate</strong> - Most lookups are served without slowing the conversation.</p>
+      <p><strong>0% context bleed</strong> - One customer's conversation does not leak into another session.</p>
+      <p><strong>+89% RAG quality improvement</strong> - Semantic retrieval outperformed the keyword baseline.</p>
     </div>
     <div class="gl-ps__col">
       <span class="cs-layer__tag">UX outcomes</span>
-      <p><strong>Faster product discovery</strong> — Users do not have to browse the full catalog manually.</p>
-      <p><strong>Higher trust in recommendations</strong> — Each result includes a reason.</p>
-      <p><strong>Better support for vague intent</strong> — Users can describe needs naturally.</p>
-      <p><strong>More confident comparison</strong> — Users can compare ranked options without restarting.</p>
+      <p><strong>Faster product discovery</strong> - Users do not have to browse the full catalog manually.</p>
+      <p><strong>Higher trust in recommendations</strong> - Each result includes a reason.</p>
+      <p><strong>Better support for vague intent</strong> - Users can describe needs naturally.</p>
+      <p><strong>More confident comparison</strong> - Users can compare ranked options without restarting.</p>
     </div>
   </div>
 </section>

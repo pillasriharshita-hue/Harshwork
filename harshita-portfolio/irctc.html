@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;600;700;800&family=Taviraj:ital,wght@0,400;0,700;1,400;1,700&family=Nunito+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
-  <script src="./scripts/theme.js"></script>
+  <!-- theme.js removed (site default theme only) -->
   <link rel="stylesheet" href="./styles/main.css" />
   <link rel="stylesheet" href="./styles/loader.css" />
   <link rel="stylesheet" href="./styles/casestudy.css" />
@@ -82,19 +82,17 @@
 <header class="fnav">
   <nav class="fnav__inner">
     <a href="./index.html" class="fnav__brand"><img src="./assets/logo.png" class="fnav__logo" alt="Sri Harshita Pilla" /><span class="fnav__name">Sri Harshita Pilla</span></a>
-    <div class="fnav__links">
-      <a href="./about.html" class="fnav__link">About</a>
-      <a href="./index.html#work" class="fnav__link">Work</a>
-      <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener" class="fnav__link">LinkedIn</a>
+    <div class="fnav__right">
+      <button class="fnav__burger" id="hamburgerBtn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
     </div>
     <div class="fnav__right">
-      <label class="fnav__theme-switch" title="Toggle theme"><input type="checkbox" class="toggle"><span class="slider"></span></label>
-      <button class="fnav__burger" id="fnavBurger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-    </div>
-  </nav>
-</header>
-<div class="fnav__mobile" id="fnavMobile">
-  <a href="./about.html">About</a><a href="./index.html#work">Work</a>
+<div class="fnav__mobile" id="navMobile">
+  <a href="./about.html" class="nav-mobile__link">About</a>
+  <a href="./index.html#work" class="nav-mobile__link">Work</a>
+  <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener" class="nav-mobile__link">LinkedIn</a>
+  <button class="fnav__cta" onclick="bookCall()">Schedule a call</button>
+</div>
   <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener">LinkedIn</a>
   <button class="fnav__cta" onclick="bookCall()">Schedule a call</button>
 </div>
