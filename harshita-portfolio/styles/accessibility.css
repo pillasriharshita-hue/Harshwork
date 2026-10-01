@@ -205,11 +205,7 @@ img {
   height: auto;
 }
 
-img[alt=""],
-img:not([alt]) {
-  border: 2px solid red;
-  /* Indicates missing alt text during development */
-}
+/* Decorative images (alt="") intentionally get no visual treatment. */
 
 /* ─────────────────────────────────────────────────────────
    ICONS — Icon buttons with labels

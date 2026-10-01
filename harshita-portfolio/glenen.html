@@ -95,24 +95,34 @@
 <!-- FLOATING NAV -->
 <link rel="stylesheet" href="./styles/floating-nav.css" />
 <header class="fnav">
-  <nav class="fnav__inner">
-    <a href="./index.html" class="fnav__brand"><img src="./assets/logo.png" class="fnav__logo" alt="Sri Harshita Pilla" /><span class="fnav__name">Sri Harshita Pilla</span></a>
+  <nav class="fnav__inner" aria-label="Main navigation">
+    <a href="./index.html" class="fnav__brand">
+      <img src="./assets/logo.png" class="fnav__logo" alt="" />
+      <span class="fnav__name">Sri Harshita Pilla</span>
+    </a>
     <div class="fnav__links">
-      <a href="./about.html" class="fnav__link">About</a>
       <a href="./index.html#work" class="fnav__link">Work</a>
-      <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener" class="fnav__link">LinkedIn</a>
+      <a href="./about.html" class="fnav__link">About</a>
+      <a href="./resume.html" class="fnav__link">Resume</a>
+      <a href="https://www.linkedin.com/in/pillasriharshita/" target="_blank" rel="noopener" class="fnav__link">LinkedIn</a>
     </div>
     <div class="fnav__right">
-      <button class="fnav__burger" id="hamburgerBtn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      <button type="button" class="fnav__cta" onclick="bookCall()">Schedule a call</button>
+      <button type="button" class="fnav__burger" id="fnavBurger" aria-label="Toggle menu" aria-expanded="false" aria-controls="fnavMobile">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 </header>
-<div class="fnav__mobile" id="navMobile">
-  <a href="./about.html" class="nav-mobile__link">About</a>
-  <a href="./index.html#work" class="nav-mobile__link">Work</a>
-  <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener" class="nav-mobile__link">LinkedIn</a>
-  <button class="fnav__cta" onclick="bookCall()">Schedule a call</button>
+
+<div class="fnav__mobile" id="fnavMobile">
+  <a href="./index.html#work">Work</a>
+  <a href="./about.html">About</a>
+  <a href="./resume.html">Resume</a>
+  <a href="https://www.linkedin.com/in/pillasriharshita/" target="_blank" rel="noopener">LinkedIn</a>
+  <button type="button" class="fnav__cta" onclick="bookCall()">Schedule a call</button>
 </div>
+
 
 <!-- ══════ CALENDLY MODAL ══════ -->
 <div class="calendly-modal" id="calendlyModal" role="dialog" aria-labelledby="calendlyTitle" aria-hidden="true">
@@ -651,5 +661,6 @@
   };
 </script>
 
+<script src="./scripts/fnav.js" defer></script>
 </body>
 </html>

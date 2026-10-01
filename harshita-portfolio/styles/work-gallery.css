@@ -1,0 +1,260 @@
+/* ============================================================
+   WORK-GALLERY.CSS — Selected Work bento gallery
+   Mixes: tall feature card, wide horizontal card, vertical cards
+   ============================================================ */
+
+.wg {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 40px;
+}
+
+/* ── Header ── */
+.wg__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.wg__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.wg__title em { color: var(--color-accent); font-style: italic; font-weight: 600; }
+
+.wg__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  margin-bottom: 16px;
+}
+
+.wg__label::before { content: '●'; font-size: 0.5em; }
+
+.wg__all {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  padding: 12px 20px;
+  text-decoration: none;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.wg__all:hover { background: var(--color-accent); color: #111; }
+
+/* ── Grid ── */
+.wg__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-areas:
+    "wide wide wide wide wide wide wide wide feat feat feat feat"
+    "v1   v1   v1   v1   v2   v2   v2   v2   feat feat feat feat";
+  gap: 24px;
+}
+
+.wg-card--wide { grid-area: wide; }
+.wg-card--v1   { grid-area: v1; }
+.wg-card--v2   { grid-area: v2; }
+.wg-card--feat { grid-area: feat; }
+
+/* ── Shared card ── */
+.wg-card {
+  position: relative;
+  display: flex;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color var(--transition-base), transform var(--transition-base);
+}
+
+.wg-card:hover { border-color: var(--color-border-hover); }
+.wg-card:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+
+.wg-card__media {
+  position: relative;
+  overflow: hidden;
+  background: #1c1c1c;
+}
+
+.wg-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 600ms ease;
+}
+
+.wg-card:hover .wg-card__media img { transform: scale(1.03); }
+
+.wg-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  flex: 1;
+  min-width: 0;
+}
+
+.wg-card__status {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.wg-card__meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.wg-card__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.25rem, 2vw, 1.625rem);
+  line-height: 1.2;
+  color: var(--color-text-primary);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.wg-card__desc {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.wg-card__foot {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.wg-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.wg-tag {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.wg-card:hover .wg-tag { border-color: var(--color-border-hover); }
+
+.wg-card__arrow {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  color: var(--color-text-primary);
+  transition: transform var(--transition-base), color var(--transition-base);
+}
+
+.wg-card:hover .wg-card__arrow { transform: translateX(4px); color: var(--color-accent); }
+
+/* ── Wide: image left, text right ── */
+.wg-card--wide .wg-card__media { flex: 0 0 46%; min-height: 280px; }
+
+/* ── Vertical: image on top ── */
+.wg-card--v1,
+.wg-card--v2 { flex-direction: column; }
+
+.wg-card--v1 .wg-card__media,
+.wg-card--v2 .wg-card__media { aspect-ratio: 16 / 10; }
+
+/* ── Feature: tall dark card ── */
+.wg-card--feat {
+  flex-direction: column;
+  background: linear-gradient(180deg, rgba(232, 80, 0, 0.08) 0%, transparent 60%);
+}
+
+.wg-card--feat .wg-card__media {
+  background: transparent;
+  padding: 28px 24px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.wg-card--feat .wg-card__title { font-size: clamp(1.625rem, 2.6vw, 2.125rem); -webkit-line-clamp: 4; }
+.wg-card--feat .wg-card__desc { font-size: var(--text-base); color: rgba(255,255,255,0.7); }
+
+.wg-card--feat .glenen-mockup { max-width: 100%; }
+
+.wg-card__byline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.wg-card__byline img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .wg { padding: 80px 32px; }
+  .wg__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "feat feat"
+      "wide wide"
+      "v1   v2";
+  }
+}
+
+@media (max-width: 720px) {
+  .wg { padding: 56px 16px; }
+  .wg__header { flex-direction: column; align-items: flex-start; margin-bottom: 32px; }
+  .wg__grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "feat" "wide" "v1" "v2";
+    gap: 20px;
+  }
+  .wg-card--wide { flex-direction: column; }
+  .wg-card--wide .wg-card__media { flex: none; aspect-ratio: 16 / 10; min-height: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wg-card, .wg-card__media img, .wg-card__arrow { transition: none; }
+  .wg-card:hover .wg-card__media img { transform: none; }
+}

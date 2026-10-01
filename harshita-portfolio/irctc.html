@@ -80,23 +80,34 @@
 <!-- FLOATING NAV -->
 <link rel="stylesheet" href="./styles/floating-nav.css" />
 <header class="fnav">
-  <nav class="fnav__inner">
-    <a href="./index.html" class="fnav__brand"><img src="./assets/logo.png" class="fnav__logo" alt="Sri Harshita Pilla" /><span class="fnav__name">Sri Harshita Pilla</span></a>
-    <div class="fnav__right">
-      <button class="fnav__burger" id="hamburgerBtn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  <nav class="fnav__inner" aria-label="Main navigation">
+    <a href="./index.html" class="fnav__brand">
+      <img src="./assets/logo.png" class="fnav__logo" alt="" />
+      <span class="fnav__name">Sri Harshita Pilla</span>
+    </a>
+    <div class="fnav__links">
+      <a href="./index.html#work" class="fnav__link">Work</a>
+      <a href="./about.html" class="fnav__link">About</a>
+      <a href="./resume.html" class="fnav__link">Resume</a>
+      <a href="https://www.linkedin.com/in/pillasriharshita/" target="_blank" rel="noopener" class="fnav__link">LinkedIn</a>
     </div>
-    </div>
     <div class="fnav__right">
-<div class="fnav__mobile" id="navMobile">
-  <a href="./about.html" class="nav-mobile__link">About</a>
-  <a href="./index.html#work" class="nav-mobile__link">Work</a>
-  <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener" class="nav-mobile__link">LinkedIn</a>
-  <button class="fnav__cta" onclick="bookCall()">Schedule a call</button>
+      <button type="button" class="fnav__cta" onclick="bookCall()">Schedule a call</button>
+      <button type="button" class="fnav__burger" id="fnavBurger" aria-label="Toggle menu" aria-expanded="false" aria-controls="fnavMobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<div class="fnav__mobile" id="fnavMobile">
+  <a href="./index.html#work">Work</a>
+  <a href="./about.html">About</a>
+  <a href="./resume.html">Resume</a>
+  <a href="https://www.linkedin.com/in/pillasriharshita/" target="_blank" rel="noopener">LinkedIn</a>
+  <button type="button" class="fnav__cta" onclick="bookCall()">Schedule a call</button>
 </div>
-  <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener">LinkedIn</a>
-  <button class="fnav__cta" onclick="bookCall()">Schedule a call</button>
-</div>
-<script>(function(){var b=document.getElementById('fnavBurger'),m=document.getElementById('fnavMobile');if(!b||!m)return;b.addEventListener('click',function(){b.classList.toggle('open');m.classList.toggle('open');});})()</script>
+
 
   <!-- CALENDLY MODAL -->
   <div class="calendly-modal" id="calendlyModal" role="dialog" aria-labelledby="calendlyTitle" aria-hidden="true">
@@ -112,7 +123,7 @@
   <!-- HERO -->
   <section class="cs-hero cs-hero--viewport" style="position:relative;overflow:hidden;">
     <div style="position:absolute;inset:0;z-index:0;">
-      <img src="https://framerusercontent.com/images/K5wrqtzcDRFeZAdaXWL3OAGQ.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:top center;opacity:.15;" />
+      <img src="./assets/irctc/K5wrqtzcDRFeZAdaXWL3OAGQ.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:top center;opacity:.15;" />
     </div>
     <div class="cs-hero__top" style="position:relative;z-index:1;">
       <div class="cs-hero__info">
@@ -197,9 +208,9 @@
     <!-- Before / After Comparison Sliders -->
     <h3 class="cs-block__label" style="margin-top:40px;">PROBLEM 1: BOOKING FLOW</h3>
     <div class="img-compare" data-compare style="margin-top:12px;">
-      <img src="https://framerusercontent.com/images/pc1xK6t5I4Yvv2K2QrJzoUZN4.jpg" alt="IRCTC before, booking flow" />
+      <img src="./assets/irctc/pc1xK6t5I4Yvv2K2QrJzoUZN4.jpg" alt="IRCTC before, booking flow" />
       <div class="img-compare__after" style="clip-path:inset(0 50% 0 0);">
-        <img src="https://framerusercontent.com/images/9PxvFQcwXVKTZl5QMWluo2tIno.png" alt="IRCTC after, booking flow" />
+        <img src="./assets/irctc/9PxvFQcwXVKTZl5QMWluo2tIno.png" alt="IRCTC after, booking flow" />
       </div>
       <div class="img-compare__handle" style="left:calc(50% - 1.5px);">
         <div class="img-compare__knob">
@@ -212,9 +223,9 @@
 
     <h3 class="cs-block__label" style="margin-top:40px;">PROBLEM 2: PAYMENT FAILURES</h3>
     <div class="img-compare" data-compare style="margin-top:12px;">
-      <img src="https://framerusercontent.com/images/Ab89OlNyrTJvuPay3R1cZ4bD5UM.jpg" alt="IRCTC before, payment page" />
+      <img src="./assets/irctc/Ab89OlNyrTJvuPay3R1cZ4bD5UM.jpg" alt="IRCTC before, payment page" />
       <div class="img-compare__after" style="clip-path:inset(0 50% 0 0);">
-        <img src="https://framerusercontent.com/images/YjjDui0FCUWgYeWU9ZDZ19OzLg.png" alt="IRCTC after, payment page" />
+        <img src="./assets/irctc/YjjDui0FCUWgYeWU9ZDZ19OzLg.png" alt="IRCTC after, payment page" />
       </div>
       <div class="img-compare__handle" style="left:calc(50% - 1.5px);">
         <div class="img-compare__knob">
@@ -227,9 +238,9 @@
 
     <h3 class="cs-block__label" style="margin-top:40px;">PROBLEM 3: NAVIGATION &amp; SEARCH</h3>
     <div class="img-compare" data-compare style="margin-top:12px;">
-      <img src="https://framerusercontent.com/images/tp8JSfoCbQjV7kLDw6yL82ppdPc.jpg" alt="IRCTC before, navigation" />
+      <img src="./assets/irctc/tp8JSfoCbQjV7kLDw6yL82ppdPc.jpg" alt="IRCTC before, navigation" />
       <div class="img-compare__after" style="clip-path:inset(0 50% 0 0);">
-        <img src="https://framerusercontent.com/images/K5wrqtzcDRFeZAdaXWL3OAGQ.jpg" alt="IRCTC after, navigation redesigned" />
+        <img src="./assets/irctc/K5wrqtzcDRFeZAdaXWL3OAGQ.jpg" alt="IRCTC after, navigation redesigned" />
       </div>
       <div class="img-compare__handle" style="left:calc(50% - 1.5px);">
         <div class="img-compare__knob">
@@ -316,7 +327,7 @@
     <p class="cs-block__body">The visual system prioritizes information hierarchy: what users need to confirm a decision is always visible without clicking into sub-menus.</p>
 
     <div class="cs-img cs-img--full" style="margin-top:24px;">
-      <img src="https://framerusercontent.com/images/K5wrqtzcDRFeZAdaXWL3OAGQ.jpg" alt="Complete redesigned flow" style="border-radius:12px;" />
+      <img src="./assets/irctc/K5wrqtzcDRFeZAdaXWL3OAGQ.jpg" alt="Complete redesigned flow" style="border-radius:12px;" />
     </div>
   </section>
 
@@ -423,5 +434,6 @@ window.closeCalendlyModal = function() {
   if (modal) { modal.classList.remove('active'); modal.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
 };
 </script>
+<script src="./scripts/fnav.js" defer></script>
 </body>
 </html>

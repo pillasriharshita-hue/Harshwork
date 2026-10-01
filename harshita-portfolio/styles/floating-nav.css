@@ -19,6 +19,9 @@
   text-decoration:none;color:#fff;
   flex-shrink:0;
 }
+.fnav__brand:focus,
+.fnav__brand:focus-visible{outline:none;box-shadow:none}
+.fnav__brand:focus-visible .fnav__name{color:var(--color-accent)}
 .fnav__avatar{
   width:28px;height:28px;border-radius:50%;
   background:#3D8B6E;display:flex;align-items:center;justify-content:center;

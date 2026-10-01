@@ -240,18 +240,20 @@
 
 <!-- FLOATING NAV -->
 <header class="fnav">
-  <nav class="fnav__inner">
+  <nav class="fnav__inner" aria-label="Main navigation">
     <a href="./index.html" class="fnav__brand">
-      <img src="./assets/logo.png" class="fnav__logo" alt="Sri Harshita Pilla" />
+      <img src="./assets/logo.png" class="fnav__logo" alt="" />
       <span class="fnav__name">Sri Harshita Pilla</span>
     </a>
     <div class="fnav__links">
       <a href="./index.html#work" class="fnav__link">Work</a>
       <a href="./about.html" class="fnav__link">About</a>
-      <a href="#" class="fnav__link">Resume</a>
+      <a href="./resume.html" class="fnav__link">Resume</a>
+      <a href="https://www.linkedin.com/in/pillasriharshita/" target="_blank" rel="noopener" class="fnav__link">LinkedIn</a>
     </div>
     <div class="fnav__right">
-      <button class="fnav__burger" id="fnavBurger" aria-label="Toggle menu" aria-expanded="false">
+      <button type="button" class="fnav__cta" onclick="bookCall()">Schedule a call</button>
+      <button type="button" class="fnav__burger" id="fnavBurger" aria-label="Toggle menu" aria-expanded="false" aria-controls="fnavMobile">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -261,20 +263,11 @@
 <div class="fnav__mobile" id="fnavMobile">
   <a href="./index.html#work">Work</a>
   <a href="./about.html">About</a>
-  <a href="#">Resume</a>
+  <a href="./resume.html">Resume</a>
+  <a href="https://www.linkedin.com/in/pillasriharshita/" target="_blank" rel="noopener">LinkedIn</a>
+  <button type="button" class="fnav__cta" onclick="bookCall()">Schedule a call</button>
 </div>
 
-<script>
-(function(){
-  var b=document.getElementById('fnavBurger'),m=document.getElementById('fnavMobile');
-  if(!b||!m)return;
-  b.addEventListener('click',function(){
-    var o=m.classList.contains('open');
-    b.classList.toggle('open');m.classList.toggle('open');
-    b.setAttribute('aria-expanded',o?'false':'true');
-  });
-})();
-</script>
 
 <!-- CALENDLY MODAL -->
 <div class="calendly-modal" id="calendlyModal" role="dialog" aria-labelledby="calendlyTitle" aria-hidden="true">
@@ -309,10 +302,6 @@
       <div class="cs-meta__item">
         <span class="cs-meta__label">Timeline</span>
         <span class="cs-meta__value">10 weeks · DePaul University</span>
-      </div>
-      <div class="cs-meta__item">
-        <span class="cs-meta__label">Prototype</span>
-        <a href="#" class="cs-meta__link">View in Figma ↗</a>
       </div>
     </div>
   </div>
@@ -498,7 +487,7 @@
     </div>
 
     <div class="cs-img-full">
-      <img src="./assets/uttishanow/Beige and Black Trendy Minimalist...jpg" alt="Behavioral archetypes illustration" loading="lazy" />
+      <img src="./assets/uttishanow/Beige and Black Trendy Minimalist New Abstract Store Logo (LinkedIn Post) (1).jpg" alt="Behavioral archetypes illustration" loading="lazy" />
     </div>
 
     <div class="cs-insight">Both archetypes share one thing: none of them lacks motivation. All of them lost an environmental enabler. The deficit is structural, not psychological.</div>
@@ -813,5 +802,6 @@
 })();
 </script>
 
+<script src="./scripts/fnav.js" defer></script>
 </body>
 </html>

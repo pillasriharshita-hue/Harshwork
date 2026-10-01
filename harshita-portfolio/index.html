@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="./styles/loader.css" />
   <link rel="stylesheet" href="./styles/hero-cover.css" />
   <link rel="stylesheet" href="./styles/featured-card.css" />
-  <link rel="stylesheet" href="./styles/selected-work.css" />
+  <link rel="stylesheet" href="./styles/work-gallery.css" />
   <link rel="stylesheet" href="./styles/new-footer.css" />
   <link rel="stylesheet" href="./styles/accessibility.css" />
   <link rel="stylesheet" href="./styles/floating-nav.css" />
@@ -182,49 +182,34 @@
 
   <!-- ══════ FLOATING NAV ══════ -->
   <header class="fnav">
-    <nav class="fnav__inner">
-      <a href="./index.html" class="fnav__brand">
-        <img src="./assets/logo.png" class="fnav__logo" alt="Sri Harshita Pilla" />
-        <span class="fnav__name">Sri Harshita Pilla</span>
-      </a>
+  <nav class="fnav__inner" aria-label="Main navigation">
+    <a href="./index.html" class="fnav__brand">
+      <img src="./assets/logo.png" class="fnav__logo" alt="" />
+      <span class="fnav__name">Sri Harshita Pilla</span>
+    </a>
+    <div class="fnav__links">
+      <a href="./index.html#work" class="fnav__link">Work</a>
+      <a href="./about.html" class="fnav__link">About</a>
+      <a href="./resume.html" class="fnav__link">Resume</a>
+      <a href="https://www.linkedin.com/in/pillasriharshita/" target="_blank" rel="noopener" class="fnav__link">LinkedIn</a>
+    </div>
+    <div class="fnav__right">
+      <button type="button" class="fnav__cta" onclick="bookCall()">Schedule a call</button>
+      <button type="button" class="fnav__burger" id="fnavBurger" aria-label="Toggle menu" aria-expanded="false" aria-controls="fnavMobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
 
-      <div class="fnav__links">
-        <a href="#home" class="fnav__link">Home</a>
-        <a href="#work" class="fnav__link">Work</a>
-        <a href="#" class="fnav__link">Resume</a>
-        <a href="#contact" class="fnav__link">Contact</a>
-      </div>
+<div class="fnav__mobile" id="fnavMobile">
+  <a href="./index.html#work">Work</a>
+  <a href="./about.html">About</a>
+  <a href="./resume.html">Resume</a>
+  <a href="https://www.linkedin.com/in/pillasriharshita/" target="_blank" rel="noopener">LinkedIn</a>
+  <button type="button" class="fnav__cta" onclick="bookCall()">Schedule a call</button>
+</div>
 
-      <div class="fnav__right">
-        <button class="fnav__burger" id="fnavBurger" aria-label="Toggle menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-    </nav>
-  </header>
-
-  <div class="fnav__mobile" id="fnavMobile">
-    <a href="#home">Home</a>
-    <a href="#work">Work</a>
-    <a href="#">Resume</a>
-    <a href="#contact">Contact</a>
-  </div>
-
-  <script>
-  (function(){
-    var burger = document.getElementById('fnavBurger');
-    var mobile = document.getElementById('fnavMobile');
-    if (!burger || !mobile) return;
-    burger.addEventListener('click', function(){
-      var isOpen = mobile.classList.contains('open');
-      burger.classList.toggle('open');
-      mobile.classList.toggle('open');
-      burger.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
-    });
-  })();
-  </script>
 
   <!-- ══════ HERO SECTION ══════ -->
   <section class="hero-cover" id="home" aria-label="Hero section">
@@ -241,7 +226,7 @@
       </p>
       <div class="hero-cover__info">
         <span class="hero-cover__location">Dallas, TX &nbsp;·&nbsp; Open to Relocate</span>
-        <a href="mailto:pillasriharshita@gmail.com" class="hero-cover__email">pillasriharshita@gmail.com</a>
+        <a href="mailto:harshitapillasri@gmail.com" class="hero-cover__email">harshitapillasri@gmail.com</a>
       </div>
       <div class="hero-cover__ctas">
         <a href="#work" class="hero-cover__cta hero-cover__cta--primary">View Work</a>
@@ -249,87 +234,104 @@
     </div>
   </section>
 
-  <!-- ══════ SELECTED WORK ══════ -->
-  <section class="selected-work" id="work" aria-label="Featured work section">
+  <!-- ══════ SELECTED WORK (placeholder content, bento gallery) ══════ -->
+  <section class="wg" id="work" aria-labelledby="wgTitle">
 
-    <div class="selected-work__header">
-      <span class="selected-work__label">Work</span>
-      <h2 class="selected-work__title">
-        Selected <span class="selected-work__title-accent">work</span>
-      </h2>
+    <div class="wg__header">
+      <div>
+        <span class="wg__label">Work</span>
+        <h2 class="wg__title" id="wgTitle">Selected <em>work</em></h2>
+      </div>
+      <a href="./maintenance.html" class="wg__all">View all work →</a>
     </div>
 
-    <div class="selected-work__cards">
+    <div class="wg__grid">
 
-      <!-- ══════ CARD 01: Glenen AI ══════ -->
-      <article class="featured-card" aria-label="Glenen AI project">
-        <span class="featured-card__watermark">01</span>
-
-        <div class="featured-card__left">
-          <div class="featured-card__number">01</div>
-          <h3 class="featured-card__title">Glenen AI</h3>
-          <p class="featured-card__subtitle">AI Retail Assistant &nbsp;•&nbsp; Conversational Commerce</p>
-          <p class="featured-card__description">Glenen is an in-store conversational assistant that helps customers find products through natural language. I designed the interaction model, ranking heuristics, and explainable recommendations to reduce decision time and increase conversion.</p>
-          <div class="featured-card__stats" aria-hidden="true">
-            <div class="featured-card__stat"><strong>2,900+</strong><span>SKUs</span></div>
-            <div class="featured-card__stat"><strong>4</strong><span>Shopping Intents</span></div>
-            <div class="featured-card__stat"><strong>RAG</strong><span>+ Semantic Search</span></div>
-          </div>
-          <div class="featured-card__tags">
-            <span class="featured-card__tag">Conversational AI</span>
-            <span class="featured-card__tag">Semantic Search</span>
-            <span class="featured-card__tag">Retail UX</span>
-          </div>
-          <a href="./maintenance.html" class="featured-card__cta">Under Maintenance</a>
+      <!-- Wide card: UttishaNow -->
+      <a href="./maintenance.html" class="wg-card wg-card--wide" aria-label="UttishaNow project">
+        <div class="wg-card__media">
+          <img src="./assets/other-works/utn.png" alt="UttishaNow app screens" loading="lazy" />
         </div>
+        <div class="wg-card__body">
+          <span class="wg-card__status">Case study · Under maintenance</span>
+          <h3 class="wg-card__title">Designing a healthier routine without relying on motivation</h3>
+          <p class="wg-card__desc">Behavioral research and mobile UX: subtle, persistent nudges to help young adults build movement habits.</p>
+          <div class="wg-card__foot">
+            <div class="wg-tags">
+              <span class="wg-tag">Research</span>
+              <span class="wg-tag">Mobile UX</span>
+              <span class="wg-tag">Habit design</span>
+            </div>
+            <svg class="wg-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+          </div>
+        </div>
+      </a>
 
-        <div class="featured-card__right">
+      <!-- Vertical card: Wander -->
+      <a href="./maintenance.html" class="wg-card wg-card--v1" aria-label="Wander project">
+        <div class="wg-card__media">
+          <img src="./assets/other-works/Wander.jpg" alt="Wander AR walking app" loading="lazy" />
+        </div>
+        <div class="wg-card__body">
+          <span class="wg-card__meta">Product design</span>
+          <h3 class="wg-card__title">Wander: turning ordinary walks into narrative journeys</h3>
+          <div class="wg-card__foot">
+            <div class="wg-tags">
+              <span class="wg-tag">AR</span>
+              <span class="wg-tag">Mobile app</span>
+            </div>
+            <svg class="wg-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- Vertical card: IRCTC -->
+      <a href="./maintenance.html" class="wg-card wg-card--v2" aria-label="IRCTC Redesign project">
+        <div class="wg-card__media">
+          <img src="./assets/other-works/irctc.png" alt="IRCTC redesign" loading="lazy" />
+        </div>
+        <div class="wg-card__body">
+          <span class="wg-card__meta">Interaction design</span>
+          <h3 class="wg-card__title">IRCTC Redesign: simplifying search and booking decisions</h3>
+          <div class="wg-card__foot">
+            <div class="wg-tags">
+              <span class="wg-tag">UX audit</span>
+              <span class="wg-tag">Booking flow</span>
+            </div>
+            <svg class="wg-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- Tall feature card: Glenen AI -->
+      <a href="./maintenance.html" class="wg-card wg-card--feat" aria-label="Glenen AI project">
+        <div class="wg-card__media">
           <div class="glenen-mockup" aria-hidden="true">
             <div class="chat">
               <div class="chat__bubble chat__bubble--user">I'm looking for a compact blender for smoothies</div>
-                <div class="chat__bubble chat__bubble--assistant">Try the SwiftBlend S12 - compact, powerful, and under $50. Would you like options ranked by price or performance?</div>
+              <div class="chat__bubble chat__bubble--assistant">Try the SwiftBlend S12: compact, powerful, and under $50. Would you like options ranked by price or performance?</div>
               <div class="recommendations">
-                <div class="rec-card">
-                  <div class="rec-card__title">SwiftBlend S12</div>
-                  <div class="rec-card__meta">Compact · $49</div>
-                </div>
-                <div class="rec-card">
-                  <div class="rec-card__title">BlendPro X</div>
-                  <div class="rec-card__meta">High power · $89</div>
-                </div>
+                <div class="rec-card"><div class="rec-card__title">SwiftBlend S12</div><div class="rec-card__meta">Compact · $49</div></div>
+                <div class="rec-card"><div class="rec-card__title">BlendPro X</div><div class="rec-card__meta">High power · $89</div></div>
               </div>
             </div>
           </div>
         </div>
-      </article>
-
-      <!-- ══════ CARD 02: UttishaNow ══════ -->
-      <article class="featured-card featured-card--reversed" aria-label="UttishaNow project">
-        <span class="featured-card__watermark">02</span>
-
-        <div class="featured-card__left">
-          <div class="featured-card__number">02</div>
-          <h3 class="featured-card__title">Designing a healthier routine without relying on motivation</h3>
-          <p class="featured-card__subtitle">Behavioral Research &nbsp;•&nbsp; Mobile UX</p>
-          <p class="featured-card__description">A behavioral-design study that introduced subtle, persistent nudges to help young adults build movement habits. I led the research, prototyping, and field testing to create low-friction interventions that scale without demanding willpower.</p>
-          <div class="featured-card__tags">
-            <span class="featured-card__tag">Behavioral Research</span>
-            <span class="featured-card__tag">Mobile UX</span>
-            <span class="featured-card__tag">Habit Design</span>
-          </div>
-          <a href="./maintenance.html" class="featured-card__cta">Under Maintenance</a>
-        </div>
-
-        <div class="featured-card__right">
-          <div class="featured-card__image">
-            <img src="./assets/other-works/utn.png" alt="UttishaNow app" loading="lazy" />
-            <div class="featured-card__image-shadow"></div>
+        <div class="wg-card__body">
+          <span class="wg-card__status">Featured · Under maintenance</span>
+          <h3 class="wg-card__title">Glenen AI: helping shoppers find the right product in-store</h3>
+          <p class="wg-card__desc">A conversational retail assistant: interaction model, ranking heuristics, and explainable recommendations.</p>
+          <div class="wg-card__foot">
+            <div class="wg-tags">
+              <span class="wg-tag">Conversational AI</span>
+              <span class="wg-tag">Retail UX</span>
+            </div>
+            <svg class="wg-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
           </div>
         </div>
-      </article>
+      </a>
 
     </div>
-
   </section>
 
   <!-- ══════ FOOTER ══════ -->
@@ -348,10 +350,10 @@
     <div class="footer__bar">
       <p class="footer__bar-left">© 2026 &nbsp;·&nbsp; Built with &nbsp;🎨&nbsp; ☕</p>
       <div class="footer__bar-right">
-        <a href="mailto:pillasriharshita@gmail.com" class="footer__bar-link">Email ↗</a>
-        <a href="https://www.linkedin.com/in/sriharshitapilla/" target="_blank" rel="noopener" class="footer__bar-link">LinkedIn ↗</a>
+        <a href="mailto:harshitapillasri@gmail.com" class="footer__bar-link">Email ↗</a>
+        <a href="https://www.linkedin.com/in/pillasriharshita/" target="_blank" rel="noopener" class="footer__bar-link">LinkedIn ↗</a>
         <a href="https://medium.com/@harshitapilla" target="_blank" rel="noopener" class="footer__bar-link">Medium ↗</a>
-        <a href="#" class="footer__bar-link">Resume ↗</a>
+        <a href="./resume.html" class="footer__bar-link">Resume ↗</a>
       </div>
     </div>
 
@@ -361,5 +363,6 @@
   <script src="./scripts/cards.js" defer></script>
   <script src="./scripts/animations.js" defer></script>
 
+<script src="./scripts/fnav.js" defer></script>
 </body>
 </html>
