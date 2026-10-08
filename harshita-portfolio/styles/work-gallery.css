@@ -68,7 +68,7 @@
   grid-template-areas:
     "wide wide wide wide wide wide wide wide feat feat feat feat"
     "v1   v1   v1   v1   v2   v2   v2   v2   feat feat feat feat"
-    "hack hack hack hack hack hack hack hack hack hack hack hack";
+    "hack hack hack hack hack hack hack hack bind bind bind bind";
   gap: 24px;
 }
 
@@ -77,6 +77,7 @@
 .wg-card--v2   { grid-area: v2; }
 .wg-card--feat { grid-area: feat; }
 .wg-card--hack { grid-area: hack; }
+.wg-card--bind { grid-area: bind; }
 
 /* ── Shared card ── */
 .wg-card {
@@ -198,10 +199,12 @@
 
 /* ── Vertical: image on top ── */
 .wg-card--v1,
-.wg-card--v2 { flex-direction: column; }
+.wg-card--v2,
+.wg-card--bind { flex-direction: column; }
 
 .wg-card--v1 .wg-card__media,
-.wg-card--v2 .wg-card__media { aspect-ratio: 16 / 10; }
+.wg-card--v2 .wg-card__media,
+.wg-card--bind .wg-card__media { aspect-ratio: 16 / 10; }
 
 /* ── Feature: tall dark card ── */
 .wg-card--feat {
@@ -241,7 +244,8 @@
       "feat feat"
       "wide wide"
       "v1   v2"
-      "hack hack";
+      "hack hack"
+      "bind bind";
   }
 }
 
@@ -250,7 +254,7 @@
   .wg__header { flex-direction: column; align-items: flex-start; margin-bottom: 32px; }
   .wg__grid {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "feat" "wide" "v1" "v2" "hack";
+    grid-template-areas: "feat" "wide" "v1" "v2" "hack" "bind";
     gap: 20px;
   }
   .wg-card--wide { flex-direction: column; }
