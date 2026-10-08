@@ -67,7 +67,8 @@
   grid-template-columns: repeat(12, minmax(0, 1fr));
   grid-template-areas:
     "wide wide wide wide wide wide wide wide feat feat feat feat"
-    "v1   v1   v1   v1   v2   v2   v2   v2   feat feat feat feat";
+    "v1   v1   v1   v1   v2   v2   v2   v2   feat feat feat feat"
+    "hack hack hack hack hack hack hack hack hack hack hack hack";
   gap: 24px;
 }
 
@@ -75,6 +76,7 @@
 .wg-card--v1   { grid-area: v1; }
 .wg-card--v2   { grid-area: v2; }
 .wg-card--feat { grid-area: feat; }
+.wg-card--hack { grid-area: hack; }
 
 /* ── Shared card ── */
 .wg-card {
@@ -238,7 +240,8 @@
     grid-template-areas:
       "feat feat"
       "wide wide"
-      "v1   v2";
+      "v1   v2"
+      "hack hack";
   }
 }
 
@@ -247,7 +250,7 @@
   .wg__header { flex-direction: column; align-items: flex-start; margin-bottom: 32px; }
   .wg__grid {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "feat" "wide" "v1" "v2";
+    grid-template-areas: "feat" "wide" "v1" "v2" "hack";
     gap: 20px;
   }
   .wg-card--wide { flex-direction: column; }
