@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="./styles/hero-cover.css" />
   <link rel="stylesheet" href="./styles/featured-card.css" />
   <link rel="stylesheet" href="./styles/work-gallery.css" />
+  <link rel="stylesheet" href="./styles/other-works.css" />
   <link rel="stylesheet" href="./styles/new-footer.css" />
   <link rel="stylesheet" href="./styles/accessibility.css" />
   <link rel="stylesheet" href="./styles/floating-nav.css" />
@@ -373,6 +374,64 @@
     </div>
   </section>
 
+  <!-- ══════ OTHER WORKS (graphic, architecture, experimental, art) ══════ -->
+  <section class="ow" id="other-works" aria-labelledby="owTitle">
+    <div class="ow__header">
+      <div>
+        <span class="wg__label">Beyond product</span>
+        <h2 class="wg__title" id="owTitle">Other <em>works</em></h2>
+      </div>
+    </div>
+
+    <div class="ow__filters" role="group" aria-label="Filter other works"></div>
+
+    <div class="ow__scroller">
+    <div class="ow__grid">
+      <a href="./maintenance.html" class="ow-tile" data-category="Graphic">
+        <img src="./assets/other-works/neuron-electron.webp" alt="Teal Neuron Electron mark on a round yellow blade sign" loading="lazy" />
+        <span class="ow-tile__cap">
+          <span class="ow-tile__cat">Graphic</span>
+          <span class="ow-tile__title">Neuron Electron: logo and branding design</span>
+        </span>
+      </a>
+      <a href="./maintenance.html" class="ow-tile" data-category="Architecture">
+        <img src="./assets/other-works/habitat-technology.jpg" alt="Rendered tropical house with laterite stone and white plastered volumes" loading="lazy" />
+        <span class="ow-tile__cap">
+          <span class="ow-tile__cat">Architecture</span>
+          <span class="ow-tile__title">Architect at Habitat Technology</span>
+        </span>
+      </a>
+      <a href="./maintenance.html" class="ow-tile" data-category="Architecture">
+        <img src="./assets/other-works/reconnecting-life-and-death.jpg" alt="Aerial render of a crematorium campus with curving garden paths" loading="lazy" />
+        <span class="ow-tile__cap">
+          <span class="ow-tile__cat">Architecture</span>
+          <span class="ow-tile__title">Reconnecting Life and Death: crematorium thesis</span>
+        </span>
+      </a>
+      <a href="./maintenance.html" class="ow-tile" data-category="Architecture">
+        <img src="./assets/other-works/architecture-studio.jpg" alt="Brick campus building render with arched colonnades and pergolas" loading="lazy" />
+        <span class="ow-tile__cap">
+          <span class="ow-tile__cat">Architecture</span>
+          <span class="ow-tile__title">Architecture studio projects</span>
+        </span>
+      </a>
+
+      <!-- Art tile: replace or add more with data-category="Art" -->
+      <figure class="ow-tile" data-category="Art">
+        <img src="./assets/other-works/Archi-Project.png" alt="Hand-drawn eye illustration on a yellow background" loading="lazy" />
+        <figcaption class="ow-tile__cap">
+          <span class="ow-tile__cat">Art</span>
+          <span class="ow-tile__title">Illustration: the eye</span>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="ow__nav">
+      <button type="button" class="ow__arrow" id="owPrev" aria-label="Scroll left">←</button>
+      <button type="button" class="ow__arrow" id="owNext" aria-label="Scroll right">→</button>
+    </div>
+    </div>
+  </section>
+
   <!-- ══════ FOOTER ══════ -->
   <footer class="footer" id="contact" aria-label="Footer">
 
@@ -401,6 +460,7 @@
   <script src="./scripts/main.js" defer></script>
   <script src="./scripts/cards.js" defer></script>
   <script src="./scripts/animations.js" defer></script>
+  <script src="./scripts/other-works.js" defer></script>
 
 <script src="./scripts/fnav.js" defer></script>
 </body>
