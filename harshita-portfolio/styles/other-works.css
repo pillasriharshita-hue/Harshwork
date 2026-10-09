@@ -76,7 +76,7 @@
 .ow-tile {
   position: relative;
   display: block;
-  flex: 0 0 min(270px, 78%);
+  flex: 0 0 min(360px, 78%);
   aspect-ratio: 9 / 6;
   margin: 0;
   color: inherit;
